@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>dissipative particle dynamics of membrane from scratch - Yi Yao's Homepage</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./dissipative-particle-dynamics-of-membrane-from-scratch.html">
+
+        <meta name="author" content="Yi Yao" />
+        <meta name="keywords" content="molecular dynamics" />
+        <meta name="description" content="Learning dissipative particle dynamics by lammps" />
+
+        <meta property="og:site_name" content="Yi Yao's Homepage" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="dissipative particle dynamics of membrane from scratch"/>
+        <meta property="og:url" content="./dissipative-particle-dynamics-of-membrane-from-scratch.html"/>
+        <meta property="og:description" content="Learning dissipative particle dynamics by lammps"/>
+        <meta property="article:published_time" content="2014-11-25" />
+            <meta property="article:section" content="molecular dynamics" />
+            <meta property="article:tag" content="molecular dynamics" />
+            <meta property="article:author" content="Yi Yao" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Yi Yao's Homepage            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./index.html">
+                             About Me
+                          </a></li>
+                         <li><a href="./pages/research.html">
+                             Research
+                          </a></li>
+                         <li><a href="./pages/useful-links.html">
+                             Useful Links
+                          </a></li>
+                        <li >
+                            <a href="./category/dft.html">Dft</a>
+                        </li>
+                        <li >
+                            <a href="./category/misc.html">Misc</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
+                        </li>
+                        <li >
+                            <a href="./category/python.html">Python</a>
+                        </li>
+                        <li >
+                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./dissipative-particle-dynamics-of-membrane-from-scratch.html"
+                       rel="bookmark"
+                       title="Permalink to dissipative particle dynamics of membrane from scratch">
+                        dissipative particle dynamics of membrane from scratch
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-11-25T13:44:00+01:00"> Tue 25 November 2014</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/molecular-dynamics.html">molecular dynamics</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>I perform a test dpd simulation of membrane started from the generation of structures. packmol is used for generate the input structure. lammps is used as the simulator. </p>
+<p>The lipid structure is as follow(lipid.xyz):</p>
+<div class="highlight"><pre>11
+
+C 0.0 0.0 0.0
+C 0.5 0.0 0.0
+C 1.0 0.0 0.0
+C 1.5 0.0 0.0
+C 0.0 0.6 0.0
+C 0.5 0.6 0.0
+C 1.0 0.6 0.0
+C 1.5 0.6 0.0
+H 2.0 0.0 0.0
+H 2.0 0.5 0.0
+H 2.5 0.0 0.0
+</pre></div>
+
+
+<p>which is like the pic shown below.</p>
+<p><img alt="Alt Text" src="./images/lipid.png" /></p>
+<p>also a water sturcture is listed(water.xyz). Because only one particle will represent one water.</p>
+<div class="highlight"><pre>1
+
+W 0.0 0.0 0.0
+</pre></div>
+
+
+<p>a packmol input(bilayer_packmol.in) script is used here to generate the structure of the total system.</p>
+<div class="highlight"><pre>tolerance 0.5
+filetype xyz
+output bilayer.xyz
+
+structure lipid.xyz
+  number 250
+  inside box 0. 0. 10. 19.428 19.428 13.0
+  atoms 1
+    below plane 0. 0. 1. 10.5
+  end atoms
+  atoms 11
+    over plane 0. 0. 1. 12.5
+  end atoms
+end structure
+
+structure lipid.xyz
+  number 250
+  inside box 0. 0. 7.0 19.428 19.428 10.0
+  atoms 1 5
+    over plane 0. 0. 1. 9.5
+  end atoms
+  atoms 11
+    below plane 0. 0. 1. 7.5
+  end atoms
+end structure
+
+structure water.xyz
+  number 8250
+  inside box 0. 0. 12.5 19.428 19.428 19.428
+end structure
+
+structure water.xyz
+  number 8250
+  inside box 0. 0. 0. 19.428 19.428 7.5
+end structure
+</pre></div>
+
+
+<p>And also I have a script for the generation of psf and lammps data file.</p>
+<div class="highlight"><pre><span class="x">mol new bilayer.xyz</span>
+
+<span class="x">pbc set </span><span class="cp">{</span> <span class="m">19.428</span> <span class="m">19.428</span> <span class="m">19.428</span> <span class="cp">}</span><span class="x"></span>
+<span class="x">topo clearbonds</span>
+<span class="x">for </span><span class="cp">{</span><span class="nf">set</span> <span class="na">i</span> <span class="m">0</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span><span class="nv">$i</span> <span class="o">&lt;</span> <span class="m">500</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span><span class="nf">incr</span> <span class="na">i</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">1</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">1</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">2</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">2</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">3</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">4</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">5</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">5</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">6</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">6</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">7</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">3</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">8</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">7</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">9</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">8</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">9</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">8</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">10</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addangle</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">1</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">2</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addangle</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">1</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">2</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">3</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addangle</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">2</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">3</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">8</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addangle</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">4</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">5</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">6</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addangle</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">5</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">6</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">7</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addangle</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">6</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">7</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">11</span><span class="o">+</span><span class="m">9</span><span class="o">]</span>
+<span class="cp">}</span><span class="x"></span>
+
+<span class="x">animate write psf bilayer.psf</span>
+<span class="x">topo writelammpsdata bilayer.data</span>
+</pre></div>
+
+
+<p>The final version of the input structure is showed as follow</p>
+<p><img alt="Alt Text" src="./images/membrane.png" /></p>
+<p>I use this structure for the input of DPD simulation, and the input file for lammps is as follow. </p>
+<p>The input files: <a href="./codes/bilayer.data">bilayer.data</a>, <a href="./codes/dpd_test.in">dpd_test.in</a></p>
+<div class="highlight"><pre>units       lj
+atom_style full
+comm_modify vel yes
+pair_style  dpd 1.0 1.0 34387
+
+read_data bilayer.data
+# create simulation box
+#lattice     fcc 3
+#region      mybox block -4 4 -4 4 -4 4 units lattice
+#create_box  1 mybox
+#create_atoms    1 box
+
+# define masses and interaction coefficient
+#mass        * 1
+pair_coeff  1 1 10 4.5
+pair_coeff  2 2 30 4.5
+pair_coeff  3 3 25 4.5
+pair_coeff  1 2 35 4.5
+pair_coeff  1 3 75 4.5
+pair_coeff  2 3 30 4.5
+
+bond_style harmonic
+bond_coeff 1 128.0 0.5
+
+angle_style cosine/delta
+angle_coeff 1 7.5 180.0
+
+# create initial velocities
+velocity    all create 1.0 4928459 dist gaussian
+
+# change neighbor list parameters to avoid dangerous builds
+neighbor    2.0 bin
+neigh_modify    delay 3
+
+# specify simulation parameters
+timestep    0.04
+thermo      10
+
+# first equilibrate the initial condition
+fix     1 all nve
+run     500
+
+dump traj all xtc  50 traj.xtc
+dump_modify traj unwrap yes
+
+dump traj_xyz all xyz 50 traj.xyz
+
+# production run
+run     50000
+</pre></div>
+
+
+<p>The result movie is shown as below</p>
+<p><img alt="Alt Text" src="./images/dpd_movie.gif" /></p>
+<!-- [a link relative to content root]({filename}/article1.md)
+[a link relative to current file]({filename}../article1.md) -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56932248-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Yi Yao
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

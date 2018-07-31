@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>molecular dynamics simulations by gromacs lammps cpmd cp2k cp.x qbox from scratch - Yi Yao's Homepage</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html">
+
+        <meta name="author" content="Yi Yao" />
+        <meta name="keywords" content="molecular dynamics" />
+        <meta name="description" content="FPMD setup" />
+
+        <meta property="og:site_name" content="Yi Yao's Homepage" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="molecular dynamics simulations by gromacs lammps cpmd cp2k cp.x qbox from scratch"/>
+        <meta property="og:url" content="./molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html"/>
+        <meta property="og:description" content="FPMD setup"/>
+        <meta property="article:published_time" content="2017-01-09" />
+            <meta property="article:section" content="molecular dynamics" />
+            <meta property="article:tag" content="molecular dynamics" />
+            <meta property="article:author" content="Yi Yao" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Yi Yao's Homepage            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./index.html">
+                             About Me
+                          </a></li>
+                         <li><a href="./pages/research.html">
+                             Research
+                          </a></li>
+                         <li><a href="./pages/useful-links.html">
+                             Useful Links
+                          </a></li>
+                        <li >
+                            <a href="./category/dft.html">Dft</a>
+                        </li>
+                        <li >
+                            <a href="./category/misc.html">Misc</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
+                        </li>
+                        <li >
+                            <a href="./category/python.html">Python</a>
+                        </li>
+                        <li >
+                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html"
+                       rel="bookmark"
+                       title="Permalink to molecular dynamics simulations by gromacs lammps cpmd cp2k cp.x qbox from scratch">
+                        molecular dynamics simulations by gromacs lammps cpmd cp2k cp.x qbox from scratch
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-01-09T10:00:00+01:00"> Mon 09 January 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/molecular-dynamics.html">molecular dynamics</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>Example of setting up first principle molecular dynamics (FPMD) simulation from scratch. </p>
+<hr />
+<p>In FPMD simulations for liquids, usually, a classical MD simulation is needed to equilibrate the system. I gave examples of using gromacs and lammps as classical MD simulator and cpmd, cp2k, cp.x, qbox as FPMD simulator. The system of 55 water at room temperature is used as the example.    </p>
+<p>From scratch means I generate the initial structure from the water molecular structure.   </p>
+<p>In this post, 3 steps are listed.  <br />
+1. generating initial structure  <br />
+2. equilibrate the system by classical MD  ( 2.1 gromacs code, 2.2 lammps code )  <br />
+3. running a short FPMD simulation ( 3.1 cpmd code 3.2 cp2k code 3.3 cp.x code 3.4 qbox code )</p>
+<hr />
+<p>softwares used:
+<a href="http://www.ks.uiuc.edu/Research/vmd/">VMD</a>
+<a href="http://www.ime.unicamp.br/~martinez/packmol/home.shtml">packmol</a>
+<a href="http://www.gromacs.org/">gromacs</a>
+<a href="http://lammps.sandia.gov/">lammps</a>
+<a href="http://www.cpmd.org/">cpmd</a>
+<a href="https://www.cp2k.org/">cp2k</a>
+<a href="http://www.quantum-espresso.org/">cp.x quantum-espresso</a>
+<a href="http://eslab.ucdavis.edu/software/qbox/">qbox</a></p>
+<hr />
+<h3>0 download the files</h3>
+<p>All the files needed are included here.  </p>
+<p><a href="./codes/AIMD_setup.tar.gz">AIMD_setup.tar.gz</a></p>
+<hr />
+<h3>1.1 generate initial structure for gromacs</h3>
+<p>Note: in gromacs, genbox command can be used to generate a water box. Here I use packmol to generate the input structure and convert it to gro file as input.</p>
+<p>The water structure is as follow (water.xyz):</p>
+<div class="highlight"><pre>3
+
+OW 0.0 0.0 0.0
+HW1 -0.81649 0.57736 0.0
+HW2 0.81649 0.57736 0.0
+</pre></div>
+
+
+<p>a packmol input (water55_packmol.in) script is used here to generate the structure of the total system.</p>
+<div class="highlight"><pre>tolerance 2.0
+filetype xyz
+output water55.xyz
+
+structure water.xyz
+  number 55
+  inside box 0. 0.  0. 10.8172 10.8172 10.8172
+end structure
+</pre></div>
+
+
+<p>And also I have a python script for the convertion from xyz to gro file (convert_xyz_to_gro.py), the class mdsystem.py can be download here.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">mdsystem</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="s">&quot;water55.xyz&quot;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">mdsystem</span><span class="p">(</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="mf">11.8172</span><span class="p">,</span> <span class="mf">11.8172</span><span class="p">,</span> <span class="mf">11.8172</span><span class="p">])</span>
+<span class="n">s</span><span class="o">.</span><span class="n">xyzinput</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">generate_bonds</span><span class="p">(</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">molecular_detection</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">moleculars</span><span class="p">)):</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">molecular_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;SOL&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">grooutput</span><span class="p">()</span>
+
+
+<span class="n">python</span> <span class="n">convert_xyz_to_gro</span><span class="o">.</span><span class="n">py</span> <span class="o">&gt;</span> <span class="n">water55</span><span class="o">.</span><span class="n">gro</span>
+</pre></div>
+
+
+<p>I use this structure for the input of classical molecular dynamics simulation in gromacs.</p>
+<hr />
+<h3>1.2 generate initial structure for lammps</h3>
+<p>The water structure is as follow (water.xyz):</p>
+<div class="highlight"><pre>3
+
+O 0.0 0.0 0.0
+H -0.81649 0.57736 0.0
+H 0.81649 0.57736 0.0
+</pre></div>
+
+
+<p>a packmol input (water55_packmol.in) script is used here to generate the structure of the total system.</p>
+<div class="highlight"><pre>tolerance 2.0
+filetype xyz
+output water55.xyz
+
+structure water.xyz
+  number 55
+  inside box 0. 0.  0. 10.8172 10.8172 10.8172
+end structure
+</pre></div>
+
+
+<p>And also I have a vmd script for the generation of psf and pdb and lammps data file.</p>
+<div class="highlight"><pre><span class="x">mol new water55.xyz</span>
+
+<span class="x">pbc set </span><span class="cp">{</span> <span class="m">11.8172</span> <span class="m">11.8172</span> <span class="m">11.8172</span> <span class="cp">}</span><span class="x"></span>
+<span class="x">topo clearbonds</span>
+<span class="x">for </span><span class="cp">{</span><span class="nf">set</span> <span class="na">i</span> <span class="m">0</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span><span class="nv">$i</span> <span class="o">&lt;</span> <span class="m">55</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span><span class="nf">incr</span> <span class="na">i</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">+</span><span class="m">1</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">+</span><span class="m">2</span><span class="o">]</span>
+    <span class="na">topo</span> <span class="na">addangle</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">+</span><span class="m">1</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">+</span><span class="m">2</span><span class="o">]</span>
+<span class="cp">}</span><span class="x"></span>
+
+<span class="x">animate write psf water55.psf</span>
+<span class="x">animate write pdb water55.pdb</span>
+<span class="x">topo writelammpsdata water55.data</span>
+</pre></div>
+
+
+<p>I use this structure for the input of classical molecular dynamics simulation in lammps.</p>
+<hr />
+<h3>2.1 gromacs code</h3>
+<p>for gromacs simulation, there is separate forcefield file and topology file ( spcfw.itp and water55.top ).</p>
+<p>two mdp input files needed ( min.mdp nvt.mdp ), the first one is used to minimize the structure, the second one is used for the simulation. Here is the command I use for the simulation.</p>
+<div class="highlight"><pre>gmx grompp -f min.mdp -c water55.gro -p water55.top -o min.tpr
+gmx mdrun -s min.tpr -c em.gro
+gmx grompp -f nvt.mdp -c em.gro -p water55.top -o nvt.tpr
+gmx mdrun -s nvt.tpr
+</pre></div>
+
+
+<p>In the example, I run 100ps for equlibrating the system. In real simulation, longer is usually needed.</p>
+<p>I also like to convert the trajectory so that the atom in the same molecule are not separate in the edge of the box.</p>
+<div class="highlight"><pre>gmx trjconv -s nvt.tpr -f traj_comp.xtc -o traj_comp_whole.xtc -pbc whole &lt;&lt;&lt; &quot;0&quot;
+</pre></div>
+
+
+<p>Then, the script ( take_last_snapshot.vmd ) can be used to take the last snapshot of the simulation as the initial structure for FPMD.</p>
+<div class="highlight"><pre><span class="x">mol new water55.psf</span>
+<span class="x">mol addfile traj_comp_whole.xtc waitfor all</span>
+<span class="x">pbc wrap -all -compound residue</span>
+<span class="x">set nframes [molinfo top get numframes]</span>
+<span class="x">set nframes [expr </span><span class="p">$</span><span class="nv">nframes</span><span class="x"> - 1]</span>
+<span class="x">animate write xyz eq.xyz beg </span><span class="p">$</span><span class="nv">nframes</span><span class="x"></span>
+<span class="x">exit</span>
+</pre></div>
+
+
+<hr />
+<h3>2.2 lammps code</h3>
+<p>Here we use the generated initial structure to run molecular dynamics with lammps. SPC/Fw force field is used.<br />
+Here is the ( in.spcf ) lammps input script</p>
+<div class="highlight"><pre>units      real
+dimension  3
+boundary   p p p
+atom_style full
+read_data water55.data
+
+## alternate way to set charges - besides manually in data file ###
+group ox type 2
+group hy type 1
+set group ox charge -0.8200
+set group hy charge 0.4100
+
+pair_style lj/cut/coul/long 5.9086
+pair_coeff * * 0.0 0.0
+pair_coeff 2 2 0.1553537 3.166
+bond_style  harmonic
+bond_coeff  1 529.581 1.0120
+angle_style harmonic
+angle_coeff 1 37.95 113.24
+kspace_style ewald 1.0e-5
+
+velocity all create 298.0 12345689 dist uniform
+fix 2 all nvt temp 298.0 298.0 100.0
+
+
+neighbor 2.0 bin
+neigh_modify delay 0 every 10 check yes
+thermo      200
+thermo_style custom step time temp
+thermo_modify norm no flush yes
+
+minimize 1.0e-8 1.0e-8 10000 10000
+
+dump 1 all dcd 2000 result.dcd
+dump_modify 1 unwrap yes
+#run variables
+timestep 0.5
+run 200000 # 100ps, longer needed ( 2000000 10ns )
+</pre></div>
+
+
+<p>after the simulation, the ( result.dcd ) together with the ( water55.psf )</p>
+<div class="highlight"><pre><span class="x">mol new water55.psf</span>
+<span class="x">mol addfile result.dcd waitfor all</span>
+<span class="x">pbc wrap -all -compound residue</span>
+<span class="x">set nframes [molinfo top get numframes]</span>
+<span class="x">set nframes [expr </span><span class="p">$</span><span class="nv">nframes</span><span class="x"> - 1]</span>
+<span class="x">animate write xyz eq.xyz beg </span><span class="p">$</span><span class="nv">nframes</span><span class="x"></span>
+<span class="x">exit</span>
+</pre></div>
+
+
+<hr />
+<p>After the equilibrium run. I got the equilibrium structure (eq.xyz) from gromacs or lammps run. Now, I will use this structure as starting point for FPMD simulations.</p>
+<hr />
+<h3>3.1 cpmd code</h3>
+<p>I recommend a tutorial about cpmd code ( <a href="http://www.ipcms.unistra.fr/wp-content/uploads/2016/03/cpmd.pdf">cpmd.pdf</a> ).</p>
+<p>First, the equilibrium structure need to be transformed to CPMD format. Here is the script ( cpmd_initial_structures.py ).</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+<span class="kn">from</span> <span class="nn">mdsystem</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">mdsystem</span><span class="p">([],[],[])</span>
+<span class="n">s</span><span class="o">.</span><span class="n">xyzinput</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">atom_number</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">atom_xyz</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">species</span> <span class="ow">in</span> <span class="n">atom_number</span><span class="p">:</span>
+        <span class="n">atom_number</span><span class="p">[</span><span class="n">atom</span><span class="o">.</span><span class="n">species</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">atom_xyz</span><span class="p">[</span><span class="n">atom</span><span class="o">.</span><span class="n">species</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">coordinates</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">atom_number</span><span class="p">[</span><span class="n">atom</span><span class="o">.</span><span class="n">species</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">atom_xyz</span><span class="p">[</span><span class="n">atom</span><span class="o">.</span><span class="n">species</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">atom</span><span class="o">.</span><span class="n">coordinates</span><span class="p">]</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;coord&quot;</span> <span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;&amp;ATOMS</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;ISOTOPES</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;16.01</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;1.008</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;*O_MT_PBE.psp KLEINMAN-BYLANDER</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot; LMAX=P LOC=P</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">atom_number</span><span class="p">[</span><span class="s">&quot;O&quot;</span><span class="p">])</span><span class="o">+</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">atom_xyz</span><span class="p">[</span><span class="s">&quot;O&quot;</span><span class="p">]:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;</span><span class="si">%f</span><span class="s"> </span><span class="si">%f</span><span class="s"> </span><span class="si">%f</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">))</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;*H_MT_PBE.psp KLEINMAN-BYLANDER</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot; LMAX=S LOC=S</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">atom_number</span><span class="p">[</span><span class="s">&quot;H&quot;</span><span class="p">])</span><span class="o">+</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">atom_xyz</span><span class="p">[</span><span class="s">&quot;H&quot;</span><span class="p">]:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;</span><span class="si">%f</span><span class="s"> </span><span class="si">%f</span><span class="s"> </span><span class="si">%f</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">))</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">&quot;&amp;END</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+
+<p>I am using cpmd simulation in cpmd code, so wavefucntion need to be optimized, first. Append the coord file at the end of the input file.</p>
+<div class="highlight"><pre>&amp;INFO
+wf opt for pure 55 water
+&amp;END
+
+&amp;CPMD
+ OPTIMIZE WAVEFUNCTION
+
+ CONVERGENCE ORBITALS
+   1.0d-7
+ ODIIS NO_RESET=50
+   5
+ MAXSTEP
+  1000
+
+ MEMORY BIG
+&amp;END
+
+&amp;SYSTEM
+ SYMMETRY
+  1
+ ANGSTROM
+ CELL
+  11.8172 1.0 1.0  0.0  0.0  0.0
+ CUTOFF
+  80.0
+ TESR
+  4
+&amp;END
+
+&amp;DFT
+ NEWCODE
+ FUNCTIONAL PBE
+&amp;END
+</pre></div>
+
+
+<p>after the wavefunction optimization, a RESTART.1 file should be there. And we generate a LATEST file for the restart.</p>
+<div class="highlight"><pre>&amp;INFO
+equilibrium steps md at T=300K to get thermo info
+&amp;END
+
+&amp;CPMD
+ MOLECULAR DYNAMICS
+ RESTART WAVEFUNCTIONS COORDINATES LATEST
+
+ RESTFILE
+ 3
+
+ TRAJECTORY SAMPLE XYZ
+  10
+
+ TEMPERATURE
+   300
+
+ NOSE IONS
+   300 3000.0
+
+ NOSE ELECTRONS
+   0.03  9000.0
+
+ MAXSTEP
+   100
+
+ TIMESTEP
+  4.0
+ EMASS
+  400.0
+
+ MEMORY BIG
+
+ RHOOUT SAMPLE=100
+
+ SUBTRACT COMVEL ROTVEL
+ 1
+
+&amp;END
+
+&amp;SYSTEM
+ SYMMETRY
+  1
+ ANGSTROM
+ CELL
+  11.8172 1.0 1.0  0.0  0.0  0.0
+ CUTOFF
+  80.0
+ TESR
+  4
+&amp;END
+
+&amp;DFT
+ NEWCODE
+ FUNCTIONAL PBE
+&amp;END
+</pre></div>
+
+
+<hr />
+<h3>3.2 cp2k code</h3>
+<p>In cp2k, BOMD is running.  </p>
+<p>copy the eq.xyz file to the cp2k folder and write this input file for FPMD. (water55.inp)  </p>
+<div class="highlight"><pre>&amp;FORCE_EVAL
+  METHOD Quickstep
+  &amp;DFT
+    BASIS_SET_FILE_NAME    BASIS_MOLOPT
+    POTENTIAL_FILE_NAME    GTH_POTENTIALS
+    &amp;MGRID
+     CUTOFF      200
+     REL_CUTOFF   50
+    &amp;END MGRID
+    &amp;QS
+      EPS_DEFAULT 1.0E-12
+    &amp;END QS
+    &amp;SCF
+      SCF_GUESS  ATOMIC
+      EPS_SCF    1.0E-6
+      MAX_SCF    30
+      &amp;OT
+        MINIMIZER       DIIS
+        PRECONDITIONER  FULL_ALL
+      &amp;END
+      &amp;OUTER_SCF
+        EPS_SCF  1.0E-6
+        MAX_SCF  20
+      &amp;END
+      &amp;PRINT
+        &amp;RESTART
+          BACKUP_COPIES 0
+        &amp;END
+      &amp;END
+    &amp;END SCF
+    &amp;XC
+      &amp;XC_FUNCTIONAL PBE
+      &amp;END XC_FUNCTIONAL
+    &amp;END XC
+  &amp;END DFT
+  &amp;SUBSYS
+    &amp;CELL
+      ABC 11.8172 11.8172 11.8172
+    &amp;END CELL
+    &amp;TOPOLOGY
+       COORD_FILE_NAME   ./eq.xyz
+       COORD_FILE_FORMAT xyz
+    &amp;END TOPOLOGY
+    &amp;KIND H
+      BASIS_SET         DZVP-MOLOPT-SR-GTH
+      POTENTIAL         GTH-PBE-q1
+    &amp;END KIND
+    &amp;KIND O
+      BASIS_SET         DZVP-MOLOPT-SR-GTH
+      POTENTIAL         GTH-PBE-q6
+    &amp;END KIND
+  &amp;END SUBSYS
+&amp;END FORCE_EVAL
+&amp;MOTION
+  &amp;MD
+    ENSEMBLE NVE
+    STEPS 100
+    TIMESTEP 0.5
+    TEMPERATURE 300.0
+  &amp;END MD
+&amp;END MOTION
+&amp;GLOBAL
+  PROJECT     H2O-55-PBE
+  RUN_TYPE    MD
+  PRINT_LEVEL MEDIUM
+&amp;END GLOBAL
+</pre></div>
+
+
+<hr />
+<h3>3.3 cp.x code</h3>
+<p>The script here.</p>
+<div class="highlight"><pre>cd <span class="nv">$PWD</span>
+
+Name=cp-H2O
+
+fricei=( 1.0 1.0 0.5 0.1 0.0 0.0 0.0 )
+fricpi=( 0.9 1.0 0.3 0.05 0.0 0.0 0.0 )
+runi=( 100 100 200 200 1500 1500 35000 )
+orthoi=( Gram-Schmidt ortho ortho ortho ortho ortho ortho )
+modei=( from_scratch reset_counters restart restart reset_counters restart restart)
+wfr=( 51 51 51 51 51 71 72 )
+wfw=( 51 51 51 51 71 72 73 )
+ions=( none none none none verlet verlet verlet)
+tempi=( 50 50 50 50 300 350 375 )
+electrons=( damp damp damp damp verlet verlet verlet )
+
+typeset -i j=1
+while (( j == 1 ));do
+if [[ -d &quot;H2O_<span class="cp">${</span><span class="n">wfw</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="cp">}</span>.save&quot; ]]; then
+ wfr[6]=<span class="cp">${</span><span class="n">wfw</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="cp">}</span>
+ wfw[6]=$((<span class="cp">${</span><span class="n">wfw</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="cp">}</span>+1))
+else
+ j=0
+fi
+done
+
+echo &quot;in&quot;
+
+for i in 0 1 2 3 4 ;
+do
+
+rm -f in.00
+cat <span class="nt">&lt;&lt; EOF</span> <span class="nt">&gt; in.00</span>
+
+<span class="err">&amp;CONTROL</span>
+  <span class="na">outdir =</span> <span class="s">&#39;</span><span class="nv">$PWD</span><span class="s">&#39;</span>
+  <span class="na">pseudo_dir =</span> <span class="s">&#39;./&#39;</span>
+  <span class="na">title  =</span> <span class="s">&#39;H2O&#39;</span><span class="err">,</span>
+  <span class="na">prefix =</span> <span class="s">&#39;H2O&#39;</span><span class="err">,</span>
+  <span class="na">calculation =</span> <span class="s">&#39;cp&#39;</span><span class="err">,</span>
+  <span class="na">restart_mode =</span> <span class="s">&#39;</span><span class="cp">${</span><span class="n">modei</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span><span class="s">&#39;</span><span class="err">,</span>
+  <span class="na">ndr =</span> <span class="cp">${</span><span class="n">wfr</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span><span class="s">,</span>
+  <span class="na">ndw =</span> <span class="cp">${</span><span class="n">wfw</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span><span class="s">,</span>
+  <span class="na">nstep  =</span> <span class="cp">${</span><span class="n">runi</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span><span class="s">,</span>
+  <span class="na">iprint =</span> <span class="s">20,</span>
+  <span class="na">isave  =</span> <span class="s">1000,</span>
+  <span class="na">tstress =</span> <span class="s">.true.,</span>
+  <span class="na">tprnfor =</span> <span class="s">.true.,</span>
+  <span class="na">dt    =</span>  <span class="s">3.d0,</span>
+<span class="err">!</span>  <span class="na">etot_conv_thr =</span> <span class="s">1.D-8</span>
+<span class="err">!</span>  <span class="na">forc_conv_thr =</span> <span class="s">1.D-3</span>
+<span class="err">/</span>
+
+
+<span class="err">&amp;SYSTEM</span>
+  <span class="na">ibrav =</span> <span class="s">1,</span>
+  <span class="err">celldm(1)</span> <span class="err">=</span> <span class="err">CELL_X_YY,</span>
+  <span class="err">celldm(2)</span> <span class="err">=</span> <span class="err">1.00,</span>
+  <span class="err">celldm(3)</span> <span class="err">=</span> <span class="err">1.00,</span>
+  <span class="err">celldm(4)</span> <span class="err">=</span> <span class="err">0.0,</span>
+  <span class="err">celldm(5)</span> <span class="err">=</span> <span class="err">0.0,</span>
+  <span class="err">celldm(6)</span> <span class="err">=</span> <span class="err">0.0,</span>
+  <span class="na">nat  =</span> <span class="s">NATOMS_YY,</span>
+  <span class="na">ntyp =</span> <span class="s">2,</span>
+  <span class="na">nspin =</span> <span class="s">1,</span>
+  <span class="na">ecutwfc =</span> <span class="s">25.0,</span>
+  <span class="na">ecutrho =</span> <span class="s">200.0,</span>
+  <span class="na">nr1b=</span> <span class="s">20,</span> <span class="na">nr2b =</span> <span class="s">20,</span> <span class="na">nr3b =</span> <span class="s">20,</span>
+<span class="err">!</span>  <span class="err">starting_magnetization(1)=0.1,</span>
+<span class="err">!</span>  <span class="na">occupations=</span><span class="s">&#39;from_input&#39;</span><span class="err">,</span>
+<span class="err">/</span>
+
+<span class="err">&amp;ELECTRONS</span>
+  <span class="na">emass =</span> <span class="s">340.d0,</span>
+  <span class="na">emass_cutoff =</span> <span class="s">2.0d0,</span>
+  <span class="na">orthogonalization =</span> <span class="s">&#39;</span><span class="cp">${</span><span class="n">orthoi</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span><span class="s">&#39;</span><span class="err">,</span>
+  <span class="na">ortho_eps =</span> <span class="s">5.d-8,</span>
+  <span class="na">ortho_max =</span> <span class="s">200,</span>
+  <span class="na">electron_dynamics =</span> <span class="s">&#39;</span><span class="cp">${</span><span class="n">electrons</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span><span class="s">&#39;</span><span class="err">,</span>
+  <span class="na">electron_damping =</span> <span class="cp">${</span><span class="n">fricei</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span><span class="s">,</span>
+<span class="err">/</span>
+
+<span class="err">&amp;IONS</span>
+  <span class="na">ion_dynamics =</span> <span class="s">&#39;</span><span class="cp">${</span><span class="n">ions</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span><span class="s">&#39;</span><span class="err">,</span>
+  <span class="na">ion_damping =</span> <span class="cp">${</span><span class="n">fricpi</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span><span class="s">,</span>
+  <span class="na">tempw  =</span> <span class="cp">${</span><span class="n">tempi</span><span class="p">[</span><span class="err">$</span><span class="n">i</span><span class="p">]</span><span class="cp">}</span><span class="s">,</span>
+<span class="err">!</span>  <span class="na">ion_temperature =</span> <span class="s">&#39;rescaling&#39;</span><span class="err">,</span>
+  <span class="na">ion_temperature =</span> <span class="s">&#39;nose&#39;</span><span class="err">,</span>
+  <span class="na">fnosep =</span> <span class="s">10.0</span>  <span class="err">30.0</span>   <span class="err">60.0</span>  <span class="err">100.0,</span>
+  <span class="na">nhpcl =</span> <span class="s">4,</span>
+  <span class="na">nhptyp =</span> <span class="s">2,</span>
+<span class="err">/</span>
+
+<span class="err">ATOMIC_SPECIES</span>
+<span class="err">H</span> <span class="err">1.008</span> <span class="err">H.pbe-van_ak.UPF</span>
+<span class="err">O</span> <span class="err">15.999</span> <span class="err">O.pbe-van_ak.UPF</span>
+
+<span class="err">ATOMIC_POSITIONS</span> <span class="err">(</span> <span class="err">angstrom</span> <span class="err">)</span>
+<span class="err">COORD_YY</span>
+
+<span class="err">EOF</span>
+
+<span class="err">echo</span> <span class="err">&#39;Strat</span> <span class="err">turn</span> <span class="err">of&#39;</span> <span class="nv">$i</span>
+<span class="err">mpirun</span> <span class="err">~/software/qe/qe-6.0/bin/cp.x</span> <span class="nt">&lt; in</span><span class="err">.00</span> <span class="nt">&gt;&gt;</span> <span class="nv">$Name.out</span>
+
+done
+
+echo &#39;ALL DONE&#39;
+</pre></div>
+
+
+<p>The coord generate script.</p>
+<div class="highlight"><pre>head -n 167 eq.xyz | tail -n 165 &gt; coord
+sed &#39;s/CELL_X_YY/22.331269952/&#39; water_template.j &gt; water_tmp.j
+sed &#39;s/NATOMS_YY/165/&#39; water_tmp.j &gt;  water_tmp2.j
+sed &quot;/COORD_YY/ r coord&quot; water_tmp2.j &gt; water_tmp3.j
+sed &quot;s/COORD_YY/ /&quot; water_tmp3.j &gt; water.j
+rm water_tmp.j water_tmp2.j water_tmp3.j
+</pre></div>
+
+
+<hr />
+<h3>3.4 qbox code</h3>
+<p>For qbox code, also a convertor script is needed. The units used in qbox is atomic units. I list the script here.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">mdsystem</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="s">&quot;eq.xyz&quot;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">mdsystem</span><span class="p">(</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="mf">11.8172</span><span class="p">,</span> <span class="mf">11.8172</span><span class="p">,</span> <span class="mf">11.8172</span><span class="p">])</span>
+<span class="n">s</span><span class="o">.</span><span class="n">xyzinput</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">generate_bonds</span><span class="p">(</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">molecular_detection</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">moleculars</span><span class="p">)):</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">molecular_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;SOL&quot;</span><span class="p">)</span>
+
+<span class="n">AtoBohr</span> <span class="o">=</span> <span class="mf">1.8897259886</span>
+<span class="k">print</span> <span class="s">&quot;set cell &quot;</span> <span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">AtoBohr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> \
+                    <span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">AtoBohr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> \
+                    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">AtoBohr</span>
+<span class="k">print</span> <span class="s">&quot;species oxygen O_HSCV_PBE-1.0.xml&quot;</span>
+<span class="k">print</span> <span class="s">&quot;species hydrogen H_HSCV_PBE-1.0.xml&quot;</span>
+
+<span class="n">nO</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">nH</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="s">&quot;O&quot;</span><span class="p">:</span>
+        <span class="n">nO</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">xyz</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">coordinates</span> <span class="o">*</span> <span class="n">AtoBohr</span>
+        <span class="k">print</span> <span class="s">&quot;atom &quot;</span><span class="p">,</span> <span class="s">&quot;O</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">nO</span><span class="p">,</span> <span class="s">&quot;oxygen&quot;</span><span class="p">,</span>  <span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="s">&quot;H&quot;</span><span class="p">:</span>
+        <span class="n">nH</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">xyz</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">coordinates</span> <span class="o">*</span> <span class="n">AtoBohr</span>
+        <span class="k">print</span> <span class="s">&quot;atom &quot;</span><span class="p">,</span> <span class="s">&quot;H</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span><span class="n">nH</span><span class="p">,</span> <span class="s">&quot;hydrogen&quot;</span><span class="p">,</span>  <span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+
+<p>with pseudopotentials files and sample.xsd, species.xsd (taken from xml folder in qbox package) in the same folder. <br />
+We then append these commands at the end of the structure information.</p>
+<div class="highlight"><pre>set ecut 70
+set wf_dyn PSDA
+set ecutprec 5
+randomize_wf
+run 0 100
+
+set atoms_dyn MD
+set dt 40 
+run 100 10
+</pre></div>
+
+
+<p>Run the calculation like this.</p>
+<div class="highlight"><pre>mpirun /nas02/home/y/i/yiy/bin/qb &lt; test.i &gt; test.out
+</pre></div>
+
+
+<hr />
+<p>After the simulation, I got trajs like this.  </p>
+<p><img alt="Alt Text" src="./images/water55_aimd.gif" /></p>
+<hr />
+<!-- [a link relative to content root]({filename}/article1.md)
+[a link relative to current file]({filename}../article1.md) -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56932248-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Yi Yao
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>using horton do esp charge analysis - Yi Yao's Homepage</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./using-horton-do-esp-charge-analysis.html">
+
+        <meta name="author" content="Yi Yao" />
+        <meta name="keywords" content="python" />
+        <meta name="description" content="horton esp" />
+
+        <meta property="og:site_name" content="Yi Yao's Homepage" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="using horton do esp charge analysis"/>
+        <meta property="og:url" content="./using-horton-do-esp-charge-analysis.html"/>
+        <meta property="og:description" content="horton esp"/>
+        <meta property="article:published_time" content="2014-12-15" />
+            <meta property="article:section" content="python" />
+            <meta property="article:tag" content="python" />
+            <meta property="article:author" content="Yi Yao" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Yi Yao's Homepage            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./index.html">
+                             About Me
+                          </a></li>
+                         <li><a href="./pages/research.html">
+                             Research
+                          </a></li>
+                         <li><a href="./pages/useful-links.html">
+                             Useful Links
+                          </a></li>
+                        <li >
+                            <a href="./category/dft.html">Dft</a>
+                        </li>
+                        <li >
+                            <a href="./category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/python.html">Python</a>
+                        </li>
+                        <li >
+                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./using-horton-do-esp-charge-analysis.html"
+                       rel="bookmark"
+                       title="Permalink to using horton do esp charge analysis">
+                        using horton do esp charge analysis
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-12-15T13:50:00+01:00"> Mon 15 December 2014</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/python.html">python</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>In order to do esp charge analysis, I generate charge density cube file and electric potential cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and these cube files to do esp charge analysis (follow this <a href="http://theochem.github.io/horton/tut_espfit.html">link</a> ).</p>
+<p>Here is how I use it on killdevil.</p>
+<div class="highlight"><pre><span class="k">module</span> <span class="n">load</span> <span class="n">anaconda</span>
+<span class="n">source</span> <span class="n">activate</span> <span class="n">my_root</span>
+</pre></div>
+
+
+<p>Here is the input file for cp2k.</p>
+<div class="highlight"><pre>@SET RTYPE  MD
+@SET RESTART  ON
+@SET RESTARTFILE H2O64NaCl-1_500.restart
+@SET MD_ENS NVT
+
+<span class="err">&amp;</span>FORCE_EVAL
+  METHOD QS
+  <span class="err">&amp;</span>PROPERTIES
+    #<span class="err">&amp;</span>RESP
+    #  STRIDE 1 1 1
+    #<span class="err">&amp;</span>END RESP
+    <span class="err">&amp;</span>FIT_CHARGE
+      FILENAME =NaCl_NVT_fit_charge
+    <span class="err">&amp;</span>END FIT_CHARGE
+  <span class="err">&amp;</span>END PROPERTIES
+  <span class="err">&amp;</span>DFT
+    <span class="err">&amp;</span>DENSITY_FITTING
+    <span class="err">&amp;</span>END DENSITY_FITTING
+    BASIS_SET_FILE_NAME ../../../cp2k-files/BASIS_MOLOPT
+    POTENTIAL_FILE_NAME ../../../cp2k-files/GTH_POTENTIALS
+    <span class="err">&amp;</span>MGRID
+      NGRIDS 5
+      CUTOFF 280
+      REL_CUTOFF 40
+    <span class="err">&amp;</span>END MGRID
+    <span class="err">&amp;</span>SCF
+      @IF ( <span class="cp">${</span><span class="n">RESTART</span><span class="cp">}</span> == OFF )
+        SCF_GUESS ATOMIC
+      @ENDIF
+      @IF ( <span class="cp">${</span><span class="n">RESTART</span><span class="cp">}</span> == ON )
+        SCF_GUESS RESTART
+      @ENDIF
+      <span class="err">&amp;</span>OT ON
+        MINIMIZER DIIS
+        ENERGY_GAP 0.001
+        PRECONDITIONER FULL_ALL
+      <span class="err">&amp;</span>END OT
+      EPS_SCF      1.0E-6
+      <span class="err">&amp;</span>PRINT
+        <span class="err">&amp;</span>RESTART
+        <span class="err">&amp;</span>END
+      <span class="err">&amp;</span>END
+    <span class="err">&amp;</span>END SCF
+    <span class="err">&amp;</span>QS
+      EXTRAPOLATION PS
+      EXTRAPOLATION_ORDER 3
+      METHOD GPW
+    <span class="err">&amp;</span>END QS
+    <span class="err">&amp;</span>XC
+      <span class="err">&amp;</span>XC_FUNCTIONAL BLYP
+      <span class="err">&amp;</span>END XC_FUNCTIONAL
+
+      <span class="err">&amp;</span>XC_GRID
+        XC_SMOOTH_RHO NN50
+        XC_DERIV NN50_SMOOTH
+      <span class="err">&amp;</span>END
+
+      #<span class="err">&amp;</span>vdW_POTENTIAL
+      #   POTENTIAL_TYPE PAIR_POTENTIAL
+      #   <span class="err">&amp;</span>PAIR_POTENTIAL
+      #      TYPE DFTD3
+      #      PARAMETER_FILE_NAME ../../cp2k-files/dftd3.dat
+      #      REFERENCE_FUNCTIONAL revPBE
+      #   <span class="err">&amp;</span>END PAIR_POTENTIAL
+      #<span class="err">&amp;</span>END vdW_POTENTIAL
+
+    <span class="err">&amp;</span>END XC
+    <span class="err">&amp;</span>PRINT
+      <span class="err">&amp;</span>E_DENSITY_CUBE
+        <span class="err">&amp;</span>EACH
+          MD 100
+        <span class="err">&amp;</span>END EACH
+        STRIDE 1 1 1
+      <span class="err">&amp;</span>END E_DENSITY_CUBE
+      <span class="err">&amp;</span>V_HARTREE_CUBE
+        <span class="err">&amp;</span>EACH
+          MD 100
+        <span class="err">&amp;</span>END EACH
+        STRIDE 1 1 1
+      <span class="err">&amp;</span>END V_HARTREE_CUBE
+      <span class="err">&amp;</span>MULLIKEN
+        <span class="err">&amp;</span>EACH
+          MD 100
+        <span class="err">&amp;</span>END EACH
+      FILENAME =NaCl_NVT_mulliken
+      <span class="err">&amp;</span>END MULLIKEN
+      <span class="err">&amp;</span>LOWDIN
+        <span class="err">&amp;</span>EACH
+          MD 100
+        <span class="err">&amp;</span>END EACH
+      FILENAME =NaCl_NVT_lowdin
+      <span class="err">&amp;</span>END LOWDIN
+      #<span class="err">&amp;</span>HIRSCHFELD
+      #  <span class="err">&amp;</span>EACH
+      #    MD 100
+      #  <span class="err">&amp;</span>END EACH
+      #FILENAME =NaCl_NVT_hirschfeld
+      #<span class="err">&amp;</span>END HIRSCHFELD
+    <span class="err">&amp;</span>END PRINT
+    #<span class="err">&amp;</span>LOCALIZE
+    #  METHOD JACOBI
+    #  #MAX_CRAZY_ANGLE 1.0
+    #  MAX_ITER 100
+    #  #EPS_LOCALIZATION 1E-8
+    #  #MAX_CRAZY_ANGLE 0.05
+    #  <span class="err">&amp;</span>PRINT
+    #    <span class="err">&amp;</span>WANNIER_CENTERS
+    #      <span class="err">&amp;</span>EACH
+    #        MD 100
+    #      <span class="err">&amp;</span>END EACH
+    #      FILENAME =NaCl_NVT_wannier_centers.xyz
+    #      IONS+CENTERS
+    #    <span class="err">&amp;</span>END WANNIER_CENTERS
+    #    <span class="err">&amp;</span>WANNIER_SPREADS
+    #      <span class="err">&amp;</span>EACH
+    #        MD 100
+    #      <span class="err">&amp;</span>END EACH
+    #      FILENAME =NaCl_NVT_wannier_spread.data
+    #    <span class="err">&amp;</span>END WANNIER_SPREADS
+    #  <span class="err">&amp;</span>END PRINT
+    #  USE_HISTORY
+    #<span class="err">&amp;</span>END LOCALIZE
+  <span class="err">&amp;</span>END DFT
+  <span class="err">&amp;</span>SUBSYS
+    <span class="err">&amp;</span>CELL
+      ABC 12.4934 12.4934 12.4934
+    <span class="err">&amp;</span>END CELL
+    <span class="err">&amp;</span>TOPOLOGY
+      COORD_FILE_NAME  H2O64NaCl.xyz
+      COORD_FILE_FORMAT xyz
+    <span class="err">&amp;</span>END TOPOLOGY
+    <span class="err">&amp;</span>COLVAR
+     <span class="err">&amp;</span>DISTANCE
+       ATOMS 193 194
+     <span class="err">&amp;</span>END DISTANCE
+     <span class="err">&amp;</span>PRINT
+     <span class="err">&amp;</span>END
+    <span class="err">&amp;</span>END COLVAR
+    <span class="err">&amp;</span>KIND H
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q1
+      POTENTIAL GTH-BLYP-q1
+    <span class="err">&amp;</span>END KIND
+    <span class="err">&amp;</span>KIND O
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q6
+      POTENTIAL GTH-BLYP-q6
+    <span class="err">&amp;</span>END KIND
+    <span class="err">&amp;</span>KIND Na
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q9
+      POTENTIAL GTH-BLYP-q9
+    <span class="err">&amp;</span>END KIND
+    <span class="err">&amp;</span>KIND Cl
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q7
+      POTENTIAL GTH-BLYP-q7
+    <span class="err">&amp;</span>END KIND
+  <span class="err">&amp;</span>END SUBSYS
+<span class="err">&amp;</span>END FORCE_EVAL
+
+<span class="err">&amp;</span>GLOBAL
+  PROJECT_NAME H2O64NaCl
+  RUN_TYPE MD
+  PRINT_LEVEL LOW
+
+  <span class="err">&amp;</span>TIMINGS
+     THRESHOLD 0.000001
+  <span class="err">&amp;</span>END
+
+  #WALLTIME 172500
+  #WALLTIME 345000
+  WALLTIME 1750
+
+<span class="err">&amp;</span>END GLOBAL
+
+<span class="err">&amp;</span>MOTION
+  <span class="err">&amp;</span>CONSTRAINT
+    <span class="err">&amp;</span>COLLECTIVE
+      COLVAR 1
+      INTERMOLECULAR
+      TARGET [angstrom] 2.2
+    <span class="err">&amp;</span>END COLLECTIVE
+    <span class="err">&amp;</span>LAGRANGE_MULTIPLIERS
+      COMMON_ITERATION_LEVELS 1
+    <span class="err">&amp;</span>END
+  <span class="err">&amp;</span>END CONSTRAINT
+  <span class="err">&amp;</span>MD
+    @IF ( <span class="cp">${</span><span class="n">MD_ENS</span><span class="cp">}</span> == NVE )
+      ENSEMBLE NVE
+    @ENDIF
+    @IF ( <span class="cp">${</span><span class="n">MD_ENS</span><span class="cp">}</span> == NVT )
+      ENSEMBLE NVT
+      <span class="err">&amp;</span>THERMOSTAT
+        REGION GLOBAL
+        TYPE NOSE
+        <span class="err">&amp;</span>NOSE
+        <span class="err">&amp;</span>END NOSE
+      <span class="err">&amp;</span>END THERMOSTAT
+    @ENDIF
+    STEPS 1
+    TIMESTEP 0.5
+    TEMPERATURE 298.0
+  <span class="err">&amp;</span>END MD
+  #<span class="err">&amp;</span>PRINT
+  #    <span class="err">&amp;</span>TRAJECTORY  SILENT
+  #    <span class="err">&amp;</span>EACH
+  #      MD 1
+  #    <span class="err">&amp;</span>END EACH
+  #    FILENAME =NaCl_NVT.xyz
+  #  <span class="err">&amp;</span>END TRAJECTORY
+  #  <span class="err">&amp;</span>RESTART
+  #    <span class="err">&amp;</span>EACH
+  #      MD 1
+  #    <span class="err">&amp;</span>END EACH
+  #    ADD_LAST NUMERIC
+  #  <span class="err">&amp;</span>END RESTART
+  #  <span class="err">&amp;</span>VELOCITIES
+  #    <span class="err">&amp;</span>EACH
+  #      MD 1
+  #    <span class="err">&amp;</span>END EACH
+  #    FILENAME =NaCl_NVT_vel.xyz
+  #  <span class="err">&amp;</span>END VELOCITIES
+  #  <span class="err">&amp;</span>FORCES
+  #    <span class="err">&amp;</span>EACH
+  #      MD 1
+  #    <span class="err">&amp;</span>END EACH
+  #    FILENAME =NaCl_NVT_frc.xyz
+  #  <span class="err">&amp;</span>END FORCES
+  #<span class="err">&amp;</span>END PRINT
+<span class="err">&amp;</span>END MOTION
+
+<span class="err">&amp;</span>EXT_RESTART ON
+  RESTART_DEFAULT F
+  RESTART_FILE_NAME <span class="cp">${</span><span class="n">RESTARTFILE</span><span class="cp">}</span>
+  RESTART_POS T
+  RESTART_COUNTERS F
+  @IF ( <span class="cp">${</span><span class="n">RTYPE</span><span class="cp">}</span> == MD )
+    RESTART_VEL T
+  @ENDIF
+  @IF ( <span class="cp">${</span><span class="n">MD_ENS</span><span class="cp">}</span> == NVT )
+    RESTART_THERMOSTAT T
+  @ENDIF
+<span class="err">&amp;</span>END EXT_RESTART
+</pre></div>
+
+
+<p>The cube files I have are H2O64NaCl-ELECTRON_DENSITY-1_0.cube and H2O64NaCl-v_hartree-1_0.cube. </p>
+<p>This command is used to generate the cost function.</p>
+<div class="highlight"><pre>horton-esp-cost.py H2O64NaCl-v_hartree-1_0.cube cost.h5 --wdens=H2O64NaCl-ELECTRON_DENSITY-1_0.cube -s --wnear 8:2.0:2.0 1:2.0:2.0 11:2.0:2.0 17:2.0:2.0 --pbc=111 &gt; esp-cost-out
+</pre></div>
+
+
+<p>It took me 6 hours to generate the cost function. After that, charges are fitted to the esp by this command.</p>
+<div class="highlight"><pre>horton-esp-fit.py cost.h5 charges.h5
+</pre></div>
+
+
+<p>Transfer it to csv file to read.</p>
+<div class="highlight"><pre>horton-hdf2csv.py charges.h5 charges.csv
+</pre></div>
+
+
+<!-- [a link relative to content root]({filename}/article1.md)
+[a link relative to current file]({filename}../article1.md) -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56932248-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Yi Yao
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

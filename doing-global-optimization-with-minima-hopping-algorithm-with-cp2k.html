@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>doing global optimization with minima hopping algorithm with cp2k - Yi Yao's Homepage</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html">
+
+        <meta name="author" content="Yi Yao" />
+        <meta name="keywords" content="molecular dynamics" />
+        <meta name="description" content="using cp2k doing MINHOP global optimization method" />
+
+        <meta property="og:site_name" content="Yi Yao's Homepage" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="doing global optimization with minima hopping algorithm with cp2k"/>
+        <meta property="og:url" content="./doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html"/>
+        <meta property="og:description" content="using cp2k doing MINHOP global optimization method"/>
+        <meta property="article:published_time" content="2014-12-20" />
+            <meta property="article:section" content="molecular dynamics" />
+            <meta property="article:tag" content="molecular dynamics" />
+            <meta property="article:author" content="Yi Yao" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Yi Yao's Homepage            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./index.html">
+                             About Me
+                          </a></li>
+                         <li><a href="./pages/research.html">
+                             Research
+                          </a></li>
+                         <li><a href="./pages/useful-links.html">
+                             Useful Links
+                          </a></li>
+                        <li >
+                            <a href="./category/dft.html">Dft</a>
+                        </li>
+                        <li >
+                            <a href="./category/misc.html">Misc</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
+                        </li>
+                        <li >
+                            <a href="./category/python.html">Python</a>
+                        </li>
+                        <li >
+                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html"
+                       rel="bookmark"
+                       title="Permalink to doing global optimization with minima hopping algorithm with cp2k">
+                        doing global optimization with minima hopping algorithm with cp2k
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-12-20T23:26:00+01:00"> Sat 20 December 2014</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/molecular-dynamics.html">molecular dynamics</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><a href="http://scitation.aip.org/content/aip/journal/jcp/120/21/10.1063/1.1724816">Minima hopping</a> is an effecient global minimization method. It is implemented in cp2k code. I have tested it on LJ38 clusters and found it performed very well. It is easy to using all the force methods in cp2k, and also easy to using multiple cores and easy to restart.</p>
+<p>I copied and modified the input file in cp2k test examples.</p>
+<div class="highlight"><pre>&amp;GLOBAL
+   PROJECT_NAME LJ38_minhop_1
+   PROGRAM_NAME SWARM
+   RUN_TYPE NONE
+   SEED 42
+&amp;END GLOBAL
+
+&amp;SWARM
+   BEHAVIOR GLOBAL_OPT
+   NUMBER_OF_WORKERS 11
+   MAX_ITER 50000
+   &amp;GLOBAL_OPT
+     #E_TARGET -0.028421532
+     #E_TARGET -0.397492331
+     E_TARGET -0.173928427
+     METHOD MINIMA_HOPPING
+     &amp;HISTORY
+       ENERGY_PRECISION 1.0e-5
+       FINGERPRINT_PRECISION 1.0e-2
+     &amp;END HISTORY
+   &amp;END GLOBAL_OPT
+   #REPLAY_COMMUNICATION_LOG LJ38_minhop_1_old.comlog
+&amp;END SWARM
+
+
+&amp;MOTION
+  &amp;PRINT  ! IO is expensive, turning everything off
+    &amp;RESTART OFF
+    &amp;END RESTART
+    &amp;RESTART_HISTORY OFF
+    &amp;END RESTART_HISTORY
+    &amp;TRAJECTORY
+     !ADD_LAST NUMERIC
+      &amp;EACH
+        GEO_OPT -1
+        MD -1
+      &amp;END EACH
+    &amp;END TRAJECTORY
+  &amp;END PRINT
+
+  &amp;MD
+    ENSEMBLE NVE
+    STEPS 1000
+    TIMESTEP 0.5
+
+    &amp;VELOCITY_SOFTENING
+      STEPS 20
+      ALPHA 1.0
+      DELTA 0.01
+    &amp;END VELOCITY_SOFTENING
+
+    &amp;PRINT
+      &amp;ENERGY OFF
+      &amp;END ENERGY
+      &amp;CENTER_OF_MASS OFF
+      &amp;END CENTER_OF_MASS
+      &amp;COEFFICIENTS OFF
+      &amp;END COEFFICIENTS
+      &amp;PROGRAM_RUN_INFO OFF
+      &amp;END PROGRAM_RUN_INFO
+      &amp;ROTATIONAL_INFO OFF
+      &amp;END ROTATIONAL_INFO
+      &amp;SHELL_ENERGY OFF
+      &amp;END SHELL_ENERGY
+      &amp;TEMP_KIND OFF
+      &amp;END TEMP_KIND
+      &amp;TEMP_SHELL_KIND OFF
+      &amp;END TEMP_SHELL_KIND
+      FORCE_LAST .TRUE.
+    &amp;END PRINT
+  &amp;END MD
+
+  &amp;GEO_OPT
+    OPTIMIZER CG
+    MAX_ITER 300
+    &amp;CG
+      MAX_STEEP_STEPS 3
+      &amp;LINE_SEARCH
+        &amp;GOLD
+          INITIAL_STEP 1.0e-2
+        &amp;END GOLD
+      &amp;END LINE_SEARCH
+    &amp;END CG
+    &amp;BFGS
+     TRUST_RADIUS [angstrom] 0.1
+     USE_RAT_FUN_OPT  ! otherwise LJ particle sth. get too close.
+     &amp;RESTART OFF
+     &amp;END RESTART
+    &amp;END BFGS
+    &amp;PRINT
+      &amp;PROGRAM_RUN_INFO OFF
+      &amp;END PROGRAM_RUN_INFO
+    &amp;END PRINT
+  &amp;END GEO_OPT
+
+&amp;END MOTION
+
+&amp;FORCE_EVAL
+ &amp;PRINT
+    &amp;DISTRIBUTION OFF
+    &amp;END DISTRIBUTION
+    &amp;DISTRIBUTION1D OFF
+    &amp;END DISTRIBUTION1D
+    &amp;DISTRIBUTION2D OFF
+    &amp;END DISTRIBUTION2D
+    &amp;FORCES OFF
+    &amp;END FORCES
+    &amp;GRID_INFORMATION OFF
+    &amp;END GRID_INFORMATION
+    &amp;PROGRAM_RUN_INFO OFF
+    &amp;END PROGRAM_RUN_INFO
+    &amp;STRESS_TENSOR OFF
+    &amp;END STRESS_TENSOR
+    &amp;TOTAL_NUMBERS OFF
+    &amp;END TOTAL_NUMBERS
+  &amp;END PRINT
+
+
+  METHOD FIST
+  &amp;MM
+    &amp;FORCEFIELD
+     &amp;SPLINE
+        R0_NB 1.0E-10 ! solely MAX_SPLINE shall control spline range
+        EMAX_SPLINE   [hartree]  1000
+        EMAX_ACCURACY [hartree]  1000  ! yields r_min = 0.66 bohr
+        EPS_SPLINE    [hartree] 1.0E-10   ! yields 1698 spline points
+     &amp;END SPLINE
+      &amp;NONBONDED
+        &amp;LENNARD-JONES
+          atoms X X
+          EPSILON [hartree] 0.001
+          SIGMA 1.0
+          RCUT 25.0
+        &amp;END LENNARD-JONES
+      &amp;END NONBONDED
+      &amp;CHARGE
+        ATOM X
+        CHARGE 0.0
+      &amp;END CHARGE
+    &amp;END FORCEFIELD
+    &amp;NEIGHBOR_LISTS
+      GEO_CHECK OFF
+    &amp;END NEIGHBOR_LISTS
+    &amp;POISSON
+      &amp;EWALD
+        EWALD_TYPE none
+      &amp;END EWALD
+    &amp;END POISSON
+    &amp;PRINT
+      &amp;DERIVATIVES OFF
+      &amp;END DERIVATIVES
+      &amp;DIPOLE OFF
+      &amp;END DIPOLE
+      &amp;EWALD_INFO OFF
+      &amp;END EWALD_INFO
+      &amp;FF_INFO OFF
+      &amp;END FF_INFO
+      &amp;FF_PARAMETER_FILE OFF
+      &amp;END FF_PARAMETER_FILE
+      &amp;ITER_INFO OFF
+      &amp;END ITER_INFO
+      &amp;NEIGHBOR_LISTS OFF
+      &amp;END NEIGHBOR_LISTS
+      &amp;PROGRAM_BANNER OFF
+      &amp;END PROGRAM_BANNER
+      &amp;PROGRAM_RUN_INFO OFF
+      &amp;END PROGRAM_RUN_INFO
+      &amp;SUBCELL OFF
+      &amp;END SUBCELL
+    &amp;END PRINT
+  &amp;END MM
+  &amp;SUBSYS
+    &amp;CELL
+    ABC [angstrom] 50.0 50.0 50.0
+      !PERIODIC NONE
+   &amp;END CELL
+
+   &amp;COORD
+X  19.9299001112 19.950169551 19.8322640143
+X  19.9729085751 19.9093309127 21.9394380813
+X  19.8941562054 19.8941284049 24.0569837799
+X  19.9695852658 20.05096174 26.0067040618
+X  19.8674946895 21.8602000252 20.1915984374
+X  19.8880139948 21.9536267685 22.0485106395
+X  20.0129749414 21.8625405898 23.9870979205
+X  20.082926774 22.0788992596 25.8572713695
+X  20.1546207624 24.0025491948 19.8547537874
+X  19.8031230442 24.0436048709 21.9106314379
+X  19.9463916441 24.1839491879 23.8834113495
+X  19.8704727285 24.16644628 25.8358148517
+X  19.9838019218 25.9057999191 20.0560911995
+X  20.1292145367 26.1581490664 22.0943715423
+X  19.9781889658 26.083599068 24.0336864536
+X  19.8883959013 25.8200957812 26.0366653688
+X  21.8201260724 20.1242010293 19.8205288067
+X  21.8505910349 19.9947362491 21.8404146774
+X  21.8550273956 19.9254871471 24.1073006016
+X  21.8959492318 19.9013788938 25.8664416645
+X  22.1302099673 21.9272265398 19.9252007031
+X  21.9102230055 22.1149858217 21.9240625018
+X  22.199987559 22.1591700852 23.8318003313
+X  21.9003367373 22.1293676776 25.9205476882
+X  21.88906222 23.8016798271 19.8361992897
+X  21.8178764403 23.959817666 22.139335581
+X  22.0455507021 24.1606968111 23.9829670521
+X  21.9423108666 23.979777561 26.0915224226
+X  21.8720398156 26.0920668527 19.9883875322
+X  22.1930798224 25.9151320315 22.018793157
+X  21.8088496409 26.0005309843 23.9521645719
+X  22.1819324474 26.1518318479 25.9325533822
+X  23.9252010921 20.0182542645 19.8463786663
+X  24.0939325405 20.1666761084 22.0954054271
+X  23.9434446885 20.0072638668 24.1136432412
+X  24.1239486847 20.1448454527 25.9584634081
+X  23.8406670306 22.148328277 20.1143768668
+X  24.1302214528 21.9474940966 22.0937869524
+  &amp;END COORD
+
+    &amp;TOPOLOGY
+      CONNECTIVITY OFF
+    &amp;END TOPOLOGY
+
+     &amp;KIND X
+        ELEMENT H
+        MASS 1.0
+     &amp;END KIND
+  &amp;END SUBSYS
+&amp;END FORCE_EVAL
+</pre></div>
+
+
+<p>Here number of processors has to be NUMBER_OF_WORKERS * n + 1, n is any interger number.
+So here is the running script for killdevil.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash -l</span>
+<span class="c">#BSUB -n 12</span>
+<span class="c">#BSUB -e err.%J</span>
+<span class="c">#BSUB -o out.%J</span>
+
+module load cp2k
+
+/usr/mpi/intel/mvapich2-1.7/bin/mpiexec -np <span class="m">12</span> cp2k.popt -i LJ38_minhop_1.inp -o LJ38_minhop_1.out
+</pre></div>
+</td></tr></table>
+
+<p>If would like to restart a calculation I need to mv the comlog file, and uncomment REPLAY_COMMUNICATION_LOG command in the input file.</p>
+<div class="highlight"><pre>mv LJ38_minhop_1.comlog LJ38_minhop_1_old.comlog
+</pre></div>
+
+
+<p>Here is the scripts for plotting the local minimum and global minimum versus timesteps.</p>
+<p>make_figure.sh</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash -l</span>
+module load gnuplot
+bash grep_energys.sh
+gnuplot plot.gplt
+</pre></div>
+</td></tr></table>
+
+<p>grep_energys.sh</p>
+<div class="highlight"><pre>grep &quot; GLBOPT| Reported potential energy&quot; LJ38_minhop_1.out | awk &#39;{print $6 }&#39; &gt; 1
+grep &quot;GLBOPT| Lowest reported potential energy&quot; LJ38_minhop_1.out | awk &#39;{print $7 }&#39; &gt; 2
+</pre></div>
+
+
+<p>plot.gplt</p>
+<div class="highlight"><pre><span class="c1">#set terminal postscript</span>
+<span class="c1">#set output &quot;test.ps&quot;</span>
+<span class="s-Atom">set</span> <span class="s-Atom">terminal</span> <span class="s-Atom">png</span>
+<span class="s-Atom">set</span> <span class="s-Atom">output</span> <span class="s2">&quot;test.png&quot;</span>
+<span class="s-Atom">set</span> <span class="s-Atom">yrange</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.175</span><span class="p">:-</span><span class="mf">0.160</span><span class="p">]</span>
+<span class="s-Atom">set</span> <span class="s-Atom">trange</span> <span class="p">[</span><span class="mi">0</span><span class="s-Atom">:</span><span class="mi">50000</span><span class="p">]</span>
+<span class="s-Atom">set</span> <span class="s-Atom">xrange</span> <span class="p">[</span><span class="mi">0</span><span class="s-Atom">:</span><span class="mi">10000</span><span class="p">]</span>
+<span class="s-Atom">set</span> <span class="s-Atom">parametric</span>
+<span class="s-Atom">const=-</span><span class="mf">0.173928427</span>
+
+<span class="s-Atom">p</span> <span class="s2">&quot;1&quot;</span> <span class="s-Atom">u</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span> <span class="s-Atom">u</span> <span class="mi">1</span> <span class="s-Atom">w</span> <span class="s-Atom">l</span> <span class="s-Atom">lw</span> <span class="mi">2</span><span class="p">,</span> <span class="s-Atom">t</span><span class="p">,</span> <span class="s-Atom">const</span> <span class="s-Atom">w</span> <span class="s-Atom">l</span> <span class="s-Atom">lw</span> <span class="mi">2</span>
+</pre></div>
+
+
+<p>And I post the output plot here.
+<img alt="Alt Text" src="./images/cp2k_lj38_minhop.png" /></p>
+<p>To get the minimal energy structures out, I wrote a script. The script will output the structures with the order from low energy to high energy.</p>
+<div class="highlight"><pre>f = file(&quot;LJ38_minhop_1.comlog&quot;)
+read = False
+Epot_positions = []
+Epot_position = []
+while True:
+    line = f.readline()
+    if len(line) == 0:
+        break
+    if &quot;Epot&quot; in line:
+        read = True
+        line = f.readline()
+        line = f.readline()
+        words = line.split()
+        Epot = float(words[1])
+        Epot_position.append(Epot)
+    if &quot;size&quot; in line and read == True:
+        read = False
+        words = line.split()
+        natoms = int(words[1])/3
+        positions = []
+        for i in range(natoms):
+            line = f.readline()
+            x = float(line) / 1.889725989
+            line = f.readline()
+            y = float(line) / 1.889725989
+            line = f.readline()
+            z = float(line) / 1.889725989
+            position = [x,y,z]
+            positions.append(position)
+        Epot_position.append(positions)
+        Epot_positions.append(Epot_position)
+        Epot_position = []
+        #print natoms
+        #print &quot;Epot: &quot; , Epot
+        #for i in range(natoms):
+        #    print &quot;X&quot;, positions[i][0], positions[i][1], positions[i][2]
+
+Epot_positions_sorted = sorted(Epot_positions , key = lambda Epot_position: Epot_position[0])
+
+Epot = Epot_positions_sorted[0][0] - 1
+for j in range(len(Epot_positions_sorted)):
+    if Epot_positions_sorted[j][0] - Epot &gt; 1e-5:
+        Epot = Epot_positions_sorted[j][0]
+        print natoms
+        print &quot;Epot: &quot; , Epot_positions_sorted[j][0]
+        for i in range(natoms):
+            positions = Epot_positions_sorted[j][1]
+            print &quot;X&quot;,positions[i][0], positions[i][1], positions[i][2]
+</pre></div>
+
+
+<p>The two lowest energy structure are here with the energy of -0.173928415115, and -0.173252366954.
+Here are the structures of them.</p>
+<p><img alt="Alt Text" src="./images/cp2k_lj38_minhop_min2.png" />
+<img alt="Alt Text" src="./images/cp2k_lj38_minhop_min1.png" /></p>
+<!-- [a link relative to content root]({filename}/article1.md)
+[a link relative to current file]({filename}../article1.md) -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56932248-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Yi Yao
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

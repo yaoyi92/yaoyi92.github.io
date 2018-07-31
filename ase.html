@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>ase - Yi Yao's Homepage</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./ase.html">
+
+        <meta name="author" content="Yi Yao" />
+        <meta name="keywords" content="python" />
+        <meta name="description" content="ase" />
+
+        <meta property="og:site_name" content="Yi Yao's Homepage" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="ase"/>
+        <meta property="og:url" content="./ase.html"/>
+        <meta property="og:description" content="ase"/>
+        <meta property="article:published_time" content="2014-12-20" />
+            <meta property="article:section" content="python" />
+            <meta property="article:tag" content="python" />
+            <meta property="article:author" content="Yi Yao" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Yi Yao's Homepage            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./index.html">
+                             About Me
+                          </a></li>
+                         <li><a href="./pages/research.html">
+                             Research
+                          </a></li>
+                         <li><a href="./pages/useful-links.html">
+                             Useful Links
+                          </a></li>
+                        <li >
+                            <a href="./category/dft.html">Dft</a>
+                        </li>
+                        <li >
+                            <a href="./category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/python.html">Python</a>
+                        </li>
+                        <li >
+                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./ase.html"
+                       rel="bookmark"
+                       title="Permalink to ase">
+                        ase
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-12-20T23:26:00+01:00"> Sat 20 December 2014</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/python.html">python</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p><a href="https://wiki.fysik.dtu.dk/ase/index.html">ase</a> is a python library for atomic simulation. It can be used with a lot of code from first principle to classical md codes. It would be a good toy and test ground for atomic simulation. I plan to use it to test some algorithm with lj potential built in.</p>
+<p>Here is the process for me to install it on killdevil.</p>
+<div class="highlight"><pre><span class="n">module</span> <span class="n">load</span> <span class="n">anaconda</span>
+<span class="n">source</span> <span class="n">activate</span> <span class="n">my_root</span>
+<span class="n">export</span> <span class="n">ASE_TAGS</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">svn</span><span class="o">.</span><span class="n">fysik</span><span class="o">.</span><span class="n">dtu</span><span class="o">.</span><span class="n">dk</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">ase</span><span class="o">/</span><span class="n">tags</span><span class="o">/</span>
+<span class="n">mkdir</span> <span class="o">~/</span><span class="n">software</span><span class="o">/</span><span class="n">ase</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">software</span><span class="o">/</span><span class="n">ase</span>
+<span class="n">svn</span> <span class="n">co</span> <span class="o">-</span><span class="n">r</span> <span class="mi">3440</span> <span class="err">$</span><span class="n">ASE_TAGS</span><span class="o">/</span><span class="mf">3.8</span><span class="o">.</span><span class="mi">1</span> <span class="n">ase</span><span class="o">-</span><span class="mf">3.8</span><span class="o">.</span><span class="mi">1</span>
+<span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">~/</span><span class="n">software</span><span class="o">/</span><span class="n">ase</span><span class="o">/</span><span class="n">ase</span><span class="o">-</span><span class="mf">3.8</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span> <span class="n">ase</span>
+<span class="c">#export PYTHONPATH=$HOME/ase:$PYTHONPATH</span>
+<span class="c">#export PATH=$HOME/ase/tools:$PATH</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">ase</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span>
+<span class="n">mkdir</span> <span class="o">~/</span><span class="n">yiy</span><span class="o">/</span><span class="n">ase</span><span class="o">-</span><span class="n">test</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">yiy</span><span class="o">/</span><span class="n">ase</span><span class="o">-</span><span class="n">test</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s">&quot;from ase.test import test; test(verbosity=2, display=False)&quot;</span> <span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span> <span class="o">|</span> <span class="n">tee</span> <span class="n">testase</span><span class="o">.</span><span class="n">log</span>
+</pre></div>
+
+
+<p>And I got the result of </p>
+<div class="highlight"><pre>----------------------------------------------------------------------
+Ran 96 tests in 64.938s
+
+OK
+</pre></div>
+
+
+<p>Now I can play around with it.</p>
+<!-- [a link relative to content root]({filename}/article1.md)
+[a link relative to current file]({filename}../article1.md) -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56932248-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Yi Yao
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

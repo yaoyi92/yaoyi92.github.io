@@ -1,0 +1,53 @@
+# This is LAMMPS input script specifies a simple DPD simulation.
+# It reproduces Fig. 2 of Groot and Warren, J. Chem. Phys. 107,
+# 4423 (1997)
+
+units       lj
+atom_style full
+comm_modify vel yes
+pair_style  dpd 1.0 1.0 34387
+
+read_data bilayer.data
+# create simulation box
+#lattice     fcc 3
+#region      mybox block -4 4 -4 4 -4 4 units lattice
+#create_box  1 mybox
+#create_atoms    1 box
+
+# define masses and interaction coefficient
+#mass        * 1
+pair_coeff  1 1 10 4.5
+pair_coeff  2 2 30 4.5
+pair_coeff  3 3 25 4.5
+pair_coeff  1 2 35 4.5
+pair_coeff  1 3 75 4.5
+pair_coeff  2 3 30 4.5
+
+bond_style harmonic
+bond_coeff 1 128.0 0.5
+
+angle_style cosine/delta
+angle_coeff 1 7.5 180.0
+
+# create initial velocities
+velocity    all create 1.0 4928459 dist gaussian
+
+# change neighbor list parameters to avoid dangerous builds
+neighbor    2.0 bin
+neigh_modify    delay 3
+
+# specify simulation parameters
+timestep    0.04
+thermo      10
+
+# first equilibrate the initial condition
+fix     1 all nve
+run     500
+
+dump traj all xtc  50 traj.xtc
+dump_modify traj unwrap yes
+
+dump traj_xyz all xyz 50 traj.xyz
+
+# production run
+run     50000

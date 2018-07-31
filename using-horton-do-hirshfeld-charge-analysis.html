@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>using horton do hirshfeld charge analysis - Yi Yao's Homepage</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./using-horton-do-hirshfeld-charge-analysis.html">
+
+        <meta name="author" content="Yi Yao" />
+        <meta name="keywords" content="python" />
+        <meta name="description" content="horton hirshfeld" />
+
+        <meta property="og:site_name" content="Yi Yao's Homepage" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="using horton do hirshfeld charge analysis"/>
+        <meta property="og:url" content="./using-horton-do-hirshfeld-charge-analysis.html"/>
+        <meta property="og:description" content="horton hirshfeld"/>
+        <meta property="article:published_time" content="2014-12-09" />
+            <meta property="article:section" content="python" />
+            <meta property="article:tag" content="python" />
+            <meta property="article:author" content="Yi Yao" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Yi Yao's Homepage            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./index.html">
+                             About Me
+                          </a></li>
+                         <li><a href="./pages/research.html">
+                             Research
+                          </a></li>
+                         <li><a href="./pages/useful-links.html">
+                             Useful Links
+                          </a></li>
+                        <li >
+                            <a href="./category/dft.html">Dft</a>
+                        </li>
+                        <li >
+                            <a href="./category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/python.html">Python</a>
+                        </li>
+                        <li >
+                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./using-horton-do-hirshfeld-charge-analysis.html"
+                       rel="bookmark"
+                       title="Permalink to using horton do hirshfeld charge analysis">
+                        using horton do hirshfeld charge analysis
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-12-09T23:34:00+01:00"> Tue 09 December 2014</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/python.html">python</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>In order to do hirshfeld charge analysis, I generate charge density cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and this cube file to do hirshfeld charge analysis (follow this <a href="http://theochem.github.io/horton/tut_part.html#id32">link</a> ).</p>
+<p>Here is how I use it on killdevil.</p>
+<div class="highlight"><pre><span class="k">module</span> <span class="n">load</span> <span class="n">anaconda</span>
+<span class="n">source</span> <span class="n">activate</span> <span class="n">my_root</span>
+</pre></div>
+
+
+<p>First, I need to set up a database for proatoms. I am using cp2k for atom calculation. I need H, O, Na, Cl in my system. So I generate the input files like this.</p>
+<p>ppot.inc ( XXX_000_00 XXX stands for element number, GTH-PBE-qX which is the name of the pseudopotential)</p>
+<div class="highlight"><pre>001_000_00 GTH-PBE-q0
+008_000_00 GTH-PBE-q6
+011_000_00 GTH-PBE-q9
+017_000_00 GTH-PBE-q7
+</pre></div>
+
+
+<p>valence.inc ( NNN_PPP_MM NNN: element number. PPP: atomic population(#electon). MM: spin multiplicity(2S+1) 1s2 2p1: orbital occupations)</p>
+<div class="highlight"><pre>001_001_02 1s1
+001_002_01 1s2
+
+008_005_02 1s2 2p1
+008_006_03 1s2 2p2
+008_007_04 1s2 2p3
+008_008_03 1s2 2p4
+008_009_02 1s2 2p5
+008_010_01 1s2 2p6
+
+011_005_02 1s2 2p1
+011_006_03 1s2 2p2
+011_007_04 1s2 2p3
+011_008_03 1s2 2p4
+011_009_02 1s2 2p5
+011_010_01 1s2 2p6
+011_011_02 1s2 2p6 2s1
+011_012_01 1s2 2p6 2s2
+011_013_02 1s2 2p6 2s2 3p1
+
+017_013_02 1s2 2p1
+017_014_03 1s2 2p2
+017_015_04 1s2 2p3
+017_016_03 1s2 2p4
+017_017_02 1s2 2p5
+017_018_01 1s2 2p6
+</pre></div>
+
+
+<p>template.inp</p>
+<div class="highlight"><pre><span class="err">&amp;</span>GLOBAL
+  PROJECT ATOM
+  PROGRAM_NAME ATOM
+<span class="err">&amp;</span>END GLOBAL
+<span class="err">&amp;</span>ATOM
+  ATOMIC_NUMBER <span class="cp">${</span><span class="n">number</span><span class="cp">}</span>
+  ELECTRON_CONFIGURATION (<span class="cp">${</span><span class="n">mult</span><span class="cp">}</span>) CORE <span class="cp">${</span><span class="n">line</span><span class="p">:</span><span class="n">valence</span><span class="o">.</span><span class="n">inc</span><span class="cp">}</span>
+  CORE none
+
+  MAX_ANGULAR_MOMENTUM 1
+  <span class="err">&amp;</span>METHOD
+     METHOD_TYPE UKS
+     <span class="err">&amp;</span>XC
+       <span class="err">&amp;</span>XC_FUNCTIONAL PBE
+         <span class="err">&amp;</span>PBE
+           PARAMETRIZATION REVPBE
+         <span class="err">&amp;</span>END PBE
+       <span class="err">&amp;</span>END XC_FUNCTIONAL
+     <span class="err">&amp;</span>END XC
+  <span class="err">&amp;</span>END METHOD
+  <span class="err">&amp;</span>POTENTIAL
+      PSEUDO_TYPE GTH
+      POTENTIAL_FILE_NAME ../../PBE_PSEUDOPOTENTIALS
+      POTENTIAL_NAME <span class="cp">${</span><span class="n">line</span><span class="p">:</span><span class="n">ppot</span><span class="o">.</span><span class="n">inc</span><span class="cp">}</span>
+  <span class="err">&amp;</span>END POTENTIAL
+  <span class="err">&amp;</span>PP_BASIS
+      BASIS_SET_FILE_NAME ../../BASIS_MOLOPT
+      BASIS_TYPE CONTRACTED_GTO
+      BASIS_SET DZVP-MOLOPT-SR-GTH
+  <span class="err">&amp;</span>END PP_BASIS
+  <span class="err">&amp;</span>PRINT
+    <span class="err">&amp;</span>BASIS_SET ON
+    <span class="err">&amp;</span>END
+    <span class="err">&amp;</span>ORBITALS ON
+    <span class="err">&amp;</span>END
+    <span class="err">&amp;</span>POTENTIAL ON
+    <span class="err">&amp;</span>END
+  <span class="err">&amp;</span>END
+<span class="err">&amp;</span>END ATOM
+</pre></div>
+
+
+<p>After preparing these files. I do</p>
+<div class="highlight"><pre>horton-atomdb.py input cp2k 1,8,11,17 template.inp
+</pre></div>
+
+
+<p>This will generate several folders and a run_cp2k.sh file. In order to run it on hopper (which supercomputer I use for cp2k) I add several lines in the head of this file.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+<span class="c">#PBS -N myjob </span>
+<span class="c">###PBS -q regular</span>
+<span class="c">#PBS -q debug</span>
+<span class="c">#PBS -l mppwidth=24</span>
+<span class="c">###PBS -l walltime=96:00:00</span>
+<span class="c">#PBS -l walltime=00:30:00</span>
+<span class="c">#PBS -j oe</span>
+<span class="c">#PBS -V</span>
+
+<span class="c"># Note: if you want to use an mpi-parallel CP2K binary, uncomment the following</span>
+<span class="c"># line and fill in the right binary and mpirun script:</span>
+<span class="nb">cd</span> <span class="nv">$PBS_O_WORKDIR</span>
+module load cp2k/2.5.1
+<span class="c">#CP2K_BIN=&quot;mpirun -n4 cp2k.popt&quot;</span>
+<span class="nv">CP2K_BIN</span><span class="o">=</span><span class="s2">&quot;aprun -n 24 cp2k.popt&quot;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Then I do</p>
+<div class="highlight"><pre>qsub run_cp2k.sh
+</pre></div>
+
+
+<p>After the calculations are done, I copy the folder back to killdevil and using horton again. This will generate a atom.h5 file for hirshfeld calculation.</p>
+<div class="highlight"><pre>horton-atomdb.py convert
+</pre></div>
+
+
+<p>Now, I copy atom.h5 file and the cube file from cp2k calculation to another folder. I also modify the cube file based on the 3.4.1 in the <a href="http://theochem.github.io/horton/tut_part.html#id32">manual</a>. The command I use for the real calculation is </p>
+<div class="highlight"><pre>horton-cpart.py cube output.h5:group {h,hi,he} atoms.h5
+</pre></div>
+
+
+<p>h, hi, he stands for different partitioning schemes.</p>
+<p>To make the result readable, there is a tool to convert h5 file to csv file.</p>
+<div class="highlight"><pre>horton-hdf2csv.py output.h5 output.csv
+</pre></div>
+
+
+<p>The information I got based on hirshfeld analysis are in the file of output.csv.</p>
+<!-- [a link relative to content root]({filename}/article1.md)
+[a link relative to current file]({filename}../article1.md) -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56932248-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Yi Yao
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

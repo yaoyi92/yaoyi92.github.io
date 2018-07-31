@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>combine arrays on different cores - Yi Yao's Homepage</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./combine-arrays-on-different-cores.html">
+
+        <meta name="author" content="Yi Yao" />
+        <meta name="keywords" content="parallel computing" />
+        <meta name="description" content="using MPI_Allgatherv to combine arrays on different cores" />
+
+        <meta property="og:site_name" content="Yi Yao's Homepage" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="combine arrays on different cores"/>
+        <meta property="og:url" content="./combine-arrays-on-different-cores.html"/>
+        <meta property="og:description" content="using MPI_Allgatherv to combine arrays on different cores"/>
+        <meta property="article:published_time" content="2014-12-04" />
+            <meta property="article:section" content="misc" />
+            <meta property="article:tag" content="parallel computing" />
+            <meta property="article:author" content="Yi Yao" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Yi Yao's Homepage            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./index.html">
+                             About Me
+                          </a></li>
+                         <li><a href="./pages/research.html">
+                             Research
+                          </a></li>
+                         <li><a href="./pages/useful-links.html">
+                             Useful Links
+                          </a></li>
+                        <li >
+                            <a href="./category/dft.html">Dft</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
+                        </li>
+                        <li >
+                            <a href="./category/python.html">Python</a>
+                        </li>
+                        <li >
+                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./combine-arrays-on-different-cores.html"
+                       rel="bookmark"
+                       title="Permalink to combine arrays on different cores">
+                        combine arrays on different cores
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-12-04T13:40:00+01:00"> Thu 04 December 2014</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/parallel-computing.html">parallel computing</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>The way to combine arrays in different cores to a big array by MPI is using MPI_Allgatherv. An example I would like to test is like this.</p>
+<p>Core 1 : 1</p>
+<p>Core 2 : 2 2</p>
+<p>Core 3 : 3 3 3</p>
+<p>Core 4 : 4 4 4 4</p>
+<p>Core 5 ...</p>
+<p>After combine all the arrays, I will get</p>
+<p>1 2 2 3 3 3 4 4 4 4 5 5 ...</p>
+<p>Here is the code(test_allgatherv.c) and Makefile for this calculation. Pay attention to displ_list.</p>
+<div class="highlight"><pre><span class="cp">#include &quot;mpi.h&quot;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+
+  <span class="kt">int</span> <span class="n">my_rank</span><span class="p">;</span> <span class="c1">// MPI rank</span>
+  <span class="kt">int</span> <span class="n">size</span><span class="p">;</span> <span class="c1">// MPI size</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span> 
+  <span class="kt">int</span> <span class="o">*</span><span class="n">local_array</span><span class="p">;</span> <span class="c1">// array in local core </span>
+  <span class="kt">int</span> <span class="n">local_num</span><span class="p">;</span> <span class="c1">// num of elements in local array</span>
+  <span class="kt">int</span> <span class="o">*</span><span class="n">local_num_list</span><span class="p">;</span> <span class="c1">// the list of local_num </span>
+  <span class="kt">int</span> <span class="o">*</span><span class="n">displ_list</span><span class="p">;</span> <span class="c1">// the displ_list of global_array</span>
+  <span class="kt">int</span> <span class="o">*</span><span class="n">global_array</span><span class="p">;</span> <span class="c1">// array in global</span>
+  <span class="kt">int</span> <span class="n">global_num</span><span class="p">;</span> <span class="c1">// sum of local_num</span>
+
+  <span class="c1">// MPI related variables</span>
+  <span class="n">MPI_Init</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
+  <span class="n">MPI_Comm_rank</span> <span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">my_rank</span><span class="p">);</span>
+  <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">);</span>
+
+  <span class="c1">// generate local array</span>
+  <span class="n">local_num</span> <span class="o">=</span> <span class="n">my_rank</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">local_array</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span> <span class="p">(</span><span class="n">local_num</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">local_num</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">local_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">local_num</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">local_num</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// calculate global_num = sum[local_num]</span>
+  <span class="n">MPI_Allreduce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_num</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">global_num</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="n">MPI_SUM</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+
+  <span class="c1">// using MPI_Allgatherv the calculation of displ_list is a little tricky</span>
+  <span class="n">global_array</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span> <span class="p">(</span><span class="n">global_num</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+  <span class="n">displ_list</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span> <span class="p">(</span><span class="n">size</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+  <span class="n">local_num_list</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">malloc</span> <span class="p">(</span><span class="n">size</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+  <span class="n">MPI_Allgather</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_num</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="n">local_num_list</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+  <span class="n">displ_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">size</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">displ_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">displ_list</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">local_num_list</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="n">MPI_Allgatherv</span><span class="p">(</span><span class="n">local_array</span><span class="p">,</span> <span class="n">local_num</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="n">global_array</span><span class="p">,</span> <span class="n">local_num_list</span><span class="p">,</span> <span class="n">displ_list</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+
+  <span class="c1">// output the global_array</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">my_rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;after MPI_Allgatherv</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">global_num</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">i</span> <span class="p">,</span> <span class="n">global_array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">MPI_Finalize</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>And the Makefile.</p>
+<div class="highlight"><pre><span class="nv">CC</span><span class="o">=</span>mpicc
+<span class="nv">CFLAGS</span><span class="o">=</span>-c -Wall
+<span class="nv">LDFLAGS</span><span class="o">=</span>
+<span class="nv">SOURCES</span><span class="o">=</span>test_allgatherv.c
+<span class="nv">OBJECTS</span><span class="o">=</span><span class="k">$(</span>SOURCES:.c<span class="o">=</span>.o<span class="k">)</span>
+<span class="nv">EXECUTABLE</span><span class="o">=</span>test_allgatherv
+
+<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">SOURCES</span><span class="k">)</span> <span class="k">$(</span><span class="nv">EXECUTABLE</span><span class="k">)</span>
+
+<span class="nf">$(EXECUTABLE)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJECTS</span><span class="k">)</span>
+    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> <span class="k">$(</span>OBJECTS<span class="k">)</span> -o <span class="nv">$@</span>
+
+<span class="nf">.c.o</span><span class="o">:</span>
+    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> <span class="nv">$&lt;</span> -o <span class="nv">$@</span>
+</pre></div>
+
+
+<p>After compiling, run the job by</p>
+<div class="highlight"><pre>mpirun -n 8 ./test_allgatherv
+</pre></div>
+
+
+<p>I got the correct result</p>
+<div class="highlight"><pre>1 
+2 
+2 
+4 
+4 
+4 
+4 
+5 
+5 
+5 
+5 
+5 
+8 
+8 
+8 
+8 
+8 
+8 
+8 
+8 
+3 
+3 
+3 
+6 
+6 
+6 
+6 
+6 
+6 
+7 
+7 
+7 
+7 
+7 
+7 
+7 
+after MPI_Allgatherv
+0 1
+1 2
+2 2
+3 3
+4 3
+5 3
+6 4
+7 4
+8 4
+9 4
+10 5
+11 5
+12 5
+13 5
+14 5
+15 6
+16 6
+17 6
+18 6
+19 6
+20 6
+21 7
+22 7
+23 7
+24 7
+25 7
+26 7
+27 7
+28 8
+29 8
+30 8
+31 8
+32 8
+33 8
+34 8
+35 8
+</pre></div>
+
+
+<!-- [a link relative to content root]({filename}/article1.md)
+[a link relative to current file]({filename}../article1.md) -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56932248-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Yi Yao
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

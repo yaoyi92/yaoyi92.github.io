@@ -1,0 +1,166 @@
+
+&FORCE_EVAL
+  METHOD Fist
+  &MM
+    &FORCEFIELD
+      &BEND
+        ATOMS H O H
+        K 0.
+        THETA0 1.8
+      &END BEND
+      &BOND
+        ATOMS O H
+        K 0.
+        R0 1.8
+      &END BOND
+      &CHARGE
+        ATOM O
+        CHARGE -0.8476
+      &END CHARGE
+      &CHARGE
+        ATOM H
+        CHARGE 0.4238
+      &END CHARGE
+      &CHARGE
+        ATOM Na
+        CHARGE 1.000
+      &END CHARGE
+      &CHARGE
+        ATOM Cl
+        CHARGE -1.000
+      &END CHARGE
+      &NONBONDED
+        &LENNARD-JONES
+          atoms O O
+          EPSILON 78.198
+          SIGMA 3.166
+          RCUT 11.4
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms O H
+          EPSILON 0.0
+          SIGMA 3.6705
+          RCUT 11.4
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms H H
+          EPSILON 0.0
+          SIGMA 3.30523
+          RCUT 11.4
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms Na O
+          EPSILON 2.4055
+          SIGMA 3.49
+          RCUT 11.4
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms Na H
+          EPSILON 0.0
+          SIGMA 1.0
+          RCUT 11.4
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms Na Na
+          EPSILON 0.0
+          SIGMA 1.0
+          RCUT 11.4
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms Cl O 
+          EPSILON 62.542
+          SIGMA 3.78
+          RCUT 11.4
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms Cl H
+          EPSILON 0.0
+          SIGMA 1.0
+          RCUT 11.4
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms Na Cl
+          EPSILON 1.9408
+          SIGMA 4.105
+          RCUT 11.4
+        &END LENNARD-JONES
+        &LENNARD-JONES
+          atoms Cl Cl
+          EPSILON 0.0
+          SIGMA 1.0
+          RCUT 11.4
+        &END LENNARD-JONES
+      &END NONBONDED
+    &END FORCEFIELD
+    &POISSON
+      &EWALD
+        EWALD_TYPE pme
+        ALPHA .5
+        NS_MAX 11
+        EPSILON 1e-6
+      &END EWALD
+    &END POISSON
+  &END MM
+  &SUBSYS
+    &CELL
+      ABC 24.8736639347 24.8736639347 24.8736639347
+    &END CELL
+    &TOPOLOGY
+      COORD_FILE_FORMAT XYZ
+      COORD_FILE_NAME H2O512NaCl.xyz
+      CONN_FILE_FORMAT UPSF
+      CONN_FILE_NAME H2O512NaCl_gro.psf
+    &END TOPOLOGY
+    &COLVAR
+     &DISTANCE
+       ATOMS 1537 1538
+     &END DISTANCE
+     &PRINT
+     &END
+    &END COLVAR
+  &END SUBSYS
+&END FORCE_EVAL
+&GLOBAL
+
+  PROJECT H2O
+  RUN_TYPE MD
+&END GLOBAL
+&MOTION
+  &CONSTRAINT
+    &G3X3
+      DISTANCES 1.8897268 1.8897268 3.0859239
+      MOLNAME SOL
+      ATOMS 1 2 3
+    &END G3X3
+    &COLLECTIVE
+      COLVAR 1
+      INTERMOLECULAR
+      TARGET [angstrom] 4.8
+    &END COLLECTIVE
+    &LAGRANGE_MULTIPLIERS
+      COMMON_ITERATION_LEVELS 1
+    &END
+  &END CONSTRAINT
+  &MD
+    ENSEMBLE NVT
+    STEPS 20000
+    TIMESTEP 1.0
+    TEMPERATURE 298.0
+    &THERMOSTAT
+      &NOSE
+        LENGTH 3
+        YOSHIDA 3
+        TIMECON 1000
+        MTS 2
+      &END NOSE
+    &END
+  &END MD
+  &PRINT
+    &TRAJECTORY  SILENT
+      &EACH
+        MD 50
+      &END EACH
+      FILENAME =H2O512NaCl_NVT.xyz
+    &END TRAJECTORY
+  &END PRINT
+&END MOTION

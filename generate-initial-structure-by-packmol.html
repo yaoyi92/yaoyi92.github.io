@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>generate initial structure by packmol - Yi Yao's Homepage</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./generate-initial-structure-by-packmol.html">
+
+        <meta name="author" content="Yi Yao" />
+        <meta name="keywords" content="misc" />
+        <meta name="description" content="generate initial structure by packmol" />
+
+        <meta property="og:site_name" content="Yi Yao's Homepage" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="generate initial structure by packmol"/>
+        <meta property="og:url" content="./generate-initial-structure-by-packmol.html"/>
+        <meta property="og:description" content="generate initial structure by packmol"/>
+        <meta property="article:published_time" content="2015-01-20" />
+            <meta property="article:section" content="misc" />
+            <meta property="article:tag" content="misc" />
+            <meta property="article:author" content="Yi Yao" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Yi Yao's Homepage            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./index.html">
+                             About Me
+                          </a></li>
+                         <li><a href="./pages/research.html">
+                             Research
+                          </a></li>
+                         <li><a href="./pages/useful-links.html">
+                             Useful Links
+                          </a></li>
+                        <li >
+                            <a href="./category/dft.html">Dft</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/misc.html">Misc</a>
+                        </li>
+                        <li >
+                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
+                        </li>
+                        <li >
+                            <a href="./category/python.html">Python</a>
+                        </li>
+                        <li >
+                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./generate-initial-structure-by-packmol.html"
+                       rel="bookmark"
+                       title="Permalink to generate initial structure by packmol">
+                        generate initial structure by packmol
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-01-20T14:25:00+01:00"> Tue 20 January 2015</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/misc.html">misc</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>The initial structure for md simulation will be generated by packmol then do an equilibrium step by lammps. The system I would like to prepare is 4M NaCl solution. ( 9 Na+ 9 Cl- and 115 H2O with the box size 15.5473 A. ) The template structure of Na+ and Cl- and tip4p H2O structure are prepared first. </p>
+<p>na.xyz</p>
+<div class="highlight"><pre>2
+
+Na 0.0 0.0 0.0
+NaD 0.0 0.0 0.02
+</pre></div>
+
+
+<p>cl.xyz</p>
+<div class="highlight"><pre>2
+
+Cl 0.0 0.0 0.0
+ClD 0.0 0.0 0.02
+</pre></div>
+
+
+<p>tip4p.xyz</p>
+<div class="highlight"><pre>3
+
+O 0.0 0.0 0.0
+H -0.75695 0.58588 0.0
+H 0.75695 0.58588 0.0
+</pre></div>
+
+
+<p>and also I have the input file for packmol with the name of packmol_NaClH2O.inp</p>
+<div class="highlight"><pre>#
+# A mixture of water and NaCl
+#
+
+tolerance 2.5
+filetype xyz
+output NaClH2O.xyz
+
+structure tip4p.xyz
+  number 115
+  inside box 0. 0. 0. 15.0473 15.0473 15.0473 # 15.5473
+end structure
+
+structure na.xyz
+  number 9
+  inside box 0. 0. 0. 15.0473 15.0473 15.0473 # 15.5473
+end structure
+
+structure cl.xyz
+  number 9
+  inside box 0. 0. 0. 15.0473 15.0473 15.0473 # 15.5473
+end structure
+</pre></div>
+
+
+<p>Then run packmol.sh script</p>
+<div class="highlight"><pre><span class="x">PACKMOL=&quot;</span><span class="p">$</span><span class="nv">HOME</span><span class="x">/software/packmol/packmol/packmol&quot;</span>
+<span class="x">INPUT=packmol_NaClH2O.inp</span>
+
+<span class="p">$</span><span class="nv">PACKMOL</span><span class="x"> &lt; </span><span class="p">$</span><span class="nv">INPUT</span><span class="x"></span>
+</pre></div>
+
+
+<p>With the help of vmd program, the data file and psf topo file are generated.</p>
+<div class="highlight"><pre><span class="x">mol new NaClH2O.xyz waitfor all</span>
+
+<span class="x">pbc set </span><span class="cp">{</span> <span class="m">15.5473</span> <span class="m">15.5473</span> <span class="m">15.5473</span> <span class="cp">}</span><span class="x"></span>
+
+<span class="x">#add bonds and angles</span>
+<span class="x">topo clearbonds</span>
+<span class="x">for </span><span class="cp">{</span><span class="nf">set</span> <span class="na">i</span> <span class="m">0</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span><span class="nv">$i</span> <span class="o">&lt;</span> <span class="m">115</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span><span class="nf">incr</span> <span class="na">i</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span>
+  <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">+</span><span class="m">1</span><span class="o">]</span> <span class="o">-</span><span class="na">bondtype</span> <span class="m">1</span> <span class="err">#</span><span class="na">bond</span> <span class="na">O</span><span class="o">-</span><span class="na">H</span>
+  <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">+</span><span class="m">2</span><span class="o">]</span> <span class="o">-</span><span class="na">bondtype</span> <span class="m">1</span> <span class="err">#</span><span class="na">bond</span> <span class="na">O</span><span class="o">-</span><span class="na">H</span>
+  <span class="na">topo</span> <span class="na">addangle</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">+</span><span class="m">2</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="nv">$i</span><span class="o">*</span><span class="m">3</span><span class="o">+</span><span class="m">1</span><span class="o">]</span> <span class="m">1</span> <span class="err">#</span><span class="na">angle</span> <span class="na">H</span><span class="o">-</span><span class="na">O</span><span class="o">-</span><span class="na">H</span>
+<span class="cp">}</span><span class="x"></span>
+
+<span class="x">for </span><span class="cp">{</span><span class="nf">set</span> <span class="na">i</span> <span class="m">0</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span><span class="nv">$i</span> <span class="o">&lt;</span> <span class="m">18</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span><span class="nf">incr</span> <span class="na">i</span><span class="cp">}</span><span class="x"> </span><span class="cp">{</span>
+  <span class="na">topo</span> <span class="na">addbond</span> <span class="o">[</span><span class="na">expr</span> <span class="m">115</span><span class="o">*</span><span class="m">3</span><span class="o">+</span><span class="nv">$i</span><span class="o">*</span><span class="m">2</span><span class="o">]</span> <span class="o">[</span><span class="na">expr</span> <span class="m">115</span><span class="o">*</span><span class="m">3</span><span class="o">+</span><span class="m">1</span><span class="o">+</span><span class="nv">$i</span><span class="o">*</span><span class="m">2</span><span class="o">]</span> <span class="o">-</span><span class="na">bondtype</span> <span class="m">2</span>
+<span class="cp">}</span><span class="x"></span>
+
+
+
+<span class="x">topo writelammpsdata data.NaClH2O</span>
+<span class="x">animate write psf NaClH2O.psf</span>
+</pre></div>
+
+
+<p>Then I manually modified the molecule ids in data file.</p>
+<p>After that, lammps is used to equilibrium the system.</p>
+<!-- [a link relative to content root]({filename}/article1.md)
+[a link relative to current file]({filename}../article1.md) -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56932248-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Yi Yao
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+
+</body>
+</html>

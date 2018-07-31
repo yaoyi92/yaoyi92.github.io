@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>thermodynamics integration from scratch using cp2k - Yi Yao's Homepage</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./thermodynamics-integration-from-scratch-using-cp2k.html">
+
+        <meta name="author" content="Yi Yao" />
+        <meta name="keywords" content="molecular dynamics,free energy calculation" />
+        <meta name="description" content="help me remember some tools in setting up MD simulation and free energy calculation." />
+
+        <meta property="og:site_name" content="Yi Yao's Homepage" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="thermodynamics integration from scratch using cp2k"/>
+        <meta property="og:url" content="./thermodynamics-integration-from-scratch-using-cp2k.html"/>
+        <meta property="og:description" content="help me remember some tools in setting up MD simulation and free energy calculation."/>
+        <meta property="article:published_time" content="2014-11-20" />
+            <meta property="article:section" content="molecular dynamics" />
+            <meta property="article:tag" content="molecular dynamics" />
+            <meta property="article:tag" content="free energy calculation" />
+            <meta property="article:author" content="Yi Yao" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Yi Yao's Homepage            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="./index.html">
+                             About Me
+                          </a></li>
+                         <li><a href="./pages/research.html">
+                             Research
+                          </a></li>
+                         <li><a href="./pages/useful-links.html">
+                             Useful Links
+                          </a></li>
+                        <li >
+                            <a href="./category/dft.html">Dft</a>
+                        </li>
+                        <li >
+                            <a href="./category/misc.html">Misc</a>
+                        </li>
+                        <li class="active">
+                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
+                        </li>
+                        <li >
+                            <a href="./category/python.html">Python</a>
+                        </li>
+                        <li >
+                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./thermodynamics-integration-from-scratch-using-cp2k.html"
+                       rel="bookmark"
+                       title="Permalink to thermodynamics integration from scratch using cp2k">
+                        thermodynamics integration from scratch using cp2k
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2014-11-20T12:52:00+01:00"> Thu 20 November 2014</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/molecular-dynamics.html">molecular dynamics</a>
+        /
+	<a href="./tag/free-energy-calculation.html">free energy calculation</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <ol>
+<li>
+<p>2 ions in 512 water system is using to calculation the Potential of Mean Force (PMF) for ion pair. ( I was using 64 water system where the size of the box is only about 12.0Å, the PMF can only exceed to 6.0Å, if I use 512 water system the box size can be more than 24Å the PMF can exceed to 10.0Å. )</p>
+</li>
+<li>
+<p>I need to know the size of the box with such number of water and ion in the system. (maybe not necessary for such big system, I put it here for smaller system and large concentration ionic solutions) Details are in my code.</p>
+<p><a href="./codes/cal_density.py">cal_density.py</a></p>
+<p><a href="./codes/cal_density_512h2o.py">cal_density_512h2o.py</a></p>
+<p>The box size calculated for NaCl in 512H2O is 24.8736639347 Å.</p>
+</li>
+<li>
+<p>Generate the initial structure for my simulation. I use gromacs and vmd to do that.
+First using genbox tool in gromacs to generate a box of water with 514 water in it. The size is a little bit larger to make sure enough water molecules can be included.</p>
+<div class="highlight"><pre>genbox_d -cs spc216.gro -box 2.52 2.52 2.52 -maxsol 514
+</pre></div>
+
+
+<p>In this way, I got a out.gro file. I will rename it to h2o514.gro file. And edit it to change the last two water to a Na ion and a Cl ion. Also the size of the box will be changed as well as the index of the atoms and the total number of atoms in the top of the file. Then I rename it to h2o512NaCl.gro. I have the final version of it here.
+<a href="./codes/h2o512NaCl.gro">h2o512NaCl.gro</a></p>
+<p>I would like to use psf and xyz file for the input of topology information and coordinations in to cp2k. VMD is used here for this task. So I use the script I wrote for vmd.
+<a href="{filename}/codes/tr_psf512.vmd">tr_psf512.vmd</a>
+it used in this way.</p>
+<div class="highlight"><pre>vmd -e tr_psf512.vmd
+</pre></div>
+
+
+<p>The files I got here is H2O512NaCl.xyz, and H2O512NaCl_gro.psf . They also need to be edited (OW -&gt; O, HW1, HW2 -&gt; H, the atom mass, and change the form of psf to upsf which can be loaded by cp2k). The final version of these two files are given here.
+<a href="./codes/H2O512NaCl.xyz">H2O512NaCl.xyz</a>
+<a href="./codes/H2O512NaCl_gro.psf">H2O512NaCl_gro.psf</a>
+(This structure is not good enough for directly calculation since the cell size is not the same. I will try to use packmol to regenerate another initial structure for the calculation later.)</p>
+</li>
+<li>
+<p>The force field I am using is <a href="http://scitation.aip.org/content/aip/journal/jcp/130/12/10.1063/1.3081142">SPCE/HMN</a>. An online <a href="http://www.colby.edu/chemistry/PChem/Hartree.html">energy unit convertion tool</a> is used for the parameters.</p>
+</li>
+<li>
+<p>The <a href="./codes/H2O_SPCE_HMN.inp">input file</a> for cp2k. It is the input file for constraint dynamics. The lagrange multiplier will print out for the constraint force for the thermodynamics integration calculation. </p>
+</li>
+</ol>
+<!-- [a link relative to content root]({filename}/article1.md)
+[a link relative to current file]({filename}../article1.md) -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56932248-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Yi Yao
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+
+</body>
+</html>
