@@ -28,11 +28,11 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme_bootstrap/css/bootstrap.min.css" type="text/css"/>
-    <link href="./theme_bootstrap/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
+    <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="./theme_bootstrap/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme_bootstrap/css/style.css" type="text/css"/>
+    <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -141,16 +141,16 @@ Yi Yao's Homepage            </a>
 <li>
 <p>Generate the initial structure for my simulation. I use gromacs and vmd to do that.
 First using genbox tool in gromacs to generate a box of water with 514 water in it. The size is a little bit larger to make sure enough water molecules can be included.</p>
-<div class="highlight"><pre>genbox_d -cs spc216.gro -box 2.52 2.52 2.52 -maxsol 514
+<div class="highlight"><pre><span></span>genbox_d -cs spc216.gro -box 2.52 2.52 2.52 -maxsol 514
 </pre></div>
 
 
 <p>In this way, I got a out.gro file. I will rename it to h2o514.gro file. And edit it to change the last two water to a Na ion and a Cl ion. Also the size of the box will be changed as well as the index of the atoms and the total number of atoms in the top of the file. Then I rename it to h2o512NaCl.gro. I have the final version of it here.
 <a href="./codes/h2o512NaCl.gro">h2o512NaCl.gro</a></p>
 <p>I would like to use psf and xyz file for the input of topology information and coordinations in to cp2k. VMD is used here for this task. So I use the script I wrote for vmd.
-<a href="{filename}/codes/tr_psf512.vmd">tr_psf512.vmd</a>
+<a href="./codes/tr_psf512.vmd">tr_psf512.vmd</a>
 it used in this way.</p>
-<div class="highlight"><pre>vmd -e tr_psf512.vmd
+<div class="highlight"><pre><span></span>vmd -e tr_psf512.vmd
 </pre></div>
 
 
@@ -168,17 +168,6 @@ it used in this way.</p>
 </ol>
 <!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) -->
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -199,14 +188,31 @@ it used in this way.</p>
       </div>
    </div>
 </footer>
-<script src="./theme_bootstrap/js/jquery.min.js"></script>
+<script src="./themestatic/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme_bootstrap/js/bootstrap.min.js"></script>
+<script src="./themestatic/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme_bootstrap/js/respond.min.js"></script>
+<script src="./themestatic/js/respond.min.js"></script>
 
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-56932248-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 
 </body>
 </html>

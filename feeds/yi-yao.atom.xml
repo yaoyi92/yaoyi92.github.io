@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yi Yao's Homepage</title><link href="index.html/" rel="alternate"></link><link href="index.html/feeds/yi-yao.atom.xml" rel="self"></link><id>index.html/</id><updated>2017-04-11T23:26:00+02:00</updated><entry><title>SCAN TM pseudopotentials</title><link href="index.html/scan-tm-pseudopotentials.html" rel="alternate"></link><updated>2017-04-11T23:26:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:,2017-04-11:index.html/scan-tm-pseudopotentials.html</id><summary type="html">&lt;p&gt;Use at your own risk.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yi Yao's Homepage - Yi Yao</title><link href="index.html/" rel="alternate"></link><link href="index.html/feeds/yi-yao.atom.xml" rel="self"></link><id>index.html/</id><updated>2017-04-11T23:26:00+02:00</updated><entry><title>SCAN TM pseudopotentials</title><link href="index.html/scan-tm-pseudopotentials.html" rel="alternate"></link><published>2017-04-11T23:26:00+02:00</published><updated>2017-04-11T23:26:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2017-04-11:index.html/scan-tm-pseudopotentials.html</id><summary type="html">&lt;p&gt;SCAN pseudopotentials&lt;/p&gt;</summary><content type="html">&lt;p&gt;Use at your own risk.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -169,26 +169,15 @@
 &lt;h1&gt;reference:&lt;/h1&gt;
 &lt;p&gt;The Journal of Chemical Physics 146, 224105 (2017)&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="DFT"></category></entry><entry><title>tricubic interpolation</title><link href="index.html/tricubic-interpolation.html" rel="alternate"></link><updated>2017-02-13T10:00:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2017-02-13:index.html/tricubic-interpolation.html</id><summary type="html">&lt;p&gt;When dealing with charge density data or wave function data stored in a cube file, I sometimes would like to find a charge density in a specific point in the space. However, only density on grid is stored in the file. Interpolation is necessary for this purpose. In scipy, scipy.interpolate.RegularGridInterpolator can be used for 3d interpolation, but only "nearest" and "linear" method is available. In order to get high presicion, &lt;a href="http://onlinelibrary.wiley.com/doi/10.1002/nme.1296/full"&gt;Tricubic&lt;/a&gt; interpolation could help. In two packages, this function is available. &lt;a href="https://github.com/danielguterding/pytricubic"&gt;pytricubic&lt;/a&gt; and &lt;a href="https://eqtools.readthedocs.io/en/latest/eqtools.html#module-eqtools.trispline"&gt;eqtools&lt;/a&gt;, I tried both and both works fine. I would recommend the eqtools since it is easy to install and doesnt have a dependence on Eigen or boost.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="DFT"></category></entry><entry><title>tricubic interpolation</title><link href="index.html/tricubic-interpolation.html" rel="alternate"></link><published>2017-02-13T10:00:00+01:00</published><updated>2017-02-13T10:00:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2017-02-13:index.html/tricubic-interpolation.html</id><summary type="html">&lt;p&gt;tricubic interpolation&lt;/p&gt;</summary><content type="html">&lt;p&gt;When dealing with charge density data or wave function data stored in a cube file, I sometimes would like to find a charge density in a specific point in the space. However, only density on grid is stored in the file. Interpolation is necessary for this purpose. In scipy, scipy.interpolate.RegularGridInterpolator can be used for 3d interpolation, but only "nearest" and "linear" method is available. In order to get high presicion, &lt;a href="http://onlinelibrary.wiley.com/doi/10.1002/nme.1296/full"&gt;Tricubic&lt;/a&gt; interpolation could help. In two packages, this function is available. &lt;a href="https://github.com/danielguterding/pytricubic"&gt;pytricubic&lt;/a&gt; and &lt;a href="https://eqtools.readthedocs.io/en/latest/eqtools.html#module-eqtools.trispline"&gt;eqtools&lt;/a&gt;, I tried both and both works fine. I would recommend the eqtools since it is easy to install and doesnt have a dependence on Eigen or boost.&lt;/p&gt;
 &lt;p&gt;Here I give a small test script for comparison of nearst, linear, and tricubic interpolation accuracy.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy.interpolate&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RegularGridInterpolator&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy.interpolate&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RegularGridInterpolator&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;eqtools.trispline&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Spline&lt;/span&gt;
 &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;
 &lt;span class="n"&gt;xgrid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;linspace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;ygrid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;linspace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;zgrid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;linspace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;float&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;float&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -196,8 +185,8 @@
                          &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;ygrid&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;\
                          &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;zgrid&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="n"&gt;interpolating_function_tricubic&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Spline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;xgrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ygrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;zgrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;interpolating_function&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RegularGridInterpolator&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;xgrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ygrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;zgrid&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;linear&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;interpolating_function_nearest&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RegularGridInterpolator&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;xgrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ygrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;zgrid&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;nearest&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;interpolating_function&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RegularGridInterpolator&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;xgrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ygrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;zgrid&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;linear&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;interpolating_function_nearest&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RegularGridInterpolator&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;xgrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ygrid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;zgrid&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;nearest&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;
 &lt;span class="n"&gt;error_nearest&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;
 &lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;
@@ -222,38 +211,27 @@
                          &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;ygrid_d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;\
                          &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;zgrid_d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;]))[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;average error for nearest, linear, and tricubic interpolation&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;average error for nearest, linear, and tricubic interpolation&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;error_nearest&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;error&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;error_tricubic&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;It gave such result, showing better accuracy for tricubic interpolation.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;average error for nearest, linear, and tricubic interpolation
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;average error for nearest, linear, and tricubic interpolation
 0.0479790688641 0.0103316526679 0.000350221662438
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="python"></category></entry><entry><title>molecular dynamics simulations by gromacs lammps cpmd cp2k cp.x qbox from scratch</title><link href="index.html/molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html" rel="alternate"></link><updated>2017-01-09T10:00:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2017-01-09:index.html/molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html</id><summary type="html">&lt;p&gt;Example of setting up first principle molecular dynamics (FPMD) simulation from scratch. &lt;/p&gt;
-&lt;hr /&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>molecular dynamics simulations by gromacs lammps cpmd cp2k cp.x qbox from scratch</title><link href="index.html/molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html" rel="alternate"></link><published>2017-01-09T10:00:00+01:00</published><updated>2017-01-09T10:00:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2017-01-09:index.html/molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html</id><summary type="html">&lt;p&gt;FPMD setup&lt;/p&gt;</summary><content type="html">&lt;p&gt;Example of setting up first principle molecular dynamics (FPMD) simulation from scratch. &lt;/p&gt;
+&lt;hr&gt;
 &lt;p&gt;In FPMD simulations for liquids, usually, a classical MD simulation is needed to equilibrate the system. I gave examples of using gromacs and lammps as classical MD simulator and cpmd, cp2k, cp.x, qbox as FPMD simulator. The system of 55 water at room temperature is used as the example.    &lt;/p&gt;
 &lt;p&gt;From scratch means I generate the initial structure from the water molecular structure.   &lt;/p&gt;
-&lt;p&gt;In this post, 3 steps are listed.  &lt;br /&gt;
-1. generating initial structure  &lt;br /&gt;
-2. equilibrate the system by classical MD  ( 2.1 gromacs code, 2.2 lammps code )  &lt;br /&gt;
+&lt;p&gt;In this post, 3 steps are listed.  &lt;br&gt;
+1. generating initial structure  &lt;br&gt;
+2. equilibrate the system by classical MD  ( 2.1 gromacs code, 2.2 lammps code )  &lt;br&gt;
 3. running a short FPMD simulation ( 3.1 cpmd code 3.2 cp2k code 3.3 cp.x code 3.4 qbox code )&lt;/p&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;p&gt;softwares used:
 &lt;a href="http://www.ks.uiuc.edu/Research/vmd/"&gt;VMD&lt;/a&gt;
 &lt;a href="http://www.ime.unicamp.br/~martinez/packmol/home.shtml"&gt;packmol&lt;/a&gt;
@@ -263,15 +241,15 @@
 &lt;a href="https://www.cp2k.org/"&gt;cp2k&lt;/a&gt;
 &lt;a href="http://www.quantum-espresso.org/"&gt;cp.x quantum-espresso&lt;/a&gt;
 &lt;a href="http://eslab.ucdavis.edu/software/qbox/"&gt;qbox&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;h3&gt;0 download the files&lt;/h3&gt;
 &lt;p&gt;All the files needed are included here.  &lt;/p&gt;
 &lt;p&gt;&lt;a href="index.html/codes/AIMD_setup.tar.gz"&gt;AIMD_setup.tar.gz&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;h3&gt;1.1 generate initial structure for gromacs&lt;/h3&gt;
 &lt;p&gt;Note: in gromacs, genbox command can be used to generate a water box. Here I use packmol to generate the input structure and convert it to gro file as input.&lt;/p&gt;
 &lt;p&gt;The water structure is as follow (water.xyz):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;3
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;3
 
 OW 0.0 0.0 0.0
 HW1 -0.81649 0.57736 0.0
@@ -280,7 +258,7 @@ HW2 0.81649 0.57736 0.0
 
 
 &lt;p&gt;a packmol input (water55_packmol.in) script is used here to generate the structure of the total system.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tolerance 2.0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tolerance 2.0
 filetype xyz
 output water55.xyz
 
@@ -292,14 +270,14 @@ end structure
 
 
 &lt;p&gt;And also I have a python script for the convertion from xyz to gro file (convert_xyz_to_gro.py), the class mdsystem.py can be download here.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mdsystem&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;water55.xyz&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mdsystem&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;water55.xyz&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mdsystem&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;11.8172&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;11.8172&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;11.8172&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xyzinput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;generate_bonds&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cutoff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;molecular_detection&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;moleculars&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
-    &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;molecular_names&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;SOL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;molecular_names&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SOL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;grooutput&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
 
@@ -308,10 +286,10 @@ end structure
 
 
 &lt;p&gt;I use this structure for the input of classical molecular dynamics simulation in gromacs.&lt;/p&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;h3&gt;1.2 generate initial structure for lammps&lt;/h3&gt;
 &lt;p&gt;The water structure is as follow (water.xyz):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;3
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;3
 
 O 0.0 0.0 0.0
 H -0.81649 0.57736 0.0
@@ -320,7 +298,7 @@ H 0.81649 0.57736 0.0
 
 
 &lt;p&gt;a packmol input (water55_packmol.in) script is used here to generate the structure of the total system.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tolerance 2.0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tolerance 2.0
 filetype xyz
 output water55.xyz
 
@@ -332,7 +310,7 @@ end structure
 
 
 &lt;p&gt;And also I have a vmd script for the generation of psf and pdb and lammps data file.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;mol new water55.xyz&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;mol new water55.xyz&lt;/span&gt;
 
 &lt;span class="x"&gt;pbc set &lt;/span&gt;&lt;span class="cp"&gt;{&lt;/span&gt; &lt;span class="m"&gt;11.8172&lt;/span&gt; &lt;span class="m"&gt;11.8172&lt;/span&gt; &lt;span class="m"&gt;11.8172&lt;/span&gt; &lt;span class="cp"&gt;}&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;topo clearbonds&lt;/span&gt;
@@ -349,11 +327,11 @@ end structure
 
 
 &lt;p&gt;I use this structure for the input of classical molecular dynamics simulation in lammps.&lt;/p&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;h3&gt;2.1 gromacs code&lt;/h3&gt;
 &lt;p&gt;for gromacs simulation, there is separate forcefield file and topology file ( spcfw.itp and water55.top ).&lt;/p&gt;
 &lt;p&gt;two mdp input files needed ( min.mdp nvt.mdp ), the first one is used to minimize the structure, the second one is used for the simulation. Here is the command I use for the simulation.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;gmx grompp -f min.mdp -c water55.gro -p water55.top -o min.tpr
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gmx grompp -f min.mdp -c water55.gro -p water55.top -o min.tpr
 gmx mdrun -s min.tpr -c em.gro
 gmx grompp -f nvt.mdp -c em.gro -p water55.top -o nvt.tpr
 gmx mdrun -s nvt.tpr
@@ -362,26 +340,26 @@ gmx mdrun -s nvt.tpr
 
 &lt;p&gt;In the example, I run 100ps for equlibrating the system. In real simulation, longer is usually needed.&lt;/p&gt;
 &lt;p&gt;I also like to convert the trajectory so that the atom in the same molecule are not separate in the edge of the box.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;gmx trjconv -s nvt.tpr -f traj_comp.xtc -o traj_comp_whole.xtc -pbc whole &amp;lt;&amp;lt;&amp;lt; &amp;quot;0&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;gmx trjconv -s nvt.tpr -f traj_comp.xtc -o traj_comp_whole.xtc -pbc whole &amp;lt;&amp;lt;&amp;lt; &amp;quot;0&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Then, the script ( take_last_snapshot.vmd ) can be used to take the last snapshot of the simulation as the initial structure for FPMD.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;mol new water55.psf&lt;/span&gt;
-&lt;span class="x"&gt;mol addfile traj_comp_whole.xtc waitfor all&lt;/span&gt;
-&lt;span class="x"&gt;pbc wrap -all -compound residue&lt;/span&gt;
-&lt;span class="x"&gt;set nframes [molinfo top get numframes]&lt;/span&gt;
-&lt;span class="x"&gt;set nframes [expr &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;nframes&lt;/span&gt;&lt;span class="x"&gt; - 1]&lt;/span&gt;
-&lt;span class="x"&gt;animate write xyz eq.xyz beg &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;nframes&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-&lt;span class="x"&gt;exit&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mol new water55.psf
+mol addfile traj_comp_whole.xtc waitfor all
+pbc wrap -all -compound residue
+set nframes [molinfo top get numframes]
+set nframes [expr $nframes - 1]
+animate write xyz eq.xyz beg $nframes
+exit
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;h3&gt;2.2 lammps code&lt;/h3&gt;
-&lt;p&gt;Here we use the generated initial structure to run molecular dynamics with lammps. SPC/Fw force field is used.&lt;br /&gt;
+&lt;p&gt;Here we use the generated initial structure to run molecular dynamics with lammps. SPC/Fw force field is used.&lt;br&gt;
 Here is the ( in.spcf ) lammps input script&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;units      real
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;units      real
 dimension  3
 boundary   p p p
 atom_style full
@@ -423,23 +401,23 @@ run 200000 # 100ps, longer needed ( 2000000 10ns )
 
 
 &lt;p&gt;after the simulation, the ( result.dcd ) together with the ( water55.psf )&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;mol new water55.psf&lt;/span&gt;
-&lt;span class="x"&gt;mol addfile result.dcd waitfor all&lt;/span&gt;
-&lt;span class="x"&gt;pbc wrap -all -compound residue&lt;/span&gt;
-&lt;span class="x"&gt;set nframes [molinfo top get numframes]&lt;/span&gt;
-&lt;span class="x"&gt;set nframes [expr &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;nframes&lt;/span&gt;&lt;span class="x"&gt; - 1]&lt;/span&gt;
-&lt;span class="x"&gt;animate write xyz eq.xyz beg &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;nframes&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-&lt;span class="x"&gt;exit&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mol new water55.psf
+mol addfile result.dcd waitfor all
+pbc wrap -all -compound residue
+set nframes [molinfo top get numframes]
+set nframes [expr $nframes - 1]
+animate write xyz eq.xyz beg $nframes
+exit
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;p&gt;After the equilibrium run. I got the equilibrium structure (eq.xyz) from gromacs or lammps run. Now, I will use this structure as starting point for FPMD simulations.&lt;/p&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;h3&gt;3.1 cpmd code&lt;/h3&gt;
 &lt;p&gt;I recommend a tutorial about cpmd code ( &lt;a href="http://www.ipcms.unistra.fr/wp-content/uploads/2016/03/cpmd.pdf"&gt;cpmd.pdf&lt;/a&gt; ).&lt;/p&gt;
 &lt;p&gt;First, the equilibrium structure need to be transformed to CPMD format. Here is the script ( cpmd_initial_structures.py ).&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mdsystem&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 &lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mdsystem&lt;/span&gt;&lt;span class="p"&gt;([],[],[])&lt;/span&gt;
@@ -455,33 +433,33 @@ run 200000 # 100ps, longer needed ( 2000000 10ns )
         &lt;span class="n"&gt;atom_number&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;atom&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;species&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
         &lt;span class="n"&gt;atom_xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;atom&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;species&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;atom&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coordinates&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
-&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;coord&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;amp;ATOMS&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ISOTOPES&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;16.01&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;1.008&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;*O_MT_PBE.psp KLEINMAN-BYLANDER&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; LMAX=P LOC=P&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atom_number&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;O&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;atom_xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;O&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
-    &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;*H_MT_PBE.psp KLEINMAN-BYLANDER&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; LMAX=S LOC=S&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atom_number&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;H&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;atom_xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;H&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
-    &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="s"&gt; &lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;amp;END&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;coord&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;amp;ATOMS&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;ISOTOPES&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;16.01&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;1.008&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*O_MT_PBE.psp KLEINMAN-BYLANDER&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; LMAX=P LOC=P&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atom_number&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;O&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;atom_xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;O&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*H_MT_PBE.psp KLEINMAN-BYLANDER&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; LMAX=S LOC=S&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;atom_number&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;H&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;atom_xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;H&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;%f&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;amp;END&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;I am using cpmd simulation in cpmd code, so wavefucntion need to be optimized, first. Append the coord file at the end of the input file.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;amp;INFO
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;amp;INFO
 wf opt for pure 55 water
 &amp;amp;END
 
@@ -518,7 +496,7 @@ wf opt for pure 55 water
 
 
 &lt;p&gt;after the wavefunction optimization, a RESTART.1 file should be there. And we generate a LATEST file for the restart.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;amp;INFO
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;amp;INFO
 equilibrium steps md at T=300K to get thermo info
 &amp;amp;END
 
@@ -577,11 +555,11 @@ equilibrium steps md at T=300K to get thermo info
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;h3&gt;3.2 cp2k code&lt;/h3&gt;
 &lt;p&gt;In cp2k, BOMD is running.  &lt;/p&gt;
 &lt;p&gt;copy the eq.xyz file to the cp2k folder and write this input file for FPMD. (water55.inp)  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;amp;FORCE_EVAL
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;amp;FORCE_EVAL
   METHOD Quickstep
   &amp;amp;DFT
     BASIS_SET_FILE_NAME    BASIS_MOLOPT
@@ -650,10 +628,10 @@ equilibrium steps md at T=300K to get thermo info
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;h3&gt;3.3 cp.x code&lt;/h3&gt;
 &lt;p&gt;The script here.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cd &lt;span class="nv"&gt;$PWD&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd &lt;span class="nv"&gt;$PWD&lt;/span&gt;
 
 Name=cp-H2O
 
@@ -755,7 +733,7 @@ cat &lt;span class="nt"&gt;&amp;lt;&amp;lt; EOF&lt;/span&gt; &lt;span class="nt"
 &lt;span class="err"&gt;EOF&lt;/span&gt;
 
 &lt;span class="err"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;Strat&lt;/span&gt; &lt;span class="err"&gt;turn&lt;/span&gt; &lt;span class="err"&gt;of&amp;#39;&lt;/span&gt; &lt;span class="nv"&gt;$i&lt;/span&gt;
-&lt;span class="err"&gt;mpirun&lt;/span&gt; &lt;span class="err"&gt;~/software/qe/qe-6.0/bin/cp.x&lt;/span&gt; &lt;span class="nt"&gt;&amp;lt; in&lt;/span&gt;&lt;span class="err"&gt;.00&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;$Name.out&lt;/span&gt;
+&lt;span class="err"&gt;mpirun&lt;/span&gt; &lt;span class="err"&gt;~/software/qe/qe-6.0/bin/cp.x&lt;/span&gt; &lt;span class="nt"&gt;&amp;lt; in.00&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;$Name.out&lt;/span&gt;
 
 done
 
@@ -764,7 +742,7 @@ echo &amp;#39;ALL DONE&amp;#39;
 
 
 &lt;p&gt;The coord generate script.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;head -n 167 eq.xyz | tail -n 165 &amp;gt; coord
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;head -n 167 eq.xyz | tail -n 165 &amp;gt; coord
 sed &amp;#39;s/CELL_X_YY/22.331269952/&amp;#39; water_template.j &amp;gt; water_tmp.j
 sed &amp;#39;s/NATOMS_YY/165/&amp;#39; water_tmp.j &amp;gt;  water_tmp2.j
 sed &amp;quot;/COORD_YY/ r coord&amp;quot; water_tmp2.j &amp;gt; water_tmp3.j
@@ -773,42 +751,42 @@ rm water_tmp.j water_tmp2.j water_tmp3.j
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;h3&gt;3.4 qbox code&lt;/h3&gt;
 &lt;p&gt;For qbox code, also a convertor script is needed. The units used in qbox is atomic units. I list the script here.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mdsystem&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;eq.xyz&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mdsystem&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;eq.xyz&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mdsystem&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;11.8172&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;11.8172&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;11.8172&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xyzinput&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;generate_bonds&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cutoff&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;molecular_detection&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;moleculars&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
-    &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;molecular_names&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;SOL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;molecular_names&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SOL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;AtoBohr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.8897259886&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;set cell &amp;quot;&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;AtoBohr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; \
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;set cell &amp;quot;&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;AtoBohr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; \
                     &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;AtoBohr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; \
                     &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;AtoBohr&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;species oxygen O_HSCV_PBE-1.0.xml&amp;quot;&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;species hydrogen H_HSCV_PBE-1.0.xml&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;species oxygen O_HSCV_PBE-1.0.xml&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;species hydrogen H_HSCV_PBE-1.0.xml&amp;quot;&lt;/span&gt;
 
 &lt;span class="n"&gt;nO&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 &lt;span class="n"&gt;nH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;atom&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;atom&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;species&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;O&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;atom&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;species&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;O&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;nO&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
         &lt;span class="n"&gt;xyz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;atom&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coordinates&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;AtoBohr&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;atom &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;O&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;nO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;oxygen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;atom&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;species&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;H&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;atom &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;O&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;nO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;oxygen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;atom&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;species&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;H&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;nH&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
         &lt;span class="n"&gt;xyz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;atom&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coordinates&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;AtoBohr&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;atom &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;H&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;nH&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;hydrogen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;atom &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;H&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;nH&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;hydrogen&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;xyz&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;with pseudopotentials files and sample.xsd, species.xsd (taken from xml folder in qbox package) in the same folder. &lt;br /&gt;
+&lt;p&gt;with pseudopotentials files and sample.xsd, species.xsd (taken from xml folder in qbox package) in the same folder. &lt;br&gt;
 We then append these commands at the end of the structure information.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;set ecut 70
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;set ecut 70
 set wf_dyn PSDA
 set ecutprec 5
 randomize_wf
@@ -821,27 +799,16 @@ run 100 10
 
 
 &lt;p&gt;Run the calculation like this.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;mpirun /nas02/home/y/i/yiy/bin/qb &amp;lt; test.i &amp;gt; test.out
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mpirun /nas02/home/y/i/yiy/bin/qb &amp;lt; test.i &amp;gt; test.out
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;p&gt;After the simulation, I got trajs like this.  &lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/water55_aimd.gif" /&gt;&lt;/p&gt;
-&lt;hr /&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/water55_aimd.gif"&gt;&lt;/p&gt;
+&lt;hr&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="molecular dynamics"></category></entry><entry><title>bash loop template</title><link href="index.html/bash-loop-template.html" rel="alternate"></link><updated>2015-05-13T01:56:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:,2015-05-13:index.html/bash-loop-template.html</id><summary type="html">&lt;p&gt;A bash template for loops.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>bash loop template</title><link href="index.html/bash-loop-template.html" rel="alternate"></link><published>2015-05-13T01:56:00+02:00</published><updated>2015-05-13T01:56:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-05-13:index.html/bash-loop-template.html</id><summary type="html">&lt;p&gt;the simple use of bash&lt;/p&gt;</summary><content type="html">&lt;p&gt;A bash template for loops.&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
  3
@@ -857,15 +824,15 @@ run 100 10
 13
 14
 15
-16&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
+16&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
 
-&lt;span class="nv"&gt;list1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;seq -w &lt;span class="m"&gt;07&lt;/span&gt; 38&lt;span class="sb"&gt;`&lt;/span&gt;
-&lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;0
+&lt;span class="nv"&gt;list1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;seq -w &lt;span class="m"&gt;07&lt;/span&gt; &lt;span class="m"&gt;38&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
+&lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
 &lt;span class="nv"&gt;home&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PWD&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; i in &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;list1&lt;/span&gt;&lt;span class="p"&gt;[*]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;do&lt;/span&gt;
   mkdir &lt;span class="nv"&gt;$i&lt;/span&gt;
-  &lt;span class="nv"&gt;list2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;seq -w &lt;span class="m"&gt;01&lt;/span&gt; 10&lt;span class="sb"&gt;`&lt;/span&gt;
+  &lt;span class="nv"&gt;list2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;seq -w &lt;span class="m"&gt;01&lt;/span&gt; &lt;span class="m"&gt;10&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;
   &lt;span class="k"&gt;for&lt;/span&gt; j in &lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;list2&lt;/span&gt;&lt;span class="p"&gt;[*]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
   &lt;span class="k"&gt;do&lt;/span&gt;
     mkdir &lt;span class="nv"&gt;$i&lt;/span&gt;/&lt;span class="nv"&gt;$j&lt;/span&gt;
@@ -877,35 +844,13 @@ run 100 10
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="bash"></category></entry><entry><title>cube file</title><link href="index.html/cube-file.html" rel="alternate"></link><updated>2015-05-07T01:56:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:,2015-05-07:index.html/cube-file.html</id><summary type="html">&lt;p&gt;Cube file is a file format for electron density. &lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="bash"></category></entry><entry><title>cube file</title><link href="index.html/cube-file.html" rel="alternate"></link><published>2015-05-07T01:56:00+02:00</published><updated>2015-05-07T01:56:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-05-07:index.html/cube-file.html</id><summary type="html">&lt;p&gt;everything about cube file&lt;/p&gt;</summary><content type="html">&lt;p&gt;Cube file is a file format for electron density. &lt;/p&gt;
 &lt;p&gt;I found a python code in dftb+ website which can manipulate cube files. &lt;a href="http://www.dftb-plus.info/fileadmin/DFTB-Plus/public/tools/waveplot/r0.3/cubemanip"&gt;link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It manipulate multiple cube files and can do all kinds of expressions using these cube files as input.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="dft"></category></entry><entry><title>constrained Density Functional Theory with cp2k</title><link href="index.html/constrained-density-functional-theory-with-cp2k.html" rel="alternate"></link><updated>2015-03-09T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2015-03-09:index.html/constrained-density-functional-theory-with-cp2k.html</id><summary type="html">&lt;p&gt;&lt;a href="http://pubs.acs.org/doi/pdf/10.1021/cr200148b"&gt;Constrained Density Functional Theory&lt;/a&gt; has many applications. Here I showed a simple example of cDFT of H2+ system. And I would like to constrain the electron on one proton with cp2k.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="dft"></category></entry><entry><title>constrained Density Functional Theory with cp2k</title><link href="index.html/constrained-density-functional-theory-with-cp2k.html" rel="alternate"></link><published>2015-03-09T14:56:00+01:00</published><updated>2015-03-09T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-03-09:index.html/constrained-density-functional-theory-with-cp2k.html</id><summary type="html">&lt;p&gt;A simple example for constrained DFT with cp2k&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://pubs.acs.org/doi/pdf/10.1021/cr200148b"&gt;Constrained Density Functional Theory&lt;/a&gt; has many applications. Here I showed a simple example of cDFT of H2+ system. And I would like to constrain the electron on one proton with cp2k.&lt;/p&gt;
 &lt;p&gt;Here is the script.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;amp;FORCE_EVAL
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;amp;FORCE_EVAL
   METHOD Quickstep
   &amp;amp;DFT
     BASIS_SET_FILE_NAME /global/homes/y/yyao_unc/software/cp2k/cp2k/cp2k/data/BASIS_MOLOPT
@@ -975,7 +920,7 @@ run 100 10
 
 
 &lt;p&gt;After the calculation the Mulliken Analysis is showed here.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt; MULLIKEN POPULATION ANALYSIS
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; MULLIKEN POPULATION ANALYSIS
 
  #  Atom  Element  Kind  Atomic population (alpha,beta)   Net charge  Spin moment
        1     H        1          0.999915     0.000000     0.000085     0.999915
@@ -985,25 +930,14 @@ run 100 10
 
 
 &lt;p&gt;And I also visulized the charge density cube file. Most of the charge density is on the left proton now.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/cdft_h2+_cp2k.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/cdft_h2+_cp2k.jpeg"&gt;&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="dft"></category></entry><entry><title>crystal code with lc-blyp functional</title><link href="index.html/crystal-code-with-lc-blyp-functional.html" rel="alternate"></link><updated>2015-03-09T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2015-03-09:index.html/crystal-code-with-lc-blyp-functional.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.crystal.unito.it/index.php"&gt;crystal&lt;/a&gt; is a computational tool for solid state chemistry and physics. Basically, it does DFT. 
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="dft"></category></entry><entry><title>crystal code with lc-blyp functional</title><link href="index.html/crystal-code-with-lc-blyp-functional.html" rel="alternate"></link><published>2015-03-09T14:56:00+01:00</published><updated>2015-03-09T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-03-09:index.html/crystal-code-with-lc-blyp-functional.html</id><summary type="html">&lt;p&gt;using crystal to calculate scf with lc-blyp functional&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://www.crystal.unito.it/index.php"&gt;crystal&lt;/a&gt; is a computational tool for solid state chemistry and physics. Basically, it does DFT. 
 I post here an example of lc-blyp calculation of bulk water system.&lt;/p&gt;
 &lt;p&gt;When I did the lc-blyp calculation, the scf not converge is a problem. So I did a blyp calculation first. Then copy the fort.9 file to a new folder of fort.20 which is the density matrix file. And I will add a GUESSP command to the INPUT for lc-blyp calculation.&lt;/p&gt;
 &lt;p&gt;Here is the inputs:&lt;/p&gt;
 &lt;p&gt;INPUT for blyp calculation&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Water cube
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Water cube
 CRYSTAL
 0 0 0
 1
@@ -1194,7 +1128,7 @@ END
 
 
 &lt;p&gt;INPUT for lc-blyp calculation&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Water cube
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Water cube
 CRYSTAL
 0 0 0
 1
@@ -1394,20 +1328,20 @@ END
 6
 7
 8
-9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash -l&lt;/span&gt;
-&lt;span class="c"&gt;#BSUB -n &amp;quot;60&amp;quot;&lt;/span&gt;
-&lt;span class="c"&gt;#BSUB -e err.%J  &lt;/span&gt;
-&lt;span class="c"&gt;#BSUB -o out.%J&lt;/span&gt;
-&lt;span class="c"&gt;#BSUB -q week&lt;/span&gt;
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash -l&lt;/span&gt;
+&lt;span class="c1"&gt;#BSUB -n &amp;quot;60&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;#BSUB -e err.%J  &lt;/span&gt;
+&lt;span class="c1"&gt;#BSUB -o out.%J&lt;/span&gt;
+&lt;span class="c1"&gt;#BSUB -q week&lt;/span&gt;
 
 &lt;span class="nv"&gt;CRYSTAL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/nas02/home/y/i/yiy/software/crystal/CRYSTAL14_amd64/bin/Linux-ifort_amd64/v1.0.3/Pcrystal
-&lt;span class="c"&gt;#/usr/mpi/intel/mvapich2-1.7/bin/mpiexec -n 10 $CRYSTAL &amp;gt; cubo.out1 &amp;amp;&amp;gt; cubo.out2&lt;/span&gt;
+&lt;span class="c1"&gt;#/usr/mpi/intel/mvapich2-1.7/bin/mpiexec -n 10 $CRYSTAL &amp;gt; cubo.out1 &amp;amp;&amp;gt; cubo.out2&lt;/span&gt;
 mpirun &lt;span class="nv"&gt;$CRYSTAL&lt;/span&gt; &amp;gt; H2O55.out1 &lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&amp;gt; H2O55.out2
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;A script to transfer xyz file to crystal structure file.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;species_dict = {&amp;#39;O&amp;#39;:8, &amp;#39;H&amp;#39;:1, &amp;#39;Na&amp;#39;:17, &amp;#39;Cl&amp;#39;:11}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;species_dict = {&amp;#39;O&amp;#39;:8, &amp;#39;H&amp;#39;:1, &amp;#39;Na&amp;#39;:17, &amp;#39;Cl&amp;#39;:11}
 #read box size
 file_box = file(&amp;quot;box&amp;quot;)
 line = file_box.readline()
@@ -1435,25 +1369,14 @@ for i in range(natoms):
 
 
 &lt;p&gt;box file is like this.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;12.4934 12.4934 12.4934
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;12.4934 12.4934 12.4934
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="dft"></category></entry><entry><title>generate initial structure by packmol</title><link href="index.html/generate-initial-structure-by-packmol.html" rel="alternate"></link><updated>2015-01-20T14:25:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2015-01-20:index.html/generate-initial-structure-by-packmol.html</id><summary type="html">&lt;p&gt;The initial structure for md simulation will be generated by packmol then do an equilibrium step by lammps. The system I would like to prepare is 4M NaCl solution. ( 9 Na+ 9 Cl- and 115 H2O with the box size 15.5473 A. ) The template structure of Na+ and Cl- and tip4p H2O structure are prepared first. &lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="dft"></category></entry><entry><title>generate initial structure by packmol</title><link href="index.html/generate-initial-structure-by-packmol.html" rel="alternate"></link><published>2015-01-20T14:25:00+01:00</published><updated>2015-01-20T14:25:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-01-20:index.html/generate-initial-structure-by-packmol.html</id><summary type="html">&lt;p&gt;generate initial structure by packmol&lt;/p&gt;</summary><content type="html">&lt;p&gt;The initial structure for md simulation will be generated by packmol then do an equilibrium step by lammps. The system I would like to prepare is 4M NaCl solution. ( 9 Na+ 9 Cl- and 115 H2O with the box size 15.5473 A. ) The template structure of Na+ and Cl- and tip4p H2O structure are prepared first. &lt;/p&gt;
 &lt;p&gt;na.xyz&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;2
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2
 
 Na 0.0 0.0 0.0
 NaD 0.0 0.0 0.02
@@ -1461,7 +1384,7 @@ NaD 0.0 0.0 0.02
 
 
 &lt;p&gt;cl.xyz&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;2
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2
 
 Cl 0.0 0.0 0.0
 ClD 0.0 0.0 0.02
@@ -1469,7 +1392,7 @@ ClD 0.0 0.0 0.02
 
 
 &lt;p&gt;tip4p.xyz&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;3
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;3
 
 O 0.0 0.0 0.0
 H -0.75695 0.58588 0.0
@@ -1478,7 +1401,7 @@ H 0.75695 0.58588 0.0
 
 
 &lt;p&gt;and also I have the input file for packmol with the name of packmol_NaClH2O.inp&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;#
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;#
 # A mixture of water and NaCl
 #
 
@@ -1504,15 +1427,15 @@ end structure
 
 
 &lt;p&gt;Then run packmol.sh script&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;PACKMOL=&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;HOME&lt;/span&gt;&lt;span class="x"&gt;/software/packmol/packmol/packmol&amp;quot;&lt;/span&gt;
-&lt;span class="x"&gt;INPUT=packmol_NaClH2O.inp&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;PACKMOL=&amp;quot;$HOME/software/packmol/packmol/packmol&amp;quot;
+INPUT=packmol_NaClH2O.inp
 
-&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;PACKMOL&lt;/span&gt;&lt;span class="x"&gt; &amp;lt; &lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;INPUT&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
+$PACKMOL &amp;lt; $INPUT
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;With the help of vmd program, the data file and psf topo file are generated.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;mol new NaClH2O.xyz waitfor all&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;mol new NaClH2O.xyz waitfor all&lt;/span&gt;
 
 &lt;span class="x"&gt;pbc set &lt;/span&gt;&lt;span class="cp"&gt;{&lt;/span&gt; &lt;span class="m"&gt;15.5473&lt;/span&gt; &lt;span class="m"&gt;15.5473&lt;/span&gt; &lt;span class="m"&gt;15.5473&lt;/span&gt; &lt;span class="cp"&gt;}&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 
@@ -1538,33 +1461,11 @@ end structure
 &lt;p&gt;Then I manually modified the molecule ids in data file.&lt;/p&gt;
 &lt;p&gt;After that, lammps is used to equilibrium the system.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="misc"></category></entry><entry><title>using gaussian do ccsd calculation</title><link href="index.html/using-gaussian-do-ccsd-calculation.html" rel="alternate"></link><updated>2015-01-13T16:34:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2015-01-13:index.html/using-gaussian-do-ccsd-calculation.html</id><summary type="html">&lt;p&gt;a bash script for gaussian ccsd calculation. Cube files are generated from cc density for bader analysis. pseudopotential and basis set are input manually the data are got from EMSL database.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="misc"></category></entry><entry><title>using gaussian do ccsd calculation</title><link href="index.html/using-gaussian-do-ccsd-calculation.html" rel="alternate"></link><published>2015-01-13T16:34:00+01:00</published><updated>2015-01-13T16:34:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-01-13:index.html/using-gaussian-do-ccsd-calculation.html</id><summary type="html">&lt;p&gt;gaussian ccsd&lt;/p&gt;</summary><content type="html">&lt;p&gt;a bash script for gaussian ccsd calculation. Cube files are generated from cc density for bader analysis. pseudopotential and basis set are input manually the data are got from EMSL database.&lt;/p&gt;
 &lt;p&gt;The files(&lt;a href="index.html/codes/cal.sh"&gt;cal.sh&lt;/a&gt;, &lt;a href="index.html/codes/cubegen.in"&gt;cubegen.in&lt;/a&gt;, &lt;a href="index.html/codes/nacl_com.sh"&gt;nacl_com.sh&lt;/a&gt;,&lt;a href="index.html/codes/nacl_submit.sh"&gt;nacl_submit.sh&lt;/a&gt;)&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="misc"></category></entry><entry><title>simple awk and sed</title><link href="index.html/simple-awk-and-sed.html" rel="alternate"></link><updated>2014-12-24T01:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-12-24:index.html/simple-awk-and-sed.html</id><summary type="html">&lt;p&gt;awk and sed are two powerful command line tools for text processing. The only usage I will use are these two. For all the other complicated tasks I would prefer to use python.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;awk &amp;#39;{print $1 &amp;quot; &amp;quot; $2 &amp;quot; &amp;quot; $3}&amp;#39; input &amp;gt; output
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="misc"></category></entry><entry><title>simple awk and sed</title><link href="index.html/simple-awk-and-sed.html" rel="alternate"></link><published>2014-12-24T01:56:00+01:00</published><updated>2014-12-24T01:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-24:index.html/simple-awk-and-sed.html</id><summary type="html">&lt;p&gt;the simple use of awk and sed&lt;/p&gt;</summary><content type="html">&lt;p&gt;awk and sed are two powerful command line tools for text processing. The only usage I will use are these two. For all the other complicated tasks I would prefer to use python.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;awk &amp;#39;{print $1 &amp;quot; &amp;quot; $2 &amp;quot; &amp;quot; $3}&amp;#39; input &amp;gt; output
 
 sed &amp;#39;s/wrong/right/&amp;#39; input &amp;gt; output
 
@@ -1573,38 +1474,27 @@ sed &amp;quot;/&amp;amp;word_after_which_to_insert/ r file_insert&amp;quot; temp
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="awk"></category><category term="sed"></category></entry><entry><title>ase</title><link href="index.html/ase.html" rel="alternate"></link><updated>2014-12-20T23:26:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-12-20:index.html/ase.html</id><summary type="html">&lt;p&gt;&lt;a href="https://wiki.fysik.dtu.dk/ase/index.html"&gt;ase&lt;/a&gt; is a python library for atomic simulation. It can be used with a lot of code from first principle to classical md codes. It would be a good toy and test ground for atomic simulation. I plan to use it to test some algorithm with lj potential built in.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="awk"></category><category term="sed"></category></entry><entry><title>ase</title><link href="index.html/ase.html" rel="alternate"></link><published>2014-12-20T23:26:00+01:00</published><updated>2014-12-20T23:26:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-20:index.html/ase.html</id><summary type="html">&lt;p&gt;ase&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://wiki.fysik.dtu.dk/ase/index.html"&gt;ase&lt;/a&gt; is a python library for atomic simulation. It can be used with a lot of code from first principle to classical md codes. It would be a good toy and test ground for atomic simulation. I plan to use it to test some algorithm with lj potential built in.&lt;/p&gt;
 &lt;p&gt;Here is the process for me to install it on killdevil.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
 &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;activate&lt;/span&gt; &lt;span class="n"&gt;my_root&lt;/span&gt;
 &lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="n"&gt;ASE_TAGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;svn&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fysik&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dtu&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dk&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;projects&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ase&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 &lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;software&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ase&lt;/span&gt;
 &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;software&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ase&lt;/span&gt;
 &lt;span class="n"&gt;svn&lt;/span&gt; &lt;span class="n"&gt;co&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="mi"&gt;3440&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;ASE_TAGS&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;3.8&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;ase&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;3.8&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="n"&gt;ln&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;software&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ase&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ase&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;3.8&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;ase&lt;/span&gt;
-&lt;span class="c"&gt;#export PYTHONPATH=$HOME/ase:$PYTHONPATH&lt;/span&gt;
-&lt;span class="c"&gt;#export PATH=$HOME/ase/tools:$PATH&lt;/span&gt;
+&lt;span class="c1"&gt;#export PYTHONPATH=$HOME/ase:$PYTHONPATH&lt;/span&gt;
+&lt;span class="c1"&gt;#export PATH=$HOME/ase/tools:$PATH&lt;/span&gt;
 &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;ase&lt;/span&gt;
 &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;
 &lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;yiy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ase&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;
 &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;yiy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ase&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;
-&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;from ase.test import test; test(verbosity=2, display=False)&amp;quot;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;tee&lt;/span&gt; &lt;span class="n"&gt;testase&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
+&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;from ase.test import test; test(verbosity=2, display=False)&amp;quot;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;amp;&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;tee&lt;/span&gt; &lt;span class="n"&gt;testase&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;And I got the result of &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;----------------------------------------------------------------------
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;----------------------------------------------------------------------
 Ran 96 tests in 64.938s
 
 OK
@@ -1613,20 +1503,9 @@ OK
 
 &lt;p&gt;Now I can play around with it.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="python"></category></entry><entry><title>doing global optimization with minima hopping algorithm with cp2k</title><link href="index.html/doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html" rel="alternate"></link><updated>2014-12-20T23:26:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-12-20:index.html/doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html</id><summary type="html">&lt;p&gt;&lt;a href="http://scitation.aip.org/content/aip/journal/jcp/120/21/10.1063/1.1724816"&gt;Minima hopping&lt;/a&gt; is an effecient global minimization method. It is implemented in cp2k code. I have tested it on LJ38 clusters and found it performed very well. It is easy to using all the force methods in cp2k, and also easy to using multiple cores and easy to restart.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>doing global optimization with minima hopping algorithm with cp2k</title><link href="index.html/doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html" rel="alternate"></link><published>2014-12-20T23:26:00+01:00</published><updated>2014-12-20T23:26:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-20:index.html/doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html</id><summary type="html">&lt;p&gt;using cp2k doing MINHOP global optimization method&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://scitation.aip.org/content/aip/journal/jcp/120/21/10.1063/1.1724816"&gt;Minima hopping&lt;/a&gt; is an effecient global minimization method. It is implemented in cp2k code. I have tested it on LJ38 clusters and found it performed very well. It is easy to using all the force methods in cp2k, and also easy to using multiple cores and easy to restart.&lt;/p&gt;
 &lt;p&gt;I copied and modified the input file in cp2k test examples.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&amp;amp;GLOBAL
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;amp;GLOBAL
    PROJECT_NAME LJ38_minhop_1
    PROGRAM_NAME SWARM
    RUN_TYPE NONE
@@ -1866,10 +1745,10 @@ So here is the running script for killdevil.&lt;/p&gt;
 5
 6
 7
-8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash -l&lt;/span&gt;
-&lt;span class="c"&gt;#BSUB -n 12&lt;/span&gt;
-&lt;span class="c"&gt;#BSUB -e err.%J&lt;/span&gt;
-&lt;span class="c"&gt;#BSUB -o out.%J&lt;/span&gt;
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash -l&lt;/span&gt;
+&lt;span class="c1"&gt;#BSUB -n 12&lt;/span&gt;
+&lt;span class="c1"&gt;#BSUB -e err.%J&lt;/span&gt;
+&lt;span class="c1"&gt;#BSUB -o out.%J&lt;/span&gt;
 
 module load cp2k
 
@@ -1878,7 +1757,7 @@ module load cp2k
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;If would like to restart a calculation I need to mv the comlog file, and uncomment REPLAY_COMMUNICATION_LOG command in the input file.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;mv LJ38_minhop_1.comlog LJ38_minhop_1_old.comlog
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mv LJ38_minhop_1.comlog LJ38_minhop_1_old.comlog
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1887,7 +1766,7 @@ module load cp2k
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
 3
-4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash -l&lt;/span&gt;
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash -l&lt;/span&gt;
 module load gnuplot
 bash grep_energys.sh
 gnuplot plot.gplt
@@ -1895,30 +1774,30 @@ gnuplot plot.gplt
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;grep_energys.sh&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;grep &amp;quot; GLBOPT| Reported potential energy&amp;quot; LJ38_minhop_1.out | awk &amp;#39;{print $6 }&amp;#39; &amp;gt; 1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;grep &amp;quot; GLBOPT| Reported potential energy&amp;quot; LJ38_minhop_1.out | awk &amp;#39;{print $6 }&amp;#39; &amp;gt; 1
 grep &amp;quot;GLBOPT| Lowest reported potential energy&amp;quot; LJ38_minhop_1.out | awk &amp;#39;{print $7 }&amp;#39; &amp;gt; 2
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;plot.gplt&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;#set terminal postscript&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#set terminal postscript&lt;/span&gt;
 &lt;span class="c1"&gt;#set output &amp;quot;test.ps&amp;quot;&lt;/span&gt;
-&lt;span class="s-Atom"&gt;set&lt;/span&gt; &lt;span class="s-Atom"&gt;terminal&lt;/span&gt; &lt;span class="s-Atom"&gt;png&lt;/span&gt;
-&lt;span class="s-Atom"&gt;set&lt;/span&gt; &lt;span class="s-Atom"&gt;output&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;test.png&amp;quot;&lt;/span&gt;
-&lt;span class="s-Atom"&gt;set&lt;/span&gt; &lt;span class="s-Atom"&gt;yrange&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.175&lt;/span&gt;&lt;span class="p"&gt;:-&lt;/span&gt;&lt;span class="mf"&gt;0.160&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="s-Atom"&gt;set&lt;/span&gt; &lt;span class="s-Atom"&gt;trange&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;50000&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="s-Atom"&gt;set&lt;/span&gt; &lt;span class="s-Atom"&gt;xrange&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="s-Atom"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10000&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="s-Atom"&gt;set&lt;/span&gt; &lt;span class="s-Atom"&gt;parametric&lt;/span&gt;
-&lt;span class="s-Atom"&gt;const=-&lt;/span&gt;&lt;span class="mf"&gt;0.173928427&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;set&lt;/span&gt; &lt;span class="s s-Atom"&gt;terminal&lt;/span&gt; &lt;span class="s s-Atom"&gt;png&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;set&lt;/span&gt; &lt;span class="s s-Atom"&gt;output&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;test.png&amp;quot;&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;set&lt;/span&gt; &lt;span class="s s-Atom"&gt;yrange&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.175&lt;/span&gt;&lt;span class="p"&gt;:-&lt;/span&gt;&lt;span class="mf"&gt;0.160&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;set&lt;/span&gt; &lt;span class="s s-Atom"&gt;trange&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;50000&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;set&lt;/span&gt; &lt;span class="s s-Atom"&gt;xrange&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10000&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;set&lt;/span&gt; &lt;span class="s s-Atom"&gt;parametric&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;const=-&lt;/span&gt;&lt;span class="mf"&gt;0.173928427&lt;/span&gt;
 
-&lt;span class="s-Atom"&gt;p&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class="s-Atom"&gt;u&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt; &lt;span class="s-Atom"&gt;u&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="s-Atom"&gt;w&lt;/span&gt; &lt;span class="s-Atom"&gt;l&lt;/span&gt; &lt;span class="s-Atom"&gt;lw&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s-Atom"&gt;t&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s-Atom"&gt;const&lt;/span&gt; &lt;span class="s-Atom"&gt;w&lt;/span&gt; &lt;span class="s-Atom"&gt;l&lt;/span&gt; &lt;span class="s-Atom"&gt;lw&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;p&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class="s s-Atom"&gt;u&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt; &lt;span class="s s-Atom"&gt;u&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="s s-Atom"&gt;w&lt;/span&gt; &lt;span class="s s-Atom"&gt;l&lt;/span&gt; &lt;span class="s s-Atom"&gt;lw&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s s-Atom"&gt;t&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s s-Atom"&gt;const&lt;/span&gt; &lt;span class="s s-Atom"&gt;w&lt;/span&gt; &lt;span class="s s-Atom"&gt;l&lt;/span&gt; &lt;span class="s s-Atom"&gt;lw&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;And I post the output plot here.
-&lt;img alt="Alt Text" src="index.html/images/cp2k_lj38_minhop.png" /&gt;&lt;/p&gt;
+&lt;img alt="Alt Text" src="index.html/images/cp2k_lj38_minhop.png"&gt;&lt;/p&gt;
 &lt;p&gt;To get the minimal energy structures out, I wrote a script. The script will output the structures with the order from low energy to high energy.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;f = file(&amp;quot;LJ38_minhop_1.comlog&amp;quot;)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;f = file(&amp;quot;LJ38_minhop_1.comlog&amp;quot;)
 read = False
 Epot_positions = []
 Epot_position = []
@@ -1971,29 +1850,18 @@ for j in range(len(Epot_positions_sorted)):
 
 &lt;p&gt;The two lowest energy structure are here with the energy of -0.173928415115, and -0.173252366954.
 Here are the structures of them.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/cp2k_lj38_minhop_min2.png" /&gt;
-&lt;img alt="Alt Text" src="index.html/images/cp2k_lj38_minhop_min1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/cp2k_lj38_minhop_min2.png"&gt;
+&lt;img alt="Alt Text" src="index.html/images/cp2k_lj38_minhop_min1.png"&gt;&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="molecular dynamics"></category></entry><entry><title>using horton do esp charge analysis</title><link href="index.html/using-horton-do-esp-charge-analysis.html" rel="alternate"></link><updated>2014-12-15T13:50:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-12-15:index.html/using-horton-do-esp-charge-analysis.html</id><summary type="html">&lt;p&gt;In order to do esp charge analysis, I generate charge density cube file and electric potential cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and these cube files to do esp charge analysis (follow this &lt;a href="http://theochem.github.io/horton/tut_espfit.html"&gt;link&lt;/a&gt; ).&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>using horton do esp charge analysis</title><link href="index.html/using-horton-do-esp-charge-analysis.html" rel="alternate"></link><published>2014-12-15T13:50:00+01:00</published><updated>2014-12-15T13:50:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-15:index.html/using-horton-do-esp-charge-analysis.html</id><summary type="html">&lt;p&gt;horton esp&lt;/p&gt;</summary><content type="html">&lt;p&gt;In order to do esp charge analysis, I generate charge density cube file and electric potential cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and these cube files to do esp charge analysis (follow this &lt;a href="http://theochem.github.io/horton/tut_espfit.html"&gt;link&lt;/a&gt; ).&lt;/p&gt;
 &lt;p&gt;Here is how I use it on killdevil.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
 &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;activate&lt;/span&gt; &lt;span class="n"&gt;my_root&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Here is the input file for cp2k.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;@SET RTYPE  MD
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@SET RTYPE  MD
 @SET RESTART  ON
 @SET RESTARTFILE H2O64NaCl-1_500.restart
 @SET MD_ENS NVT
@@ -2238,42 +2106,31 @@ Here are the structures of them.&lt;/p&gt;
 
 &lt;p&gt;The cube files I have are H2O64NaCl-ELECTRON_DENSITY-1_0.cube and H2O64NaCl-v_hartree-1_0.cube. &lt;/p&gt;
 &lt;p&gt;This command is used to generate the cost function.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;horton-esp-cost.py H2O64NaCl-v_hartree-1_0.cube cost.h5 --wdens=H2O64NaCl-ELECTRON_DENSITY-1_0.cube -s --wnear 8:2.0:2.0 1:2.0:2.0 11:2.0:2.0 17:2.0:2.0 --pbc=111 &amp;gt; esp-cost-out
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;horton-esp-cost.py H2O64NaCl-v_hartree-1_0.cube cost.h5 --wdens=H2O64NaCl-ELECTRON_DENSITY-1_0.cube -s --wnear 8:2.0:2.0 1:2.0:2.0 11:2.0:2.0 17:2.0:2.0 --pbc=111 &amp;gt; esp-cost-out
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;It took me 6 hours to generate the cost function. After that, charges are fitted to the esp by this command.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;horton-esp-fit.py cost.h5 charges.h5
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;horton-esp-fit.py cost.h5 charges.h5
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Transfer it to csv file to read.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;horton-hdf2csv.py charges.h5 charges.csv
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;horton-hdf2csv.py charges.h5 charges.csv
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="python"></category></entry><entry><title>using horton do hirshfeld charge analysis</title><link href="index.html/using-horton-do-hirshfeld-charge-analysis.html" rel="alternate"></link><updated>2014-12-09T23:34:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-12-09:index.html/using-horton-do-hirshfeld-charge-analysis.html</id><summary type="html">&lt;p&gt;In order to do hirshfeld charge analysis, I generate charge density cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and this cube file to do hirshfeld charge analysis (follow this &lt;a href="http://theochem.github.io/horton/tut_part.html#id32"&gt;link&lt;/a&gt; ).&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>using horton do hirshfeld charge analysis</title><link href="index.html/using-horton-do-hirshfeld-charge-analysis.html" rel="alternate"></link><published>2014-12-09T23:34:00+01:00</published><updated>2014-12-09T23:34:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-09:index.html/using-horton-do-hirshfeld-charge-analysis.html</id><summary type="html">&lt;p&gt;horton hirshfeld&lt;/p&gt;</summary><content type="html">&lt;p&gt;In order to do hirshfeld charge analysis, I generate charge density cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and this cube file to do hirshfeld charge analysis (follow this &lt;a href="http://theochem.github.io/horton/tut_part.html#id32"&gt;link&lt;/a&gt; ).&lt;/p&gt;
 &lt;p&gt;Here is how I use it on killdevil.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
 &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;activate&lt;/span&gt; &lt;span class="n"&gt;my_root&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;First, I need to set up a database for proatoms. I am using cp2k for atom calculation. I need H, O, Na, Cl in my system. So I generate the input files like this.&lt;/p&gt;
 &lt;p&gt;ppot.inc ( XXX_000_00 XXX stands for element number, GTH-PBE-qX which is the name of the pseudopotential)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;001_000_00 GTH-PBE-q0
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;001_000_00 GTH-PBE-q0
 008_000_00 GTH-PBE-q6
 011_000_00 GTH-PBE-q9
 017_000_00 GTH-PBE-q7
@@ -2281,7 +2138,7 @@ Here are the structures of them.&lt;/p&gt;
 
 
 &lt;p&gt;valence.inc ( NNN_PPP_MM NNN: element number. PPP: atomic population(#electon). MM: spin multiplicity(2S+1) 1s2 2p1: orbital occupations)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;001_001_02 1s1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;001_001_02 1s1
 001_002_01 1s2
 
 008_005_02 1s2 2p1
@@ -2311,7 +2168,7 @@ Here are the structures of them.&lt;/p&gt;
 
 
 &lt;p&gt;template.inp&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt;GLOBAL
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;&amp;amp;&lt;/span&gt;GLOBAL
   PROJECT ATOM
   PROGRAM_NAME ATOM
 &lt;span class="err"&gt;&amp;amp;&lt;/span&gt;END GLOBAL
@@ -2354,7 +2211,7 @@ Here are the structures of them.&lt;/p&gt;
 
 
 &lt;p&gt;After preparing these files. I do&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;horton-atomdb.py input cp2k 1,8,11,17 template.inp
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;horton-atomdb.py input cp2k 1,8,11,17 template.inp
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -2374,62 +2231,51 @@ Here are the structures of them.&lt;/p&gt;
 13
 14
 15
-16&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class="c"&gt;#PBS -N myjob &lt;/span&gt;
-&lt;span class="c"&gt;###PBS -q regular&lt;/span&gt;
-&lt;span class="c"&gt;#PBS -q debug&lt;/span&gt;
-&lt;span class="c"&gt;#PBS -l mppwidth=24&lt;/span&gt;
-&lt;span class="c"&gt;###PBS -l walltime=96:00:00&lt;/span&gt;
-&lt;span class="c"&gt;#PBS -l walltime=00:30:00&lt;/span&gt;
-&lt;span class="c"&gt;#PBS -j oe&lt;/span&gt;
-&lt;span class="c"&gt;#PBS -V&lt;/span&gt;
+16&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="c1"&gt;#PBS -N myjob &lt;/span&gt;
+&lt;span class="c1"&gt;###PBS -q regular&lt;/span&gt;
+&lt;span class="c1"&gt;#PBS -q debug&lt;/span&gt;
+&lt;span class="c1"&gt;#PBS -l mppwidth=24&lt;/span&gt;
+&lt;span class="c1"&gt;###PBS -l walltime=96:00:00&lt;/span&gt;
+&lt;span class="c1"&gt;#PBS -l walltime=00:30:00&lt;/span&gt;
+&lt;span class="c1"&gt;#PBS -j oe&lt;/span&gt;
+&lt;span class="c1"&gt;#PBS -V&lt;/span&gt;
 
-&lt;span class="c"&gt;# Note: if you want to use an mpi-parallel CP2K binary, uncomment the following&lt;/span&gt;
-&lt;span class="c"&gt;# line and fill in the right binary and mpirun script:&lt;/span&gt;
+&lt;span class="c1"&gt;# Note: if you want to use an mpi-parallel CP2K binary, uncomment the following&lt;/span&gt;
+&lt;span class="c1"&gt;# line and fill in the right binary and mpirun script:&lt;/span&gt;
 &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$PBS_O_WORKDIR&lt;/span&gt;
 module load cp2k/2.5.1
-&lt;span class="c"&gt;#CP2K_BIN=&amp;quot;mpirun -n4 cp2k.popt&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;#CP2K_BIN=&amp;quot;mpirun -n4 cp2k.popt&amp;quot;&lt;/span&gt;
 &lt;span class="nv"&gt;CP2K_BIN&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;aprun -n 24 cp2k.popt&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;Then I do&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;qsub run_cp2k.sh
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;qsub run_cp2k.sh
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;After the calculations are done, I copy the folder back to killdevil and using horton again. This will generate a atom.h5 file for hirshfeld calculation.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;horton-atomdb.py convert
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;horton-atomdb.py convert
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Now, I copy atom.h5 file and the cube file from cp2k calculation to another folder. I also modify the cube file based on the 3.4.1 in the &lt;a href="http://theochem.github.io/horton/tut_part.html#id32"&gt;manual&lt;/a&gt;. The command I use for the real calculation is &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;horton-cpart.py cube output.h5:group {h,hi,he} atoms.h5
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;horton-cpart.py cube output.h5:group {h,hi,he} atoms.h5
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;h, hi, he stands for different partitioning schemes.&lt;/p&gt;
 &lt;p&gt;To make the result readable, there is a tool to convert h5 file to csv file.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;horton-hdf2csv.py output.h5 output.csv
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;horton-hdf2csv.py output.h5 output.csv
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The information I got based on hirshfeld analysis are in the file of output.csv.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="python"></category></entry><entry><title>horton</title><link href="index.html/horton.html" rel="alternate"></link><updated>2014-12-09T00:09:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-12-09:index.html/horton.html</id><summary type="html">&lt;p&gt;horton is a development platform for electronic structure methods. It can do electronic density partition with different methods. I am trying to install it on killdevil, now.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>horton</title><link href="index.html/horton.html" rel="alternate"></link><published>2014-12-09T00:09:00+01:00</published><updated>2014-12-09T00:09:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-09:index.html/horton.html</id><summary type="html">&lt;p&gt;horton&lt;/p&gt;</summary><content type="html">&lt;p&gt;horton is a development platform for electronic structure methods. It can do electronic density partition with different methods. I am trying to install it on killdevil, now.&lt;/p&gt;
 &lt;p&gt;Here is how I use it on killdevil.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
 &lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;gcc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;4.8.1&lt;/span&gt;
 &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;activate&lt;/span&gt; &lt;span class="n"&gt;my_root&lt;/span&gt;
 &lt;span class="n"&gt;cd&lt;/span&gt; ~/&lt;span class="n"&gt;software&lt;/span&gt;
@@ -2443,7 +2289,7 @@ module load cp2k/2.5.1
 
 &lt;p&gt;I think anaconda has all packages needed for horton.&lt;/p&gt;
 &lt;p&gt;Then I do.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cd depends
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd depends
 make libint
 make libxc
 cd ..
@@ -2452,13 +2298,13 @@ cd ..
 
 
 &lt;p&gt;After I do the tests,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;cd ~
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd ~
 nosetests -v horton
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;I got,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;----------------------------------------------------------------------
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;----------------------------------------------------------------------
 Ran 755 tests in 386.921s
 
 OK
@@ -2467,21 +2313,10 @@ OK
 
 &lt;p&gt;This means I have succesfully install horton.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="python"></category></entry><entry><title>lis write matrix</title><link href="index.html/lis-write-matrix.html" rel="alternate"></link><updated>2014-12-04T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-12-04:index.html/lis-write-matrix.html</id><summary type="html">&lt;p&gt;&lt;a href="http://www.ssisc.org/lis/"&gt;lis&lt;/a&gt; is a parallel iterative solvers library for linear systems. Instead of read matrix from files, write matrix information directly in the code is useful. I tested it and gave an example here. The matrix is stored in csr form and distributed in all the cpus.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;quot;lis_config.h&amp;quot;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;quot;lis.h&amp;quot;&lt;/span&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>lis write matrix</title><link href="index.html/lis-write-matrix.html" rel="alternate"></link><published>2014-12-04T14:56:00+01:00</published><updated>2014-12-04T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-04:index.html/lis-write-matrix.html</id><summary type="html">&lt;p&gt;using lis to write a matrix instead of read from file&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://www.ssisc.org/lis/"&gt;lis&lt;/a&gt; is a parallel iterative solvers library for linear systems. Instead of read matrix from files, write matrix information directly in the code is useful. I tested it and gave an example here. The matrix is stored in csr form and distributed in all the cpus.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;lis_config.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;lis.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
 &lt;span class="n"&gt;LIS_INT&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;LIS_INT&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
@@ -2559,7 +2394,7 @@ OK
 
 
 &lt;p&gt;And here is the Makefile.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;CC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;mpicc
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;CC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;mpicc
 &lt;span class="c"&gt;#CFLAGS=-c -Wall&lt;/span&gt;
 &lt;span class="c"&gt;#LDFLAGS=&lt;/span&gt;
 &lt;span class="c"&gt;#CFLAGS=-c -Wall -I/nas02/home/y/i/yiy/software/lis/lis-1.4.61-build/include&lt;/span&gt;
@@ -2576,7 +2411,7 @@ OK
     &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;OBJECTS&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;LDFLAGS&lt;span class="k"&gt;)&lt;/span&gt;  -o &lt;span class="nv"&gt;$@&lt;/span&gt;
 
 &lt;span class="nf"&gt;.c.o&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;CFLAGS&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$&amp;lt;&lt;/span&gt; -o &lt;span class="nv"&gt;$@&lt;/span&gt;
+    &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;CFLAGS&lt;span class="k"&gt;)&lt;/span&gt; $&amp;lt; -o &lt;span class="nv"&gt;$@&lt;/span&gt;
 
 &lt;span class="nf"&gt;clean&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
     rm -rf *o &lt;span class="nb"&gt;test&lt;/span&gt;
@@ -2584,25 +2419,14 @@ OK
 
 
 &lt;p&gt;I can run the exe in serial and parallel.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;./test b x
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./test b x
 mpiexec -n 2 ./test b x
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;However when the number of cpus is larger than the number of rows in A matrix the program will stuck. I am contacting lis developers to see if there is something wrong with the code.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="parallel computing"></category></entry><entry><title>combine arrays on different cores</title><link href="index.html/combine-arrays-on-different-cores.html" rel="alternate"></link><updated>2014-12-04T13:40:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-12-04:index.html/combine-arrays-on-different-cores.html</id><summary type="html">&lt;p&gt;The way to combine arrays in different cores to a big array by MPI is using MPI_Allgatherv. An example I would like to test is like this.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="parallel computing"></category></entry><entry><title>combine arrays on different cores</title><link href="index.html/combine-arrays-on-different-cores.html" rel="alternate"></link><published>2014-12-04T13:40:00+01:00</published><updated>2014-12-04T13:40:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-04:index.html/combine-arrays-on-different-cores.html</id><summary type="html">&lt;p&gt;using MPI_Allgatherv to combine arrays on different cores&lt;/p&gt;</summary><content type="html">&lt;p&gt;The way to combine arrays in different cores to a big array by MPI is using MPI_Allgatherv. An example I would like to test is like this.&lt;/p&gt;
 &lt;p&gt;Core 1 : 1&lt;/p&gt;
 &lt;p&gt;Core 2 : 2 2&lt;/p&gt;
 &lt;p&gt;Core 3 : 3 3 3&lt;/p&gt;
@@ -2611,9 +2435,9 @@ mpiexec -n 2 ./test b x
 &lt;p&gt;After combine all the arrays, I will get&lt;/p&gt;
 &lt;p&gt;1 2 2 3 3 3 4 4 4 4 5 5 ...&lt;/p&gt;
 &lt;p&gt;Here is the code(test_allgatherv.c) and Makefile for this calculation. Pay attention to displ_list.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;quot;mpi.h&amp;quot;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;stdlib.h&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;mpi.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
@@ -2669,7 +2493,7 @@ mpiexec -n 2 ./test b x
 
 
 &lt;p&gt;And the Makefile.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;CC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;mpicc
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;CC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;mpicc
 &lt;span class="nv"&gt;CFLAGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;-c -Wall
 &lt;span class="nv"&gt;LDFLAGS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;
 &lt;span class="nv"&gt;SOURCES&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;test_allgatherv.c
@@ -2682,17 +2506,17 @@ mpiexec -n 2 ./test b x
     &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;LDFLAGS&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;OBJECTS&lt;span class="k"&gt;)&lt;/span&gt; -o &lt;span class="nv"&gt;$@&lt;/span&gt;
 
 &lt;span class="nf"&gt;.c.o&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;CFLAGS&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;$&amp;lt;&lt;/span&gt; -o &lt;span class="nv"&gt;$@&lt;/span&gt;
+    &lt;span class="k"&gt;$(&lt;/span&gt;CC&lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;CFLAGS&lt;span class="k"&gt;)&lt;/span&gt; $&amp;lt; -o &lt;span class="nv"&gt;$@&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;After compiling, run the job by&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;mpirun -n 8 ./test_allgatherv
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mpirun -n 8 ./test_allgatherv
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;I got the correct result&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;1 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1 
 2 
 2 
 4 
@@ -2769,20 +2593,9 @@ after MPI_Allgatherv
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="parallel computing"></category></entry><entry><title>mdtraj</title><link href="index.html/mdtraj.html" rel="alternate"></link><updated>2014-12-02T16:08:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-12-02:index.html/mdtraj.html</id><summary type="html">&lt;p&gt;mdtraj is a python library to read, write and analyze MD trajectories. Here is its &lt;a href="http://http://mdtraj.org"&gt;website&lt;/a&gt;. It can be easy installed by conda and has the function to calculate distance for particles with periodic boundary conditions.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="parallel computing"></category></entry><entry><title>mdtraj</title><link href="index.html/mdtraj.html" rel="alternate"></link><published>2014-12-02T16:08:00+01:00</published><updated>2014-12-02T16:08:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-02:index.html/mdtraj.html</id><summary type="html">&lt;p&gt;mdtraj&lt;/p&gt;</summary><content type="html">&lt;p&gt;mdtraj is a python library to read, write and analyze MD trajectories. Here is its &lt;a href="http://http://mdtraj.org"&gt;website&lt;/a&gt;. It can be easy installed by conda and has the function to calculate distance for particles with periodic boundary conditions.&lt;/p&gt;
 &lt;p&gt;Here is how I use it on killdevil.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
 &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;gcc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;4.8&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;activate&lt;/span&gt; &lt;span class="n"&gt;my_root&lt;/span&gt;
 &lt;span class="n"&gt;ipython&lt;/span&gt;
@@ -2791,20 +2604,9 @@ after MPI_Allgatherv
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="python"></category></entry><entry><title>dissipative particle dynamics of membrane from scratch</title><link href="index.html/dissipative-particle-dynamics-of-membrane-from-scratch.html" rel="alternate"></link><updated>2014-11-25T13:44:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-11-25:index.html/dissipative-particle-dynamics-of-membrane-from-scratch.html</id><summary type="html">&lt;p&gt;I perform a test dpd simulation of membrane started from the generation of structures. packmol is used for generate the input structure. lammps is used as the simulator. &lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>dissipative particle dynamics of membrane from scratch</title><link href="index.html/dissipative-particle-dynamics-of-membrane-from-scratch.html" rel="alternate"></link><published>2014-11-25T13:44:00+01:00</published><updated>2014-11-25T13:44:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-25:index.html/dissipative-particle-dynamics-of-membrane-from-scratch.html</id><summary type="html">&lt;p&gt;Learning dissipative particle dynamics by lammps&lt;/p&gt;</summary><content type="html">&lt;p&gt;I perform a test dpd simulation of membrane started from the generation of structures. packmol is used for generate the input structure. lammps is used as the simulator. &lt;/p&gt;
 &lt;p&gt;The lipid structure is as follow(lipid.xyz):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;11
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;11
 
 C 0.0 0.0 0.0
 C 0.5 0.0 0.0
@@ -2821,16 +2623,16 @@ H 2.5 0.0 0.0
 
 
 &lt;p&gt;which is like the pic shown below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/lipid.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/lipid.png"&gt;&lt;/p&gt;
 &lt;p&gt;also a water sturcture is listed(water.xyz). Because only one particle will represent one water.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;1
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1
 
 W 0.0 0.0 0.0
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;a packmol input(bilayer_packmol.in) script is used here to generate the structure of the total system.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;tolerance 0.5
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tolerance 0.5
 filetype xyz
 output bilayer.xyz
 
@@ -2869,7 +2671,7 @@ end structure
 
 
 &lt;p&gt;And also I have a script for the generation of psf and lammps data file.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="x"&gt;mol new bilayer.xyz&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;mol new bilayer.xyz&lt;/span&gt;
 
 &lt;span class="x"&gt;pbc set &lt;/span&gt;&lt;span class="cp"&gt;{&lt;/span&gt; &lt;span class="m"&gt;19.428&lt;/span&gt; &lt;span class="m"&gt;19.428&lt;/span&gt; &lt;span class="m"&gt;19.428&lt;/span&gt; &lt;span class="cp"&gt;}&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
 &lt;span class="x"&gt;topo clearbonds&lt;/span&gt;
@@ -2898,10 +2700,10 @@ end structure
 
 
 &lt;p&gt;The final version of the input structure is showed as follow&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/membrane.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/membrane.png"&gt;&lt;/p&gt;
 &lt;p&gt;I use this structure for the input of DPD simulation, and the input file for lammps is as follow. &lt;/p&gt;
 &lt;p&gt;The input files: &lt;a href="index.html/codes/bilayer.data"&gt;bilayer.data&lt;/a&gt;, &lt;a href="index.html/codes/dpd_test.in"&gt;dpd_test.in&lt;/a&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;units       lj
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;units       lj
 atom_style full
 comm_modify vel yes
 pair_style  dpd 1.0 1.0 34387
@@ -2954,80 +2756,36 @@ run     50000
 
 
 &lt;p&gt;The result movie is shown as below&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/dpd_movie.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/dpd_movie.gif"&gt;&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="molecular dynamics"></category></entry><entry><title>using ipython notebook remotely over an ssh tunnel</title><link href="index.html/using-ipython-notebook-remotely-over-an-ssh-tunnel.html" rel="alternate"></link><updated>2014-11-24T09:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-11-24:index.html/using-ipython-notebook-remotely-over-an-ssh-tunnel.html</id><summary type="html">&lt;p&gt;ipython notebook is a tool I loved. &lt;a href="http://wisdomthroughknowledge.blogspot.com/2012/07/accessing-ipython-notebook-remotely.html"&gt;Here&lt;/a&gt; is a tutorial of using ipython remotely with ssh tunnel. I list the commands here for remembering.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>using ipython notebook remotely over an ssh tunnel</title><link href="index.html/using-ipython-notebook-remotely-over-an-ssh-tunnel.html" rel="alternate"></link><published>2014-11-24T09:27:00+01:00</published><updated>2014-11-24T09:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-24:index.html/using-ipython-notebook-remotely-over-an-ssh-tunnel.html</id><summary type="html">&lt;p&gt;ipython&lt;/p&gt;</summary><content type="html">&lt;p&gt;ipython notebook is a tool I loved. &lt;a href="http://wisdomthroughknowledge.blogspot.com/2012/07/accessing-ipython-notebook-remotely.html"&gt;Here&lt;/a&gt; is a tutorial of using ipython remotely with ssh tunnel. I list the commands here for remembering.&lt;/p&gt;
 &lt;p&gt;On killdevil&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ipython notebook --no-browser --port=7000
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ipython notebook --no-browser --port=7000
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;On my local machine&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ssh -N -f -L localhost:8888:localhost:7000 yiy@killdevil.unc.edu
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ssh -N -f -L localhost:8888:localhost:7000 yiy@killdevil.unc.edu
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;On my webbrowser&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;http://localhost:8888
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;http://localhost:8888
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="python"></category></entry><entry><title>anaconda</title><link href="index.html/anaconda.html" rel="alternate"></link><updated>2014-11-23T13:40:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-11-23:index.html/anaconda.html</id><summary type="html">&lt;p&gt;&lt;a href="https://store.continuum.io/cshop/anaconda/"&gt;anaconda&lt;/a&gt; is a python distribution for scientific computing. I used to use epd distribution but this one is better including tons of python packages built-in. The packages of numpy, scipy, ipython, numba, matplotlib are all included. The installation is also straight forward. I would like to recommend this distribution of python for scientists. It is totally free.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>anaconda</title><link href="index.html/anaconda.html" rel="alternate"></link><published>2014-11-23T13:40:00+01:00</published><updated>2014-11-23T13:40:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-23:index.html/anaconda.html</id><summary type="html">&lt;p&gt;anaconda&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://store.continuum.io/cshop/anaconda/"&gt;anaconda&lt;/a&gt; is a python distribution for scientific computing. I used to use epd distribution but this one is better including tons of python packages built-in. The packages of numpy, scipy, ipython, numba, matplotlib are all included. The installation is also straight forward. I would like to recommend this distribution of python for scientists. It is totally free.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="python"></category></entry><entry><title>numba</title><link href="index.html/numba.html" rel="alternate"></link><updated>2014-11-23T11:52:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-11-23:index.html/numba.html</id><summary type="html">&lt;p&gt;numba is a tool using jit to speed up python applications. Here is a &lt;a href="https://www.youtube.com/watch?v=COglHpt7KSs"&gt;video introduction&lt;/a&gt;.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>numba</title><link href="index.html/numba.html" rel="alternate"></link><published>2014-11-23T11:52:00+01:00</published><updated>2014-11-23T11:52:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-23:index.html/numba.html</id><summary type="html">&lt;p&gt;numba&lt;/p&gt;</summary><content type="html">&lt;p&gt;numba is a tool using jit to speed up python applications. Here is a &lt;a href="https://www.youtube.com/watch?v=COglHpt7KSs"&gt;video introduction&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="python"></category></entry><entry><title>dissipative particle dynamics</title><link href="index.html/dissipative-particle-dynamics.html" rel="alternate"></link><updated>2014-11-22T23:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-11-22:index.html/dissipative-particle-dynamics.html</id><summary type="html">&lt;p&gt;I learned about dissipative particle dynamics (DPD) with Max, Upendra, and Ardeshir. It is an amazing tool for simulation of mesoscale systems including polymers and bio-membranes.
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>dissipative particle dynamics</title><link href="index.html/dissipative-particle-dynamics.html" rel="alternate"></link><published>2014-11-22T23:27:00+01:00</published><updated>2014-11-22T23:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-22:index.html/dissipative-particle-dynamics.html</id><summary type="html">&lt;p&gt;Learning dissipative particle dynamics&lt;/p&gt;</summary><content type="html">&lt;p&gt;I learned about dissipative particle dynamics (DPD) with Max, Upendra, and Ardeshir. It is an amazing tool for simulation of mesoscale systems including polymers and bio-membranes.
 The system size can be extened to µm ,and µs for time scale which is about 10^6 faster than regular molecular dynamics.&lt;/p&gt;
 &lt;p&gt;This post is for my learning process and materials of DPD.&lt;/p&gt;
 &lt;p&gt;Rob Groot seems to be the bigest name in the field of DPD. And he has really good slides for DPD. Here is the &lt;a href="http://www.cecam.org/upload/talk/presentation_2751.pdf"&gt;link&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;In the presentation, he answered the question of how to parameterise DPD. The goal of it is to reproduce local thermodynamics which are measured by compressibility and solubility. Flory-Huggins theory are used for the solubility.&lt;/p&gt;
 &lt;p&gt;I tried to run dpd in lammps. With the input below.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;# This is LAMMPS input script specifies a simple DPD simulation.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# This is LAMMPS input script specifies a simple DPD simulation.
 # It reproduces Fig. 2 of Groot and Warren, J. Chem. Phys. 107,
 # 4423 (1997)
 
@@ -3072,28 +2830,17 @@ run     50000
 
 
 &lt;p&gt;The gr plot I got from this simulation is the same as the plot 2 in the paper.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/gr_dpd.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/gr_dpd.png"&gt;&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="molecular dynamics"></category></entry><entry><title>Install mpi4py on killdevil</title><link href="index.html/install-mpi4py-on-killdevil.html" rel="alternate"></link><updated>2014-11-22T23:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-11-22:index.html/install-mpi4py-on-killdevil.html</id><summary type="html">&lt;p&gt;&lt;a href="http://mpi4py.scipy.org/"&gt;mpi4py&lt;/a&gt; is the package for python to take advantage of mpi. I am try to install it on killdevil.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>Install mpi4py on killdevil</title><link href="index.html/install-mpi4py-on-killdevil.html" rel="alternate"></link><published>2014-11-22T23:27:00+01:00</published><updated>2014-11-22T23:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-22:index.html/install-mpi4py-on-killdevil.html</id><summary type="html">&lt;p&gt;The way to install mpi4py on killdevil&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://mpi4py.scipy.org/"&gt;mpi4py&lt;/a&gt; is the package for python to take advantage of mpi. I am try to install it on killdevil.&lt;/p&gt;
 &lt;p&gt;The modules: I got on killdevil are&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Currently Loaded Modulefiles:
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Currently Loaded Modulefiles:
   1) null                   2) epd/7.2-2              3) openmpi_intel/12.1-5
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;And I run the commands:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;wget https://bitbucket.org/mpi4py/mpi4py/downloads/mpi4py-1.3.1.tar.gz
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget https://bitbucket.org/mpi4py/mpi4py/downloads/mpi4py-1.3.1.tar.gz
 tar -xzvf mpi4py-1.3.1.tar.gz
 cd mpi4py-1.3.1
 python setup.py install --user
@@ -3102,12 +2849,12 @@ python setup.py install --user
 
 &lt;p&gt;Then it is successfully installed.&lt;/p&gt;
 &lt;p&gt;I do the test.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;mpiexec -n 5 python demo/helloworld.py
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mpiexec -n 5 python demo/helloworld.py
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Got the result:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Hello, World! I am process 1 of 5 on c-186-31.kd.unc.edu.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Hello, World! I am process 1 of 5 on c-186-31.kd.unc.edu.
 Hello, World! I am process 4 of 5 on c-186-31.kd.unc.edu.
 Hello, World! I am process 0 of 5 on c-186-31.kd.unc.edu.
 Hello, World! I am process 3 of 5 on c-186-31.kd.unc.edu.
@@ -3116,18 +2863,7 @@ Hello, World! I am process 2 of 5 on c-186-31.kd.unc.edu.
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="python"></category><category term="parallel computing"></category></entry><entry><title>thermodynamics integration from scratch using cp2k</title><link href="index.html/thermodynamics-integration-from-scratch-using-cp2k.html" rel="alternate"></link><updated>2014-11-20T12:52:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-11-20:index.html/thermodynamics-integration-from-scratch-using-cp2k.html</id><summary type="html">&lt;ol&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category><category term="parallel computing"></category></entry><entry><title>thermodynamics integration from scratch using cp2k</title><link href="index.html/thermodynamics-integration-from-scratch-using-cp2k.html" rel="alternate"></link><published>2014-11-20T12:52:00+01:00</published><updated>2014-11-20T12:52:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-20:index.html/thermodynamics-integration-from-scratch-using-cp2k.html</id><summary type="html">&lt;p&gt;help me remember some tools in setting up MD simulation and free energy calculation.&lt;/p&gt;</summary><content type="html">&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;2 ions in 512 water system is using to calculation the Potential of Mean Force (PMF) for ion pair. ( I was using 64 water system where the size of the box is only about 12.0Å, the PMF can only exceed to 6.0Å, if I use 512 water system the box size can be more than 24Å the PMF can exceed to 10.0Å. )&lt;/p&gt;
 &lt;/li&gt;
@@ -3140,16 +2876,16 @@ Hello, World! I am process 2 of 5 on c-186-31.kd.unc.edu.
 &lt;li&gt;
 &lt;p&gt;Generate the initial structure for my simulation. I use gromacs and vmd to do that.
 First using genbox tool in gromacs to generate a box of water with 514 water in it. The size is a little bit larger to make sure enough water molecules can be included.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;genbox_d -cs spc216.gro -box 2.52 2.52 2.52 -maxsol 514
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;genbox_d -cs spc216.gro -box 2.52 2.52 2.52 -maxsol 514
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;In this way, I got a out.gro file. I will rename it to h2o514.gro file. And edit it to change the last two water to a Na ion and a Cl ion. Also the size of the box will be changed as well as the index of the atoms and the total number of atoms in the top of the file. Then I rename it to h2o512NaCl.gro. I have the final version of it here.
 &lt;a href="index.html/codes/h2o512NaCl.gro"&gt;h2o512NaCl.gro&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I would like to use psf and xyz file for the input of topology information and coordinations in to cp2k. VMD is used here for this task. So I use the script I wrote for vmd.
-&lt;a href="{filename}/codes/tr_psf512.vmd"&gt;tr_psf512.vmd&lt;/a&gt;
+&lt;a href="index.html/codes/tr_psf512.vmd"&gt;tr_psf512.vmd&lt;/a&gt;
 it used in this way.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;vmd -e tr_psf512.vmd
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vmd -e tr_psf512.vmd
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -3166,18 +2902,7 @@ it used in this way.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;
-
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="molecular dynamics"></category><category term="free energy calculation"></category></entry><entry><title>calculate madelung constant by ewald method</title><link href="index.html/calculate-madelung-constant-by-ewald-method.html" rel="alternate"></link><updated>2014-04-22T14:31:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-04-22:index.html/calculate-madelung-constant-by-ewald-method.html</id><summary type="html">&lt;p&gt;I would like to understand the details of ewald summation. So, I took the
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category><category term="free energy calculation"></category></entry><entry><title>calculate madelung constant by ewald method</title><link href="index.html/calculate-madelung-constant-by-ewald-method.html" rel="alternate"></link><published>2014-04-22T14:31:00+02:00</published><updated>2014-04-22T14:31:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-04-22:index.html/calculate-madelung-constant-by-ewald-method.html</id><summary type="html">&lt;p&gt;Understand the details of ewald summation by calculate madelung constant&lt;/p&gt;</summary><content type="html">&lt;p&gt;I would like to understand the details of ewald summation. So, I took the
 calculation of madelung constant (&lt;a href="http://en.wikipedia.org/wiki/Madelung_constant"&gt;Wikipedia&lt;/a&gt;)
 as an example. I took two method to calculate madelung constant.
 One is calculate it by expanding cubes method, the other is ewald summation method.
@@ -3211,17 +2936,6 @@ When we want to calculate potential, these 1/2 should be erased.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="index.html/codes/madelung_realspace.m"&gt;madelung_realspace.m&lt;/a&gt;
 &lt;a href="index.html/codes/madelung_ewald.m"&gt;madelung_ewald.m&lt;/a&gt;&lt;/p&gt;
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;
-
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -3234,11 +2948,9 @@ When we want to calculate potential, these 1/2 should be erased.&lt;/p&gt;
     }
 
     var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' &amp;&amp; location_protocol !== 'https') location_protocol = 'https:';
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -3278,29 +2990,9 @@ When we want to calculate potential, these 1/2 should be erased.&lt;/p&gt;
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="molecular dynamics"></category><category term="ewald"></category><category term="matlab"></category></entry><entry><title>qmcpack - a qmc package</title><link href="index.html/qmcpack-a-qmc-package.html" rel="alternate"></link><updated>2014-04-22T14:31:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-04-22:index.html/qmcpack-a-qmc-package.html</id><summary type="html">&lt;p&gt;&lt;a href="http://qmcpack.org/"&gt;QMCPACK&lt;/a&gt; is a software designed for qmc calculation. reptation is included. And it can start from pwscf calculation which attracts me a lot.&lt;/p&gt;
+&lt;/script&gt;</content><category term="molecular dynamics"></category><category term="ewald"></category><category term="matlab"></category></entry><entry><title>qmcpack - a qmc package</title><link href="index.html/qmcpack-a-qmc-package.html" rel="alternate"></link><published>2014-04-22T14:31:00+02:00</published><updated>2014-04-22T14:31:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-04-22:index.html/qmcpack-a-qmc-package.html</id><summary type="html">&lt;p&gt;QMCPACK with video tutorials&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://qmcpack.org/"&gt;QMCPACK&lt;/a&gt; is a software designed for qmc calculation. reptation is included. And it can start from pwscf calculation which attracts me a lot.&lt;/p&gt;
 &lt;p&gt;I found a video tutorial from their website.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/playlist?list=PLZ3WPqWe6k8t6__0VESBAh6KfUcVo7JTt"&gt;QMCPACK Summer Training 2014&lt;/a&gt;&lt;/p&gt;
-&lt;script&gt;
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-&lt;/script&gt;</summary><category term="quantum monte carlo"></category></entry><entry><title>My first Post</title><link href="index.html/my-first-post.html" rel="alternate"></link><updated>2014-04-13T19:20:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:,2014-04-13:index.html/my-first-post.html</id><summary type="html">&lt;p&gt;I generate this website using pelican and pelican-bootstrap3.
+&lt;p&gt;&lt;a href="https://www.youtube.com/playlist?list=PLZ3WPqWe6k8t6__0VESBAh6KfUcVo7JTt"&gt;QMCPACK Summer Training 2014&lt;/a&gt;&lt;/p&gt;</content><category term="quantum monte carlo"></category></entry><entry><title>My first Post</title><link href="index.html/my-first-post.html" rel="alternate"></link><published>2014-04-13T19:20:00+02:00</published><updated>2014-04-13T19:20:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-04-13:index.html/my-first-post.html</id><summary type="html">&lt;p class="first last"&gt;I generate this website using pelican and pelican-bootstrap3.&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;I generate this website using pelican and pelican-bootstrap3.
 Now, I can write blogs with it in rst form.&lt;/p&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;&amp;lt;script&amp;gt;&lt;/dt&gt;
-&lt;dd&gt;&lt;p class="first"&gt;(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');&lt;/p&gt;
-&lt;p class="last"&gt;ga('create', 'UA-56932248-1', 'auto');
-ga('send', 'pageview');&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;&amp;lt;/script&amp;gt;&lt;/p&gt;
-</summary><category term="website"></category><category term="python"></category></entry></feed>
+</content><category term="website"></category><category term="python"></category></entry></feed>

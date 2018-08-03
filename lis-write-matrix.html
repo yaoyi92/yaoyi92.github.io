@@ -27,11 +27,11 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme_bootstrap/css/bootstrap.min.css" type="text/css"/>
-    <link href="./theme_bootstrap/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
+    <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="./theme_bootstrap/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme_bootstrap/css/style.css" type="text/css"/>
+    <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -126,9 +126,9 @@ Yi Yao's Homepage            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p><a href="http://www.ssisc.org/lis/">lis</a> is a parallel iterative solvers library for linear systems. Instead of read matrix from files, write matrix information directly in the code is useful. I tested it and gave an example here. The matrix is stored in csr form and distributed in all the cpus.</p>
-<div class="highlight"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &quot;lis_config.h&quot;</span>
-<span class="cp">#include &quot;lis.h&quot;</span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;lis_config.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;lis.h&quot;</span><span class="cp"></span>
 
 <span class="n">LIS_INT</span> <span class="nf">main</span><span class="p">(</span><span class="n">LIS_INT</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
@@ -206,7 +206,7 @@ Yi Yao's Homepage            </a>
 
 
 <p>And here is the Makefile.</p>
-<div class="highlight"><pre><span class="nv">CC</span><span class="o">=</span>mpicc
+<div class="highlight"><pre><span></span><span class="nv">CC</span><span class="o">=</span>mpicc
 <span class="c">#CFLAGS=-c -Wall</span>
 <span class="c">#LDFLAGS=</span>
 <span class="c">#CFLAGS=-c -Wall -I/nas02/home/y/i/yiy/software/lis/lis-1.4.61-build/include</span>
@@ -223,7 +223,7 @@ Yi Yao's Homepage            </a>
     <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>OBJECTS<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span>  -o <span class="nv">$@</span>
 
 <span class="nf">.c.o</span><span class="o">:</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> <span class="nv">$&lt;</span> -o <span class="nv">$@</span>
+    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> $&lt; -o <span class="nv">$@</span>
 
 <span class="nf">clean</span><span class="o">:</span>
     rm -rf *o <span class="nb">test</span>
@@ -231,7 +231,7 @@ Yi Yao's Homepage            </a>
 
 
 <p>I can run the exe in serial and parallel.</p>
-<div class="highlight"><pre>./test b x
+<div class="highlight"><pre><span></span>./test b x
 mpiexec -n 2 ./test b x
 </pre></div>
 
@@ -239,17 +239,6 @@ mpiexec -n 2 ./test b x
 <p>However when the number of cpus is larger than the number of rows in A matrix the program will stuck. I am contacting lis developers to see if there is something wrong with the code.</p>
 <!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) -->
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -270,14 +259,31 @@ mpiexec -n 2 ./test b x
       </div>
    </div>
 </footer>
-<script src="./theme_bootstrap/js/jquery.min.js"></script>
+<script src="./themestatic/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme_bootstrap/js/bootstrap.min.js"></script>
+<script src="./themestatic/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme_bootstrap/js/respond.min.js"></script>
+<script src="./themestatic/js/respond.min.js"></script>
 
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-56932248-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 
 </body>
 </html>

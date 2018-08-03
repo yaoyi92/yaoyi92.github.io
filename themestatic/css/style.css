@@ -2,20 +2,25 @@ body {
     padding-top: 70px;
 }
 
-
 summary::-webkit-details-marker {
-    color: #4B9CD3;
     font-size: 150%;
 }
 
 details summary {
-    font-size: 30px;
+    font-size: 24px;
     font-weight: bold;
     vertical-align: top;
     border-radius: 3px;
     padding: 5px 10px;
     outline: none;
 }
+
+details {
+    border: 2px #4B9CD3 solid;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
 
 #sidebar .list-group, #sidebar .list-group-item {
     background-color: transparent;

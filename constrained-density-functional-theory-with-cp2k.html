@@ -27,11 +27,11 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme_bootstrap/css/bootstrap.min.css" type="text/css"/>
-    <link href="./theme_bootstrap/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
+    <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="./theme_bootstrap/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme_bootstrap/css/style.css" type="text/css"/>
+    <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -127,7 +127,7 @@ Yi Yao's Homepage            </a>
                 </div>
                 <p><a href="http://pubs.acs.org/doi/pdf/10.1021/cr200148b">Constrained Density Functional Theory</a> has many applications. Here I showed a simple example of cDFT of H2+ system. And I would like to constrain the electron on one proton with cp2k.</p>
 <p>Here is the script.</p>
-<div class="highlight"><pre>&amp;FORCE_EVAL
+<div class="highlight"><pre><span></span>&amp;FORCE_EVAL
   METHOD Quickstep
   &amp;DFT
     BASIS_SET_FILE_NAME /global/homes/y/yyao_unc/software/cp2k/cp2k/cp2k/data/BASIS_MOLOPT
@@ -197,7 +197,7 @@ Yi Yao's Homepage            </a>
 
 
 <p>After the calculation the Mulliken Analysis is showed here.</p>
-<div class="highlight"><pre> MULLIKEN POPULATION ANALYSIS
+<div class="highlight"><pre><span></span> MULLIKEN POPULATION ANALYSIS
 
  #  Atom  Element  Kind  Atomic population (alpha,beta)   Net charge  Spin moment
        1     H        1          0.999915     0.000000     0.000085     0.999915
@@ -207,20 +207,9 @@ Yi Yao's Homepage            </a>
 
 
 <p>And I also visulized the charge density cube file. Most of the charge density is on the left proton now.</p>
-<p><img alt="Alt Text" src="./images/cdft_h2+_cp2k.jpeg" /></p>
+<p><img alt="Alt Text" src="./images/cdft_h2+_cp2k.jpeg"></p>
 <!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) -->
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -241,14 +230,31 @@ Yi Yao's Homepage            </a>
       </div>
    </div>
 </footer>
-<script src="./theme_bootstrap/js/jquery.min.js"></script>
+<script src="./themestatic/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme_bootstrap/js/bootstrap.min.js"></script>
+<script src="./themestatic/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme_bootstrap/js/respond.min.js"></script>
+<script src="./themestatic/js/respond.min.js"></script>
 
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-56932248-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 
 </body>
 </html>

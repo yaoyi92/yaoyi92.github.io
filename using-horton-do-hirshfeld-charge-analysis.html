@@ -27,11 +27,11 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme_bootstrap/css/bootstrap.min.css" type="text/css"/>
-    <link href="./theme_bootstrap/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
+    <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="./theme_bootstrap/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme_bootstrap/css/style.css" type="text/css"/>
+    <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -127,14 +127,14 @@ Yi Yao's Homepage            </a>
                 </div>
                 <p>In order to do hirshfeld charge analysis, I generate charge density cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and this cube file to do hirshfeld charge analysis (follow this <a href="http://theochem.github.io/horton/tut_part.html#id32">link</a> ).</p>
 <p>Here is how I use it on killdevil.</p>
-<div class="highlight"><pre><span class="k">module</span> <span class="n">load</span> <span class="n">anaconda</span>
+<div class="highlight"><pre><span></span><span class="k">module</span> <span class="n">load</span> <span class="n">anaconda</span>
 <span class="n">source</span> <span class="n">activate</span> <span class="n">my_root</span>
 </pre></div>
 
 
 <p>First, I need to set up a database for proatoms. I am using cp2k for atom calculation. I need H, O, Na, Cl in my system. So I generate the input files like this.</p>
 <p>ppot.inc ( XXX_000_00 XXX stands for element number, GTH-PBE-qX which is the name of the pseudopotential)</p>
-<div class="highlight"><pre>001_000_00 GTH-PBE-q0
+<div class="highlight"><pre><span></span>001_000_00 GTH-PBE-q0
 008_000_00 GTH-PBE-q6
 011_000_00 GTH-PBE-q9
 017_000_00 GTH-PBE-q7
@@ -142,7 +142,7 @@ Yi Yao's Homepage            </a>
 
 
 <p>valence.inc ( NNN_PPP_MM NNN: element number. PPP: atomic population(#electon). MM: spin multiplicity(2S+1) 1s2 2p1: orbital occupations)</p>
-<div class="highlight"><pre>001_001_02 1s1
+<div class="highlight"><pre><span></span>001_001_02 1s1
 001_002_01 1s2
 
 008_005_02 1s2 2p1
@@ -172,7 +172,7 @@ Yi Yao's Homepage            </a>
 
 
 <p>template.inp</p>
-<div class="highlight"><pre><span class="err">&amp;</span>GLOBAL
+<div class="highlight"><pre><span></span><span class="err">&amp;</span>GLOBAL
   PROJECT ATOM
   PROGRAM_NAME ATOM
 <span class="err">&amp;</span>END GLOBAL
@@ -215,7 +215,7 @@ Yi Yao's Homepage            </a>
 
 
 <p>After preparing these files. I do</p>
-<div class="highlight"><pre>horton-atomdb.py input cp2k 1,8,11,17 template.inp
+<div class="highlight"><pre><span></span>horton-atomdb.py input cp2k 1,8,11,17 template.inp
 </pre></div>
 
 
@@ -235,60 +235,49 @@ Yi Yao's Homepage            </a>
 13
 14
 15
-16</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
-<span class="c">#PBS -N myjob </span>
-<span class="c">###PBS -q regular</span>
-<span class="c">#PBS -q debug</span>
-<span class="c">#PBS -l mppwidth=24</span>
-<span class="c">###PBS -l walltime=96:00:00</span>
-<span class="c">#PBS -l walltime=00:30:00</span>
-<span class="c">#PBS -j oe</span>
-<span class="c">#PBS -V</span>
+16</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#PBS -N myjob </span>
+<span class="c1">###PBS -q regular</span>
+<span class="c1">#PBS -q debug</span>
+<span class="c1">#PBS -l mppwidth=24</span>
+<span class="c1">###PBS -l walltime=96:00:00</span>
+<span class="c1">#PBS -l walltime=00:30:00</span>
+<span class="c1">#PBS -j oe</span>
+<span class="c1">#PBS -V</span>
 
-<span class="c"># Note: if you want to use an mpi-parallel CP2K binary, uncomment the following</span>
-<span class="c"># line and fill in the right binary and mpirun script:</span>
+<span class="c1"># Note: if you want to use an mpi-parallel CP2K binary, uncomment the following</span>
+<span class="c1"># line and fill in the right binary and mpirun script:</span>
 <span class="nb">cd</span> <span class="nv">$PBS_O_WORKDIR</span>
 module load cp2k/2.5.1
-<span class="c">#CP2K_BIN=&quot;mpirun -n4 cp2k.popt&quot;</span>
+<span class="c1">#CP2K_BIN=&quot;mpirun -n4 cp2k.popt&quot;</span>
 <span class="nv">CP2K_BIN</span><span class="o">=</span><span class="s2">&quot;aprun -n 24 cp2k.popt&quot;</span>
 </pre></div>
 </td></tr></table>
 
 <p>Then I do</p>
-<div class="highlight"><pre>qsub run_cp2k.sh
+<div class="highlight"><pre><span></span>qsub run_cp2k.sh
 </pre></div>
 
 
 <p>After the calculations are done, I copy the folder back to killdevil and using horton again. This will generate a atom.h5 file for hirshfeld calculation.</p>
-<div class="highlight"><pre>horton-atomdb.py convert
+<div class="highlight"><pre><span></span>horton-atomdb.py convert
 </pre></div>
 
 
 <p>Now, I copy atom.h5 file and the cube file from cp2k calculation to another folder. I also modify the cube file based on the 3.4.1 in the <a href="http://theochem.github.io/horton/tut_part.html#id32">manual</a>. The command I use for the real calculation is </p>
-<div class="highlight"><pre>horton-cpart.py cube output.h5:group {h,hi,he} atoms.h5
+<div class="highlight"><pre><span></span>horton-cpart.py cube output.h5:group {h,hi,he} atoms.h5
 </pre></div>
 
 
 <p>h, hi, he stands for different partitioning schemes.</p>
 <p>To make the result readable, there is a tool to convert h5 file to csv file.</p>
-<div class="highlight"><pre>horton-hdf2csv.py output.h5 output.csv
+<div class="highlight"><pre><span></span>horton-hdf2csv.py output.h5 output.csv
 </pre></div>
 
 
 <p>The information I got based on hirshfeld analysis are in the file of output.csv.</p>
 <!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) -->
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -309,14 +298,31 @@ module load cp2k/2.5.1
       </div>
    </div>
 </footer>
-<script src="./theme_bootstrap/js/jquery.min.js"></script>
+<script src="./themestatic/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme_bootstrap/js/bootstrap.min.js"></script>
+<script src="./themestatic/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme_bootstrap/js/respond.min.js"></script>
+<script src="./themestatic/js/respond.min.js"></script>
 
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-56932248-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 
 </body>
 </html>

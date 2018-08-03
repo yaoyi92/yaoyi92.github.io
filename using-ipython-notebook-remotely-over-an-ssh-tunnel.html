@@ -27,11 +27,11 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme_bootstrap/css/bootstrap.min.css" type="text/css"/>
-    <link href="./theme_bootstrap/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
+    <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="./theme_bootstrap/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme_bootstrap/css/style.css" type="text/css"/>
+    <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -127,33 +127,22 @@ Yi Yao's Homepage            </a>
                 </div>
                 <p>ipython notebook is a tool I loved. <a href="http://wisdomthroughknowledge.blogspot.com/2012/07/accessing-ipython-notebook-remotely.html">Here</a> is a tutorial of using ipython remotely with ssh tunnel. I list the commands here for remembering.</p>
 <p>On killdevil</p>
-<div class="highlight"><pre>ipython notebook --no-browser --port=7000
+<div class="highlight"><pre><span></span>ipython notebook --no-browser --port=7000
 </pre></div>
 
 
 <p>On my local machine</p>
-<div class="highlight"><pre>ssh -N -f -L localhost:8888:localhost:7000 yiy@killdevil.unc.edu
+<div class="highlight"><pre><span></span>ssh -N -f -L localhost:8888:localhost:7000 yiy@killdevil.unc.edu
 </pre></div>
 
 
 <p>On my webbrowser</p>
-<div class="highlight"><pre>http://localhost:8888
+<div class="highlight"><pre><span></span>http://localhost:8888
 </pre></div>
 
 
 <!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) -->
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -174,14 +163,31 @@ Yi Yao's Homepage            </a>
       </div>
    </div>
 </footer>
-<script src="./theme_bootstrap/js/jquery.min.js"></script>
+<script src="./themestatic/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme_bootstrap/js/bootstrap.min.js"></script>
+<script src="./themestatic/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme_bootstrap/js/respond.min.js"></script>
+<script src="./themestatic/js/respond.min.js"></script>
 
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-56932248-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 
 </body>
 </html>

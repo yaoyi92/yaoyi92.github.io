@@ -27,11 +27,11 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme_bootstrap/css/bootstrap.min.css" type="text/css"/>
-    <link href="./theme_bootstrap/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
+    <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="./theme_bootstrap/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme_bootstrap/css/style.css" type="text/css"/>
+    <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -127,7 +127,7 @@ Yi Yao's Homepage            </a>
                 </div>
                 <p><a href="http://scitation.aip.org/content/aip/journal/jcp/120/21/10.1063/1.1724816">Minima hopping</a> is an effecient global minimization method. It is implemented in cp2k code. I have tested it on LJ38 clusters and found it performed very well. It is easy to using all the force methods in cp2k, and also easy to using multiple cores and easy to restart.</p>
 <p>I copied and modified the input file in cp2k test examples.</p>
-<div class="highlight"><pre>&amp;GLOBAL
+<div class="highlight"><pre><span></span>&amp;GLOBAL
    PROJECT_NAME LJ38_minhop_1
    PROGRAM_NAME SWARM
    RUN_TYPE NONE
@@ -367,10 +367,10 @@ So here is the running script for killdevil.</p>
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash -l</span>
-<span class="c">#BSUB -n 12</span>
-<span class="c">#BSUB -e err.%J</span>
-<span class="c">#BSUB -o out.%J</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<span class="c1">#BSUB -n 12</span>
+<span class="c1">#BSUB -e err.%J</span>
+<span class="c1">#BSUB -o out.%J</span>
 
 module load cp2k
 
@@ -379,7 +379,7 @@ module load cp2k
 </td></tr></table>
 
 <p>If would like to restart a calculation I need to mv the comlog file, and uncomment REPLAY_COMMUNICATION_LOG command in the input file.</p>
-<div class="highlight"><pre>mv LJ38_minhop_1.comlog LJ38_minhop_1_old.comlog
+<div class="highlight"><pre><span></span>mv LJ38_minhop_1.comlog LJ38_minhop_1_old.comlog
 </pre></div>
 
 
@@ -388,7 +388,7 @@ module load cp2k
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash -l</span>
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
 module load gnuplot
 bash grep_energys.sh
 gnuplot plot.gplt
@@ -396,30 +396,30 @@ gnuplot plot.gplt
 </td></tr></table>
 
 <p>grep_energys.sh</p>
-<div class="highlight"><pre>grep &quot; GLBOPT| Reported potential energy&quot; LJ38_minhop_1.out | awk &#39;{print $6 }&#39; &gt; 1
+<div class="highlight"><pre><span></span>grep &quot; GLBOPT| Reported potential energy&quot; LJ38_minhop_1.out | awk &#39;{print $6 }&#39; &gt; 1
 grep &quot;GLBOPT| Lowest reported potential energy&quot; LJ38_minhop_1.out | awk &#39;{print $7 }&#39; &gt; 2
 </pre></div>
 
 
 <p>plot.gplt</p>
-<div class="highlight"><pre><span class="c1">#set terminal postscript</span>
+<div class="highlight"><pre><span></span><span class="c1">#set terminal postscript</span>
 <span class="c1">#set output &quot;test.ps&quot;</span>
-<span class="s-Atom">set</span> <span class="s-Atom">terminal</span> <span class="s-Atom">png</span>
-<span class="s-Atom">set</span> <span class="s-Atom">output</span> <span class="s2">&quot;test.png&quot;</span>
-<span class="s-Atom">set</span> <span class="s-Atom">yrange</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.175</span><span class="p">:-</span><span class="mf">0.160</span><span class="p">]</span>
-<span class="s-Atom">set</span> <span class="s-Atom">trange</span> <span class="p">[</span><span class="mi">0</span><span class="s-Atom">:</span><span class="mi">50000</span><span class="p">]</span>
-<span class="s-Atom">set</span> <span class="s-Atom">xrange</span> <span class="p">[</span><span class="mi">0</span><span class="s-Atom">:</span><span class="mi">10000</span><span class="p">]</span>
-<span class="s-Atom">set</span> <span class="s-Atom">parametric</span>
-<span class="s-Atom">const=-</span><span class="mf">0.173928427</span>
+<span class="s s-Atom">set</span> <span class="s s-Atom">terminal</span> <span class="s s-Atom">png</span>
+<span class="s s-Atom">set</span> <span class="s s-Atom">output</span> <span class="s2">&quot;test.png&quot;</span>
+<span class="s s-Atom">set</span> <span class="s s-Atom">yrange</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.175</span><span class="p">:-</span><span class="mf">0.160</span><span class="p">]</span>
+<span class="s s-Atom">set</span> <span class="s s-Atom">trange</span> <span class="p">[</span><span class="mi">0</span><span class="s s-Atom">:</span><span class="mi">50000</span><span class="p">]</span>
+<span class="s s-Atom">set</span> <span class="s s-Atom">xrange</span> <span class="p">[</span><span class="mi">0</span><span class="s s-Atom">:</span><span class="mi">10000</span><span class="p">]</span>
+<span class="s s-Atom">set</span> <span class="s s-Atom">parametric</span>
+<span class="s s-Atom">const=-</span><span class="mf">0.173928427</span>
 
-<span class="s-Atom">p</span> <span class="s2">&quot;1&quot;</span> <span class="s-Atom">u</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span> <span class="s-Atom">u</span> <span class="mi">1</span> <span class="s-Atom">w</span> <span class="s-Atom">l</span> <span class="s-Atom">lw</span> <span class="mi">2</span><span class="p">,</span> <span class="s-Atom">t</span><span class="p">,</span> <span class="s-Atom">const</span> <span class="s-Atom">w</span> <span class="s-Atom">l</span> <span class="s-Atom">lw</span> <span class="mi">2</span>
+<span class="s s-Atom">p</span> <span class="s2">&quot;1&quot;</span> <span class="s s-Atom">u</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span> <span class="s s-Atom">u</span> <span class="mi">1</span> <span class="s s-Atom">w</span> <span class="s s-Atom">l</span> <span class="s s-Atom">lw</span> <span class="mi">2</span><span class="p">,</span> <span class="s s-Atom">t</span><span class="p">,</span> <span class="s s-Atom">const</span> <span class="s s-Atom">w</span> <span class="s s-Atom">l</span> <span class="s s-Atom">lw</span> <span class="mi">2</span>
 </pre></div>
 
 
 <p>And I post the output plot here.
-<img alt="Alt Text" src="./images/cp2k_lj38_minhop.png" /></p>
+<img alt="Alt Text" src="./images/cp2k_lj38_minhop.png"></p>
 <p>To get the minimal energy structures out, I wrote a script. The script will output the structures with the order from low energy to high energy.</p>
-<div class="highlight"><pre>f = file(&quot;LJ38_minhop_1.comlog&quot;)
+<div class="highlight"><pre><span></span>f = file(&quot;LJ38_minhop_1.comlog&quot;)
 read = False
 Epot_positions = []
 Epot_position = []
@@ -472,21 +472,10 @@ for j in range(len(Epot_positions_sorted)):
 
 <p>The two lowest energy structure are here with the energy of -0.173928415115, and -0.173252366954.
 Here are the structures of them.</p>
-<p><img alt="Alt Text" src="./images/cp2k_lj38_minhop_min2.png" />
-<img alt="Alt Text" src="./images/cp2k_lj38_minhop_min1.png" /></p>
+<p><img alt="Alt Text" src="./images/cp2k_lj38_minhop_min2.png">
+<img alt="Alt Text" src="./images/cp2k_lj38_minhop_min1.png"></p>
 <!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) -->
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -507,14 +496,31 @@ Here are the structures of them.</p>
       </div>
    </div>
 </footer>
-<script src="./theme_bootstrap/js/jquery.min.js"></script>
+<script src="./themestatic/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme_bootstrap/js/bootstrap.min.js"></script>
+<script src="./themestatic/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme_bootstrap/js/respond.min.js"></script>
+<script src="./themestatic/js/respond.min.js"></script>
 
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-56932248-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 
 </body>
 </html>

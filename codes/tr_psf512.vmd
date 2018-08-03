@@ -1,0 +1,18 @@
+mol new H2O512NaCl.gro waitfor all
+#mol new H2O55.xyz waitfor all
+
+pbc set { 24.8737 24.8737 24.8737 }
+
+#add bonds and angles
+topo clearbonds
+for {set i 0} {$i < 512} {incr i} {
+  topo addbond [expr $i*3] [expr $i*3+1] -bondtype 1 #bond O-H
+  topo addbond [expr $i*3] [expr $i*3+2] -bondtype 1 #bond O-H
+  topo addangle [expr $i*3+2] [expr $i*3] [expr $i*3+1] 1 #angle H-O-H
+}
+
+
+
+
+animate write psf H2O512NaCl_gro.psf
+animate write xyz H2O512NaCl.xyz

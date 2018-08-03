@@ -27,11 +27,11 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme_bootstrap/css/bootstrap.min.css" type="text/css"/>
-    <link href="./theme_bootstrap/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
+    <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="./theme_bootstrap/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme_bootstrap/css/style.css" type="text/css"/>
+    <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -130,7 +130,7 @@ I post here an example of lc-blyp calculation of bulk water system.</p>
 <p>When I did the lc-blyp calculation, the scf not converge is a problem. So I did a blyp calculation first. Then copy the fort.9 file to a new folder of fort.20 which is the density matrix file. And I will add a GUESSP command to the INPUT for lc-blyp calculation.</p>
 <p>Here is the inputs:</p>
 <p>INPUT for blyp calculation</p>
-<div class="highlight"><pre>Water cube
+<div class="highlight"><pre><span></span>Water cube
 CRYSTAL
 0 0 0
 1
@@ -321,7 +321,7 @@ END
 
 
 <p>INPUT for lc-blyp calculation</p>
-<div class="highlight"><pre>Water cube
+<div class="highlight"><pre><span></span>Water cube
 CRYSTAL
 0 0 0
 1
@@ -521,20 +521,20 @@ END
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash -l</span>
-<span class="c">#BSUB -n &quot;60&quot;</span>
-<span class="c">#BSUB -e err.%J  </span>
-<span class="c">#BSUB -o out.%J</span>
-<span class="c">#BSUB -q week</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<span class="c1">#BSUB -n &quot;60&quot;</span>
+<span class="c1">#BSUB -e err.%J  </span>
+<span class="c1">#BSUB -o out.%J</span>
+<span class="c1">#BSUB -q week</span>
 
 <span class="nv">CRYSTAL</span><span class="o">=</span>/nas02/home/y/i/yiy/software/crystal/CRYSTAL14_amd64/bin/Linux-ifort_amd64/v1.0.3/Pcrystal
-<span class="c">#/usr/mpi/intel/mvapich2-1.7/bin/mpiexec -n 10 $CRYSTAL &gt; cubo.out1 &amp;&gt; cubo.out2</span>
+<span class="c1">#/usr/mpi/intel/mvapich2-1.7/bin/mpiexec -n 10 $CRYSTAL &gt; cubo.out1 &amp;&gt; cubo.out2</span>
 mpirun <span class="nv">$CRYSTAL</span> &gt; H2O55.out1 <span class="p">&amp;</span>&gt; H2O55.out2
 </pre></div>
 </td></tr></table>
 
 <p>A script to transfer xyz file to crystal structure file.</p>
-<div class="highlight"><pre>species_dict = {&#39;O&#39;:8, &#39;H&#39;:1, &#39;Na&#39;:17, &#39;Cl&#39;:11}
+<div class="highlight"><pre><span></span>species_dict = {&#39;O&#39;:8, &#39;H&#39;:1, &#39;Na&#39;:17, &#39;Cl&#39;:11}
 #read box size
 file_box = file(&quot;box&quot;)
 line = file_box.readline()
@@ -562,23 +562,12 @@ for i in range(natoms):
 
 
 <p>box file is like this.</p>
-<div class="highlight"><pre>12.4934 12.4934 12.4934
+<div class="highlight"><pre><span></span>12.4934 12.4934 12.4934
 </pre></div>
 
 
 <!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) -->
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -599,14 +588,31 @@ for i in range(natoms):
       </div>
    </div>
 </footer>
-<script src="./theme_bootstrap/js/jquery.min.js"></script>
+<script src="./themestatic/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme_bootstrap/js/bootstrap.min.js"></script>
+<script src="./themestatic/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme_bootstrap/js/respond.min.js"></script>
+<script src="./themestatic/js/respond.min.js"></script>
 
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-56932248-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 
 </body>
 </html>

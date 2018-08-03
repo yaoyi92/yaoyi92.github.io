@@ -27,11 +27,11 @@
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="./theme_bootstrap/css/bootstrap.min.css" type="text/css"/>
-    <link href="./theme_bootstrap/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
+    <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="./theme_bootstrap/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./theme_bootstrap/css/style.css" type="text/css"/>
+    <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -127,7 +127,7 @@ Yi Yao's Homepage            </a>
                 </div>
                 <p>I perform a test dpd simulation of membrane started from the generation of structures. packmol is used for generate the input structure. lammps is used as the simulator. </p>
 <p>The lipid structure is as follow(lipid.xyz):</p>
-<div class="highlight"><pre>11
+<div class="highlight"><pre><span></span>11
 
 C 0.0 0.0 0.0
 C 0.5 0.0 0.0
@@ -144,16 +144,16 @@ H 2.5 0.0 0.0
 
 
 <p>which is like the pic shown below.</p>
-<p><img alt="Alt Text" src="./images/lipid.png" /></p>
+<p><img alt="Alt Text" src="./images/lipid.png"></p>
 <p>also a water sturcture is listed(water.xyz). Because only one particle will represent one water.</p>
-<div class="highlight"><pre>1
+<div class="highlight"><pre><span></span>1
 
 W 0.0 0.0 0.0
 </pre></div>
 
 
 <p>a packmol input(bilayer_packmol.in) script is used here to generate the structure of the total system.</p>
-<div class="highlight"><pre>tolerance 0.5
+<div class="highlight"><pre><span></span>tolerance 0.5
 filetype xyz
 output bilayer.xyz
 
@@ -192,7 +192,7 @@ end structure
 
 
 <p>And also I have a script for the generation of psf and lammps data file.</p>
-<div class="highlight"><pre><span class="x">mol new bilayer.xyz</span>
+<div class="highlight"><pre><span></span><span class="x">mol new bilayer.xyz</span>
 
 <span class="x">pbc set </span><span class="cp">{</span> <span class="m">19.428</span> <span class="m">19.428</span> <span class="m">19.428</span> <span class="cp">}</span><span class="x"></span>
 <span class="x">topo clearbonds</span>
@@ -221,10 +221,10 @@ end structure
 
 
 <p>The final version of the input structure is showed as follow</p>
-<p><img alt="Alt Text" src="./images/membrane.png" /></p>
+<p><img alt="Alt Text" src="./images/membrane.png"></p>
 <p>I use this structure for the input of DPD simulation, and the input file for lammps is as follow. </p>
 <p>The input files: <a href="./codes/bilayer.data">bilayer.data</a>, <a href="./codes/dpd_test.in">dpd_test.in</a></p>
-<div class="highlight"><pre>units       lj
+<div class="highlight"><pre><span></span>units       lj
 atom_style full
 comm_modify vel yes
 pair_style  dpd 1.0 1.0 34387
@@ -277,20 +277,9 @@ run     50000
 
 
 <p>The result movie is shown as below</p>
-<p><img alt="Alt Text" src="./images/dpd_movie.gif" /></p>
+<p><img alt="Alt Text" src="./images/dpd_movie.gif"></p>
 <!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) -->
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56932248-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
             </div>
             <!-- /.entry-content -->
         </article>
@@ -311,14 +300,31 @@ run     50000
       </div>
    </div>
 </footer>
-<script src="./theme_bootstrap/js/jquery.min.js"></script>
+<script src="./themestatic/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="./theme_bootstrap/js/bootstrap.min.js"></script>
+<script src="./themestatic/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="./theme_bootstrap/js/respond.min.js"></script>
+<script src="./themestatic/js/respond.min.js"></script>
 
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-56932248-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
 
 </body>
 </html>
