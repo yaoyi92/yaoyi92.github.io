@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yi Yao's Homepage - Yi Yao</title><link href="index.html/" rel="alternate"></link><link href="index.html/feeds/yi-yao.atom.xml" rel="self"></link><id>index.html/</id><updated>2017-04-11T23:26:00+02:00</updated><entry><title>SCAN TM pseudopotentials</title><link href="index.html/scan-tm-pseudopotentials.html" rel="alternate"></link><published>2017-04-11T23:26:00+02:00</published><updated>2017-04-11T23:26:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2017-04-11:index.html/scan-tm-pseudopotentials.html</id><summary type="html">&lt;p&gt;SCAN pseudopotentials&lt;/p&gt;</summary><content type="html">&lt;p&gt;Use at your own risk.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yi Yao's Homepage - Yi Yao</title><link href="https://yaoyi92.github.io/" rel="alternate"></link><link href="https://yaoyi92.github.io/feeds/yi-yao.atom.xml" rel="self"></link><id>https://yaoyi92.github.io/</id><updated>2017-04-11T23:26:00+02:00</updated><entry><title>SCAN TM pseudopotentials</title><link href="https://yaoyi92.github.io/scan-tm-pseudopotentials.html" rel="alternate"></link><published>2017-04-11T23:26:00+02:00</published><updated>2017-04-11T23:26:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2017-04-11:/scan-tm-pseudopotentials.html</id><summary type="html">&lt;p&gt;SCAN pseudopotentials&lt;/p&gt;</summary><content type="html">&lt;p&gt;Use at your own risk.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -25,7 +25,7 @@
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/H.SCAN.UPF"&gt;&lt;strong&gt;H&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/H.SCAN.UPF"&gt;&lt;strong&gt;H&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
@@ -42,11 +42,11 @@
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/He.SCAN.UPF"&gt;&lt;strong&gt;He&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/He.SCAN.UPF"&gt;&lt;strong&gt;He&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/Li.SCAN.UPF"&gt;&lt;strong&gt;Li&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/Be.SCAN.UPF"&gt;&lt;strong&gt;Be&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/Li.SCAN.UPF"&gt;&lt;strong&gt;Li&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/Be.SCAN.UPF"&gt;&lt;strong&gt;Be&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
@@ -57,12 +57,12 @@
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/B.SCAN.UPF"&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/C.SCAN.UPF"&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/N.SCAN.UPF"&gt;&lt;strong&gt;N&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/O.SCAN.UPF"&gt;&lt;strong&gt;O&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/F.SCAN.UPF"&gt;&lt;strong&gt;F&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/Ne.SCAN.UPF"&gt;&lt;strong&gt;Ne&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/B.SCAN.UPF"&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/C.SCAN.UPF"&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/N.SCAN.UPF"&gt;&lt;strong&gt;N&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/O.SCAN.UPF"&gt;&lt;strong&gt;O&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/F.SCAN.UPF"&gt;&lt;strong&gt;F&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/Ne.SCAN.UPF"&gt;&lt;strong&gt;Ne&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Na&lt;/td&gt;
@@ -77,11 +77,11 @@
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/Al.SCAN.UPF"&gt;&lt;strong&gt;Al&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/Si.SCAN.UPF"&gt;&lt;strong&gt;Si&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/P.SCAN.UPF"&gt;&lt;strong&gt;P&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/S.SCAN.UPF"&gt;&lt;strong&gt;S&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/Cl.SCAN.UPF"&gt;&lt;strong&gt;Cl&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/Al.SCAN.UPF"&gt;&lt;strong&gt;Al&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/Si.SCAN.UPF"&gt;&lt;strong&gt;Si&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/P.SCAN.UPF"&gt;&lt;strong&gt;P&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/S.SCAN.UPF"&gt;&lt;strong&gt;S&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/Cl.SCAN.UPF"&gt;&lt;strong&gt;Cl&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Ar&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -98,7 +98,7 @@
 &lt;td&gt;Cu&lt;/td&gt;
 &lt;td&gt;Zn&lt;/td&gt;
 &lt;td&gt;Ga&lt;/td&gt;
-&lt;td&gt;&lt;a href="index.html/scan_pps/Ge.SCAN.UPF"&gt;&lt;strong&gt;Ge&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://yaoyi92.github.io/scan_pps/Ge.SCAN.UPF"&gt;&lt;strong&gt;Ge&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;As&lt;/td&gt;
 &lt;td&gt;Se&lt;/td&gt;
 &lt;td&gt;Br&lt;/td&gt;
@@ -169,7 +169,7 @@
 &lt;h1&gt;reference:&lt;/h1&gt;
 &lt;p&gt;The Journal of Chemical Physics 146, 224105 (2017)&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="DFT"></category></entry><entry><title>tricubic interpolation</title><link href="index.html/tricubic-interpolation.html" rel="alternate"></link><published>2017-02-13T10:00:00+01:00</published><updated>2017-02-13T10:00:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2017-02-13:index.html/tricubic-interpolation.html</id><summary type="html">&lt;p&gt;tricubic interpolation&lt;/p&gt;</summary><content type="html">&lt;p&gt;When dealing with charge density data or wave function data stored in a cube file, I sometimes would like to find a charge density in a specific point in the space. However, only density on grid is stored in the file. Interpolation is necessary for this purpose. In scipy, scipy.interpolate.RegularGridInterpolator can be used for 3d interpolation, but only "nearest" and "linear" method is available. In order to get high presicion, &lt;a href="http://onlinelibrary.wiley.com/doi/10.1002/nme.1296/full"&gt;Tricubic&lt;/a&gt; interpolation could help. In two packages, this function is available. &lt;a href="https://github.com/danielguterding/pytricubic"&gt;pytricubic&lt;/a&gt; and &lt;a href="https://eqtools.readthedocs.io/en/latest/eqtools.html#module-eqtools.trispline"&gt;eqtools&lt;/a&gt;, I tried both and both works fine. I would recommend the eqtools since it is easy to install and doesnt have a dependence on Eigen or boost.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="DFT"></category></entry><entry><title>tricubic interpolation</title><link href="https://yaoyi92.github.io/tricubic-interpolation.html" rel="alternate"></link><published>2017-02-13T10:00:00+01:00</published><updated>2017-02-13T10:00:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2017-02-13:/tricubic-interpolation.html</id><summary type="html">&lt;p&gt;tricubic interpolation&lt;/p&gt;</summary><content type="html">&lt;p&gt;When dealing with charge density data or wave function data stored in a cube file, I sometimes would like to find a charge density in a specific point in the space. However, only density on grid is stored in the file. Interpolation is necessary for this purpose. In scipy, scipy.interpolate.RegularGridInterpolator can be used for 3d interpolation, but only "nearest" and "linear" method is available. In order to get high presicion, &lt;a href="http://onlinelibrary.wiley.com/doi/10.1002/nme.1296/full"&gt;Tricubic&lt;/a&gt; interpolation could help. In two packages, this function is available. &lt;a href="https://github.com/danielguterding/pytricubic"&gt;pytricubic&lt;/a&gt; and &lt;a href="https://eqtools.readthedocs.io/en/latest/eqtools.html#module-eqtools.trispline"&gt;eqtools&lt;/a&gt;, I tried both and both works fine. I would recommend the eqtools since it is easy to install and doesnt have a dependence on Eigen or boost.&lt;/p&gt;
 &lt;p&gt;Here I give a small test script for comparison of nearst, linear, and tricubic interpolation accuracy.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy.interpolate&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RegularGridInterpolator&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;eqtools.trispline&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Spline&lt;/span&gt;
@@ -223,7 +223,7 @@
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>molecular dynamics simulations by gromacs lammps cpmd cp2k cp.x qbox from scratch</title><link href="index.html/molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html" rel="alternate"></link><published>2017-01-09T10:00:00+01:00</published><updated>2017-01-09T10:00:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2017-01-09:index.html/molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html</id><summary type="html">&lt;p&gt;FPMD setup&lt;/p&gt;</summary><content type="html">&lt;p&gt;Example of setting up first principle molecular dynamics (FPMD) simulation from scratch. &lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>molecular dynamics simulations by gromacs lammps cpmd cp2k cp.x qbox from scratch</title><link href="https://yaoyi92.github.io/molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html" rel="alternate"></link><published>2017-01-09T10:00:00+01:00</published><updated>2017-01-09T10:00:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2017-01-09:/molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html</id><summary type="html">&lt;p&gt;FPMD setup&lt;/p&gt;</summary><content type="html">&lt;p&gt;Example of setting up first principle molecular dynamics (FPMD) simulation from scratch. &lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;In FPMD simulations for liquids, usually, a classical MD simulation is needed to equilibrate the system. I gave examples of using gromacs and lammps as classical MD simulator and cpmd, cp2k, cp.x, qbox as FPMD simulator. The system of 55 water at room temperature is used as the example.    &lt;/p&gt;
 &lt;p&gt;From scratch means I generate the initial structure from the water molecular structure.   &lt;/p&gt;
@@ -244,7 +244,7 @@
 &lt;hr&gt;
 &lt;h3&gt;0 download the files&lt;/h3&gt;
 &lt;p&gt;All the files needed are included here.  &lt;/p&gt;
-&lt;p&gt;&lt;a href="index.html/codes/AIMD_setup.tar.gz"&gt;AIMD_setup.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://yaoyi92.github.io/codes/AIMD_setup.tar.gz"&gt;AIMD_setup.tar.gz&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3&gt;1.1 generate initial structure for gromacs&lt;/h3&gt;
 &lt;p&gt;Note: in gromacs, genbox command can be used to generate a water box. Here I use packmol to generate the input structure and convert it to gro file as input.&lt;/p&gt;
@@ -805,10 +805,10 @@ run 100 10
 
 &lt;hr&gt;
 &lt;p&gt;After the simulation, I got trajs like this.  &lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/water55_aimd.gif"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/water55_aimd.gif"&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>bash loop template</title><link href="index.html/bash-loop-template.html" rel="alternate"></link><published>2015-05-13T01:56:00+02:00</published><updated>2015-05-13T01:56:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-05-13:index.html/bash-loop-template.html</id><summary type="html">&lt;p&gt;the simple use of bash&lt;/p&gt;</summary><content type="html">&lt;p&gt;A bash template for loops.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>bash loop template</title><link href="https://yaoyi92.github.io/bash-loop-template.html" rel="alternate"></link><published>2015-05-13T01:56:00+02:00</published><updated>2015-05-13T01:56:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2015-05-13:/bash-loop-template.html</id><summary type="html">&lt;p&gt;the simple use of bash&lt;/p&gt;</summary><content type="html">&lt;p&gt;A bash template for loops.&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
  3
@@ -844,11 +844,11 @@ run 100 10
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="bash"></category></entry><entry><title>cube file</title><link href="index.html/cube-file.html" rel="alternate"></link><published>2015-05-07T01:56:00+02:00</published><updated>2015-05-07T01:56:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-05-07:index.html/cube-file.html</id><summary type="html">&lt;p&gt;everything about cube file&lt;/p&gt;</summary><content type="html">&lt;p&gt;Cube file is a file format for electron density. &lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="bash"></category></entry><entry><title>cube file</title><link href="https://yaoyi92.github.io/cube-file.html" rel="alternate"></link><published>2015-05-07T01:56:00+02:00</published><updated>2015-05-07T01:56:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2015-05-07:/cube-file.html</id><summary type="html">&lt;p&gt;everything about cube file&lt;/p&gt;</summary><content type="html">&lt;p&gt;Cube file is a file format for electron density. &lt;/p&gt;
 &lt;p&gt;I found a python code in dftb+ website which can manipulate cube files. &lt;a href="http://www.dftb-plus.info/fileadmin/DFTB-Plus/public/tools/waveplot/r0.3/cubemanip"&gt;link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;It manipulate multiple cube files and can do all kinds of expressions using these cube files as input.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="dft"></category></entry><entry><title>constrained Density Functional Theory with cp2k</title><link href="index.html/constrained-density-functional-theory-with-cp2k.html" rel="alternate"></link><published>2015-03-09T14:56:00+01:00</published><updated>2015-03-09T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-03-09:index.html/constrained-density-functional-theory-with-cp2k.html</id><summary type="html">&lt;p&gt;A simple example for constrained DFT with cp2k&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://pubs.acs.org/doi/pdf/10.1021/cr200148b"&gt;Constrained Density Functional Theory&lt;/a&gt; has many applications. Here I showed a simple example of cDFT of H2+ system. And I would like to constrain the electron on one proton with cp2k.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="dft"></category></entry><entry><title>constrained Density Functional Theory with cp2k</title><link href="https://yaoyi92.github.io/constrained-density-functional-theory-with-cp2k.html" rel="alternate"></link><published>2015-03-09T14:56:00+01:00</published><updated>2015-03-09T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2015-03-09:/constrained-density-functional-theory-with-cp2k.html</id><summary type="html">&lt;p&gt;A simple example for constrained DFT with cp2k&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://pubs.acs.org/doi/pdf/10.1021/cr200148b"&gt;Constrained Density Functional Theory&lt;/a&gt; has many applications. Here I showed a simple example of cDFT of H2+ system. And I would like to constrain the electron on one proton with cp2k.&lt;/p&gt;
 &lt;p&gt;Here is the script.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;amp;FORCE_EVAL
   METHOD Quickstep
@@ -930,9 +930,9 @@ run 100 10
 
 
 &lt;p&gt;And I also visulized the charge density cube file. Most of the charge density is on the left proton now.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/cdft_h2+_cp2k.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/cdft_h2+_cp2k.jpeg"&gt;&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="dft"></category></entry><entry><title>crystal code with lc-blyp functional</title><link href="index.html/crystal-code-with-lc-blyp-functional.html" rel="alternate"></link><published>2015-03-09T14:56:00+01:00</published><updated>2015-03-09T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-03-09:index.html/crystal-code-with-lc-blyp-functional.html</id><summary type="html">&lt;p&gt;using crystal to calculate scf with lc-blyp functional&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://www.crystal.unito.it/index.php"&gt;crystal&lt;/a&gt; is a computational tool for solid state chemistry and physics. Basically, it does DFT. 
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="dft"></category></entry><entry><title>crystal code with lc-blyp functional</title><link href="https://yaoyi92.github.io/crystal-code-with-lc-blyp-functional.html" rel="alternate"></link><published>2015-03-09T14:56:00+01:00</published><updated>2015-03-09T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2015-03-09:/crystal-code-with-lc-blyp-functional.html</id><summary type="html">&lt;p&gt;using crystal to calculate scf with lc-blyp functional&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://www.crystal.unito.it/index.php"&gt;crystal&lt;/a&gt; is a computational tool for solid state chemistry and physics. Basically, it does DFT. 
 I post here an example of lc-blyp calculation of bulk water system.&lt;/p&gt;
 &lt;p&gt;When I did the lc-blyp calculation, the scf not converge is a problem. So I did a blyp calculation first. Then copy the fort.9 file to a new folder of fort.20 which is the density matrix file. And I will add a GUESSP command to the INPUT for lc-blyp calculation.&lt;/p&gt;
 &lt;p&gt;Here is the inputs:&lt;/p&gt;
@@ -1374,7 +1374,7 @@ for i in range(natoms):
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="dft"></category></entry><entry><title>generate initial structure by packmol</title><link href="index.html/generate-initial-structure-by-packmol.html" rel="alternate"></link><published>2015-01-20T14:25:00+01:00</published><updated>2015-01-20T14:25:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-01-20:index.html/generate-initial-structure-by-packmol.html</id><summary type="html">&lt;p&gt;generate initial structure by packmol&lt;/p&gt;</summary><content type="html">&lt;p&gt;The initial structure for md simulation will be generated by packmol then do an equilibrium step by lammps. The system I would like to prepare is 4M NaCl solution. ( 9 Na+ 9 Cl- and 115 H2O with the box size 15.5473 A. ) The template structure of Na+ and Cl- and tip4p H2O structure are prepared first. &lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="dft"></category></entry><entry><title>generate initial structure by packmol</title><link href="https://yaoyi92.github.io/generate-initial-structure-by-packmol.html" rel="alternate"></link><published>2015-01-20T14:25:00+01:00</published><updated>2015-01-20T14:25:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2015-01-20:/generate-initial-structure-by-packmol.html</id><summary type="html">&lt;p&gt;generate initial structure by packmol&lt;/p&gt;</summary><content type="html">&lt;p&gt;The initial structure for md simulation will be generated by packmol then do an equilibrium step by lammps. The system I would like to prepare is 4M NaCl solution. ( 9 Na+ 9 Cl- and 115 H2O with the box size 15.5473 A. ) The template structure of Na+ and Cl- and tip4p H2O structure are prepared first. &lt;/p&gt;
 &lt;p&gt;na.xyz&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2
 
@@ -1461,10 +1461,10 @@ $PACKMOL &amp;lt; $INPUT
 &lt;p&gt;Then I manually modified the molecule ids in data file.&lt;/p&gt;
 &lt;p&gt;After that, lammps is used to equilibrium the system.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="misc"></category></entry><entry><title>using gaussian do ccsd calculation</title><link href="index.html/using-gaussian-do-ccsd-calculation.html" rel="alternate"></link><published>2015-01-13T16:34:00+01:00</published><updated>2015-01-13T16:34:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2015-01-13:index.html/using-gaussian-do-ccsd-calculation.html</id><summary type="html">&lt;p&gt;gaussian ccsd&lt;/p&gt;</summary><content type="html">&lt;p&gt;a bash script for gaussian ccsd calculation. Cube files are generated from cc density for bader analysis. pseudopotential and basis set are input manually the data are got from EMSL database.&lt;/p&gt;
-&lt;p&gt;The files(&lt;a href="index.html/codes/cal.sh"&gt;cal.sh&lt;/a&gt;, &lt;a href="index.html/codes/cubegen.in"&gt;cubegen.in&lt;/a&gt;, &lt;a href="index.html/codes/nacl_com.sh"&gt;nacl_com.sh&lt;/a&gt;,&lt;a href="index.html/codes/nacl_submit.sh"&gt;nacl_submit.sh&lt;/a&gt;)&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="misc"></category></entry><entry><title>using gaussian do ccsd calculation</title><link href="https://yaoyi92.github.io/using-gaussian-do-ccsd-calculation.html" rel="alternate"></link><published>2015-01-13T16:34:00+01:00</published><updated>2015-01-13T16:34:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2015-01-13:/using-gaussian-do-ccsd-calculation.html</id><summary type="html">&lt;p&gt;gaussian ccsd&lt;/p&gt;</summary><content type="html">&lt;p&gt;a bash script for gaussian ccsd calculation. Cube files are generated from cc density for bader analysis. pseudopotential and basis set are input manually the data are got from EMSL database.&lt;/p&gt;
+&lt;p&gt;The files(&lt;a href="https://yaoyi92.github.io/codes/cal.sh"&gt;cal.sh&lt;/a&gt;, &lt;a href="https://yaoyi92.github.io/codes/cubegen.in"&gt;cubegen.in&lt;/a&gt;, &lt;a href="https://yaoyi92.github.io/codes/nacl_com.sh"&gt;nacl_com.sh&lt;/a&gt;,&lt;a href="https://yaoyi92.github.io/codes/nacl_submit.sh"&gt;nacl_submit.sh&lt;/a&gt;)&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="misc"></category></entry><entry><title>simple awk and sed</title><link href="index.html/simple-awk-and-sed.html" rel="alternate"></link><published>2014-12-24T01:56:00+01:00</published><updated>2014-12-24T01:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-24:index.html/simple-awk-and-sed.html</id><summary type="html">&lt;p&gt;the simple use of awk and sed&lt;/p&gt;</summary><content type="html">&lt;p&gt;awk and sed are two powerful command line tools for text processing. The only usage I will use are these two. For all the other complicated tasks I would prefer to use python.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="misc"></category></entry><entry><title>simple awk and sed</title><link href="https://yaoyi92.github.io/simple-awk-and-sed.html" rel="alternate"></link><published>2014-12-24T01:56:00+01:00</published><updated>2014-12-24T01:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-12-24:/simple-awk-and-sed.html</id><summary type="html">&lt;p&gt;the simple use of awk and sed&lt;/p&gt;</summary><content type="html">&lt;p&gt;awk and sed are two powerful command line tools for text processing. The only usage I will use are these two. For all the other complicated tasks I would prefer to use python.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;awk &amp;#39;{print $1 &amp;quot; &amp;quot; $2 &amp;quot; &amp;quot; $3}&amp;#39; input &amp;gt; output
 
 sed &amp;#39;s/wrong/right/&amp;#39; input &amp;gt; output
@@ -1474,7 +1474,7 @@ sed &amp;quot;/&amp;amp;word_after_which_to_insert/ r file_insert&amp;quot; temp
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="awk"></category><category term="sed"></category></entry><entry><title>ase</title><link href="index.html/ase.html" rel="alternate"></link><published>2014-12-20T23:26:00+01:00</published><updated>2014-12-20T23:26:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-20:index.html/ase.html</id><summary type="html">&lt;p&gt;ase&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://wiki.fysik.dtu.dk/ase/index.html"&gt;ase&lt;/a&gt; is a python library for atomic simulation. It can be used with a lot of code from first principle to classical md codes. It would be a good toy and test ground for atomic simulation. I plan to use it to test some algorithm with lj potential built in.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="awk"></category><category term="sed"></category></entry><entry><title>ase</title><link href="https://yaoyi92.github.io/ase.html" rel="alternate"></link><published>2014-12-20T23:26:00+01:00</published><updated>2014-12-20T23:26:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-12-20:/ase.html</id><summary type="html">&lt;p&gt;ase&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://wiki.fysik.dtu.dk/ase/index.html"&gt;ase&lt;/a&gt; is a python library for atomic simulation. It can be used with a lot of code from first principle to classical md codes. It would be a good toy and test ground for atomic simulation. I plan to use it to test some algorithm with lj potential built in.&lt;/p&gt;
 &lt;p&gt;Here is the process for me to install it on killdevil.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
 &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;activate&lt;/span&gt; &lt;span class="n"&gt;my_root&lt;/span&gt;
@@ -1503,7 +1503,7 @@ OK
 
 &lt;p&gt;Now I can play around with it.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>doing global optimization with minima hopping algorithm with cp2k</title><link href="index.html/doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html" rel="alternate"></link><published>2014-12-20T23:26:00+01:00</published><updated>2014-12-20T23:26:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-20:index.html/doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html</id><summary type="html">&lt;p&gt;using cp2k doing MINHOP global optimization method&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://scitation.aip.org/content/aip/journal/jcp/120/21/10.1063/1.1724816"&gt;Minima hopping&lt;/a&gt; is an effecient global minimization method. It is implemented in cp2k code. I have tested it on LJ38 clusters and found it performed very well. It is easy to using all the force methods in cp2k, and also easy to using multiple cores and easy to restart.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>doing global optimization with minima hopping algorithm with cp2k</title><link href="https://yaoyi92.github.io/doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html" rel="alternate"></link><published>2014-12-20T23:26:00+01:00</published><updated>2014-12-20T23:26:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-12-20:/doing-global-optimization-with-minima-hopping-algorithm-with-cp2k.html</id><summary type="html">&lt;p&gt;using cp2k doing MINHOP global optimization method&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://scitation.aip.org/content/aip/journal/jcp/120/21/10.1063/1.1724816"&gt;Minima hopping&lt;/a&gt; is an effecient global minimization method. It is implemented in cp2k code. I have tested it on LJ38 clusters and found it performed very well. It is easy to using all the force methods in cp2k, and also easy to using multiple cores and easy to restart.&lt;/p&gt;
 &lt;p&gt;I copied and modified the input file in cp2k test examples.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;amp;GLOBAL
    PROJECT_NAME LJ38_minhop_1
@@ -1795,7 +1795,7 @@ grep &amp;quot;GLBOPT| Lowest reported potential energy&amp;quot; LJ38_minhop_1.
 
 
 &lt;p&gt;And I post the output plot here.
-&lt;img alt="Alt Text" src="index.html/images/cp2k_lj38_minhop.png"&gt;&lt;/p&gt;
+&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/cp2k_lj38_minhop.png"&gt;&lt;/p&gt;
 &lt;p&gt;To get the minimal energy structures out, I wrote a script. The script will output the structures with the order from low energy to high energy.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;f = file(&amp;quot;LJ38_minhop_1.comlog&amp;quot;)
 read = False
@@ -1850,10 +1850,10 @@ for j in range(len(Epot_positions_sorted)):
 
 &lt;p&gt;The two lowest energy structure are here with the energy of -0.173928415115, and -0.173252366954.
 Here are the structures of them.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/cp2k_lj38_minhop_min2.png"&gt;
-&lt;img alt="Alt Text" src="index.html/images/cp2k_lj38_minhop_min1.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/cp2k_lj38_minhop_min2.png"&gt;
+&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/cp2k_lj38_minhop_min1.png"&gt;&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>using horton do esp charge analysis</title><link href="index.html/using-horton-do-esp-charge-analysis.html" rel="alternate"></link><published>2014-12-15T13:50:00+01:00</published><updated>2014-12-15T13:50:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-15:index.html/using-horton-do-esp-charge-analysis.html</id><summary type="html">&lt;p&gt;horton esp&lt;/p&gt;</summary><content type="html">&lt;p&gt;In order to do esp charge analysis, I generate charge density cube file and electric potential cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and these cube files to do esp charge analysis (follow this &lt;a href="http://theochem.github.io/horton/tut_espfit.html"&gt;link&lt;/a&gt; ).&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>using horton do esp charge analysis</title><link href="https://yaoyi92.github.io/using-horton-do-esp-charge-analysis.html" rel="alternate"></link><published>2014-12-15T13:50:00+01:00</published><updated>2014-12-15T13:50:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-12-15:/using-horton-do-esp-charge-analysis.html</id><summary type="html">&lt;p&gt;horton esp&lt;/p&gt;</summary><content type="html">&lt;p&gt;In order to do esp charge analysis, I generate charge density cube file and electric potential cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and these cube files to do esp charge analysis (follow this &lt;a href="http://theochem.github.io/horton/tut_espfit.html"&gt;link&lt;/a&gt; ).&lt;/p&gt;
 &lt;p&gt;Here is how I use it on killdevil.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
 &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;activate&lt;/span&gt; &lt;span class="n"&gt;my_root&lt;/span&gt;
@@ -2121,7 +2121,7 @@ Here are the structures of them.&lt;/p&gt;
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>using horton do hirshfeld charge analysis</title><link href="index.html/using-horton-do-hirshfeld-charge-analysis.html" rel="alternate"></link><published>2014-12-09T23:34:00+01:00</published><updated>2014-12-09T23:34:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-09:index.html/using-horton-do-hirshfeld-charge-analysis.html</id><summary type="html">&lt;p&gt;horton hirshfeld&lt;/p&gt;</summary><content type="html">&lt;p&gt;In order to do hirshfeld charge analysis, I generate charge density cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and this cube file to do hirshfeld charge analysis (follow this &lt;a href="http://theochem.github.io/horton/tut_part.html#id32"&gt;link&lt;/a&gt; ).&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>using horton do hirshfeld charge analysis</title><link href="https://yaoyi92.github.io/using-horton-do-hirshfeld-charge-analysis.html" rel="alternate"></link><published>2014-12-09T23:34:00+01:00</published><updated>2014-12-09T23:34:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-12-09:/using-horton-do-hirshfeld-charge-analysis.html</id><summary type="html">&lt;p&gt;horton hirshfeld&lt;/p&gt;</summary><content type="html">&lt;p&gt;In order to do hirshfeld charge analysis, I generate charge density cube file from cp2k (with GPW method, GAPW method has a problem generate charge density cube file). I post here the steps I use horton and this cube file to do hirshfeld charge analysis (follow this &lt;a href="http://theochem.github.io/horton/tut_part.html#id32"&gt;link&lt;/a&gt; ).&lt;/p&gt;
 &lt;p&gt;Here is how I use it on killdevil.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
 &lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;activate&lt;/span&gt; &lt;span class="n"&gt;my_root&lt;/span&gt;
@@ -2273,7 +2273,7 @@ module load cp2k/2.5.1
 
 &lt;p&gt;The information I got based on hirshfeld analysis are in the file of output.csv.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>horton</title><link href="index.html/horton.html" rel="alternate"></link><published>2014-12-09T00:09:00+01:00</published><updated>2014-12-09T00:09:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-09:index.html/horton.html</id><summary type="html">&lt;p&gt;horton&lt;/p&gt;</summary><content type="html">&lt;p&gt;horton is a development platform for electronic structure methods. It can do electronic density partition with different methods. I am trying to install it on killdevil, now.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>horton</title><link href="https://yaoyi92.github.io/horton.html" rel="alternate"></link><published>2014-12-09T00:09:00+01:00</published><updated>2014-12-09T00:09:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-12-09:/horton.html</id><summary type="html">&lt;p&gt;horton&lt;/p&gt;</summary><content type="html">&lt;p&gt;horton is a development platform for electronic structure methods. It can do electronic density partition with different methods. I am trying to install it on killdevil, now.&lt;/p&gt;
 &lt;p&gt;Here is how I use it on killdevil.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
 &lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;gcc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;4.8.1&lt;/span&gt;
@@ -2313,7 +2313,7 @@ OK
 
 &lt;p&gt;This means I have succesfully install horton.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>lis write matrix</title><link href="index.html/lis-write-matrix.html" rel="alternate"></link><published>2014-12-04T14:56:00+01:00</published><updated>2014-12-04T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-04:index.html/lis-write-matrix.html</id><summary type="html">&lt;p&gt;using lis to write a matrix instead of read from file&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://www.ssisc.org/lis/"&gt;lis&lt;/a&gt; is a parallel iterative solvers library for linear systems. Instead of read matrix from files, write matrix information directly in the code is useful. I tested it and gave an example here. The matrix is stored in csr form and distributed in all the cpus.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>lis write matrix</title><link href="https://yaoyi92.github.io/lis-write-matrix.html" rel="alternate"></link><published>2014-12-04T14:56:00+01:00</published><updated>2014-12-04T14:56:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-12-04:/lis-write-matrix.html</id><summary type="html">&lt;p&gt;using lis to write a matrix instead of read from file&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://www.ssisc.org/lis/"&gt;lis&lt;/a&gt; is a parallel iterative solvers library for linear systems. Instead of read matrix from files, write matrix information directly in the code is useful. I tested it and gave an example here. The matrix is stored in csr form and distributed in all the cpus.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;lis_config.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;lis.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
@@ -2426,7 +2426,7 @@ mpiexec -n 2 ./test b x
 
 &lt;p&gt;However when the number of cpus is larger than the number of rows in A matrix the program will stuck. I am contacting lis developers to see if there is something wrong with the code.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="parallel computing"></category></entry><entry><title>combine arrays on different cores</title><link href="index.html/combine-arrays-on-different-cores.html" rel="alternate"></link><published>2014-12-04T13:40:00+01:00</published><updated>2014-12-04T13:40:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-04:index.html/combine-arrays-on-different-cores.html</id><summary type="html">&lt;p&gt;using MPI_Allgatherv to combine arrays on different cores&lt;/p&gt;</summary><content type="html">&lt;p&gt;The way to combine arrays in different cores to a big array by MPI is using MPI_Allgatherv. An example I would like to test is like this.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="parallel computing"></category></entry><entry><title>combine arrays on different cores</title><link href="https://yaoyi92.github.io/combine-arrays-on-different-cores.html" rel="alternate"></link><published>2014-12-04T13:40:00+01:00</published><updated>2014-12-04T13:40:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-12-04:/combine-arrays-on-different-cores.html</id><summary type="html">&lt;p&gt;using MPI_Allgatherv to combine arrays on different cores&lt;/p&gt;</summary><content type="html">&lt;p&gt;The way to combine arrays in different cores to a big array by MPI is using MPI_Allgatherv. An example I would like to test is like this.&lt;/p&gt;
 &lt;p&gt;Core 1 : 1&lt;/p&gt;
 &lt;p&gt;Core 2 : 2 2&lt;/p&gt;
 &lt;p&gt;Core 3 : 3 3 3&lt;/p&gt;
@@ -2593,7 +2593,7 @@ after MPI_Allgatherv
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="parallel computing"></category></entry><entry><title>mdtraj</title><link href="index.html/mdtraj.html" rel="alternate"></link><published>2014-12-02T16:08:00+01:00</published><updated>2014-12-02T16:08:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-12-02:index.html/mdtraj.html</id><summary type="html">&lt;p&gt;mdtraj&lt;/p&gt;</summary><content type="html">&lt;p&gt;mdtraj is a python library to read, write and analyze MD trajectories. Here is its &lt;a href="http://http://mdtraj.org"&gt;website&lt;/a&gt;. It can be easy installed by conda and has the function to calculate distance for particles with periodic boundary conditions.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="parallel computing"></category></entry><entry><title>mdtraj</title><link href="https://yaoyi92.github.io/mdtraj.html" rel="alternate"></link><published>2014-12-02T16:08:00+01:00</published><updated>2014-12-02T16:08:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-12-02:/mdtraj.html</id><summary type="html">&lt;p&gt;mdtraj&lt;/p&gt;</summary><content type="html">&lt;p&gt;mdtraj is a python library to read, write and analyze MD trajectories. Here is its &lt;a href="http://http://mdtraj.org"&gt;website&lt;/a&gt;. It can be easy installed by conda and has the function to calculate distance for particles with periodic boundary conditions.&lt;/p&gt;
 &lt;p&gt;Here is how I use it on killdevil.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;anaconda&lt;/span&gt;
 &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;load&lt;/span&gt; &lt;span class="n"&gt;gcc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;4.8&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
@@ -2604,7 +2604,7 @@ after MPI_Allgatherv
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>dissipative particle dynamics of membrane from scratch</title><link href="index.html/dissipative-particle-dynamics-of-membrane-from-scratch.html" rel="alternate"></link><published>2014-11-25T13:44:00+01:00</published><updated>2014-11-25T13:44:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-25:index.html/dissipative-particle-dynamics-of-membrane-from-scratch.html</id><summary type="html">&lt;p&gt;Learning dissipative particle dynamics by lammps&lt;/p&gt;</summary><content type="html">&lt;p&gt;I perform a test dpd simulation of membrane started from the generation of structures. packmol is used for generate the input structure. lammps is used as the simulator. &lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>dissipative particle dynamics of membrane from scratch</title><link href="https://yaoyi92.github.io/dissipative-particle-dynamics-of-membrane-from-scratch.html" rel="alternate"></link><published>2014-11-25T13:44:00+01:00</published><updated>2014-11-25T13:44:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-11-25:/dissipative-particle-dynamics-of-membrane-from-scratch.html</id><summary type="html">&lt;p&gt;Learning dissipative particle dynamics by lammps&lt;/p&gt;</summary><content type="html">&lt;p&gt;I perform a test dpd simulation of membrane started from the generation of structures. packmol is used for generate the input structure. lammps is used as the simulator. &lt;/p&gt;
 &lt;p&gt;The lipid structure is as follow(lipid.xyz):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;11
 
@@ -2623,7 +2623,7 @@ H 2.5 0.0 0.0
 
 
 &lt;p&gt;which is like the pic shown below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/lipid.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/lipid.png"&gt;&lt;/p&gt;
 &lt;p&gt;also a water sturcture is listed(water.xyz). Because only one particle will represent one water.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1
 
@@ -2700,9 +2700,9 @@ end structure
 
 
 &lt;p&gt;The final version of the input structure is showed as follow&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/membrane.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/membrane.png"&gt;&lt;/p&gt;
 &lt;p&gt;I use this structure for the input of DPD simulation, and the input file for lammps is as follow. &lt;/p&gt;
-&lt;p&gt;The input files: &lt;a href="index.html/codes/bilayer.data"&gt;bilayer.data&lt;/a&gt;, &lt;a href="index.html/codes/dpd_test.in"&gt;dpd_test.in&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The input files: &lt;a href="https://yaoyi92.github.io/codes/bilayer.data"&gt;bilayer.data&lt;/a&gt;, &lt;a href="https://yaoyi92.github.io/codes/dpd_test.in"&gt;dpd_test.in&lt;/a&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;units       lj
 atom_style full
 comm_modify vel yes
@@ -2756,9 +2756,9 @@ run     50000
 
 
 &lt;p&gt;The result movie is shown as below&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/dpd_movie.gif"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/dpd_movie.gif"&gt;&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>using ipython notebook remotely over an ssh tunnel</title><link href="index.html/using-ipython-notebook-remotely-over-an-ssh-tunnel.html" rel="alternate"></link><published>2014-11-24T09:27:00+01:00</published><updated>2014-11-24T09:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-24:index.html/using-ipython-notebook-remotely-over-an-ssh-tunnel.html</id><summary type="html">&lt;p&gt;ipython&lt;/p&gt;</summary><content type="html">&lt;p&gt;ipython notebook is a tool I loved. &lt;a href="http://wisdomthroughknowledge.blogspot.com/2012/07/accessing-ipython-notebook-remotely.html"&gt;Here&lt;/a&gt; is a tutorial of using ipython remotely with ssh tunnel. I list the commands here for remembering.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>using ipython notebook remotely over an ssh tunnel</title><link href="https://yaoyi92.github.io/using-ipython-notebook-remotely-over-an-ssh-tunnel.html" rel="alternate"></link><published>2014-11-24T09:27:00+01:00</published><updated>2014-11-24T09:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-11-24:/using-ipython-notebook-remotely-over-an-ssh-tunnel.html</id><summary type="html">&lt;p&gt;ipython&lt;/p&gt;</summary><content type="html">&lt;p&gt;ipython notebook is a tool I loved. &lt;a href="http://wisdomthroughknowledge.blogspot.com/2012/07/accessing-ipython-notebook-remotely.html"&gt;Here&lt;/a&gt; is a tutorial of using ipython remotely with ssh tunnel. I list the commands here for remembering.&lt;/p&gt;
 &lt;p&gt;On killdevil&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;ipython notebook --no-browser --port=7000
 &lt;/pre&gt;&lt;/div&gt;
@@ -2775,11 +2775,11 @@ run     50000
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>anaconda</title><link href="index.html/anaconda.html" rel="alternate"></link><published>2014-11-23T13:40:00+01:00</published><updated>2014-11-23T13:40:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-23:index.html/anaconda.html</id><summary type="html">&lt;p&gt;anaconda&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://store.continuum.io/cshop/anaconda/"&gt;anaconda&lt;/a&gt; is a python distribution for scientific computing. I used to use epd distribution but this one is better including tons of python packages built-in. The packages of numpy, scipy, ipython, numba, matplotlib are all included. The installation is also straight forward. I would like to recommend this distribution of python for scientists. It is totally free.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>anaconda</title><link href="https://yaoyi92.github.io/anaconda.html" rel="alternate"></link><published>2014-11-23T13:40:00+01:00</published><updated>2014-11-23T13:40:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-11-23:/anaconda.html</id><summary type="html">&lt;p&gt;anaconda&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://store.continuum.io/cshop/anaconda/"&gt;anaconda&lt;/a&gt; is a python distribution for scientific computing. I used to use epd distribution but this one is better including tons of python packages built-in. The packages of numpy, scipy, ipython, numba, matplotlib are all included. The installation is also straight forward. I would like to recommend this distribution of python for scientists. It is totally free.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>numba</title><link href="index.html/numba.html" rel="alternate"></link><published>2014-11-23T11:52:00+01:00</published><updated>2014-11-23T11:52:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-23:index.html/numba.html</id><summary type="html">&lt;p&gt;numba&lt;/p&gt;</summary><content type="html">&lt;p&gt;numba is a tool using jit to speed up python applications. Here is a &lt;a href="https://www.youtube.com/watch?v=COglHpt7KSs"&gt;video introduction&lt;/a&gt;.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>numba</title><link href="https://yaoyi92.github.io/numba.html" rel="alternate"></link><published>2014-11-23T11:52:00+01:00</published><updated>2014-11-23T11:52:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-11-23:/numba.html</id><summary type="html">&lt;p&gt;numba&lt;/p&gt;</summary><content type="html">&lt;p&gt;numba is a tool using jit to speed up python applications. Here is a &lt;a href="https://www.youtube.com/watch?v=COglHpt7KSs"&gt;video introduction&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>dissipative particle dynamics</title><link href="index.html/dissipative-particle-dynamics.html" rel="alternate"></link><published>2014-11-22T23:27:00+01:00</published><updated>2014-11-22T23:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-22:index.html/dissipative-particle-dynamics.html</id><summary type="html">&lt;p&gt;Learning dissipative particle dynamics&lt;/p&gt;</summary><content type="html">&lt;p&gt;I learned about dissipative particle dynamics (DPD) with Max, Upendra, and Ardeshir. It is an amazing tool for simulation of mesoscale systems including polymers and bio-membranes.
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category></entry><entry><title>dissipative particle dynamics</title><link href="https://yaoyi92.github.io/dissipative-particle-dynamics.html" rel="alternate"></link><published>2014-11-22T23:27:00+01:00</published><updated>2014-11-22T23:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-11-22:/dissipative-particle-dynamics.html</id><summary type="html">&lt;p&gt;Learning dissipative particle dynamics&lt;/p&gt;</summary><content type="html">&lt;p&gt;I learned about dissipative particle dynamics (DPD) with Max, Upendra, and Ardeshir. It is an amazing tool for simulation of mesoscale systems including polymers and bio-membranes.
 The system size can be extened to µm ,and µs for time scale which is about 10^6 faster than regular molecular dynamics.&lt;/p&gt;
 &lt;p&gt;This post is for my learning process and materials of DPD.&lt;/p&gt;
 &lt;p&gt;Rob Groot seems to be the bigest name in the field of DPD. And he has really good slides for DPD. Here is the &lt;a href="http://www.cecam.org/upload/talk/presentation_2751.pdf"&gt;link&lt;/a&gt;. &lt;/p&gt;
@@ -2830,9 +2830,9 @@ run     50000
 
 
 &lt;p&gt;The gr plot I got from this simulation is the same as the plot 2 in the paper.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Alt Text" src="index.html/images/gr_dpd.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/gr_dpd.png"&gt;&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>Install mpi4py on killdevil</title><link href="index.html/install-mpi4py-on-killdevil.html" rel="alternate"></link><published>2014-11-22T23:27:00+01:00</published><updated>2014-11-22T23:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-22:index.html/install-mpi4py-on-killdevil.html</id><summary type="html">&lt;p&gt;The way to install mpi4py on killdevil&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://mpi4py.scipy.org/"&gt;mpi4py&lt;/a&gt; is the package for python to take advantage of mpi. I am try to install it on killdevil.&lt;/p&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category></entry><entry><title>Install mpi4py on killdevil</title><link href="https://yaoyi92.github.io/install-mpi4py-on-killdevil.html" rel="alternate"></link><published>2014-11-22T23:27:00+01:00</published><updated>2014-11-22T23:27:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-11-22:/install-mpi4py-on-killdevil.html</id><summary type="html">&lt;p&gt;The way to install mpi4py on killdevil&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://mpi4py.scipy.org/"&gt;mpi4py&lt;/a&gt; is the package for python to take advantage of mpi. I am try to install it on killdevil.&lt;/p&gt;
 &lt;p&gt;The modules: I got on killdevil are&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Currently Loaded Modulefiles:
   1) null                   2) epd/7.2-2              3) openmpi_intel/12.1-5
@@ -2863,14 +2863,14 @@ Hello, World! I am process 2 of 5 on c-186-31.kd.unc.edu.
 
 
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category><category term="parallel computing"></category></entry><entry><title>thermodynamics integration from scratch using cp2k</title><link href="index.html/thermodynamics-integration-from-scratch-using-cp2k.html" rel="alternate"></link><published>2014-11-20T12:52:00+01:00</published><updated>2014-11-20T12:52:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-11-20:index.html/thermodynamics-integration-from-scratch-using-cp2k.html</id><summary type="html">&lt;p&gt;help me remember some tools in setting up MD simulation and free energy calculation.&lt;/p&gt;</summary><content type="html">&lt;ol&gt;
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="python"></category><category term="parallel computing"></category></entry><entry><title>thermodynamics integration from scratch using cp2k</title><link href="https://yaoyi92.github.io/thermodynamics-integration-from-scratch-using-cp2k.html" rel="alternate"></link><published>2014-11-20T12:52:00+01:00</published><updated>2014-11-20T12:52:00+01:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-11-20:/thermodynamics-integration-from-scratch-using-cp2k.html</id><summary type="html">&lt;p&gt;help me remember some tools in setting up MD simulation and free energy calculation.&lt;/p&gt;</summary><content type="html">&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;2 ions in 512 water system is using to calculation the Potential of Mean Force (PMF) for ion pair. ( I was using 64 water system where the size of the box is only about 12.0Å, the PMF can only exceed to 6.0Å, if I use 512 water system the box size can be more than 24Å the PMF can exceed to 10.0Å. )&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;I need to know the size of the box with such number of water and ion in the system. (maybe not necessary for such big system, I put it here for smaller system and large concentration ionic solutions) Details are in my code.&lt;/p&gt;
-&lt;p&gt;&lt;a href="index.html/codes/cal_density.py"&gt;cal_density.py&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="index.html/codes/cal_density_512h2o.py"&gt;cal_density_512h2o.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://yaoyi92.github.io/codes/cal_density.py"&gt;cal_density.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://yaoyi92.github.io/codes/cal_density_512h2o.py"&gt;cal_density_512h2o.py&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The box size calculated for NaCl in 512H2O is 24.8736639347 Å.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -2881,28 +2881,28 @@ First using genbox tool in gromacs to generate a box of water with 514 water in 
 
 
 &lt;p&gt;In this way, I got a out.gro file. I will rename it to h2o514.gro file. And edit it to change the last two water to a Na ion and a Cl ion. Also the size of the box will be changed as well as the index of the atoms and the total number of atoms in the top of the file. Then I rename it to h2o512NaCl.gro. I have the final version of it here.
-&lt;a href="index.html/codes/h2o512NaCl.gro"&gt;h2o512NaCl.gro&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://yaoyi92.github.io/codes/h2o512NaCl.gro"&gt;h2o512NaCl.gro&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I would like to use psf and xyz file for the input of topology information and coordinations in to cp2k. VMD is used here for this task. So I use the script I wrote for vmd.
-&lt;a href="index.html/codes/tr_psf512.vmd"&gt;tr_psf512.vmd&lt;/a&gt;
+&lt;a href="https://yaoyi92.github.io/codes/tr_psf512.vmd"&gt;tr_psf512.vmd&lt;/a&gt;
 it used in this way.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vmd -e tr_psf512.vmd
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The files I got here is H2O512NaCl.xyz, and H2O512NaCl_gro.psf . They also need to be edited (OW -&amp;gt; O, HW1, HW2 -&amp;gt; H, the atom mass, and change the form of psf to upsf which can be loaded by cp2k). The final version of these two files are given here.
-&lt;a href="index.html/codes/H2O512NaCl.xyz"&gt;H2O512NaCl.xyz&lt;/a&gt;
-&lt;a href="index.html/codes/H2O512NaCl_gro.psf"&gt;H2O512NaCl_gro.psf&lt;/a&gt;
+&lt;a href="https://yaoyi92.github.io/codes/H2O512NaCl.xyz"&gt;H2O512NaCl.xyz&lt;/a&gt;
+&lt;a href="https://yaoyi92.github.io/codes/H2O512NaCl_gro.psf"&gt;H2O512NaCl_gro.psf&lt;/a&gt;
 (This structure is not good enough for directly calculation since the cell size is not the same. I will try to use packmol to regenerate another initial structure for the calculation later.)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;The force field I am using is &lt;a href="http://scitation.aip.org/content/aip/journal/jcp/130/12/10.1063/1.3081142"&gt;SPCE/HMN&lt;/a&gt;. An online &lt;a href="http://www.colby.edu/chemistry/PChem/Hartree.html"&gt;energy unit convertion tool&lt;/a&gt; is used for the parameters.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;The &lt;a href="index.html/codes/H2O_SPCE_HMN.inp"&gt;input file&lt;/a&gt; for cp2k. It is the input file for constraint dynamics. The lagrange multiplier will print out for the constraint force for the thermodynamics integration calculation. &lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://yaoyi92.github.io/codes/H2O_SPCE_HMN.inp"&gt;input file&lt;/a&gt; for cp2k. It is the input file for constraint dynamics. The lagrange multiplier will print out for the constraint force for the thermodynamics integration calculation. &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category><category term="free energy calculation"></category></entry><entry><title>calculate madelung constant by ewald method</title><link href="index.html/calculate-madelung-constant-by-ewald-method.html" rel="alternate"></link><published>2014-04-22T14:31:00+02:00</published><updated>2014-04-22T14:31:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-04-22:index.html/calculate-madelung-constant-by-ewald-method.html</id><summary type="html">&lt;p&gt;Understand the details of ewald summation by calculate madelung constant&lt;/p&gt;</summary><content type="html">&lt;p&gt;I would like to understand the details of ewald summation. So, I took the
+[a link relative to current file]({filename}../article1.md) --&gt;</content><category term="molecular dynamics"></category><category term="free energy calculation"></category></entry><entry><title>calculate madelung constant by ewald method</title><link href="https://yaoyi92.github.io/calculate-madelung-constant-by-ewald-method.html" rel="alternate"></link><published>2014-04-22T14:31:00+02:00</published><updated>2014-04-22T14:31:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-04-22:/calculate-madelung-constant-by-ewald-method.html</id><summary type="html">&lt;p&gt;Understand the details of ewald summation by calculate madelung constant&lt;/p&gt;</summary><content type="html">&lt;p&gt;I would like to understand the details of ewald summation. So, I took the
 calculation of madelung constant (&lt;a href="http://en.wikipedia.org/wiki/Madelung_constant"&gt;Wikipedia&lt;/a&gt;)
 as an example. I took two method to calculate madelung constant.
 One is calculate it by expanding cubes method, the other is ewald summation method.
@@ -2934,8 +2934,8 @@ When we want to calculate potential, these 1/2 should be erased.&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) --&gt;
 
-&lt;p&gt;&lt;a href="index.html/codes/madelung_realspace.m"&gt;madelung_realspace.m&lt;/a&gt;
-&lt;a href="index.html/codes/madelung_ewald.m"&gt;madelung_ewald.m&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://yaoyi92.github.io/codes/madelung_realspace.m"&gt;madelung_realspace.m&lt;/a&gt;
+&lt;a href="https://yaoyi92.github.io/codes/madelung_ewald.m"&gt;madelung_ewald.m&lt;/a&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -2990,9 +2990,9 @@ When we want to calculate potential, these 1/2 should be erased.&lt;/p&gt;
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</content><category term="molecular dynamics"></category><category term="ewald"></category><category term="matlab"></category></entry><entry><title>qmcpack - a qmc package</title><link href="index.html/qmcpack-a-qmc-package.html" rel="alternate"></link><published>2014-04-22T14:31:00+02:00</published><updated>2014-04-22T14:31:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-04-22:index.html/qmcpack-a-qmc-package.html</id><summary type="html">&lt;p&gt;QMCPACK with video tutorials&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://qmcpack.org/"&gt;QMCPACK&lt;/a&gt; is a software designed for qmc calculation. reptation is included. And it can start from pwscf calculation which attracts me a lot.&lt;/p&gt;
+&lt;/script&gt;</content><category term="molecular dynamics"></category><category term="ewald"></category><category term="matlab"></category></entry><entry><title>qmcpack - a qmc package</title><link href="https://yaoyi92.github.io/qmcpack-a-qmc-package.html" rel="alternate"></link><published>2014-04-22T14:31:00+02:00</published><updated>2014-04-22T14:31:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-04-22:/qmcpack-a-qmc-package.html</id><summary type="html">&lt;p&gt;QMCPACK with video tutorials&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://qmcpack.org/"&gt;QMCPACK&lt;/a&gt; is a software designed for qmc calculation. reptation is included. And it can start from pwscf calculation which attracts me a lot.&lt;/p&gt;
 &lt;p&gt;I found a video tutorial from their website.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/playlist?list=PLZ3WPqWe6k8t6__0VESBAh6KfUcVo7JTt"&gt;QMCPACK Summer Training 2014&lt;/a&gt;&lt;/p&gt;</content><category term="quantum monte carlo"></category></entry><entry><title>My first Post</title><link href="index.html/my-first-post.html" rel="alternate"></link><published>2014-04-13T19:20:00+02:00</published><updated>2014-04-13T19:20:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:None,2014-04-13:index.html/my-first-post.html</id><summary type="html">&lt;p class="first last"&gt;I generate this website using pelican and pelican-bootstrap3.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.youtube.com/playlist?list=PLZ3WPqWe6k8t6__0VESBAh6KfUcVo7JTt"&gt;QMCPACK Summer Training 2014&lt;/a&gt;&lt;/p&gt;</content><category term="quantum monte carlo"></category></entry><entry><title>My first Post</title><link href="https://yaoyi92.github.io/my-first-post.html" rel="alternate"></link><published>2014-04-13T19:20:00+02:00</published><updated>2014-04-13T19:20:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-04-13:/my-first-post.html</id><summary type="html">&lt;p class="first last"&gt;I generate this website using pelican and pelican-bootstrap3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;I generate this website using pelican and pelican-bootstrap3.
 Now, I can write blogs with it in rst form.&lt;/p&gt;
 </content><category term="website"></category><category term="python"></category></entry></feed>
