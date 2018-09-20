@@ -148,89 +148,33 @@ as an example. I took two method to calculate madelung constant.
 One is calculate it by expanding cubes method, the other is ewald summation method.
 A good description of ewald summation can be found <a href="http://micro.stanford.edu/mediawiki/images/4/46/Ewald_notes.pdf">here</a>.</p>
 <p>After the derivation, the total Coulomb interaction energy can be finally written as,
-</p>
-<div class="math">\begin{array}
- E E &amp;=&amp; E^S + E^L - E^{self} \\
-\end{array}</div>
-<div class="math">\begin{array}
+\begin{array}
+ E E &amp;=&amp; E^S + E^L - E^{self} \
+\end{array}</p>
+<p>\begin{array}
    &amp;=&amp; \frac{1}{4\pi\epsilon_0}\frac{1}{2}
        \sum_\mathbf{n} \sum_{i=1}^N \sum_{j=1}^N
        \frac{q_iq_j}{|\mathbf{r}_i - \mathbf{r}_j + \mathbf{n}L|}
        erfc\left( \frac{|\mathbf{r}_i - \mathbf{r}_j + \mathbf{n}L|}{\sqrt{2}\sigma}\right)
-\end{array}</div>
-<div class="math">\begin{array}
+\end{array}</p>
+<p>\begin{array}
     + + \frac{1}{2V\epsilon_0} \sum_{\mathbf{k}\neq \mathbf{0}}
     \frac{e^{-\sigma^2k^2/2}}{k^2}|S(\mathbf{k})| 
     -\frac{1}{4\pi\epsilon_0}\frac{1}{\sqrt{2\pi\sigma}}
     \sum_{i=1}^{N}q_i^2
-\end{array}</div>
+\end{array}</p>
 <p>In the <a href="http://micro.stanford.edu/mediawiki/images/4/46/Ewald_notes.pdf">paper</a> 
 I just mentioned, we can find all the details for this formula.</p>
 <p>While, we need potential instead of total energy to calculate Madelung constant.
 We should take derivative over q to calculate the potential. Notice that some 
 term exists which include 1/2. These are used to deal with double counting.
 When we want to calculate potential, these 1/2 should be erased.</p>
-<p><span class="math">\(test^2\)</span></p>
+<p>$test^2$</p>
 <!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) -->
 
 <p><a href="./codes/madelung_realspace.m">madelung_realspace.m</a>
 <a href="./codes/madelung_ewald.m">madelung_ewald.m</a></p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
             </div>
             <!-- /.entry-content -->
     <hr/>

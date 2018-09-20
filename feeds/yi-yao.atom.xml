@@ -2908,89 +2908,33 @@ as an example. I took two method to calculate madelung constant.
 One is calculate it by expanding cubes method, the other is ewald summation method.
 A good description of ewald summation can be found &lt;a href="http://micro.stanford.edu/mediawiki/images/4/46/Ewald_notes.pdf"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;After the derivation, the total Coulomb interaction energy can be finally written as,
-&lt;/p&gt;
-&lt;div class="math"&gt;\begin{array}
- E E &amp;amp;=&amp;amp; E^S + E^L - E^{self} \\
-\end{array}&lt;/div&gt;
-&lt;div class="math"&gt;\begin{array}
+\begin{array}
+ E E &amp;amp;=&amp;amp; E^S + E^L - E^{self} \
+\end{array}&lt;/p&gt;
+&lt;p&gt;\begin{array}
    &amp;amp;=&amp;amp; \frac{1}{4\pi\epsilon_0}\frac{1}{2}
        \sum_\mathbf{n} \sum_{i=1}^N \sum_{j=1}^N
        \frac{q_iq_j}{|\mathbf{r}_i - \mathbf{r}_j + \mathbf{n}L|}
        erfc\left( \frac{|\mathbf{r}_i - \mathbf{r}_j + \mathbf{n}L|}{\sqrt{2}\sigma}\right)
-\end{array}&lt;/div&gt;
-&lt;div class="math"&gt;\begin{array}
+\end{array}&lt;/p&gt;
+&lt;p&gt;\begin{array}
     + + \frac{1}{2V\epsilon_0} \sum_{\mathbf{k}\neq \mathbf{0}}
     \frac{e^{-\sigma^2k^2/2}}{k^2}|S(\mathbf{k})| 
     -\frac{1}{4\pi\epsilon_0}\frac{1}{\sqrt{2\pi\sigma}}
     \sum_{i=1}^{N}q_i^2
-\end{array}&lt;/div&gt;
+\end{array}&lt;/p&gt;
 &lt;p&gt;In the &lt;a href="http://micro.stanford.edu/mediawiki/images/4/46/Ewald_notes.pdf"&gt;paper&lt;/a&gt; 
 I just mentioned, we can find all the details for this formula.&lt;/p&gt;
 &lt;p&gt;While, we need potential instead of total energy to calculate Madelung constant.
 We should take derivative over q to calculate the potential. Notice that some 
 term exists which include 1/2. These are used to deal with double counting.
 When we want to calculate potential, these 1/2 should be erased.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(test^2\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;$test^2$&lt;/p&gt;
 &lt;!-- [a link relative to content root]({filename}/article1.md)
 [a link relative to current file]({filename}../article1.md) --&gt;
 
 &lt;p&gt;&lt;a href="https://yaoyi92.github.io/codes/madelung_realspace.m"&gt;madelung_realspace.m&lt;/a&gt;
-&lt;a href="https://yaoyi92.github.io/codes/madelung_ewald.m"&gt;madelung_ewald.m&lt;/a&gt;&lt;/p&gt;
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width &lt; 768) ? "left" : align;
-        indent = (screen.width &lt; 768) ? "0em" : indent;
-        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;</content><category term="molecular dynamics"></category><category term="ewald"></category><category term="matlab"></category></entry><entry><title>qmcpack - a qmc package</title><link href="https://yaoyi92.github.io/qmcpack-a-qmc-package.html" rel="alternate"></link><published>2014-04-22T14:31:00+02:00</published><updated>2014-04-22T14:31:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-04-22:/qmcpack-a-qmc-package.html</id><summary type="html">&lt;p&gt;QMCPACK with video tutorials&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://qmcpack.org/"&gt;QMCPACK&lt;/a&gt; is a software designed for qmc calculation. reptation is included. And it can start from pwscf calculation which attracts me a lot.&lt;/p&gt;
+&lt;a href="https://yaoyi92.github.io/codes/madelung_ewald.m"&gt;madelung_ewald.m&lt;/a&gt;&lt;/p&gt;</content><category term="molecular dynamics"></category><category term="ewald"></category><category term="matlab"></category></entry><entry><title>qmcpack - a qmc package</title><link href="https://yaoyi92.github.io/qmcpack-a-qmc-package.html" rel="alternate"></link><published>2014-04-22T14:31:00+02:00</published><updated>2014-04-22T14:31:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-04-22:/qmcpack-a-qmc-package.html</id><summary type="html">&lt;p&gt;QMCPACK with video tutorials&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="http://qmcpack.org/"&gt;QMCPACK&lt;/a&gt; is a software designed for qmc calculation. reptation is included. And it can start from pwscf calculation which attracts me a lot.&lt;/p&gt;
 &lt;p&gt;I found a video tutorial from their website.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.youtube.com/playlist?list=PLZ3WPqWe6k8t6__0VESBAh6KfUcVo7JTt"&gt;QMCPACK Summer Training 2014&lt;/a&gt;&lt;/p&gt;</content><category term="quantum monte carlo"></category></entry><entry><title>My first Post</title><link href="https://yaoyi92.github.io/my-first-post.html" rel="alternate"></link><published>2014-04-13T19:20:00+02:00</published><updated>2014-04-13T19:20:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2014-04-13:/my-first-post.html</id><summary type="html">&lt;p class="first last"&gt;I generate this website using pelican and pelican-bootstrap3.&lt;/p&gt;
 </summary><content type="html">&lt;p&gt;I generate this website using pelican and pelican-bootstrap3.
