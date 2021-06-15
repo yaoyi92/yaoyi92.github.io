@@ -2,17 +2,6 @@
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>About Me - Yi Yao's Homepage</title>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56932248-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-56932248-1');
-    </script>
-
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -23,13 +12,14 @@
 <link rel="canonical" href="./index.html">
 
         <meta name="author" content="Yi Yao" />
-        <meta name="description" content="Yi Yao Postdoc at UNC-Chapel Hill Visiting Scholar at Duke Computational Physical Chemistry Email: yaoyi92 AT gmail DOT com My CV pdf I have my research posted in this website. Also, some computational tutorials and scripts are posted. I wrote them mainly to avoid rewriting scripts again and again. Email …" />
+        <meta name="description" content="Yi Yao Research Scientist at Duke University &amp; Visiting Scholar at UNC-Chapel Hill Computational Physical Chemistry, Computational Materials Science Email: yaoyi92 AT gmail DOT com My CV pdf I have my research posted in this website. Also, some computational tutorials and scripts are posted. I wrote them mainly to avoid rewriting …" />
 
     <meta property="og:site_name" content="Yi Yao's Homepage" />
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="About Me"/>
     <meta property="og:url" content="./index.html"/>
-    <meta property="og:description" content="Yi Yao Postdoc at UNC-Chapel Hill Visiting Scholar at Duke Computational Physical Chemistry Email: yaoyi92 AT gmail DOT com My CV pdf I have my research posted in this website. Also, some computational tutorials and scripts are posted. I wrote them mainly to avoid rewriting scripts again and again. Email …" />
+    <meta property="og:description" content="Yi Yao Research Scientist at Duke University &amp; Visiting Scholar at UNC-Chapel Hill Computational Physical Chemistry, Computational Materials Science Email: yaoyi92 AT gmail DOT com My CV pdf I have my research posted in this website. Also, some computational tutorials and scripts are posted. I wrote them mainly to avoid rewriting …" />
+
 
 
     <!-- Bootstrap -->
@@ -37,9 +27,7 @@
     <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./themestatic/css/style_bootstrap.css" type="text/css"/>
-
-
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -47,7 +35,7 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -60,36 +48,9 @@ Yi Yao's Homepage            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li class="active"><a href="./index.html">
-                             About Me
-                          </a></li>
-                         <li><a href="./pages/research.html">
-                             Research
-                          </a></li>
-                         <li><a href="./pages/useful-links.html">
-                             Useful Links
-                          </a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Blogs <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                        <li >
-                            <a href="./category/dft.html">Dft</a>
-                        </li>
-                        <li >
-                            <a href="./category/misc.html">Misc</a>
-                        </li>
-                        <li >
-                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
-                        </li>
-                        <li >
-                            <a href="./category/python.html">Python</a>
-                        </li>
-                        <li >
-                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
-                        </li>
-              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
-                </ul>
-                </li>
-
+                    <li><a href="index.html">About Me</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="categories.html">Research Blogs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -97,8 +58,11 @@ Yi Yao's Homepage            </a>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
+
 <!-- Banner -->
 <!-- End Banner -->
+
+<!-- Content Container -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -116,23 +80,18 @@ Shoot me an email if you are interested in my research, or just interested in my
 Here is my email address: yaoyi92@gmail.com
 -->
 
-<!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) -->
-
 <!---
 My figure (made by Kyle)
 -->
 
 <!---
-![Alt Text]({filename}/images/yiy_logo.jpg)
+![Alt Text]({static}/images/yiy_logo.jpg)
 -->
-
 <p><img alt="Alt Text" src="./images/yiy_logo.jpg" width="200" /></p>
 
 <h3>Yi Yao</h3>
-<p>Postdoc at UNC-Chapel Hill </p>
-<p>Visiting Scholar at Duke</p>
-<p>Computational Physical Chemistry</p>
+<p>Research Scientist at Duke University &amp; Visiting Scholar at UNC-Chapel Hill</p>
+<p>Computational Physical Chemistry, Computational Materials Science</p>
 <p>Email: yaoyi92 AT gmail DOT com</p>
 <p>My CV <a href="./images/curriculum-vitae-YiYao.pdf">pdf</a></p>
 <hr>
@@ -143,23 +102,24 @@ My figure (made by Kyle)
 <p>Some fancy scientific videos I made. Try to use <font size="6"> <a href='javascript:(function(){var n=null,C=false;function h(m){d(m,&quot;jsgif_overlaid&quot;);m.removeEventListener(&quot;click&quot;,i,C)}function i(m){var o=this;c.forEach(h);setTimeout(function(){j(o)},0);m.preventDefault()}function d(m,p){var o=m.className.split(/\s/).filter(function(r){return r!==p});m.className=g(o,&quot; &quot;)}function g(m,o){if(o===undefined){o=&quot;&quot;}return m.reduce(function(p,r){return p+o+r},&quot;&quot;)}function j(ai){function ag(p,m){return function(q){p(q);T(m)}}function ac(){}function T(m){ab(&quot;Decoding (frame &quot;+(M.length+1)+&quot;)...&quot;,Z.i,Z.data.length,m)}function I(){G=C;o.insertBefore(ai,L);o.removeChild(L)}function F(){N%26%26M.push({data:N.getImageData(0,0,ae.width,ae.height),f:Y})}function V(m){af=m;ae={width:ai.width,height:ai.height};M=[];O.fillStyle=&quot;black&quot;;O.fillRect(0,0,ae.width,ae.height);O.strokeStyle=&quot;red&quot;;O.lineWidth=3;O.moveTo(0,0);O.lineTo(ae.width,ae.height);O.moveTo(0,ae.height);O.lineTo(ae.width,0);O.stroke();setTimeout(x,0)}function ah(m){m.lengthComputable%26%26ab(&quot;Loading...&quot;,m.loaded,m.total,true)}function ab(u,p,r,t){K.style.visibility=p===r?&quot;&quot;:&quot;visible&quot;;if(t){t=Math.min(J.height&gt;&gt;3,J.height);var q=J.height-t&gt;&gt;1,m=p/r*J.width;O.fillStyle=&quot;rgba(255,160,122,0.5)&quot;;O.fillRect(m,q,J.width-m,t);O.fillStyle=&quot;rgba(0,128,128,0.5)&quot;;O.fillRect(0,q,p/r*J.width,t)}K.innerHTML=u+&quot; &quot;+Math.floor(p/r*100)+&quot;%25&quot;}function ad(){try{b(Z,aj)}catch(m){V(&quot;parse&quot;)}}var Z,ae,af=n,U=n,Y=n,w=n,s=n,N=n,G=true,P=true,M=[],x=function(){function y(){function S(){G=!G;aa();W.focus();u()}function aa(){if(G){W.innerHTML=&quot;%26#10073;%26#10073;&quot;;W.title=&quot;Pause&quot;;R.style.visibility=&quot;hidden&quot;;Q.style.visibility=&quot;hidden&quot;}else{W.innerHTML=P?&quot;%26#9654;&quot;:&quot;%26#9664;&quot;;W.title=&quot;Play&quot;;R.style.visibility=&quot;&quot;;Q.style.visibility=&quot;&quot;}K.style.visibility=r?&quot;visible&quot;:&quot;&quot;;z.style.display=m?&quot;&quot;:&quot;none&quot;;E.innerHTML=&quot;i&quot;;E.title=&quot;Show info/more tools&quot;;D.innerHTML=P?&quot;%26larr;&quot;:&quot;%26rarr;&quot;;D.title=P?&quot;Reverse&quot;:&quot;Un-reverse&quot;;R.innerHTML=&quot;%26#9664;%26#10073;&quot;;R.title=&quot;Previous frame&quot;;Q.innerHTML=&quot;%26#10073;%26#9654;&quot;;Q.title=&quot;Next frame&quot;;B.innerHTML=r?&quot;%26#9675;&quot;:&quot;%26#8857;&quot;;B.title=r?&quot;Unpin&quot;:&quot;Pin&quot;;A.innerHTML=&quot;%26#10006;&quot;;A.title=&quot;Close jsgif and go back to original image&quot;;v.disabled=G;q.disabled=G;K.innerHTML=&quot;&quot;;H.innerHTML=&quot;&quot;;z.innerHTML=&quot;&quot;;if(M.length&lt;2){if(af==&quot;xhr&quot;){K.appendChild(document.createTextNode(&quot;Load failed; cross-domain? &quot;));var al=ak(&quot;button&quot;,&quot;popup&quot;);al.addEventListener(&quot;click&quot;,function(){window.open(ai.src)});al.innerHTML=&quot;%26nearr;&quot;;al.title=&quot;Click to open GIF in new window; try running jsgif there instead&quot;;K.appendChild(al)}else{af==&quot;parse&quot;%26%26K.appendChild(document.createTextNode(&quot;Parse failed &quot;))}K.appendChild(A)}else{al=function(an,ao){an.innerHTML=&quot;&quot;;ao.forEach(function(ap){an.appendChild(ap)})};var am=P?[E,D,R,W,Q,B,A]:[E,D,Q,W,R,B,A];al(K,[H,z]);al(H,am);al(z,[document.createTextNode(&quot; frame: &quot;),v,document.createTextNode(&quot; / &quot;),document.createTextNode(M.length),document.createTextNode(&quot; (delay: &quot;),q,document.createTextNode(&quot;)&quot;)])}}function ak(am,an,al){am=document.createElement(am);if(an){am.className=&quot;jsgif_&quot;+an}for(var ao in al){am[ao]=al[ao]}return am}var H=ak(&quot;div&quot;,&quot;simple_tools&quot;),D=ak(&quot;button&quot;,&quot;rev&quot;),E=ak(&quot;button&quot;,&quot;show_info&quot;),R=ak(&quot;button&quot;,&quot;prev&quot;),W=ak(&quot;button&quot;,&quot;play_pause&quot;),Q=ak(&quot;button&quot;,&quot;next&quot;),B=ak(&quot;button&quot;,&quot;pin&quot;),A=ak(&quot;button&quot;,&quot;close&quot;),z=ak(&quot;div&quot;,&quot;info_tools&quot;);v=ak(&quot;input&quot;,&quot;cur_frame&quot;,{type:&quot;text&quot;});q=ak(&quot;input&quot;,&quot;delay_info&quot;,{type:&quot;text&quot;});E.addEventListener(&quot;click&quot;,function(){m=!m;aa();E.focus()},C);D.addEventListener(&quot;click&quot;,function(){P=!P;aa();D.focus()},C);v.addEventListener(&quot;change&quot;,function(){var al=+v.value;if(isNaN(al)||al&lt;1||al&gt;M.length){v.value=t+1}else{t=al-1;O.putImageData(M[t].data,0,0)}},C);R.addEventListener(&quot;click&quot;,function(){p(-1)},C);W.addEventListener(&quot;click&quot;,S,C);Q.addEventListener(&quot;click&quot;,function(){p(1)},C);B.addEventListener(&quot;click&quot;,function(){r=!r;aa();B.focus()},C);A.addEventListener(&quot;click&quot;,I,C);q.addEventListener(&quot;change&quot;,function(){var al=+q.value;if(!isNaN(al)){M[t].f=al}},C);J.addEventListener(&quot;click&quot;,S,C);L.addEventListener(&quot;click&quot;,function(al){al.preventDefault()},C);aa()}function p(z){t=(t+z+M.length)%25M.length;v.value=t+1;q.value=M[t].f;O.putImageData(M[t].data,0,0)}var t=-1,v,q,m=C,r=C,u=function(){function z(){if(A=G){p(P?1:-1);var B=M[t].f*10;B||(B=100);setTimeout(z,B)}}var A=C;return function(){A||setTimeout(z,0)}}();return function(){setTimeout(y,0);if(!af){J.width=ae.width;J.height=ae.height;u()}}}(),aj={p:ag(function(m){ae=m;J.width=ae.width;J.height=ae.height;L.style.width=ae.width+&quot;px&quot;;K.style.minWidth=ae.width+&quot;px&quot;;X.width=ae.width;X.height=ae.height}),o:ag(function(m){F();Y=U=n;s=w;N=w=n;U=m.L?m.M:n;Y=m.u;w=m.v}),m:ag(ac),c:{l:ag(ac)},q:ag(function(q){N||(N=X.getContext(&quot;2d&quot;));var m=q.r?q.C:ae.w,p=N.getImageData(q.g,q.k,q.width,q.height);q.h.forEach(function(t,r){if(U!==t){p.data[r*4+0]=m[t][0];p.data[r*4+1]=m[t][1];p.data[r*4+2]=m[t][2];p.data[r*4+3]=255}else{if(s===2||s===3){p.data[r*4+3]=0}}});N.putImageData(p,q.g,q.k);O.putImageData(p,q.g,q.k)},true),n:function(){F();T(C);K.innerHTML=&quot;Playing...&quot;;x()}},o=ai.parentNode,L=document.createElement(&quot;div&quot;),J=document.createElement(&quot;canvas&quot;),O=J.getContext(&quot;2d&quot;),K=document.createElement(&quot;div&quot;),X=document.createElement(&quot;canvas&quot;);J.width=ai.width;J.height=ai.height;K.style.minWidth=ai.width+&quot;px&quot;;L.className=&quot;jsgif&quot;;K.className=&quot;jsgif_toolbar&quot;;L.appendChild(J);L.appendChild(K);o.insertBefore(L,ai);o.removeChild(ai);K.innerHTML=&quot;Loading...&quot;;(function(){var m=new XMLHttpRequest;m.overrideMimeType(&quot;text/plain; charset=x-user-defined&quot;);m.onload=function(){Z=new f(m.responseText);setTimeout(ad,0)};m.onprogress=ah;m.onerror=function(){V(&quot;xhr&quot;)};m.open(&quot;GET&quot;,ai.src,true);m.send()})()}function b(o,u){function r(){var q={};q.s=o.a();switch(String.fromCharCode(q.s)){case&quot;!&quot;:q.type=&quot;ext&quot;;p(q);break;case&quot;,&quot;:q.type=&quot;img&quot;;s(q);break;case&quot;;&quot;:q.type=&quot;eof&quot;;u.n%26%26u.n(q);break;default:throw Error(&quot;Unknown block: 0x&quot;+q.s.toString(16))}q.type!==&quot;eof&quot;%26%26setTimeout(r,0)}function s(q){function v(F,I){function J(y,B){var D=F.slice(B*I,(B+1)*I);A.splice.apply(A,[y*I,I].concat(D))}for(var A=Array(F.length),E=F.length/I,H=[0,4,2,1],G=[8,8,4,2],x=0,K=0;K&lt;4;K++){for(var z=H[K];z&lt;E;z+=G[K]){J(z,x);x++}}return A}q.g=o.b();q.k=o.b();q.width=o.b();q.height=o.b();var w=l(o.a());q.r=w.shift();q.B=w.shift();q.J=w.shift();q.H=w.splice(0,2);q.D=e(w.splice(0,3));if(q.r){q.C=m(1&lt;&lt;q.D+1)}q.F=o.a();w=t();q.h=a(q.F,w);if(q.B){q.h=v(q.h,q.width)}u.q%26%26u.q(q)}function p(q){function w(A){function z(B){o.a();B.t=o.a();B.R=o.b();B.K=o.a();u.c%26%26u.c.l%26%26u.c.l(B)}o.a();A.identifier=o.d(8);A.O=o.d(3);switch(A.identifier){case&quot;NETSCAPE&quot;:z(A);break;default:(function(B){B.N=t();u.c%26%26u.c[B.identifier]%26%26u.c[B.identifier](B)})(A)}}function x(z){o.a();z.V=o.j(12);z.U=t();u.G%26%26u.G(z)}function v(z){z.Q=t();u.m%26%26u.m(z)}function y(A){o.a();var z=l(o.a());A.H=z.splice(0,3);A.v=e(z.splice(0,3));A.W=z.shift();A.L=z.shift();A.u=o.b();A.M=o.a();A.K=o.a();u.o%26%26u.o(A)}q.label=o.a();switch(q.label){case 249:q.e=&quot;gce&quot;;y(q);break;case 254:q.e=&quot;com&quot;;v(q);break;case 1:q.e=&quot;pte&quot;;x(q);break;case 255:q.e=&quot;app&quot;;w(q);break;default:q.e=&quot;unknown&quot;;(function(z){z.data=t();u.t%26%26u.t(z)})(q)}}function t(){var q,v;v=&quot;&quot;;do{q=o.a();v+=o.d(q)}while(q!==0);return v}function m(q){for(var v=[],w=0;w&lt;q;w++){v.push(o.j(3))}return v}u||(u={});(function(){var q={};q.I=o.d(3);q.X=o.d(3);if(q.I!==&quot;GIF&quot;){throw Error(&quot;Not a GIF file.&quot;)}q.width=o.b();q.height=o.b();var v=l(o.a());q.z=v.shift();q.P=e(v.splice(0,3));q.J=v.shift();q.A=e(v.splice(0,3));q.bgColor=o.a();q.T=o.a();if(q.z){q.w=m(1&lt;&lt;q.A+1)}u.p%26%26u.p(q)})();setTimeout(r,0)}function a(y,w){function s(){t=[];r=y+1;for(var q=0;q&lt;o;q++){t[q]=[q]}t[o]=[];t[x]=n}function m(A){for(var z=0,q=0;q&lt;A;q++){if(w.charCodeAt(B&gt;&gt;3)%261&lt;&lt;(B%267)){z|=1&lt;&lt;q}B++}return z}for(var B=0,v=[],o=1&lt;&lt;y,x=o+1,r=y+1,t=[],p,u;;){u=p;p=m(r);if(p===o){s()}else{if(p===x){break}if(p&lt;t.length){u!==o%26%26t.push(t[u].concat(t[p][0]))}else{if(p!==t.length){throw Error(&quot;Invalid LZW code.&quot;)}t.push(t[u].concat(t[u][0]))}v.push.apply(v,t[p]);t.length===1&lt;&lt;r%26%26r&lt;12%26%26r++}}return v}function f(m){this.data=m;this.S=this.data.length;this.i=0;this.a=function(){if(this.i&gt;=this.data.length){throw Error(&quot;Attempted to read past end of stream.&quot;)}return m.charCodeAt(this.i++)%26255};this.j=function(r){for(var o=[],p=0;p&lt;r;p++){o.push(this.a())}return o};this.d=function(r){for(var o=&quot;&quot;,p=0;p&lt;r;p++){o+=String.fromCharCode(this.a())}return o};this.b=function(){var o=this.j(2);return(o[1]&lt;&lt;8)+o[0]}}function l(m){for(var p=[],o=7;o&gt;=0;o--){p.push(!!(m%261&lt;&lt;o))}return p}function e(m){return m.reduce(function(p,o){return p*2+o},0)}var k=function(m){for(var p=[],o=0;o&lt;m.length;o++){p.push(m[o])}return p}(document.getElementsByTagName(&quot;img&quot;)),c=k.filter(function(m){return m.src.slice(-4).toLowerCase()===&quot;.gif&quot;});if(c.length===0){c=k}(function(m){var o=document.createElement(&quot;style&quot;);o.type=&quot;text/css&quot;;o.textContent=m;document.body.appendChild(o)})(&quot;.jsgif{display:inline;position:relative;padding-bottom:3px;}.jsgif_toolbar{visibility:hidden;font-family:sans-serif;background-color:#555;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;overflow:visible;white-space:nowrap;padding:3px;position:absolute;left:0;text-align:center;z-index:50;}.jsgif_toolbar button{width:3em;color:black;text-align:center;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;margin:1px;cursor:pointer;background-color:#ddd;}.jsgif_cur_frame{width:2em;color:black;}.jsgif_delay_info{width:2em;color:black;}.jsgif_toolbar button:hover{color:red;}.jsgif:hover .jsgif_toolbar{visibility:visible;}.jsgif{text-decoration:none;color:black;}.jsgif_overlaid{border:5px solid red;}.jsgif_overlaid:hover{border:5px solid blue;}&quot;);c.forEach(function(m){if(m.className.split(/\s/).indexOf(&quot;jsgif_overlaid&quot;)===-1){m.className+=&quot; jsgif_overlaid&quot;;m.addEventListener(&quot;click&quot;,i,C)}})})();'>jsgif</a></font>. Click the jsgif then click the gif image you would like to get control.<a href="http://slbkbs.org/jsgif/"> Here </a> is the introduction for this java script </p>
 
 -->
-
 <!---
-![Alt Text]({filename}/images/charge_density_NaCl.gif)
-![Alt Text]({filename}/images/homogeneous_eg.gif)
-![Alt Text]({filename}/images/h2+.gif)
+![Alt Text]({static}/images/charge_density_NaCl.gif)
+![Alt Text]({static}/images/homogeneous_eg.gif)
+![Alt Text]({static}/images/h2+.gif)
 -->
         </div>
     </section>
         </div>
     </div>
 </div>
+<!-- End Content Container -->
+
 <footer>
    <div class="container">
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2017 Yi Yao
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -173,6 +133,7 @@ My figure (made by Kyle)
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="./themestatic/js/respond.min.js"></script>
+
 
     <!-- Disqus -->
     <script type="text/javascript">
@@ -189,6 +150,7 @@ My figure (made by Kyle)
         }());
     </script>
     <!-- End Disqus Code -->
+
 
 </body>
 </html>

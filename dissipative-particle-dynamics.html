@@ -2,17 +2,6 @@
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>dissipative particle dynamics - Yi Yao's Homepage</title>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56932248-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-56932248-1');
-    </script>
-
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -37,14 +26,13 @@
             <meta property="article:author" content="Yi Yao" />
 
 
+
     <!-- Bootstrap -->
         <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
     <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./themestatic/css/style_bootstrap.css" type="text/css"/>
-
-
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -52,7 +40,7 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -65,36 +53,9 @@ Yi Yao's Homepage            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li><a href="./index.html">
-                             About Me
-                          </a></li>
-                         <li><a href="./pages/research.html">
-                             Research
-                          </a></li>
-                         <li><a href="./pages/useful-links.html">
-                             Useful Links
-                          </a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Blogs <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                        <li >
-                            <a href="./category/dft.html">Dft</a>
-                        </li>
-                        <li >
-                            <a href="./category/misc.html">Misc</a>
-                        </li>
-                        <li class="active">
-                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
-                        </li>
-                        <li >
-                            <a href="./category/python.html">Python</a>
-                        </li>
-                        <li >
-                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
-                        </li>
-              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
-                </ul>
-                </li>
-
+                    <li><a href="index.html">About Me</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="categories.html">Research Blogs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -102,8 +63,11 @@ Yi Yao's Homepage            </a>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
+
 <!-- Banner -->
 <!-- End Banner -->
+
+<!-- Content Container -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -142,54 +106,51 @@ The system size can be extened to µm ,and µs for time scale which is about 10^
 <p>Rob Groot seems to be the bigest name in the field of DPD. And he has really good slides for DPD. Here is the <a href="http://www.cecam.org/upload/talk/presentation_2751.pdf">link</a>. </p>
 <p>In the presentation, he answered the question of how to parameterise DPD. The goal of it is to reproduce local thermodynamics which are measured by compressibility and solubility. Flory-Huggins theory are used for the solubility.</p>
 <p>I tried to run dpd in lammps. With the input below.</p>
-<div class="highlight"><pre><span></span># This is LAMMPS input script specifies a simple DPD simulation.
-# It reproduces Fig. 2 of Groot and Warren, J. Chem. Phys. 107,
-# 4423 (1997)
+<div class="highlight"><pre><span></span><code><span class="p">#</span> <span class="n">This</span> <span class="n">is</span> <span class="n">LAMMPS</span> <span class="k">input</span> <span class="n">script</span> <span class="n">specifies</span> <span class="n">a</span> <span class="n">simple</span> <span class="n">DPD</span> <span class="n">simulation</span><span class="p">.</span>
+<span class="p">#</span> <span class="n">It</span> <span class="n">reproduces</span> <span class="n">Fig</span><span class="p">.</span> <span class="mh">2</span> <span class="n">of</span> <span class="n">Groot</span> <span class="k">and</span> <span class="n">Warren</span><span class="p">,</span> <span class="n">J</span><span class="p">.</span> <span class="n">Chem</span><span class="p">.</span> <span class="n">Phys</span><span class="p">.</span> <span class="mh">107</span><span class="p">,</span>
+<span class="p">#</span> <span class="mh">4423</span> <span class="p">(</span><span class="mh">1997</span><span class="p">)</span>
 
-units       lj
-atom_style atomic 
-comm_modify vel yes
-pair_style  dpd 1.0 1.0 34387
+<span class="n">units</span>       <span class="n">lj</span>
+<span class="n">atom_style</span> <span class="n">atomic</span> 
+<span class="n">comm_modify</span> <span class="n">vel</span> <span class="n">yes</span>
+<span class="n">pair_style</span>  <span class="n">dpd</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mh">34387</span>
 
-# create simulation box
-lattice     fcc 3
-region      mybox block -4 4 -4 4 -4 4 units lattice
-create_box  1 mybox
-create_atoms    1 box
+<span class="p">#</span> <span class="n">create</span> <span class="n">simulation</span> <span class="n">box</span>
+<span class="n">lattice</span>     <span class="n">fcc</span> <span class="mh">3</span>
+<span class="n">region</span>      <span class="n">mybox</span> <span class="n">block</span> <span class="o">-</span><span class="mh">4</span> <span class="mh">4</span> <span class="o">-</span><span class="mh">4</span> <span class="mh">4</span> <span class="o">-</span><span class="mh">4</span> <span class="mh">4</span> <span class="n">units</span> <span class="n">lattice</span>
+<span class="n">create_box</span>  <span class="mh">1</span> <span class="n">mybox</span>
+<span class="n">create_atoms</span>    <span class="mh">1</span> <span class="n">box</span>
 
-# define masses and interaction coefficient
-mass        * 1
-pair_coeff  1 1 25 4.5
+<span class="p">#</span> <span class="n">define</span> <span class="n">masses</span> <span class="k">and</span> <span class="n">interaction</span> <span class="n">coefficient</span>
+<span class="n">mass</span>        <span class="o">*</span> <span class="mh">1</span>
+<span class="n">pair_coeff</span>  <span class="mh">1</span> <span class="mh">1</span> <span class="mh">25</span> <span class="mf">4.5</span>
 
-# create initial velocities
-velocity    all create 1.0 4928459 dist gaussian
+<span class="p">#</span> <span class="n">create</span> <span class="k">initial</span> <span class="n">velocities</span>
+<span class="n">velocity</span>    <span class="n">all</span> <span class="n">create</span> <span class="mf">1.0</span> <span class="mh">4928459</span> <span class="n">dist</span> <span class="n">gaussian</span>
 
-# change neighbor list parameters to avoid dangerous builds
-neighbor    2.0 bin
-neigh_modify    delay 3
+<span class="p">#</span> <span class="n">change</span> <span class="n">neighbor</span> <span class="n">list</span> <span class="n">parameters</span> <span class="n">to</span> <span class="n">avoid</span> <span class="n">dangerous</span> <span class="n">builds</span>
+<span class="n">neighbor</span>    <span class="mf">2.0</span> <span class="n">bin</span>
+<span class="n">neigh_modify</span>    <span class="n">delay</span> <span class="mh">3</span>
 
-# specify simulation parameters
-timestep    0.04
-thermo      10
+<span class="p">#</span> <span class="k">specify</span> <span class="n">simulation</span> <span class="n">parameters</span>
+<span class="n">timestep</span>    <span class="mf">0.04</span>
+<span class="n">thermo</span>      <span class="mh">10</span>
 
-# first equilibrate the initial condition
-fix     1 all nve
-run     500
+<span class="p">#</span> <span class="n">first</span> <span class="n">equilibrate</span> <span class="n">the</span> <span class="k">initial</span> <span class="n">condition</span>
+<span class="n">fix</span>     <span class="mh">1</span> <span class="n">all</span> <span class="n">nve</span>
+<span class="n">run</span>     <span class="mh">500</span>
 
-dump traj all xtc  50 traj.xtc
-dump_modify traj unwrap yes
+<span class="n">dump</span> <span class="n">traj</span> <span class="n">all</span> <span class="n">xtc</span>  <span class="mh">50</span> <span class="n">traj</span><span class="p">.</span><span class="n">xtc</span>
+<span class="n">dump_modify</span> <span class="n">traj</span> <span class="n">unwrap</span> <span class="n">yes</span>
 
-dump traj_xyz all xyz 50 traj.xyz
+<span class="n">dump</span> <span class="n">traj_xyz</span> <span class="n">all</span> <span class="n">xyz</span> <span class="mh">50</span> <span class="n">traj</span><span class="p">.</span><span class="n">xyz</span>
 
-# production run
-run     50000
-</pre></div>
-
+<span class="p">#</span> <span class="n">production</span> <span class="n">run</span>
+<span class="n">run</span>     <span class="mh">50000</span>
+</code></pre></div>
 
 <p>The gr plot I got from this simulation is the same as the plot 2 in the paper.</p>
 <p><img alt="Alt Text" src="./images/gr_dpd.png"></p>
-<!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) -->
             </div>
             <!-- /.entry-content -->
     <hr/>
@@ -201,13 +162,11 @@ run     50000
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'yaoyi92'; // required: replace example with your forum shortname
 
-                /***                    var disqus_identifier = 'dissipative-particle-dynamics';
-***/
-                /***var disqus_url = './dissipative-particle-dynamics.html';***/
-                var disqus_title = 'dissipative particle dynamics';
-
             var disqus_config = function () {
                 this.language = "en";
+
+                        this.page.identifier = '2014-11-22-dissipative-particle-dynamics';
+                        this.page.url = './dissipative-particle-dynamics.html';
             };
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -230,12 +189,14 @@ run     50000
         </div>
     </div>
 </div>
+<!-- End Content Container -->
+
 <footer>
    <div class="container">
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2017 Yi Yao
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -249,6 +210,7 @@ run     50000
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="./themestatic/js/respond.min.js"></script>
+
 
     <!-- Disqus -->
     <script type="text/javascript">
@@ -265,6 +227,7 @@ run     50000
         }());
     </script>
     <!-- End Disqus Code -->
+
 
 </body>
 </html>

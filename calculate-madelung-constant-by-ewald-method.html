@@ -2,17 +2,6 @@
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>calculate madelung constant by ewald method - Yi Yao's Homepage</title>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56932248-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-56932248-1');
-    </script>
-
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -39,14 +28,13 @@
             <meta property="article:author" content="Yi Yao" />
 
 
+
     <!-- Bootstrap -->
         <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
     <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./themestatic/css/style_bootstrap.css" type="text/css"/>
-
-
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -54,7 +42,7 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -67,36 +55,9 @@ Yi Yao's Homepage            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li><a href="./index.html">
-                             About Me
-                          </a></li>
-                         <li><a href="./pages/research.html">
-                             Research
-                          </a></li>
-                         <li><a href="./pages/useful-links.html">
-                             Useful Links
-                          </a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Blogs <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                        <li >
-                            <a href="./category/dft.html">Dft</a>
-                        </li>
-                        <li >
-                            <a href="./category/misc.html">Misc</a>
-                        </li>
-                        <li class="active">
-                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
-                        </li>
-                        <li >
-                            <a href="./category/python.html">Python</a>
-                        </li>
-                        <li >
-                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
-                        </li>
-              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
-                </ul>
-                </li>
-
+                    <li><a href="index.html">About Me</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="categories.html">Research Blogs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -104,8 +65,11 @@ Yi Yao's Homepage            </a>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
+
 <!-- Banner -->
 <!-- End Banner -->
+
+<!-- Content Container -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -148,33 +112,93 @@ as an example. I took two method to calculate madelung constant.
 One is calculate it by expanding cubes method, the other is ewald summation method.
 A good description of ewald summation can be found <a href="http://micro.stanford.edu/mediawiki/images/4/46/Ewald_notes.pdf">here</a>.</p>
 <p>After the derivation, the total Coulomb interaction energy can be finally written as,
-\begin{array}
- E E &amp;=&amp; E^S + E^L - E^{self} \
-\end{array}</p>
-<p>\begin{array}
+</p>
+<div class="math">\begin{array}
+ E E &amp;=&amp; E^S + E^L - E^{self} \\
+\end{array}</div>
+<div class="math">\begin{array}
    &amp;=&amp; \frac{1}{4\pi\epsilon_0}\frac{1}{2}
        \sum_\mathbf{n} \sum_{i=1}^N \sum_{j=1}^N
        \frac{q_iq_j}{|\mathbf{r}_i - \mathbf{r}_j + \mathbf{n}L|}
        erfc\left( \frac{|\mathbf{r}_i - \mathbf{r}_j + \mathbf{n}L|}{\sqrt{2}\sigma}\right)
-\end{array}</p>
-<p>\begin{array}
+\end{array}</div>
+<div class="math">\begin{array}
     + + \frac{1}{2V\epsilon_0} \sum_{\mathbf{k}\neq \mathbf{0}}
     \frac{e^{-\sigma^2k^2/2}}{k^2}|S(\mathbf{k})| 
     -\frac{1}{4\pi\epsilon_0}\frac{1}{\sqrt{2\pi\sigma}}
     \sum_{i=1}^{N}q_i^2
-\end{array}</p>
+\end{array}</div>
 <p>In the <a href="http://micro.stanford.edu/mediawiki/images/4/46/Ewald_notes.pdf">paper</a> 
 I just mentioned, we can find all the details for this formula.</p>
 <p>While, we need potential instead of total energy to calculate Madelung constant.
 We should take derivative over q to calculate the potential. Notice that some 
 term exists which include 1/2. These are used to deal with double counting.
 When we want to calculate potential, these 1/2 should be erased.</p>
-<p>$test^2$</p>
-<!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) -->
-
+<p><span class="math">\(test^2\)</span></p>
 <p><a href="./codes/madelung_realspace.m">madelung_realspace.m</a>
 <a href="./codes/madelung_ewald.m">madelung_ewald.m</a></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
     <hr/>
@@ -186,13 +210,11 @@ When we want to calculate potential, these 1/2 should be erased.</p>
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'yaoyi92'; // required: replace example with your forum shortname
 
-                /***                    var disqus_identifier = 'calculate-madelung-constant-by-ewald-method';
-***/
-                /***var disqus_url = './calculate-madelung-constant-by-ewald-method.html';***/
-                var disqus_title = 'calculate madelung constant by ewald method';
-
             var disqus_config = function () {
                 this.language = "en";
+
+                        this.page.identifier = '2014-04-22-calculate-madelung-constant-by-ewald-method';
+                        this.page.url = './calculate-madelung-constant-by-ewald-method.html';
             };
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -215,12 +237,14 @@ When we want to calculate potential, these 1/2 should be erased.</p>
         </div>
     </div>
 </div>
+<!-- End Content Container -->
+
 <footer>
    <div class="container">
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2017 Yi Yao
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -234,6 +258,7 @@ When we want to calculate potential, these 1/2 should be erased.</p>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="./themestatic/js/respond.min.js"></script>
+
 
     <!-- Disqus -->
     <script type="text/javascript">
@@ -250,6 +275,7 @@ When we want to calculate potential, these 1/2 should be erased.</p>
         }());
     </script>
     <!-- End Disqus Code -->
+
 
 </body>
 </html>

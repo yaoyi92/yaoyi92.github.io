@@ -2,26 +2,6 @@ body {
     padding-top: 70px;
 }
 
-summary::-webkit-details-marker {
-    font-size: 150%;
-}
-
-details summary {
-    font-size: 24px;
-    font-weight: bold;
-    vertical-align: top;
-    border-radius: 3px;
-    padding: 5px 10px;
-    outline: none;
-}
-
-details {
-    border: 2px #4B9CD3 solid;
-    border-radius: 10px;
-    padding: 5px 10px;
-}
-
-
 #sidebar .list-group, #sidebar .list-group-item {
     background-color: transparent;
 }
@@ -32,7 +12,7 @@ details {
 }
 
 /* for list-group-items nested within a list-group-item, reset the bottom
-   padding of the last item, b/c the containing item has paddimg already 
+   padding of the last item, b/c the containing item has paddimg already
  */
 .list-group-item .list-group-item:last-child {
     padding-bottom: 0px;
@@ -195,7 +175,7 @@ figure.floatcenter, .align-center {
     background-repeat: no-repeat;
     background-position: top center;
     background-attachment: scroll;
-    background-size: cover; 
+    background-size: cover;
     background-color: #C4C4C4;
     margin: 0 0 20px;
     padding: 70px 0; /*controls padding around inner text*/
@@ -240,4 +220,22 @@ figure.floatcenter, .align-center {
     #banner .intro{
         font-size: 16px;
     }
+}
+
+:target:before {
+  content:"";
+  display:block;
+  height:50px;
+  /* fixed header height*/
+
+  margin:-50px 0 0;
+  /* negative fixed header height */
+}
+
+.gap-right {
+    margin-right: 10px;
+}
+
+.gap-left {
+  margin-left: 10px;
 }

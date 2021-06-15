@@ -2,17 +2,6 @@
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>lis write matrix - Yi Yao's Homepage</title>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56932248-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-56932248-1');
-    </script>
-
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -37,14 +26,13 @@
             <meta property="article:author" content="Yi Yao" />
 
 
+
     <!-- Bootstrap -->
         <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
     <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./themestatic/css/style_bootstrap.css" type="text/css"/>
-
-
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -52,7 +40,7 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -65,36 +53,9 @@ Yi Yao's Homepage            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li><a href="./index.html">
-                             About Me
-                          </a></li>
-                         <li><a href="./pages/research.html">
-                             Research
-                          </a></li>
-                         <li><a href="./pages/useful-links.html">
-                             Useful Links
-                          </a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Blogs <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                        <li >
-                            <a href="./category/dft.html">Dft</a>
-                        </li>
-                        <li class="active">
-                            <a href="./category/misc.html">Misc</a>
-                        </li>
-                        <li >
-                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
-                        </li>
-                        <li >
-                            <a href="./category/python.html">Python</a>
-                        </li>
-                        <li >
-                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
-                        </li>
-              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
-                </ul>
-                </li>
-
+                    <li><a href="index.html">About Me</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="categories.html">Research Blogs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -102,8 +63,11 @@ Yi Yao's Homepage            </a>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
+
 <!-- Banner -->
 <!-- End Banner -->
+
+<!-- Content Container -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -137,7 +101,7 @@ Yi Yao's Homepage            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p><a href="http://www.ssisc.org/lis/">lis</a> is a parallel iterative solvers library for linear systems. Instead of read matrix from files, write matrix information directly in the code is useful. I tested it and gave an example here. The matrix is stored in csr form and distributed in all the cpus.</p>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;lis_config.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&quot;lis.h&quot;</span><span class="cp"></span>
 
@@ -163,25 +127,25 @@ Yi Yao's Homepage            </a>
   <span class="n">lis_matrix_get_size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">,</span><span class="o">&amp;</span><span class="n">gn</span><span class="p">);</span>
   <span class="n">lis_matrix_get_range</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="o">&amp;</span><span class="n">is</span><span class="p">,</span><span class="o">&amp;</span><span class="n">ie</span><span class="p">);</span>
 
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
   <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">4.11418428571</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
   <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">25.6</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">0.000345454479536</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-0.000345454479536</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
   <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">0.000345454479536</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">0.000345454479536</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-0.000345454479536</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
   <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">0.000345454479536</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
   <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">4.11418428571</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">is</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ie</span><span class="p">)</span> <span class="n">lis_matrix_set_value</span><span class="p">(</span><span class="n">LIS_INS_VALUE</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="mf">-1.0</span><span class="p">,</span><span class="n">A</span><span class="p">);</span>
   <span class="n">lis_matrix_assemble</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
 
 
@@ -213,43 +177,38 @@ Yi Yao's Homepage            </a>
 
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>And here is the Makefile.</p>
-<div class="highlight"><pre><span></span><span class="nv">CC</span><span class="o">=</span>mpicc
-<span class="c">#CFLAGS=-c -Wall</span>
-<span class="c">#LDFLAGS=</span>
-<span class="c">#CFLAGS=-c -Wall -I/nas02/home/y/i/yiy/software/lis/lis-1.4.61-build/include</span>
-<span class="nv">CFLAGS</span><span class="o">=</span>-DHAVE_CONFIG_H -I. -I/nas02/home/y/i/yiy/software/lis/lis-1.4.61/include  -I/nas02/home/y/i/yiy/software/lis/lis-1.4.61/   -O3 -ansi_alias  -DUSE_MPI -c
-<span class="c">#LDFLAGS=-L/nas02/home/y/i/yiy/software/lis/lis-1.4.61-build/lib -llis</span>
-<span class="nv">LDFLAGS</span><span class="o">=</span>-L/nas02/home/y/i/yiy/software/lis/lis-1.4.61/src /nas02/home/y/i/yiy/software/lis/lis-1.4.61/src/.libs/liblis.a -lm
-<span class="nv">SOURCES</span><span class="o">=</span>test_wiki.c
-<span class="nv">OBJECTS</span><span class="o">=</span><span class="k">$(</span>SOURCES:.c<span class="o">=</span>.o<span class="k">)</span>
-<span class="nv">EXECUTABLE</span><span class="o">=</span><span class="nb">test</span>
+<div class="highlight"><pre><span></span><code><span class="nf">CC</span><span class="err">=</span><span class="no">mpicc</span>
+<span class="c1">#CFLAGS=-c -Wall</span>
+<span class="c1">#LDFLAGS=</span>
+<span class="c1">#CFLAGS=-c -Wall -I/nas02/home/y/i/yiy/software/lis/lis-1.4.61-build/include</span>
+<span class="nf">CFLAGS</span><span class="err">=</span><span class="p">-</span><span class="no">DHAVE_CONFIG_H</span> <span class="p">-</span><span class="no">I.</span> <span class="p">-</span><span class="no">I</span><span class="err">/</span><span class="no">nas02</span><span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">y</span><span class="err">/</span><span class="no">i</span><span class="err">/</span><span class="no">yiy</span><span class="err">/</span><span class="no">software</span><span class="err">/</span><span class="no">lis</span><span class="err">/</span><span class="no">lis-1.4.61</span><span class="err">/</span><span class="no">include</span>  <span class="p">-</span><span class="no">I</span><span class="err">/</span><span class="no">nas02</span><span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">y</span><span class="err">/</span><span class="no">i</span><span class="err">/</span><span class="no">yiy</span><span class="err">/</span><span class="no">software</span><span class="err">/</span><span class="no">lis</span><span class="err">/</span><span class="no">lis-1.4.61</span><span class="err">/</span>   <span class="p">-</span><span class="no">O3</span> <span class="p">-</span><span class="no">ansi_alias</span>  <span class="p">-</span><span class="no">DUSE_MPI</span> <span class="p">-</span><span class="no">c</span>
+<span class="c1">#LDFLAGS=-L/nas02/home/y/i/yiy/software/lis/lis-1.4.61-build/lib -llis</span>
+<span class="nf">LDFLAGS</span><span class="err">=</span><span class="p">-</span><span class="no">L</span><span class="err">/</span><span class="no">nas02</span><span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">y</span><span class="err">/</span><span class="no">i</span><span class="err">/</span><span class="no">yiy</span><span class="err">/</span><span class="no">software</span><span class="err">/</span><span class="no">lis</span><span class="err">/</span><span class="no">lis-1.4.61</span><span class="err">/</span><span class="no">src</span> <span class="err">/</span><span class="no">nas02</span><span class="err">/</span><span class="no">home</span><span class="err">/</span><span class="no">y</span><span class="err">/</span><span class="no">i</span><span class="err">/</span><span class="no">yiy</span><span class="err">/</span><span class="no">software</span><span class="err">/</span><span class="no">lis</span><span class="err">/</span><span class="no">lis-1.4.61</span><span class="err">/</span><span class="no">src</span><span class="err">/</span><span class="no">.libs</span><span class="err">/</span><span class="no">liblis.a</span> <span class="p">-</span><span class="no">lm</span>
+<span class="nf">SOURCES</span><span class="err">=</span><span class="no">test_wiki.c</span>
+<span class="nf">OBJECTS</span><span class="err">=</span><span class="no">$</span><span class="p">(</span><span class="no">SOURCES</span><span class="p">:.</span><span class="no">c</span><span class="err">=</span><span class="no">.o</span><span class="p">)</span>
+<span class="nf">EXECUTABLE</span><span class="err">=</span><span class="no">test</span>
 
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">SOURCES</span><span class="k">)</span> <span class="k">$(</span><span class="nv">EXECUTABLE</span><span class="k">)</span>
+<span class="nl">all:</span> <span class="nf">$</span><span class="p">(</span><span class="no">SOURCES</span><span class="p">)</span> <span class="no">$</span><span class="p">(</span><span class="no">EXECUTABLE</span><span class="p">)</span>
 
-<span class="nf">$(EXECUTABLE)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJECTS</span><span class="k">)</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>OBJECTS<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span>  -o <span class="nv">$@</span>
+<span class="nf">$</span><span class="p">(</span><span class="no">EXECUTABLE</span><span class="p">):</span> <span class="no">$</span><span class="p">(</span><span class="no">OBJECTS</span><span class="p">)</span>
+    <span class="nf">$</span><span class="p">(</span><span class="no">CC</span><span class="p">)</span> <span class="no">$</span><span class="p">(</span><span class="no">OBJECTS</span><span class="p">)</span> <span class="no">$</span><span class="p">(</span><span class="no">LDFLAGS</span><span class="p">)</span>  <span class="p">-</span><span class="no">o</span> <span class="no">$@</span>
 
-<span class="nf">.c.o</span><span class="o">:</span>
-    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> $&lt; -o <span class="nv">$@</span>
+<span class="nl">.c.o:</span>
+    <span class="nf">$</span><span class="p">(</span><span class="no">CC</span><span class="p">)</span> <span class="no">$</span><span class="p">(</span><span class="no">CFLAGS</span><span class="p">)</span> <span class="no">$</span><span class="err">&lt;</span> <span class="p">-</span><span class="no">o</span> <span class="no">$@</span>
 
-<span class="nf">clean</span><span class="o">:</span>
-    rm -rf *o <span class="nb">test</span>
-</pre></div>
-
+<span class="nl">clean:</span>
+    <span class="nf">rm</span> <span class="p">-</span><span class="no">rf</span> <span class="p">*</span><span class="no">o</span> <span class="no">test</span>
+</code></pre></div>
 
 <p>I can run the exe in serial and parallel.</p>
-<div class="highlight"><pre><span></span>./test b x
+<div class="highlight"><pre><span></span><code>./test b x
 mpiexec -n 2 ./test b x
-</pre></div>
-
+</code></pre></div>
 
 <p>However when the number of cpus is larger than the number of rows in A matrix the program will stuck. I am contacting lis developers to see if there is something wrong with the code.</p>
-<!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) -->
             </div>
             <!-- /.entry-content -->
     <hr/>
@@ -261,13 +220,11 @@ mpiexec -n 2 ./test b x
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'yaoyi92'; // required: replace example with your forum shortname
 
-                /***                    var disqus_identifier = 'lis-write-matrix';
-***/
-                /***var disqus_url = './lis-write-matrix.html';***/
-                var disqus_title = 'lis write matrix';
-
             var disqus_config = function () {
                 this.language = "en";
+
+                        this.page.identifier = '2014-12-04-lis-write-matrix';
+                        this.page.url = './lis-write-matrix.html';
             };
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -290,12 +247,14 @@ mpiexec -n 2 ./test b x
         </div>
     </div>
 </div>
+<!-- End Content Container -->
+
 <footer>
    <div class="container">
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2017 Yi Yao
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -309,6 +268,7 @@ mpiexec -n 2 ./test b x
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="./themestatic/js/respond.min.js"></script>
+
 
     <!-- Disqus -->
     <script type="text/javascript">
@@ -325,6 +285,7 @@ mpiexec -n 2 ./test b x
         }());
     </script>
     <!-- End Disqus Code -->
+
 
 </body>
 </html>

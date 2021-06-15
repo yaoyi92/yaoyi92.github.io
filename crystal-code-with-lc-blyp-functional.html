@@ -2,17 +2,6 @@
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>crystal code with lc-blyp functional - Yi Yao's Homepage</title>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56932248-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-56932248-1');
-    </script>
-
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -37,14 +26,13 @@
             <meta property="article:author" content="Yi Yao" />
 
 
+
     <!-- Bootstrap -->
         <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
     <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./themestatic/css/style_bootstrap.css" type="text/css"/>
-
-
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -52,7 +40,7 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -65,36 +53,9 @@ Yi Yao's Homepage            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li><a href="./index.html">
-                             About Me
-                          </a></li>
-                         <li><a href="./pages/research.html">
-                             Research
-                          </a></li>
-                         <li><a href="./pages/useful-links.html">
-                             Useful Links
-                          </a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Blogs <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                        <li >
-                            <a href="./category/dft.html">Dft</a>
-                        </li>
-                        <li class="active">
-                            <a href="./category/misc.html">Misc</a>
-                        </li>
-                        <li >
-                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
-                        </li>
-                        <li >
-                            <a href="./category/python.html">Python</a>
-                        </li>
-                        <li >
-                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
-                        </li>
-              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
-                </ul>
-                </li>
-
+                    <li><a href="index.html">About Me</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="categories.html">Research Blogs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -102,8 +63,11 @@ Yi Yao's Homepage            </a>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
+
 <!-- Banner -->
 <!-- End Banner -->
+
+<!-- Content Container -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -141,398 +105,396 @@ I post here an example of lc-blyp calculation of bulk water system.</p>
 <p>When I did the lc-blyp calculation, the scf not converge is a problem. So I did a blyp calculation first. Then copy the fort.9 file to a new folder of fort.20 which is the density matrix file. And I will add a GUESSP command to the INPUT for lc-blyp calculation.</p>
 <p>Here is the inputs:</p>
 <p>INPUT for blyp calculation</p>
-<div class="highlight"><pre><span></span>Water cube
-CRYSTAL
-0 0 0
-1
-11.8172 11.8172 11.8172 90. 90. 90.
-165
-8 0.966182090512 1.00021468707 1.4854507836
-8 1.03919930271 1.40081195207 1.57239938395
-8 1.2300162475 0.527247909826 1.33289637139
-8 0.768640540906 1.65014267339 1.3298380327
-8 1.15689283417 1.2052291575 1.08481399993
-8 0.903492451681 1.21632146363 1.38370900044
-8 0.762101766916 0.505654892868 0.887620671563
-8 1.38305427682 0.459265985174 1.53107572014
-8 1.50650348644 0.456861016146 1.17375080391
-8 0.63803650611 1.15520588634 0.658485597265
-8 1.45252310192 1.04503698 1.09088574282
-8 0.446270182446 0.842531479538 0.927859729885
-8 1.43138112243 0.708681921267 0.740832092205
-8 0.937938767221 1.03809015672 0.702070372
-8 0.863986223471 1.24494550316 0.67097527333
-8 1.26616296585 0.550525843685 0.700526097553
-8 0.808251954778 1.01392546458 0.888978438209
-8 0.700633060285 1.30514241952 1.36784449785
-8 1.27978945943 1.22268439224 1.87452839928
-8 0.61985597265 1.42719138205 1.54634253461
-8 1.52579096571 0.709874674204 0.49502242494
-8 0.984720576786 0.61250702366 2.05818366449
-8 0.900647784585 0.474448261856 1.22569508852
-8 1.49653835088 1.28823308398 0.830222810818
-8 1.79160029449 1.07211158312 1.2086718512
-8 1.83282960431 0.803301205023 0.9671824967
-8 1.34537504654 0.873155146735 1.24777189182
-8 0.4377635142 1.24948481874 1.26121712419
-8 1.61083522323 0.963454117727 1.32491478523
-8 0.89343812409 0.582376366652 1.52855871103
-8 0.492430694242 1.0714599059 0.497475290255
-8 1.32287047693 1.24018718478 1.48182623633
-8 1.08089682835 0.710079629692 1.69978937481
-8 0.566233625563 1.66400610974 1.25198558034
-8 0.188996462783 0.885536929222 1.46524041228
-8 0.92452552212 1.23048649426 1.03169295603
-8 0.617660274854 0.817834258538 1.08969459771
-8 1.33952662221 0.537026114477 0.97252276343
-8 1.21163067393 1.07015274346 0.705801289646
-8 0.708953559219 1.40961251396 1.10277104559
-8 1.06568992655 0.706494854957 0.400919507159
-8 1.12978751312 0.876184290695 0.910686033917
-8 1.55138340724 1.51283019666 1.84138306875
-8 0.943388281488 0.379874928071 0.842503892631
-8 1.35594709407 0.919504451139 1.62474444031
-8 0.948775175168 0.840589733609 1.20458492706
-8 0.622394898961 1.20107174288 1.02580848255
-8 0.784972836205 0.848350032157 1.42938403344
-8 1.08217014183 0.360261737129 1.27039222489
-8 1.16518735403 1.41018464611 0.848232999357
-8 0.851257319839 0.708795315303 0.771359374471
-8 0.682134261923 0.819043512846 1.64355321057
-8 1.15068908032 0.962640642453 1.15036303016
-8 0.595814321497 0.971598517415 0.797778153877
-8 1.22474054768 0.674640862472 1.14489794537
-1 1.04184933825 0.980869495312 1.46944707714
-1 0.966587770369 1.07866017331 1.46048801747
-1 1.00937303253 1.3425173476 1.52038587821
-1 0.996500440037 1.36528094642 1.63609315235
-1 1.19357995126 0.452229885252 1.3260631114
-1 1.2984623261 0.518463849304 1.38540804928
-1 0.69602291575 1.63709626646 1.29537860068
-1 0.773463595437 1.60575229327 1.39931286599
-1 1.20908819348 1.22614197949 1.02950817453
-1 1.16437641743 1.12178147108 1.09562891379
-1 0.947235893443 1.26596960363 1.33223919372
-1 0.828159800968 1.25201502894 1.3869174593
-1 0.780803151339 0.587075533967 0.881474714822
-1 0.68113961006 0.5006251904 0.86950588972
-1 1.3673395559 0.378040991098 1.51693726094
-1 1.33352156179 0.485049588735 1.59441102799
-1 1.47586949531 0.39175532275 1.222188928
-1 1.58466718004 0.431308601022 1.15432369766
-1 0.712842297668 1.19142317977 0.671666130725
-1 0.583473242392 1.21072326778 0.685453745388
-1 1.42818645703 0.985092492299 1.14459347392
-1 1.40604855634 1.03039180178 1.0221847815
-1 0.501959939749 0.818277595369 0.98203043022
-1 0.496883864198 0.884192532918 0.874850979928
-1 1.3629141421 0.660376992858 0.741408540094
-1 1.43287403107 0.754663287412 0.80945367769
-1 0.88731882341 1.01235055682 0.761407270758
-1 0.921746352774 0.989740039942 0.636936922452
-1 0.902074180009 1.16786878448 0.686409132451
-1 0.880754916562 1.28857258911 0.734293148969
-1 1.20818239515 0.594553701384 0.661167196967
-1 1.23049461801 0.478967860407 0.725150289409
-1 0.800044934502 1.07074408489 0.951595386386
-1 0.830195731645 0.943031936499 0.928683021359
-1 0.646418525539 1.23949438107 1.36054429137
-1 0.683390312426 1.34626527435 1.43572419863
-1 1.24986798903 1.18033011204 1.80907744643
-1 1.22760806282 1.2866260197 1.87128905324
-1 0.625272230308 1.50671580408 1.54202382967
-1 0.535658193142 1.43206825644 1.53148512338
-1 1.4713100396 0.673917594692 0.538588328877
-1 1.57402514978 0.751981264597 0.544835494026
-1 0.949492265511 0.674646109061 2.01927876316
-1 1.0533313306 0.647151440273 2.08902565752
-1 0.863003249501 0.521055664624 1.28386834445
-1 0.915682564398 0.527658159293 1.16331449074
-1 1.53407033815 1.26134955827 0.900975781065
-1 1.42385751278 1.25535329858 0.838775090546
-1 1.83110787665 1.110282385 1.26734920286
-1 1.82474283248 1.00062798294 1.19666672308
-1 1.82245294994 0.769117895948 0.891854923332
-1 1.76170404157 0.803360186846 1.00857690485
-1 1.40859916055 0.85375351183 1.29727025014
-1 1.33183749111 0.802479098264 1.21061545882
-1 0.446815997021 1.21367328978 1.18704210811
-1 0.358139576211 1.2353378973 1.2831327218
-1 1.66086932607 0.922097112683 1.3729647463
-1 1.67285642961 1.01279677081 1.29008411468
-1 0.957590545984 0.632685153844 1.5060956064
-1 0.933899400873 0.523855397218 1.57795696104
-1 0.551201722912 1.10626459737 0.546421995058
-1 0.537420031818 1.03579316589 0.432327962631
-1 1.25434925363 1.20460235927 1.50925904614
-1 1.3737658667 1.17283730495 1.48596918052
-1 1.0930285516 0.750098754358 1.77176970856
-1 1.07449065769 0.765123464103 1.64081863724
-1 0.546249449954 1.66335714044 1.3301193176
-1 0.539837355719 1.59276799919 1.21536616119
-1 0.251858392851 0.879943302982 1.52049774904
-1 0.232733811732 0.878230376062 1.3938625055
-1 1.00160816437 1.20912948922 1.04366550452
-1 0.879809684189 1.16527443049 1.06027476898
-1 0.603268794638 0.750526859154 1.13895787496
-1 0.585660731815 0.876426733913 1.13619165285
-1 1.37529253969 0.488983600176 1.02619588397
-1 1.39717259588 0.536500440037 0.915897251464
-1 1.1347961446 1.04030303287 0.712572436787
-1 1.2586348712 1.00216734929 0.714364908777
-1 0.737165741462 1.46138696138 1.0475441729
-1 0.76957561859 1.40887164472 1.16059464171
-1 1.1214859696 0.641684916901 0.389652286498
-1 1.11558770267 0.759554293741 0.441533019666
-1 1.20594083201 0.843863859459 0.920729868328
-1 1.12773880445 0.920750008462 0.980929577226
-1 1.54368022882 1.42857944352 1.82970407542
-1 1.52811452798 1.5493060962 1.77275572894
-1 0.933341569915 0.323901262566 0.902686761669
-1 0.880308702569 0.433772467251 0.848669820262
-1 1.42239016011 0.958958890431 1.59115518058
-1 1.39053955252 0.845954625461 1.64973030836
-1 0.904962681515 0.791378668382 1.15554928409
-1 0.984347053448 0.791743729479 1.2649901838
-1 0.65924550655 1.26477194259 1.06843330061
-1 0.567882070203 1.15486240395 1.0701736452
-1 0.863088210405 0.879352892394 1.41566301662
-1 0.793631994043 0.772252987171 1.38942947568
-1 1.1214436584 0.328405375216 1.20715423281
-1 1.01978683614 0.413442016721 1.25119926886
-1 1.0790327658 1.41247715195 0.840384608875
-1 1.19636343635 1.47734378702 0.889675049927
-1 0.928021527942 0.707212114545 0.729177300883
-1 0.798175963849 0.728686406255 0.710141488678
-1 0.727429678773 0.844713976238 1.57712486884
-1 0.662433148292 0.878843634702 1.6949460109
-1 1.09760188539 0.914122804048 1.18704253123
-1 1.22259553871 0.945083776191 1.17783011204
-1 0.663454963951 0.989731239211 0.839021511018
-1 0.599193209897 1.02499153776 0.734202010629
-1 1.22917552381 0.615682902887 1.20064211488
-1 1.25094929425 0.630362776292 1.07951680601
-BASISSET
-POB-TZVP
-EXCHPERM
-DFT
-BLYP
-CHUNKS
-200
-END
-SHRINK
-1 1
-FMIXING
-30
-LEVSHIFT
-6 1
-END
-END
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">Water</span> <span class="n">cube</span>
+<span class="n">CRYSTAL</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mf">11.8172</span> <span class="mf">11.8172</span> <span class="mf">11.8172</span> <span class="mi">90</span><span class="p">.</span> <span class="mi">90</span><span class="p">.</span> <span class="mi">90</span><span class="p">.</span>
+<span class="mi">165</span>
+<span class="mi">8</span> <span class="mf">0.966182090512</span> <span class="mf">1.00021468707</span> <span class="mf">1.4854507836</span>
+<span class="mi">8</span> <span class="mf">1.03919930271</span> <span class="mf">1.40081195207</span> <span class="mf">1.57239938395</span>
+<span class="mi">8</span> <span class="mf">1.2300162475</span> <span class="mf">0.527247909826</span> <span class="mf">1.33289637139</span>
+<span class="mi">8</span> <span class="mf">0.768640540906</span> <span class="mf">1.65014267339</span> <span class="mf">1.3298380327</span>
+<span class="mi">8</span> <span class="mf">1.15689283417</span> <span class="mf">1.2052291575</span> <span class="mf">1.08481399993</span>
+<span class="mi">8</span> <span class="mf">0.903492451681</span> <span class="mf">1.21632146363</span> <span class="mf">1.38370900044</span>
+<span class="mi">8</span> <span class="mf">0.762101766916</span> <span class="mf">0.505654892868</span> <span class="mf">0.887620671563</span>
+<span class="mi">8</span> <span class="mf">1.38305427682</span> <span class="mf">0.459265985174</span> <span class="mf">1.53107572014</span>
+<span class="mi">8</span> <span class="mf">1.50650348644</span> <span class="mf">0.456861016146</span> <span class="mf">1.17375080391</span>
+<span class="mi">8</span> <span class="mf">0.63803650611</span> <span class="mf">1.15520588634</span> <span class="mf">0.658485597265</span>
+<span class="mi">8</span> <span class="mf">1.45252310192</span> <span class="mf">1.04503698</span> <span class="mf">1.09088574282</span>
+<span class="mi">8</span> <span class="mf">0.446270182446</span> <span class="mf">0.842531479538</span> <span class="mf">0.927859729885</span>
+<span class="mi">8</span> <span class="mf">1.43138112243</span> <span class="mf">0.708681921267</span> <span class="mf">0.740832092205</span>
+<span class="mi">8</span> <span class="mf">0.937938767221</span> <span class="mf">1.03809015672</span> <span class="mf">0.702070372</span>
+<span class="mi">8</span> <span class="mf">0.863986223471</span> <span class="mf">1.24494550316</span> <span class="mf">0.67097527333</span>
+<span class="mi">8</span> <span class="mf">1.26616296585</span> <span class="mf">0.550525843685</span> <span class="mf">0.700526097553</span>
+<span class="mi">8</span> <span class="mf">0.808251954778</span> <span class="mf">1.01392546458</span> <span class="mf">0.888978438209</span>
+<span class="mi">8</span> <span class="mf">0.700633060285</span> <span class="mf">1.30514241952</span> <span class="mf">1.36784449785</span>
+<span class="mi">8</span> <span class="mf">1.27978945943</span> <span class="mf">1.22268439224</span> <span class="mf">1.87452839928</span>
+<span class="mi">8</span> <span class="mf">0.61985597265</span> <span class="mf">1.42719138205</span> <span class="mf">1.54634253461</span>
+<span class="mi">8</span> <span class="mf">1.52579096571</span> <span class="mf">0.709874674204</span> <span class="mf">0.49502242494</span>
+<span class="mi">8</span> <span class="mf">0.984720576786</span> <span class="mf">0.61250702366</span> <span class="mf">2.05818366449</span>
+<span class="mi">8</span> <span class="mf">0.900647784585</span> <span class="mf">0.474448261856</span> <span class="mf">1.22569508852</span>
+<span class="mi">8</span> <span class="mf">1.49653835088</span> <span class="mf">1.28823308398</span> <span class="mf">0.830222810818</span>
+<span class="mi">8</span> <span class="mf">1.79160029449</span> <span class="mf">1.07211158312</span> <span class="mf">1.2086718512</span>
+<span class="mi">8</span> <span class="mf">1.83282960431</span> <span class="mf">0.803301205023</span> <span class="mf">0.9671824967</span>
+<span class="mi">8</span> <span class="mf">1.34537504654</span> <span class="mf">0.873155146735</span> <span class="mf">1.24777189182</span>
+<span class="mi">8</span> <span class="mf">0.4377635142</span> <span class="mf">1.24948481874</span> <span class="mf">1.26121712419</span>
+<span class="mi">8</span> <span class="mf">1.61083522323</span> <span class="mf">0.963454117727</span> <span class="mf">1.32491478523</span>
+<span class="mi">8</span> <span class="mf">0.89343812409</span> <span class="mf">0.582376366652</span> <span class="mf">1.52855871103</span>
+<span class="mi">8</span> <span class="mf">0.492430694242</span> <span class="mf">1.0714599059</span> <span class="mf">0.497475290255</span>
+<span class="mi">8</span> <span class="mf">1.32287047693</span> <span class="mf">1.24018718478</span> <span class="mf">1.48182623633</span>
+<span class="mi">8</span> <span class="mf">1.08089682835</span> <span class="mf">0.710079629692</span> <span class="mf">1.69978937481</span>
+<span class="mi">8</span> <span class="mf">0.566233625563</span> <span class="mf">1.66400610974</span> <span class="mf">1.25198558034</span>
+<span class="mi">8</span> <span class="mf">0.188996462783</span> <span class="mf">0.885536929222</span> <span class="mf">1.46524041228</span>
+<span class="mi">8</span> <span class="mf">0.92452552212</span> <span class="mf">1.23048649426</span> <span class="mf">1.03169295603</span>
+<span class="mi">8</span> <span class="mf">0.617660274854</span> <span class="mf">0.817834258538</span> <span class="mf">1.08969459771</span>
+<span class="mi">8</span> <span class="mf">1.33952662221</span> <span class="mf">0.537026114477</span> <span class="mf">0.97252276343</span>
+<span class="mi">8</span> <span class="mf">1.21163067393</span> <span class="mf">1.07015274346</span> <span class="mf">0.705801289646</span>
+<span class="mi">8</span> <span class="mf">0.708953559219</span> <span class="mf">1.40961251396</span> <span class="mf">1.10277104559</span>
+<span class="mi">8</span> <span class="mf">1.06568992655</span> <span class="mf">0.706494854957</span> <span class="mf">0.400919507159</span>
+<span class="mi">8</span> <span class="mf">1.12978751312</span> <span class="mf">0.876184290695</span> <span class="mf">0.910686033917</span>
+<span class="mi">8</span> <span class="mf">1.55138340724</span> <span class="mf">1.51283019666</span> <span class="mf">1.84138306875</span>
+<span class="mi">8</span> <span class="mf">0.943388281488</span> <span class="mf">0.379874928071</span> <span class="mf">0.842503892631</span>
+<span class="mi">8</span> <span class="mf">1.35594709407</span> <span class="mf">0.919504451139</span> <span class="mf">1.62474444031</span>
+<span class="mi">8</span> <span class="mf">0.948775175168</span> <span class="mf">0.840589733609</span> <span class="mf">1.20458492706</span>
+<span class="mi">8</span> <span class="mf">0.622394898961</span> <span class="mf">1.20107174288</span> <span class="mf">1.02580848255</span>
+<span class="mi">8</span> <span class="mf">0.784972836205</span> <span class="mf">0.848350032157</span> <span class="mf">1.42938403344</span>
+<span class="mi">8</span> <span class="mf">1.08217014183</span> <span class="mf">0.360261737129</span> <span class="mf">1.27039222489</span>
+<span class="mi">8</span> <span class="mf">1.16518735403</span> <span class="mf">1.41018464611</span> <span class="mf">0.848232999357</span>
+<span class="mi">8</span> <span class="mf">0.851257319839</span> <span class="mf">0.708795315303</span> <span class="mf">0.771359374471</span>
+<span class="mi">8</span> <span class="mf">0.682134261923</span> <span class="mf">0.819043512846</span> <span class="mf">1.64355321057</span>
+<span class="mi">8</span> <span class="mf">1.15068908032</span> <span class="mf">0.962640642453</span> <span class="mf">1.15036303016</span>
+<span class="mi">8</span> <span class="mf">0.595814321497</span> <span class="mf">0.971598517415</span> <span class="mf">0.797778153877</span>
+<span class="mi">8</span> <span class="mf">1.22474054768</span> <span class="mf">0.674640862472</span> <span class="mf">1.14489794537</span>
+<span class="mi">1</span> <span class="mf">1.04184933825</span> <span class="mf">0.980869495312</span> <span class="mf">1.46944707714</span>
+<span class="mi">1</span> <span class="mf">0.966587770369</span> <span class="mf">1.07866017331</span> <span class="mf">1.46048801747</span>
+<span class="mi">1</span> <span class="mf">1.00937303253</span> <span class="mf">1.3425173476</span> <span class="mf">1.52038587821</span>
+<span class="mi">1</span> <span class="mf">0.996500440037</span> <span class="mf">1.36528094642</span> <span class="mf">1.63609315235</span>
+<span class="mi">1</span> <span class="mf">1.19357995126</span> <span class="mf">0.452229885252</span> <span class="mf">1.3260631114</span>
+<span class="mi">1</span> <span class="mf">1.2984623261</span> <span class="mf">0.518463849304</span> <span class="mf">1.38540804928</span>
+<span class="mi">1</span> <span class="mf">0.69602291575</span> <span class="mf">1.63709626646</span> <span class="mf">1.29537860068</span>
+<span class="mi">1</span> <span class="mf">0.773463595437</span> <span class="mf">1.60575229327</span> <span class="mf">1.39931286599</span>
+<span class="mi">1</span> <span class="mf">1.20908819348</span> <span class="mf">1.22614197949</span> <span class="mf">1.02950817453</span>
+<span class="mi">1</span> <span class="mf">1.16437641743</span> <span class="mf">1.12178147108</span> <span class="mf">1.09562891379</span>
+<span class="mi">1</span> <span class="mf">0.947235893443</span> <span class="mf">1.26596960363</span> <span class="mf">1.33223919372</span>
+<span class="mi">1</span> <span class="mf">0.828159800968</span> <span class="mf">1.25201502894</span> <span class="mf">1.3869174593</span>
+<span class="mi">1</span> <span class="mf">0.780803151339</span> <span class="mf">0.587075533967</span> <span class="mf">0.881474714822</span>
+<span class="mi">1</span> <span class="mf">0.68113961006</span> <span class="mf">0.5006251904</span> <span class="mf">0.86950588972</span>
+<span class="mi">1</span> <span class="mf">1.3673395559</span> <span class="mf">0.378040991098</span> <span class="mf">1.51693726094</span>
+<span class="mi">1</span> <span class="mf">1.33352156179</span> <span class="mf">0.485049588735</span> <span class="mf">1.59441102799</span>
+<span class="mi">1</span> <span class="mf">1.47586949531</span> <span class="mf">0.39175532275</span> <span class="mf">1.222188928</span>
+<span class="mi">1</span> <span class="mf">1.58466718004</span> <span class="mf">0.431308601022</span> <span class="mf">1.15432369766</span>
+<span class="mi">1</span> <span class="mf">0.712842297668</span> <span class="mf">1.19142317977</span> <span class="mf">0.671666130725</span>
+<span class="mi">1</span> <span class="mf">0.583473242392</span> <span class="mf">1.21072326778</span> <span class="mf">0.685453745388</span>
+<span class="mi">1</span> <span class="mf">1.42818645703</span> <span class="mf">0.985092492299</span> <span class="mf">1.14459347392</span>
+<span class="mi">1</span> <span class="mf">1.40604855634</span> <span class="mf">1.03039180178</span> <span class="mf">1.0221847815</span>
+<span class="mi">1</span> <span class="mf">0.501959939749</span> <span class="mf">0.818277595369</span> <span class="mf">0.98203043022</span>
+<span class="mi">1</span> <span class="mf">0.496883864198</span> <span class="mf">0.884192532918</span> <span class="mf">0.874850979928</span>
+<span class="mi">1</span> <span class="mf">1.3629141421</span> <span class="mf">0.660376992858</span> <span class="mf">0.741408540094</span>
+<span class="mi">1</span> <span class="mf">1.43287403107</span> <span class="mf">0.754663287412</span> <span class="mf">0.80945367769</span>
+<span class="mi">1</span> <span class="mf">0.88731882341</span> <span class="mf">1.01235055682</span> <span class="mf">0.761407270758</span>
+<span class="mi">1</span> <span class="mf">0.921746352774</span> <span class="mf">0.989740039942</span> <span class="mf">0.636936922452</span>
+<span class="mi">1</span> <span class="mf">0.902074180009</span> <span class="mf">1.16786878448</span> <span class="mf">0.686409132451</span>
+<span class="mi">1</span> <span class="mf">0.880754916562</span> <span class="mf">1.28857258911</span> <span class="mf">0.734293148969</span>
+<span class="mi">1</span> <span class="mf">1.20818239515</span> <span class="mf">0.594553701384</span> <span class="mf">0.661167196967</span>
+<span class="mi">1</span> <span class="mf">1.23049461801</span> <span class="mf">0.478967860407</span> <span class="mf">0.725150289409</span>
+<span class="mi">1</span> <span class="mf">0.800044934502</span> <span class="mf">1.07074408489</span> <span class="mf">0.951595386386</span>
+<span class="mi">1</span> <span class="mf">0.830195731645</span> <span class="mf">0.943031936499</span> <span class="mf">0.928683021359</span>
+<span class="mi">1</span> <span class="mf">0.646418525539</span> <span class="mf">1.23949438107</span> <span class="mf">1.36054429137</span>
+<span class="mi">1</span> <span class="mf">0.683390312426</span> <span class="mf">1.34626527435</span> <span class="mf">1.43572419863</span>
+<span class="mi">1</span> <span class="mf">1.24986798903</span> <span class="mf">1.18033011204</span> <span class="mf">1.80907744643</span>
+<span class="mi">1</span> <span class="mf">1.22760806282</span> <span class="mf">1.2866260197</span> <span class="mf">1.87128905324</span>
+<span class="mi">1</span> <span class="mf">0.625272230308</span> <span class="mf">1.50671580408</span> <span class="mf">1.54202382967</span>
+<span class="mi">1</span> <span class="mf">0.535658193142</span> <span class="mf">1.43206825644</span> <span class="mf">1.53148512338</span>
+<span class="mi">1</span> <span class="mf">1.4713100396</span> <span class="mf">0.673917594692</span> <span class="mf">0.538588328877</span>
+<span class="mi">1</span> <span class="mf">1.57402514978</span> <span class="mf">0.751981264597</span> <span class="mf">0.544835494026</span>
+<span class="mi">1</span> <span class="mf">0.949492265511</span> <span class="mf">0.674646109061</span> <span class="mf">2.01927876316</span>
+<span class="mi">1</span> <span class="mf">1.0533313306</span> <span class="mf">0.647151440273</span> <span class="mf">2.08902565752</span>
+<span class="mi">1</span> <span class="mf">0.863003249501</span> <span class="mf">0.521055664624</span> <span class="mf">1.28386834445</span>
+<span class="mi">1</span> <span class="mf">0.915682564398</span> <span class="mf">0.527658159293</span> <span class="mf">1.16331449074</span>
+<span class="mi">1</span> <span class="mf">1.53407033815</span> <span class="mf">1.26134955827</span> <span class="mf">0.900975781065</span>
+<span class="mi">1</span> <span class="mf">1.42385751278</span> <span class="mf">1.25535329858</span> <span class="mf">0.838775090546</span>
+<span class="mi">1</span> <span class="mf">1.83110787665</span> <span class="mf">1.110282385</span> <span class="mf">1.26734920286</span>
+<span class="mi">1</span> <span class="mf">1.82474283248</span> <span class="mf">1.00062798294</span> <span class="mf">1.19666672308</span>
+<span class="mi">1</span> <span class="mf">1.82245294994</span> <span class="mf">0.769117895948</span> <span class="mf">0.891854923332</span>
+<span class="mi">1</span> <span class="mf">1.76170404157</span> <span class="mf">0.803360186846</span> <span class="mf">1.00857690485</span>
+<span class="mi">1</span> <span class="mf">1.40859916055</span> <span class="mf">0.85375351183</span> <span class="mf">1.29727025014</span>
+<span class="mi">1</span> <span class="mf">1.33183749111</span> <span class="mf">0.802479098264</span> <span class="mf">1.21061545882</span>
+<span class="mi">1</span> <span class="mf">0.446815997021</span> <span class="mf">1.21367328978</span> <span class="mf">1.18704210811</span>
+<span class="mi">1</span> <span class="mf">0.358139576211</span> <span class="mf">1.2353378973</span> <span class="mf">1.2831327218</span>
+<span class="mi">1</span> <span class="mf">1.66086932607</span> <span class="mf">0.922097112683</span> <span class="mf">1.3729647463</span>
+<span class="mi">1</span> <span class="mf">1.67285642961</span> <span class="mf">1.01279677081</span> <span class="mf">1.29008411468</span>
+<span class="mi">1</span> <span class="mf">0.957590545984</span> <span class="mf">0.632685153844</span> <span class="mf">1.5060956064</span>
+<span class="mi">1</span> <span class="mf">0.933899400873</span> <span class="mf">0.523855397218</span> <span class="mf">1.57795696104</span>
+<span class="mi">1</span> <span class="mf">0.551201722912</span> <span class="mf">1.10626459737</span> <span class="mf">0.546421995058</span>
+<span class="mi">1</span> <span class="mf">0.537420031818</span> <span class="mf">1.03579316589</span> <span class="mf">0.432327962631</span>
+<span class="mi">1</span> <span class="mf">1.25434925363</span> <span class="mf">1.20460235927</span> <span class="mf">1.50925904614</span>
+<span class="mi">1</span> <span class="mf">1.3737658667</span> <span class="mf">1.17283730495</span> <span class="mf">1.48596918052</span>
+<span class="mi">1</span> <span class="mf">1.0930285516</span> <span class="mf">0.750098754358</span> <span class="mf">1.77176970856</span>
+<span class="mi">1</span> <span class="mf">1.07449065769</span> <span class="mf">0.765123464103</span> <span class="mf">1.64081863724</span>
+<span class="mi">1</span> <span class="mf">0.546249449954</span> <span class="mf">1.66335714044</span> <span class="mf">1.3301193176</span>
+<span class="mi">1</span> <span class="mf">0.539837355719</span> <span class="mf">1.59276799919</span> <span class="mf">1.21536616119</span>
+<span class="mi">1</span> <span class="mf">0.251858392851</span> <span class="mf">0.879943302982</span> <span class="mf">1.52049774904</span>
+<span class="mi">1</span> <span class="mf">0.232733811732</span> <span class="mf">0.878230376062</span> <span class="mf">1.3938625055</span>
+<span class="mi">1</span> <span class="mf">1.00160816437</span> <span class="mf">1.20912948922</span> <span class="mf">1.04366550452</span>
+<span class="mi">1</span> <span class="mf">0.879809684189</span> <span class="mf">1.16527443049</span> <span class="mf">1.06027476898</span>
+<span class="mi">1</span> <span class="mf">0.603268794638</span> <span class="mf">0.750526859154</span> <span class="mf">1.13895787496</span>
+<span class="mi">1</span> <span class="mf">0.585660731815</span> <span class="mf">0.876426733913</span> <span class="mf">1.13619165285</span>
+<span class="mi">1</span> <span class="mf">1.37529253969</span> <span class="mf">0.488983600176</span> <span class="mf">1.02619588397</span>
+<span class="mi">1</span> <span class="mf">1.39717259588</span> <span class="mf">0.536500440037</span> <span class="mf">0.915897251464</span>
+<span class="mi">1</span> <span class="mf">1.1347961446</span> <span class="mf">1.04030303287</span> <span class="mf">0.712572436787</span>
+<span class="mi">1</span> <span class="mf">1.2586348712</span> <span class="mf">1.00216734929</span> <span class="mf">0.714364908777</span>
+<span class="mi">1</span> <span class="mf">0.737165741462</span> <span class="mf">1.46138696138</span> <span class="mf">1.0475441729</span>
+<span class="mi">1</span> <span class="mf">0.76957561859</span> <span class="mf">1.40887164472</span> <span class="mf">1.16059464171</span>
+<span class="mi">1</span> <span class="mf">1.1214859696</span> <span class="mf">0.641684916901</span> <span class="mf">0.389652286498</span>
+<span class="mi">1</span> <span class="mf">1.11558770267</span> <span class="mf">0.759554293741</span> <span class="mf">0.441533019666</span>
+<span class="mi">1</span> <span class="mf">1.20594083201</span> <span class="mf">0.843863859459</span> <span class="mf">0.920729868328</span>
+<span class="mi">1</span> <span class="mf">1.12773880445</span> <span class="mf">0.920750008462</span> <span class="mf">0.980929577226</span>
+<span class="mi">1</span> <span class="mf">1.54368022882</span> <span class="mf">1.42857944352</span> <span class="mf">1.82970407542</span>
+<span class="mi">1</span> <span class="mf">1.52811452798</span> <span class="mf">1.5493060962</span> <span class="mf">1.77275572894</span>
+<span class="mi">1</span> <span class="mf">0.933341569915</span> <span class="mf">0.323901262566</span> <span class="mf">0.902686761669</span>
+<span class="mi">1</span> <span class="mf">0.880308702569</span> <span class="mf">0.433772467251</span> <span class="mf">0.848669820262</span>
+<span class="mi">1</span> <span class="mf">1.42239016011</span> <span class="mf">0.958958890431</span> <span class="mf">1.59115518058</span>
+<span class="mi">1</span> <span class="mf">1.39053955252</span> <span class="mf">0.845954625461</span> <span class="mf">1.64973030836</span>
+<span class="mi">1</span> <span class="mf">0.904962681515</span> <span class="mf">0.791378668382</span> <span class="mf">1.15554928409</span>
+<span class="mi">1</span> <span class="mf">0.984347053448</span> <span class="mf">0.791743729479</span> <span class="mf">1.2649901838</span>
+<span class="mi">1</span> <span class="mf">0.65924550655</span> <span class="mf">1.26477194259</span> <span class="mf">1.06843330061</span>
+<span class="mi">1</span> <span class="mf">0.567882070203</span> <span class="mf">1.15486240395</span> <span class="mf">1.0701736452</span>
+<span class="mi">1</span> <span class="mf">0.863088210405</span> <span class="mf">0.879352892394</span> <span class="mf">1.41566301662</span>
+<span class="mi">1</span> <span class="mf">0.793631994043</span> <span class="mf">0.772252987171</span> <span class="mf">1.38942947568</span>
+<span class="mi">1</span> <span class="mf">1.1214436584</span> <span class="mf">0.328405375216</span> <span class="mf">1.20715423281</span>
+<span class="mi">1</span> <span class="mf">1.01978683614</span> <span class="mf">0.413442016721</span> <span class="mf">1.25119926886</span>
+<span class="mi">1</span> <span class="mf">1.0790327658</span> <span class="mf">1.41247715195</span> <span class="mf">0.840384608875</span>
+<span class="mi">1</span> <span class="mf">1.19636343635</span> <span class="mf">1.47734378702</span> <span class="mf">0.889675049927</span>
+<span class="mi">1</span> <span class="mf">0.928021527942</span> <span class="mf">0.707212114545</span> <span class="mf">0.729177300883</span>
+<span class="mi">1</span> <span class="mf">0.798175963849</span> <span class="mf">0.728686406255</span> <span class="mf">0.710141488678</span>
+<span class="mi">1</span> <span class="mf">0.727429678773</span> <span class="mf">0.844713976238</span> <span class="mf">1.57712486884</span>
+<span class="mi">1</span> <span class="mf">0.662433148292</span> <span class="mf">0.878843634702</span> <span class="mf">1.6949460109</span>
+<span class="mi">1</span> <span class="mf">1.09760188539</span> <span class="mf">0.914122804048</span> <span class="mf">1.18704253123</span>
+<span class="mi">1</span> <span class="mf">1.22259553871</span> <span class="mf">0.945083776191</span> <span class="mf">1.17783011204</span>
+<span class="mi">1</span> <span class="mf">0.663454963951</span> <span class="mf">0.989731239211</span> <span class="mf">0.839021511018</span>
+<span class="mi">1</span> <span class="mf">0.599193209897</span> <span class="mf">1.02499153776</span> <span class="mf">0.734202010629</span>
+<span class="mi">1</span> <span class="mf">1.22917552381</span> <span class="mf">0.615682902887</span> <span class="mf">1.20064211488</span>
+<span class="mi">1</span> <span class="mf">1.25094929425</span> <span class="mf">0.630362776292</span> <span class="mf">1.07951680601</span>
+<span class="n">BASISSET</span>
+<span class="n">POB</span><span class="o">-</span><span class="n">TZVP</span>
+<span class="n">EXCHPERM</span>
+<span class="n">DFT</span>
+<span class="n">BLYP</span>
+<span class="n">CHUNKS</span>
+<span class="mi">200</span>
+<span class="kr">END</span>
+<span class="n">SHRINK</span>
+<span class="mi">1</span> <span class="mi">1</span>
+<span class="n">FMIXING</span>
+<span class="mi">30</span>
+<span class="n">LEVSHIFT</span>
+<span class="mi">6</span> <span class="mi">1</span>
+<span class="kr">END</span>
+<span class="kr">END</span>
+</code></pre></div>
 
 <p>INPUT for lc-blyp calculation</p>
-<div class="highlight"><pre><span></span>Water cube
-CRYSTAL
-0 0 0
-1
-11.8172 11.8172 11.8172 90. 90. 90.
-165
-8 0.966182090512 1.00021468707 1.4854507836
-8 1.03919930271 1.40081195207 1.57239938395
-8 1.2300162475 0.527247909826 1.33289637139
-8 0.768640540906 1.65014267339 1.3298380327
-8 1.15689283417 1.2052291575 1.08481399993
-8 0.903492451681 1.21632146363 1.38370900044
-8 0.762101766916 0.505654892868 0.887620671563
-8 1.38305427682 0.459265985174 1.53107572014
-8 1.50650348644 0.456861016146 1.17375080391
-8 0.63803650611 1.15520588634 0.658485597265
-8 1.45252310192 1.04503698 1.09088574282
-8 0.446270182446 0.842531479538 0.927859729885
-8 1.43138112243 0.708681921267 0.740832092205
-8 0.937938767221 1.03809015672 0.702070372
-8 0.863986223471 1.24494550316 0.67097527333
-8 1.26616296585 0.550525843685 0.700526097553
-8 0.808251954778 1.01392546458 0.888978438209
-8 0.700633060285 1.30514241952 1.36784449785
-8 1.27978945943 1.22268439224 1.87452839928
-8 0.61985597265 1.42719138205 1.54634253461
-8 1.52579096571 0.709874674204 0.49502242494
-8 0.984720576786 0.61250702366 2.05818366449
-8 0.900647784585 0.474448261856 1.22569508852
-8 1.49653835088 1.28823308398 0.830222810818
-8 1.79160029449 1.07211158312 1.2086718512
-8 1.83282960431 0.803301205023 0.9671824967
-8 1.34537504654 0.873155146735 1.24777189182
-8 0.4377635142 1.24948481874 1.26121712419
-8 1.61083522323 0.963454117727 1.32491478523
-8 0.89343812409 0.582376366652 1.52855871103
-8 0.492430694242 1.0714599059 0.497475290255
-8 1.32287047693 1.24018718478 1.48182623633
-8 1.08089682835 0.710079629692 1.69978937481
-8 0.566233625563 1.66400610974 1.25198558034
-8 0.188996462783 0.885536929222 1.46524041228
-8 0.92452552212 1.23048649426 1.03169295603
-8 0.617660274854 0.817834258538 1.08969459771
-8 1.33952662221 0.537026114477 0.97252276343
-8 1.21163067393 1.07015274346 0.705801289646
-8 0.708953559219 1.40961251396 1.10277104559
-8 1.06568992655 0.706494854957 0.400919507159
-8 1.12978751312 0.876184290695 0.910686033917
-8 1.55138340724 1.51283019666 1.84138306875
-8 0.943388281488 0.379874928071 0.842503892631
-8 1.35594709407 0.919504451139 1.62474444031
-8 0.948775175168 0.840589733609 1.20458492706
-8 0.622394898961 1.20107174288 1.02580848255
-8 0.784972836205 0.848350032157 1.42938403344
-8 1.08217014183 0.360261737129 1.27039222489
-8 1.16518735403 1.41018464611 0.848232999357
-8 0.851257319839 0.708795315303 0.771359374471
-8 0.682134261923 0.819043512846 1.64355321057
-8 1.15068908032 0.962640642453 1.15036303016
-8 0.595814321497 0.971598517415 0.797778153877
-8 1.22474054768 0.674640862472 1.14489794537
-1 1.04184933825 0.980869495312 1.46944707714
-1 0.966587770369 1.07866017331 1.46048801747
-1 1.00937303253 1.3425173476 1.52038587821
-1 0.996500440037 1.36528094642 1.63609315235
-1 1.19357995126 0.452229885252 1.3260631114
-1 1.2984623261 0.518463849304 1.38540804928
-1 0.69602291575 1.63709626646 1.29537860068
-1 0.773463595437 1.60575229327 1.39931286599
-1 1.20908819348 1.22614197949 1.02950817453
-1 1.16437641743 1.12178147108 1.09562891379
-1 0.947235893443 1.26596960363 1.33223919372
-1 0.828159800968 1.25201502894 1.3869174593
-1 0.780803151339 0.587075533967 0.881474714822
-1 0.68113961006 0.5006251904 0.86950588972
-1 1.3673395559 0.378040991098 1.51693726094
-1 1.33352156179 0.485049588735 1.59441102799
-1 1.47586949531 0.39175532275 1.222188928
-1 1.58466718004 0.431308601022 1.15432369766
-1 0.712842297668 1.19142317977 0.671666130725
-1 0.583473242392 1.21072326778 0.685453745388
-1 1.42818645703 0.985092492299 1.14459347392
-1 1.40604855634 1.03039180178 1.0221847815
-1 0.501959939749 0.818277595369 0.98203043022
-1 0.496883864198 0.884192532918 0.874850979928
-1 1.3629141421 0.660376992858 0.741408540094
-1 1.43287403107 0.754663287412 0.80945367769
-1 0.88731882341 1.01235055682 0.761407270758
-1 0.921746352774 0.989740039942 0.636936922452
-1 0.902074180009 1.16786878448 0.686409132451
-1 0.880754916562 1.28857258911 0.734293148969
-1 1.20818239515 0.594553701384 0.661167196967
-1 1.23049461801 0.478967860407 0.725150289409
-1 0.800044934502 1.07074408489 0.951595386386
-1 0.830195731645 0.943031936499 0.928683021359
-1 0.646418525539 1.23949438107 1.36054429137
-1 0.683390312426 1.34626527435 1.43572419863
-1 1.24986798903 1.18033011204 1.80907744643
-1 1.22760806282 1.2866260197 1.87128905324
-1 0.625272230308 1.50671580408 1.54202382967
-1 0.535658193142 1.43206825644 1.53148512338
-1 1.4713100396 0.673917594692 0.538588328877
-1 1.57402514978 0.751981264597 0.544835494026
-1 0.949492265511 0.674646109061 2.01927876316
-1 1.0533313306 0.647151440273 2.08902565752
-1 0.863003249501 0.521055664624 1.28386834445
-1 0.915682564398 0.527658159293 1.16331449074
-1 1.53407033815 1.26134955827 0.900975781065
-1 1.42385751278 1.25535329858 0.838775090546
-1 1.83110787665 1.110282385 1.26734920286
-1 1.82474283248 1.00062798294 1.19666672308
-1 1.82245294994 0.769117895948 0.891854923332
-1 1.76170404157 0.803360186846 1.00857690485
-1 1.40859916055 0.85375351183 1.29727025014
-1 1.33183749111 0.802479098264 1.21061545882
-1 0.446815997021 1.21367328978 1.18704210811
-1 0.358139576211 1.2353378973 1.2831327218
-1 1.66086932607 0.922097112683 1.3729647463
-1 1.67285642961 1.01279677081 1.29008411468
-1 0.957590545984 0.632685153844 1.5060956064
-1 0.933899400873 0.523855397218 1.57795696104
-1 0.551201722912 1.10626459737 0.546421995058
-1 0.537420031818 1.03579316589 0.432327962631
-1 1.25434925363 1.20460235927 1.50925904614
-1 1.3737658667 1.17283730495 1.48596918052
-1 1.0930285516 0.750098754358 1.77176970856
-1 1.07449065769 0.765123464103 1.64081863724
-1 0.546249449954 1.66335714044 1.3301193176
-1 0.539837355719 1.59276799919 1.21536616119
-1 0.251858392851 0.879943302982 1.52049774904
-1 0.232733811732 0.878230376062 1.3938625055
-1 1.00160816437 1.20912948922 1.04366550452
-1 0.879809684189 1.16527443049 1.06027476898
-1 0.603268794638 0.750526859154 1.13895787496
-1 0.585660731815 0.876426733913 1.13619165285
-1 1.37529253969 0.488983600176 1.02619588397
-1 1.39717259588 0.536500440037 0.915897251464
-1 1.1347961446 1.04030303287 0.712572436787
-1 1.2586348712 1.00216734929 0.714364908777
-1 0.737165741462 1.46138696138 1.0475441729
-1 0.76957561859 1.40887164472 1.16059464171
-1 1.1214859696 0.641684916901 0.389652286498
-1 1.11558770267 0.759554293741 0.441533019666
-1 1.20594083201 0.843863859459 0.920729868328
-1 1.12773880445 0.920750008462 0.980929577226
-1 1.54368022882 1.42857944352 1.82970407542
-1 1.52811452798 1.5493060962 1.77275572894
-1 0.933341569915 0.323901262566 0.902686761669
-1 0.880308702569 0.433772467251 0.848669820262
-1 1.42239016011 0.958958890431 1.59115518058
-1 1.39053955252 0.845954625461 1.64973030836
-1 0.904962681515 0.791378668382 1.15554928409
-1 0.984347053448 0.791743729479 1.2649901838
-1 0.65924550655 1.26477194259 1.06843330061
-1 0.567882070203 1.15486240395 1.0701736452
-1 0.863088210405 0.879352892394 1.41566301662
-1 0.793631994043 0.772252987171 1.38942947568
-1 1.1214436584 0.328405375216 1.20715423281
-1 1.01978683614 0.413442016721 1.25119926886
-1 1.0790327658 1.41247715195 0.840384608875
-1 1.19636343635 1.47734378702 0.889675049927
-1 0.928021527942 0.707212114545 0.729177300883
-1 0.798175963849 0.728686406255 0.710141488678
-1 0.727429678773 0.844713976238 1.57712486884
-1 0.662433148292 0.878843634702 1.6949460109
-1 1.09760188539 0.914122804048 1.18704253123
-1 1.22259553871 0.945083776191 1.17783011204
-1 0.663454963951 0.989731239211 0.839021511018
-1 0.599193209897 1.02499153776 0.734202010629
-1 1.22917552381 0.615682902887 1.20064211488
-1 1.25094929425 0.630362776292 1.07951680601
-BASISSET
-POB-TZVP
-EXCHPERM
-DFT
-LC-wBLYP
-CHUNKS
-200
-END
-GUESSP
-SHRINK
-1 1
-FMIXING
-30
-LEVSHIFT
-6 1
-END
-END
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">Water</span> <span class="n">cube</span>
+<span class="n">CRYSTAL</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mf">11.8172</span> <span class="mf">11.8172</span> <span class="mf">11.8172</span> <span class="mi">90</span><span class="p">.</span> <span class="mi">90</span><span class="p">.</span> <span class="mi">90</span><span class="p">.</span>
+<span class="mi">165</span>
+<span class="mi">8</span> <span class="mf">0.966182090512</span> <span class="mf">1.00021468707</span> <span class="mf">1.4854507836</span>
+<span class="mi">8</span> <span class="mf">1.03919930271</span> <span class="mf">1.40081195207</span> <span class="mf">1.57239938395</span>
+<span class="mi">8</span> <span class="mf">1.2300162475</span> <span class="mf">0.527247909826</span> <span class="mf">1.33289637139</span>
+<span class="mi">8</span> <span class="mf">0.768640540906</span> <span class="mf">1.65014267339</span> <span class="mf">1.3298380327</span>
+<span class="mi">8</span> <span class="mf">1.15689283417</span> <span class="mf">1.2052291575</span> <span class="mf">1.08481399993</span>
+<span class="mi">8</span> <span class="mf">0.903492451681</span> <span class="mf">1.21632146363</span> <span class="mf">1.38370900044</span>
+<span class="mi">8</span> <span class="mf">0.762101766916</span> <span class="mf">0.505654892868</span> <span class="mf">0.887620671563</span>
+<span class="mi">8</span> <span class="mf">1.38305427682</span> <span class="mf">0.459265985174</span> <span class="mf">1.53107572014</span>
+<span class="mi">8</span> <span class="mf">1.50650348644</span> <span class="mf">0.456861016146</span> <span class="mf">1.17375080391</span>
+<span class="mi">8</span> <span class="mf">0.63803650611</span> <span class="mf">1.15520588634</span> <span class="mf">0.658485597265</span>
+<span class="mi">8</span> <span class="mf">1.45252310192</span> <span class="mf">1.04503698</span> <span class="mf">1.09088574282</span>
+<span class="mi">8</span> <span class="mf">0.446270182446</span> <span class="mf">0.842531479538</span> <span class="mf">0.927859729885</span>
+<span class="mi">8</span> <span class="mf">1.43138112243</span> <span class="mf">0.708681921267</span> <span class="mf">0.740832092205</span>
+<span class="mi">8</span> <span class="mf">0.937938767221</span> <span class="mf">1.03809015672</span> <span class="mf">0.702070372</span>
+<span class="mi">8</span> <span class="mf">0.863986223471</span> <span class="mf">1.24494550316</span> <span class="mf">0.67097527333</span>
+<span class="mi">8</span> <span class="mf">1.26616296585</span> <span class="mf">0.550525843685</span> <span class="mf">0.700526097553</span>
+<span class="mi">8</span> <span class="mf">0.808251954778</span> <span class="mf">1.01392546458</span> <span class="mf">0.888978438209</span>
+<span class="mi">8</span> <span class="mf">0.700633060285</span> <span class="mf">1.30514241952</span> <span class="mf">1.36784449785</span>
+<span class="mi">8</span> <span class="mf">1.27978945943</span> <span class="mf">1.22268439224</span> <span class="mf">1.87452839928</span>
+<span class="mi">8</span> <span class="mf">0.61985597265</span> <span class="mf">1.42719138205</span> <span class="mf">1.54634253461</span>
+<span class="mi">8</span> <span class="mf">1.52579096571</span> <span class="mf">0.709874674204</span> <span class="mf">0.49502242494</span>
+<span class="mi">8</span> <span class="mf">0.984720576786</span> <span class="mf">0.61250702366</span> <span class="mf">2.05818366449</span>
+<span class="mi">8</span> <span class="mf">0.900647784585</span> <span class="mf">0.474448261856</span> <span class="mf">1.22569508852</span>
+<span class="mi">8</span> <span class="mf">1.49653835088</span> <span class="mf">1.28823308398</span> <span class="mf">0.830222810818</span>
+<span class="mi">8</span> <span class="mf">1.79160029449</span> <span class="mf">1.07211158312</span> <span class="mf">1.2086718512</span>
+<span class="mi">8</span> <span class="mf">1.83282960431</span> <span class="mf">0.803301205023</span> <span class="mf">0.9671824967</span>
+<span class="mi">8</span> <span class="mf">1.34537504654</span> <span class="mf">0.873155146735</span> <span class="mf">1.24777189182</span>
+<span class="mi">8</span> <span class="mf">0.4377635142</span> <span class="mf">1.24948481874</span> <span class="mf">1.26121712419</span>
+<span class="mi">8</span> <span class="mf">1.61083522323</span> <span class="mf">0.963454117727</span> <span class="mf">1.32491478523</span>
+<span class="mi">8</span> <span class="mf">0.89343812409</span> <span class="mf">0.582376366652</span> <span class="mf">1.52855871103</span>
+<span class="mi">8</span> <span class="mf">0.492430694242</span> <span class="mf">1.0714599059</span> <span class="mf">0.497475290255</span>
+<span class="mi">8</span> <span class="mf">1.32287047693</span> <span class="mf">1.24018718478</span> <span class="mf">1.48182623633</span>
+<span class="mi">8</span> <span class="mf">1.08089682835</span> <span class="mf">0.710079629692</span> <span class="mf">1.69978937481</span>
+<span class="mi">8</span> <span class="mf">0.566233625563</span> <span class="mf">1.66400610974</span> <span class="mf">1.25198558034</span>
+<span class="mi">8</span> <span class="mf">0.188996462783</span> <span class="mf">0.885536929222</span> <span class="mf">1.46524041228</span>
+<span class="mi">8</span> <span class="mf">0.92452552212</span> <span class="mf">1.23048649426</span> <span class="mf">1.03169295603</span>
+<span class="mi">8</span> <span class="mf">0.617660274854</span> <span class="mf">0.817834258538</span> <span class="mf">1.08969459771</span>
+<span class="mi">8</span> <span class="mf">1.33952662221</span> <span class="mf">0.537026114477</span> <span class="mf">0.97252276343</span>
+<span class="mi">8</span> <span class="mf">1.21163067393</span> <span class="mf">1.07015274346</span> <span class="mf">0.705801289646</span>
+<span class="mi">8</span> <span class="mf">0.708953559219</span> <span class="mf">1.40961251396</span> <span class="mf">1.10277104559</span>
+<span class="mi">8</span> <span class="mf">1.06568992655</span> <span class="mf">0.706494854957</span> <span class="mf">0.400919507159</span>
+<span class="mi">8</span> <span class="mf">1.12978751312</span> <span class="mf">0.876184290695</span> <span class="mf">0.910686033917</span>
+<span class="mi">8</span> <span class="mf">1.55138340724</span> <span class="mf">1.51283019666</span> <span class="mf">1.84138306875</span>
+<span class="mi">8</span> <span class="mf">0.943388281488</span> <span class="mf">0.379874928071</span> <span class="mf">0.842503892631</span>
+<span class="mi">8</span> <span class="mf">1.35594709407</span> <span class="mf">0.919504451139</span> <span class="mf">1.62474444031</span>
+<span class="mi">8</span> <span class="mf">0.948775175168</span> <span class="mf">0.840589733609</span> <span class="mf">1.20458492706</span>
+<span class="mi">8</span> <span class="mf">0.622394898961</span> <span class="mf">1.20107174288</span> <span class="mf">1.02580848255</span>
+<span class="mi">8</span> <span class="mf">0.784972836205</span> <span class="mf">0.848350032157</span> <span class="mf">1.42938403344</span>
+<span class="mi">8</span> <span class="mf">1.08217014183</span> <span class="mf">0.360261737129</span> <span class="mf">1.27039222489</span>
+<span class="mi">8</span> <span class="mf">1.16518735403</span> <span class="mf">1.41018464611</span> <span class="mf">0.848232999357</span>
+<span class="mi">8</span> <span class="mf">0.851257319839</span> <span class="mf">0.708795315303</span> <span class="mf">0.771359374471</span>
+<span class="mi">8</span> <span class="mf">0.682134261923</span> <span class="mf">0.819043512846</span> <span class="mf">1.64355321057</span>
+<span class="mi">8</span> <span class="mf">1.15068908032</span> <span class="mf">0.962640642453</span> <span class="mf">1.15036303016</span>
+<span class="mi">8</span> <span class="mf">0.595814321497</span> <span class="mf">0.971598517415</span> <span class="mf">0.797778153877</span>
+<span class="mi">8</span> <span class="mf">1.22474054768</span> <span class="mf">0.674640862472</span> <span class="mf">1.14489794537</span>
+<span class="mi">1</span> <span class="mf">1.04184933825</span> <span class="mf">0.980869495312</span> <span class="mf">1.46944707714</span>
+<span class="mi">1</span> <span class="mf">0.966587770369</span> <span class="mf">1.07866017331</span> <span class="mf">1.46048801747</span>
+<span class="mi">1</span> <span class="mf">1.00937303253</span> <span class="mf">1.3425173476</span> <span class="mf">1.52038587821</span>
+<span class="mi">1</span> <span class="mf">0.996500440037</span> <span class="mf">1.36528094642</span> <span class="mf">1.63609315235</span>
+<span class="mi">1</span> <span class="mf">1.19357995126</span> <span class="mf">0.452229885252</span> <span class="mf">1.3260631114</span>
+<span class="mi">1</span> <span class="mf">1.2984623261</span> <span class="mf">0.518463849304</span> <span class="mf">1.38540804928</span>
+<span class="mi">1</span> <span class="mf">0.69602291575</span> <span class="mf">1.63709626646</span> <span class="mf">1.29537860068</span>
+<span class="mi">1</span> <span class="mf">0.773463595437</span> <span class="mf">1.60575229327</span> <span class="mf">1.39931286599</span>
+<span class="mi">1</span> <span class="mf">1.20908819348</span> <span class="mf">1.22614197949</span> <span class="mf">1.02950817453</span>
+<span class="mi">1</span> <span class="mf">1.16437641743</span> <span class="mf">1.12178147108</span> <span class="mf">1.09562891379</span>
+<span class="mi">1</span> <span class="mf">0.947235893443</span> <span class="mf">1.26596960363</span> <span class="mf">1.33223919372</span>
+<span class="mi">1</span> <span class="mf">0.828159800968</span> <span class="mf">1.25201502894</span> <span class="mf">1.3869174593</span>
+<span class="mi">1</span> <span class="mf">0.780803151339</span> <span class="mf">0.587075533967</span> <span class="mf">0.881474714822</span>
+<span class="mi">1</span> <span class="mf">0.68113961006</span> <span class="mf">0.5006251904</span> <span class="mf">0.86950588972</span>
+<span class="mi">1</span> <span class="mf">1.3673395559</span> <span class="mf">0.378040991098</span> <span class="mf">1.51693726094</span>
+<span class="mi">1</span> <span class="mf">1.33352156179</span> <span class="mf">0.485049588735</span> <span class="mf">1.59441102799</span>
+<span class="mi">1</span> <span class="mf">1.47586949531</span> <span class="mf">0.39175532275</span> <span class="mf">1.222188928</span>
+<span class="mi">1</span> <span class="mf">1.58466718004</span> <span class="mf">0.431308601022</span> <span class="mf">1.15432369766</span>
+<span class="mi">1</span> <span class="mf">0.712842297668</span> <span class="mf">1.19142317977</span> <span class="mf">0.671666130725</span>
+<span class="mi">1</span> <span class="mf">0.583473242392</span> <span class="mf">1.21072326778</span> <span class="mf">0.685453745388</span>
+<span class="mi">1</span> <span class="mf">1.42818645703</span> <span class="mf">0.985092492299</span> <span class="mf">1.14459347392</span>
+<span class="mi">1</span> <span class="mf">1.40604855634</span> <span class="mf">1.03039180178</span> <span class="mf">1.0221847815</span>
+<span class="mi">1</span> <span class="mf">0.501959939749</span> <span class="mf">0.818277595369</span> <span class="mf">0.98203043022</span>
+<span class="mi">1</span> <span class="mf">0.496883864198</span> <span class="mf">0.884192532918</span> <span class="mf">0.874850979928</span>
+<span class="mi">1</span> <span class="mf">1.3629141421</span> <span class="mf">0.660376992858</span> <span class="mf">0.741408540094</span>
+<span class="mi">1</span> <span class="mf">1.43287403107</span> <span class="mf">0.754663287412</span> <span class="mf">0.80945367769</span>
+<span class="mi">1</span> <span class="mf">0.88731882341</span> <span class="mf">1.01235055682</span> <span class="mf">0.761407270758</span>
+<span class="mi">1</span> <span class="mf">0.921746352774</span> <span class="mf">0.989740039942</span> <span class="mf">0.636936922452</span>
+<span class="mi">1</span> <span class="mf">0.902074180009</span> <span class="mf">1.16786878448</span> <span class="mf">0.686409132451</span>
+<span class="mi">1</span> <span class="mf">0.880754916562</span> <span class="mf">1.28857258911</span> <span class="mf">0.734293148969</span>
+<span class="mi">1</span> <span class="mf">1.20818239515</span> <span class="mf">0.594553701384</span> <span class="mf">0.661167196967</span>
+<span class="mi">1</span> <span class="mf">1.23049461801</span> <span class="mf">0.478967860407</span> <span class="mf">0.725150289409</span>
+<span class="mi">1</span> <span class="mf">0.800044934502</span> <span class="mf">1.07074408489</span> <span class="mf">0.951595386386</span>
+<span class="mi">1</span> <span class="mf">0.830195731645</span> <span class="mf">0.943031936499</span> <span class="mf">0.928683021359</span>
+<span class="mi">1</span> <span class="mf">0.646418525539</span> <span class="mf">1.23949438107</span> <span class="mf">1.36054429137</span>
+<span class="mi">1</span> <span class="mf">0.683390312426</span> <span class="mf">1.34626527435</span> <span class="mf">1.43572419863</span>
+<span class="mi">1</span> <span class="mf">1.24986798903</span> <span class="mf">1.18033011204</span> <span class="mf">1.80907744643</span>
+<span class="mi">1</span> <span class="mf">1.22760806282</span> <span class="mf">1.2866260197</span> <span class="mf">1.87128905324</span>
+<span class="mi">1</span> <span class="mf">0.625272230308</span> <span class="mf">1.50671580408</span> <span class="mf">1.54202382967</span>
+<span class="mi">1</span> <span class="mf">0.535658193142</span> <span class="mf">1.43206825644</span> <span class="mf">1.53148512338</span>
+<span class="mi">1</span> <span class="mf">1.4713100396</span> <span class="mf">0.673917594692</span> <span class="mf">0.538588328877</span>
+<span class="mi">1</span> <span class="mf">1.57402514978</span> <span class="mf">0.751981264597</span> <span class="mf">0.544835494026</span>
+<span class="mi">1</span> <span class="mf">0.949492265511</span> <span class="mf">0.674646109061</span> <span class="mf">2.01927876316</span>
+<span class="mi">1</span> <span class="mf">1.0533313306</span> <span class="mf">0.647151440273</span> <span class="mf">2.08902565752</span>
+<span class="mi">1</span> <span class="mf">0.863003249501</span> <span class="mf">0.521055664624</span> <span class="mf">1.28386834445</span>
+<span class="mi">1</span> <span class="mf">0.915682564398</span> <span class="mf">0.527658159293</span> <span class="mf">1.16331449074</span>
+<span class="mi">1</span> <span class="mf">1.53407033815</span> <span class="mf">1.26134955827</span> <span class="mf">0.900975781065</span>
+<span class="mi">1</span> <span class="mf">1.42385751278</span> <span class="mf">1.25535329858</span> <span class="mf">0.838775090546</span>
+<span class="mi">1</span> <span class="mf">1.83110787665</span> <span class="mf">1.110282385</span> <span class="mf">1.26734920286</span>
+<span class="mi">1</span> <span class="mf">1.82474283248</span> <span class="mf">1.00062798294</span> <span class="mf">1.19666672308</span>
+<span class="mi">1</span> <span class="mf">1.82245294994</span> <span class="mf">0.769117895948</span> <span class="mf">0.891854923332</span>
+<span class="mi">1</span> <span class="mf">1.76170404157</span> <span class="mf">0.803360186846</span> <span class="mf">1.00857690485</span>
+<span class="mi">1</span> <span class="mf">1.40859916055</span> <span class="mf">0.85375351183</span> <span class="mf">1.29727025014</span>
+<span class="mi">1</span> <span class="mf">1.33183749111</span> <span class="mf">0.802479098264</span> <span class="mf">1.21061545882</span>
+<span class="mi">1</span> <span class="mf">0.446815997021</span> <span class="mf">1.21367328978</span> <span class="mf">1.18704210811</span>
+<span class="mi">1</span> <span class="mf">0.358139576211</span> <span class="mf">1.2353378973</span> <span class="mf">1.2831327218</span>
+<span class="mi">1</span> <span class="mf">1.66086932607</span> <span class="mf">0.922097112683</span> <span class="mf">1.3729647463</span>
+<span class="mi">1</span> <span class="mf">1.67285642961</span> <span class="mf">1.01279677081</span> <span class="mf">1.29008411468</span>
+<span class="mi">1</span> <span class="mf">0.957590545984</span> <span class="mf">0.632685153844</span> <span class="mf">1.5060956064</span>
+<span class="mi">1</span> <span class="mf">0.933899400873</span> <span class="mf">0.523855397218</span> <span class="mf">1.57795696104</span>
+<span class="mi">1</span> <span class="mf">0.551201722912</span> <span class="mf">1.10626459737</span> <span class="mf">0.546421995058</span>
+<span class="mi">1</span> <span class="mf">0.537420031818</span> <span class="mf">1.03579316589</span> <span class="mf">0.432327962631</span>
+<span class="mi">1</span> <span class="mf">1.25434925363</span> <span class="mf">1.20460235927</span> <span class="mf">1.50925904614</span>
+<span class="mi">1</span> <span class="mf">1.3737658667</span> <span class="mf">1.17283730495</span> <span class="mf">1.48596918052</span>
+<span class="mi">1</span> <span class="mf">1.0930285516</span> <span class="mf">0.750098754358</span> <span class="mf">1.77176970856</span>
+<span class="mi">1</span> <span class="mf">1.07449065769</span> <span class="mf">0.765123464103</span> <span class="mf">1.64081863724</span>
+<span class="mi">1</span> <span class="mf">0.546249449954</span> <span class="mf">1.66335714044</span> <span class="mf">1.3301193176</span>
+<span class="mi">1</span> <span class="mf">0.539837355719</span> <span class="mf">1.59276799919</span> <span class="mf">1.21536616119</span>
+<span class="mi">1</span> <span class="mf">0.251858392851</span> <span class="mf">0.879943302982</span> <span class="mf">1.52049774904</span>
+<span class="mi">1</span> <span class="mf">0.232733811732</span> <span class="mf">0.878230376062</span> <span class="mf">1.3938625055</span>
+<span class="mi">1</span> <span class="mf">1.00160816437</span> <span class="mf">1.20912948922</span> <span class="mf">1.04366550452</span>
+<span class="mi">1</span> <span class="mf">0.879809684189</span> <span class="mf">1.16527443049</span> <span class="mf">1.06027476898</span>
+<span class="mi">1</span> <span class="mf">0.603268794638</span> <span class="mf">0.750526859154</span> <span class="mf">1.13895787496</span>
+<span class="mi">1</span> <span class="mf">0.585660731815</span> <span class="mf">0.876426733913</span> <span class="mf">1.13619165285</span>
+<span class="mi">1</span> <span class="mf">1.37529253969</span> <span class="mf">0.488983600176</span> <span class="mf">1.02619588397</span>
+<span class="mi">1</span> <span class="mf">1.39717259588</span> <span class="mf">0.536500440037</span> <span class="mf">0.915897251464</span>
+<span class="mi">1</span> <span class="mf">1.1347961446</span> <span class="mf">1.04030303287</span> <span class="mf">0.712572436787</span>
+<span class="mi">1</span> <span class="mf">1.2586348712</span> <span class="mf">1.00216734929</span> <span class="mf">0.714364908777</span>
+<span class="mi">1</span> <span class="mf">0.737165741462</span> <span class="mf">1.46138696138</span> <span class="mf">1.0475441729</span>
+<span class="mi">1</span> <span class="mf">0.76957561859</span> <span class="mf">1.40887164472</span> <span class="mf">1.16059464171</span>
+<span class="mi">1</span> <span class="mf">1.1214859696</span> <span class="mf">0.641684916901</span> <span class="mf">0.389652286498</span>
+<span class="mi">1</span> <span class="mf">1.11558770267</span> <span class="mf">0.759554293741</span> <span class="mf">0.441533019666</span>
+<span class="mi">1</span> <span class="mf">1.20594083201</span> <span class="mf">0.843863859459</span> <span class="mf">0.920729868328</span>
+<span class="mi">1</span> <span class="mf">1.12773880445</span> <span class="mf">0.920750008462</span> <span class="mf">0.980929577226</span>
+<span class="mi">1</span> <span class="mf">1.54368022882</span> <span class="mf">1.42857944352</span> <span class="mf">1.82970407542</span>
+<span class="mi">1</span> <span class="mf">1.52811452798</span> <span class="mf">1.5493060962</span> <span class="mf">1.77275572894</span>
+<span class="mi">1</span> <span class="mf">0.933341569915</span> <span class="mf">0.323901262566</span> <span class="mf">0.902686761669</span>
+<span class="mi">1</span> <span class="mf">0.880308702569</span> <span class="mf">0.433772467251</span> <span class="mf">0.848669820262</span>
+<span class="mi">1</span> <span class="mf">1.42239016011</span> <span class="mf">0.958958890431</span> <span class="mf">1.59115518058</span>
+<span class="mi">1</span> <span class="mf">1.39053955252</span> <span class="mf">0.845954625461</span> <span class="mf">1.64973030836</span>
+<span class="mi">1</span> <span class="mf">0.904962681515</span> <span class="mf">0.791378668382</span> <span class="mf">1.15554928409</span>
+<span class="mi">1</span> <span class="mf">0.984347053448</span> <span class="mf">0.791743729479</span> <span class="mf">1.2649901838</span>
+<span class="mi">1</span> <span class="mf">0.65924550655</span> <span class="mf">1.26477194259</span> <span class="mf">1.06843330061</span>
+<span class="mi">1</span> <span class="mf">0.567882070203</span> <span class="mf">1.15486240395</span> <span class="mf">1.0701736452</span>
+<span class="mi">1</span> <span class="mf">0.863088210405</span> <span class="mf">0.879352892394</span> <span class="mf">1.41566301662</span>
+<span class="mi">1</span> <span class="mf">0.793631994043</span> <span class="mf">0.772252987171</span> <span class="mf">1.38942947568</span>
+<span class="mi">1</span> <span class="mf">1.1214436584</span> <span class="mf">0.328405375216</span> <span class="mf">1.20715423281</span>
+<span class="mi">1</span> <span class="mf">1.01978683614</span> <span class="mf">0.413442016721</span> <span class="mf">1.25119926886</span>
+<span class="mi">1</span> <span class="mf">1.0790327658</span> <span class="mf">1.41247715195</span> <span class="mf">0.840384608875</span>
+<span class="mi">1</span> <span class="mf">1.19636343635</span> <span class="mf">1.47734378702</span> <span class="mf">0.889675049927</span>
+<span class="mi">1</span> <span class="mf">0.928021527942</span> <span class="mf">0.707212114545</span> <span class="mf">0.729177300883</span>
+<span class="mi">1</span> <span class="mf">0.798175963849</span> <span class="mf">0.728686406255</span> <span class="mf">0.710141488678</span>
+<span class="mi">1</span> <span class="mf">0.727429678773</span> <span class="mf">0.844713976238</span> <span class="mf">1.57712486884</span>
+<span class="mi">1</span> <span class="mf">0.662433148292</span> <span class="mf">0.878843634702</span> <span class="mf">1.6949460109</span>
+<span class="mi">1</span> <span class="mf">1.09760188539</span> <span class="mf">0.914122804048</span> <span class="mf">1.18704253123</span>
+<span class="mi">1</span> <span class="mf">1.22259553871</span> <span class="mf">0.945083776191</span> <span class="mf">1.17783011204</span>
+<span class="mi">1</span> <span class="mf">0.663454963951</span> <span class="mf">0.989731239211</span> <span class="mf">0.839021511018</span>
+<span class="mi">1</span> <span class="mf">0.599193209897</span> <span class="mf">1.02499153776</span> <span class="mf">0.734202010629</span>
+<span class="mi">1</span> <span class="mf">1.22917552381</span> <span class="mf">0.615682902887</span> <span class="mf">1.20064211488</span>
+<span class="mi">1</span> <span class="mf">1.25094929425</span> <span class="mf">0.630362776292</span> <span class="mf">1.07951680601</span>
+<span class="n">BASISSET</span>
+<span class="n">POB</span><span class="o">-</span><span class="n">TZVP</span>
+<span class="n">EXCHPERM</span>
+<span class="n">DFT</span>
+<span class="n">LC</span><span class="o">-</span><span class="n">wBLYP</span>
+<span class="n">CHUNKS</span>
+<span class="mi">200</span>
+<span class="kr">END</span>
+<span class="n">GUESSP</span>
+<span class="n">SHRINK</span>
+<span class="mi">1</span> <span class="mi">1</span>
+<span class="n">FMIXING</span>
+<span class="mi">30</span>
+<span class="n">LEVSHIFT</span>
+<span class="mi">6</span> <span class="mi">1</span>
+<span class="kr">END</span>
+<span class="kr">END</span>
+</code></pre></div>
 
 <p>And I also post the run.sh file for killdevil here.</p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash -l</span>
 <span class="c1">#BSUB -n &quot;60&quot;</span>
 <span class="c1">#BSUB -e err.%J  </span>
 <span class="c1">#BSUB -o out.%J</span>
@@ -541,44 +503,38 @@ END
 <span class="nv">CRYSTAL</span><span class="o">=</span>/nas02/home/y/i/yiy/software/crystal/CRYSTAL14_amd64/bin/Linux-ifort_amd64/v1.0.3/Pcrystal
 <span class="c1">#/usr/mpi/intel/mvapich2-1.7/bin/mpiexec -n 10 $CRYSTAL &gt; cubo.out1 &amp;&gt; cubo.out2</span>
 mpirun <span class="nv">$CRYSTAL</span> &gt; H2O55.out1 <span class="p">&amp;</span>&gt; H2O55.out2
-</pre></div>
+</code></pre></div>
 </td></tr></table>
-
 <p>A script to transfer xyz file to crystal structure file.</p>
-<div class="highlight"><pre><span></span>species_dict = {&#39;O&#39;:8, &#39;H&#39;:1, &#39;Na&#39;:17, &#39;Cl&#39;:11}
-#read box size
-file_box = file(&quot;box&quot;)
-line = file_box.readline()
-words = line.split()
-cell_a = float(words[0])
-cell_b = float(words[1])
-cell_c = float(words[2])
-file_box.close()
+<div class="highlight"><pre><span></span><code><span class="n">species_dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="s1">&#39;O&#39;</span><span class="err">:</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;H&#39;</span><span class="err">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Na&#39;</span><span class="err">:</span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Cl&#39;</span><span class="err">:</span><span class="mi">11</span><span class="err">}</span><span class="w"></span>
+<span class="n">#read</span><span class="w"> </span><span class="n">box</span><span class="w"> </span><span class="k">size</span><span class="w"></span>
+<span class="n">file_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">file</span><span class="p">(</span><span class="ss">&quot;box&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file_box</span><span class="p">.</span><span class="n">readline</span><span class="p">()</span><span class="w"></span>
+<span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="n">split</span><span class="p">()</span><span class="w"></span>
+<span class="n">cell_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">float</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="n">cell_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">float</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="n">cell_c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">float</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="n">file_box</span><span class="p">.</span><span class="k">close</span><span class="p">()</span><span class="w"></span>
 
-#read coordinate
-file_coordinate = file(&quot;NaCl_NVT_34000.xyz&quot;)
-line = file_coordinate.readline()
-words = line.split()
-natoms = int(words[0])
-file_coordinate.readline()
-for i in range(natoms):
-    line = file_coordinate.readline()
-    words = line.split()
-    species = words[0]
-    x = float(words[1])
-    y = float(words[2])
-    z = float(words[3])
-    print species_dict[species], x/cell_a, y/cell_b, z/cell_c
-</pre></div>
-
+<span class="n">#read</span><span class="w"> </span><span class="n">coordinate</span><span class="w"></span>
+<span class="n">file_coordinate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">file</span><span class="p">(</span><span class="ss">&quot;NaCl_NVT_34000.xyz&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file_coordinate</span><span class="p">.</span><span class="n">readline</span><span class="p">()</span><span class="w"></span>
+<span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="n">split</span><span class="p">()</span><span class="w"></span>
+<span class="n">natoms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">int</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="n">file_coordinate</span><span class="p">.</span><span class="n">readline</span><span class="p">()</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">natoms</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file_coordinate</span><span class="p">.</span><span class="n">readline</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="n">split</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">words</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">float</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">float</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">float</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">3</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="n">species_dict</span><span class="o">[</span><span class="n">species</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">/</span><span class="n">cell_a</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">/</span><span class="n">cell_b</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="o">/</span><span class="n">cell_c</span><span class="w"></span>
+</code></pre></div>
 
 <p>box file is like this.</p>
-<div class="highlight"><pre><span></span>12.4934 12.4934 12.4934
-</pre></div>
-
-
-<!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) -->
+<div class="highlight"><pre><span></span><code><span class="mf">12.4934</span> <span class="mf">12.4934</span> <span class="mf">12.4934</span>
+</code></pre></div>
             </div>
             <!-- /.entry-content -->
     <hr/>
@@ -590,13 +546,11 @@ for i in range(natoms):
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'yaoyi92'; // required: replace example with your forum shortname
 
-                /***                    var disqus_identifier = 'crystal-code-with-lc-blyp-functional';
-***/
-                /***var disqus_url = './crystal-code-with-lc-blyp-functional.html';***/
-                var disqus_title = 'crystal code with lc-blyp functional';
-
             var disqus_config = function () {
                 this.language = "en";
+
+                        this.page.identifier = '2015-03-09-crystal-code-with-lc-blyp-functional';
+                        this.page.url = './crystal-code-with-lc-blyp-functional.html';
             };
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -619,12 +573,14 @@ for i in range(natoms):
         </div>
     </div>
 </div>
+<!-- End Content Container -->
+
 <footer>
    <div class="container">
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2017 Yi Yao
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -638,6 +594,7 @@ for i in range(natoms):
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="./themestatic/js/respond.min.js"></script>
+
 
     <!-- Disqus -->
     <script type="text/javascript">
@@ -654,6 +611,7 @@ for i in range(natoms):
         }());
     </script>
     <!-- End Disqus Code -->
+
 
 </body>
 </html>

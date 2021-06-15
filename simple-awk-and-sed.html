@@ -2,17 +2,6 @@
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>simple awk and sed - Yi Yao's Homepage</title>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56932248-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-56932248-1');
-    </script>
-
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -38,14 +27,13 @@
             <meta property="article:author" content="Yi Yao" />
 
 
+
     <!-- Bootstrap -->
         <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
     <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./themestatic/css/style_bootstrap.css" type="text/css"/>
-
-
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -53,7 +41,7 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -66,36 +54,9 @@ Yi Yao's Homepage            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li><a href="./index.html">
-                             About Me
-                          </a></li>
-                         <li><a href="./pages/research.html">
-                             Research
-                          </a></li>
-                         <li><a href="./pages/useful-links.html">
-                             Useful Links
-                          </a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Blogs <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                        <li >
-                            <a href="./category/dft.html">Dft</a>
-                        </li>
-                        <li class="active">
-                            <a href="./category/misc.html">Misc</a>
-                        </li>
-                        <li >
-                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
-                        </li>
-                        <li >
-                            <a href="./category/python.html">Python</a>
-                        </li>
-                        <li >
-                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
-                        </li>
-              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
-                </ul>
-                </li>
-
+                    <li><a href="index.html">About Me</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="categories.html">Research Blogs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -103,8 +64,11 @@ Yi Yao's Homepage            </a>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
+
 <!-- Banner -->
 <!-- End Banner -->
+
+<!-- Content Container -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -140,16 +104,12 @@ Yi Yao's Homepage            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <p>awk and sed are two powerful command line tools for text processing. The only usage I will use are these two. For all the other complicated tasks I would prefer to use python.</p>
-<div class="highlight"><pre><span></span>awk &#39;{print $1 &quot; &quot; $2 &quot; &quot; $3}&#39; input &gt; output
+<div class="highlight"><pre><span></span><code>awk &#39;{print $1 &quot; &quot; $2 &quot; &quot; $3}&#39; input &gt; output
 
 sed &#39;s/wrong/right/&#39; input &gt; output
 
 sed &quot;/&amp;word_after_which_to_insert/ r file_insert&quot; template.inp &gt; out.inp
-</pre></div>
-
-
-<!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) -->
+</code></pre></div>
             </div>
             <!-- /.entry-content -->
     <hr/>
@@ -161,13 +121,11 @@ sed &quot;/&amp;word_after_which_to_insert/ r file_insert&quot; template.inp &gt
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'yaoyi92'; // required: replace example with your forum shortname
 
-                /***                    var disqus_identifier = 'simple-awk-and-sed';
-***/
-                /***var disqus_url = './simple-awk-and-sed.html';***/
-                var disqus_title = 'simple awk and sed';
-
             var disqus_config = function () {
                 this.language = "en";
+
+                        this.page.identifier = '2014-12-24-simple-awk-and-sed';
+                        this.page.url = './simple-awk-and-sed.html';
             };
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -190,12 +148,14 @@ sed &quot;/&amp;word_after_which_to_insert/ r file_insert&quot; template.inp &gt
         </div>
     </div>
 </div>
+<!-- End Content Container -->
+
 <footer>
    <div class="container">
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2017 Yi Yao
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -209,6 +169,7 @@ sed &quot;/&amp;word_after_which_to_insert/ r file_insert&quot; template.inp &gt
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="./themestatic/js/respond.min.js"></script>
+
 
     <!-- Disqus -->
     <script type="text/javascript">
@@ -225,6 +186,7 @@ sed &quot;/&amp;word_after_which_to_insert/ r file_insert&quot; template.inp &gt
         }());
     </script>
     <!-- End Disqus Code -->
+
 
 </body>
 </html>

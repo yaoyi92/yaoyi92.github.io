@@ -2,17 +2,6 @@
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>molecular dynamics simulations by gromacs lammps cpmd cp2k cp.x qbox from scratch - Yi Yao's Homepage</title>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56932248-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-56932248-1');
-    </script>
-
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -37,14 +26,13 @@
             <meta property="article:author" content="Yi Yao" />
 
 
+
     <!-- Bootstrap -->
         <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
     <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./themestatic/css/style_bootstrap.css" type="text/css"/>
-
-
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -52,7 +40,7 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -65,36 +53,9 @@ Yi Yao's Homepage            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li><a href="./index.html">
-                             About Me
-                          </a></li>
-                         <li><a href="./pages/research.html">
-                             Research
-                          </a></li>
-                         <li><a href="./pages/useful-links.html">
-                             Useful Links
-                          </a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Blogs <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                        <li >
-                            <a href="./category/dft.html">Dft</a>
-                        </li>
-                        <li >
-                            <a href="./category/misc.html">Misc</a>
-                        </li>
-                        <li class="active">
-                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
-                        </li>
-                        <li >
-                            <a href="./category/python.html">Python</a>
-                        </li>
-                        <li >
-                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
-                        </li>
-              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
-                </ul>
-                </li>
-
+                    <li><a href="index.html">About Me</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="categories.html">Research Blogs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -102,8 +63,11 @@ Yi Yao's Homepage            </a>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
+
 <!-- Banner -->
 <!-- End Banner -->
+
+<!-- Content Container -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -162,68 +126,63 @@ Yi Yao's Homepage            </a>
 <h3>1.1 generate initial structure for gromacs</h3>
 <p>Note: in gromacs, genbox command can be used to generate a water box. Here I use packmol to generate the input structure and convert it to gro file as input.</p>
 <p>The water structure is as follow (water.xyz):</p>
-<div class="highlight"><pre><span></span>3
+<div class="highlight"><pre><span></span><code><span class="mf">3</span>
 
-OW 0.0 0.0 0.0
-HW1 -0.81649 0.57736 0.0
-HW2 0.81649 0.57736 0.0
-</pre></div>
-
+<span class="n">OW</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="n">HW1</span> <span class="o">-</span><span class="mf">0.81649</span> <span class="mf">0.57736</span> <span class="mf">0.0</span>
+<span class="n">HW2</span> <span class="mf">0.81649</span> <span class="mf">0.57736</span> <span class="mf">0.0</span>
+</code></pre></div>
 
 <p>a packmol input (water55_packmol.in) script is used here to generate the structure of the total system.</p>
-<div class="highlight"><pre><span></span>tolerance 2.0
-filetype xyz
-output water55.xyz
+<div class="highlight"><pre><span></span><code><span class="nv">tolerance</span> <span class="mi">2</span>.<span class="mi">0</span>
+<span class="nv">filetype</span> <span class="nv">xyz</span>
+<span class="nv">output</span> <span class="nv">water55</span>.<span class="nv">xyz</span>
 
-structure water.xyz
-  number 55
-  inside box 0. 0.  0. 10.8172 10.8172 10.8172
-end structure
-</pre></div>
-
+<span class="nv">structure</span> <span class="nv">water</span>.<span class="nv">xyz</span>
+  <span class="nv">number</span> <span class="mi">55</span>
+  <span class="nv">inside</span> <span class="nv">box</span> <span class="mi">0</span>. <span class="mi">0</span>.  <span class="mi">0</span>. <span class="mi">10</span>.<span class="mi">8172</span> <span class="mi">10</span>.<span class="mi">8172</span> <span class="mi">10</span>.<span class="mi">8172</span>
+<span class="k">end</span> <span class="nv">structure</span>
+</code></pre></div>
 
 <p>And also I have a python script for the convertion from xyz to gro file (convert_xyz_to_gro.py), the class mdsystem.py can be download here.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mdsystem</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="s2">&quot;water55.xyz&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mdsystem</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">file</span><span class="p">(</span><span class="s2">&quot;water55.xyz&quot;</span><span class="p">)</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">mdsystem</span><span class="p">(</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="mf">11.8172</span><span class="p">,</span> <span class="mf">11.8172</span><span class="p">,</span> <span class="mf">11.8172</span><span class="p">])</span>
 <span class="n">s</span><span class="o">.</span><span class="n">xyzinput</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="n">s</span><span class="o">.</span><span class="n">generate_bonds</span><span class="p">(</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
 <span class="n">s</span><span class="o">.</span><span class="n">molecular_detection</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">moleculars</span><span class="p">)):</span>
     <span class="n">s</span><span class="o">.</span><span class="n">molecular_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;SOL&quot;</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">grooutput</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">grooutput</span><span class="p">()</span>
 
 
 <span class="n">python</span> <span class="n">convert_xyz_to_gro</span><span class="o">.</span><span class="n">py</span> <span class="o">&gt;</span> <span class="n">water55</span><span class="o">.</span><span class="n">gro</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>I use this structure for the input of classical molecular dynamics simulation in gromacs.</p>
 <hr>
 <h3>1.2 generate initial structure for lammps</h3>
 <p>The water structure is as follow (water.xyz):</p>
-<div class="highlight"><pre><span></span>3
+<div class="highlight"><pre><span></span><code><span class="mf">3</span>
 
-O 0.0 0.0 0.0
-H -0.81649 0.57736 0.0
-H 0.81649 0.57736 0.0
-</pre></div>
-
+<span class="n">O</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="n">H</span> <span class="o">-</span><span class="mf">0.81649</span> <span class="mf">0.57736</span> <span class="mf">0.0</span>
+<span class="n">H</span> <span class="mf">0.81649</span> <span class="mf">0.57736</span> <span class="mf">0.0</span>
+</code></pre></div>
 
 <p>a packmol input (water55_packmol.in) script is used here to generate the structure of the total system.</p>
-<div class="highlight"><pre><span></span>tolerance 2.0
-filetype xyz
-output water55.xyz
+<div class="highlight"><pre><span></span><code><span class="nv">tolerance</span> <span class="mi">2</span>.<span class="mi">0</span>
+<span class="nv">filetype</span> <span class="nv">xyz</span>
+<span class="nv">output</span> <span class="nv">water55</span>.<span class="nv">xyz</span>
 
-structure water.xyz
-  number 55
-  inside box 0. 0.  0. 10.8172 10.8172 10.8172
-end structure
-</pre></div>
-
+<span class="nv">structure</span> <span class="nv">water</span>.<span class="nv">xyz</span>
+  <span class="nv">number</span> <span class="mi">55</span>
+  <span class="nv">inside</span> <span class="nv">box</span> <span class="mi">0</span>. <span class="mi">0</span>.  <span class="mi">0</span>. <span class="mi">10</span>.<span class="mi">8172</span> <span class="mi">10</span>.<span class="mi">8172</span> <span class="mi">10</span>.<span class="mi">8172</span>
+<span class="k">end</span> <span class="nv">structure</span>
+</code></pre></div>
 
 <p>And also I have a vmd script for the generation of psf and pdb and lammps data file.</p>
-<div class="highlight"><pre><span></span><span class="x">mol new water55.xyz</span>
+<div class="highlight"><pre><span></span><code><span class="x">mol new water55.xyz</span>
 
 <span class="x">pbc set </span><span class="cp">{</span> <span class="m">11.8172</span> <span class="m">11.8172</span> <span class="m">11.8172</span> <span class="cp">}</span><span class="x"></span>
 <span class="x">topo clearbonds</span>
@@ -236,93 +195,87 @@ end structure
 <span class="x">animate write psf water55.psf</span>
 <span class="x">animate write pdb water55.pdb</span>
 <span class="x">topo writelammpsdata water55.data</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>I use this structure for the input of classical molecular dynamics simulation in lammps.</p>
 <hr>
 <h3>2.1 gromacs code</h3>
 <p>for gromacs simulation, there is separate forcefield file and topology file ( spcfw.itp and water55.top ).</p>
 <p>two mdp input files needed ( min.mdp nvt.mdp ), the first one is used to minimize the structure, the second one is used for the simulation. Here is the command I use for the simulation.</p>
-<div class="highlight"><pre><span></span>gmx grompp -f min.mdp -c water55.gro -p water55.top -o min.tpr
+<div class="highlight"><pre><span></span><code>gmx grompp -f min.mdp -c water55.gro -p water55.top -o min.tpr
 gmx mdrun -s min.tpr -c em.gro
 gmx grompp -f nvt.mdp -c em.gro -p water55.top -o nvt.tpr
 gmx mdrun -s nvt.tpr
-</pre></div>
-
+</code></pre></div>
 
 <p>In the example, I run 100ps for equlibrating the system. In real simulation, longer is usually needed.</p>
 <p>I also like to convert the trajectory so that the atom in the same molecule are not separate in the edge of the box.</p>
-<div class="highlight"><pre><span></span>gmx trjconv -s nvt.tpr -f traj_comp.xtc -o traj_comp_whole.xtc -pbc whole &lt;&lt;&lt; &quot;0&quot;
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>gmx trjconv -s nvt.tpr -f traj_comp.xtc -o traj_comp_whole.xtc -pbc whole &lt;&lt;&lt; &quot;0&quot;
+</code></pre></div>
 
 <p>Then, the script ( take_last_snapshot.vmd ) can be used to take the last snapshot of the simulation as the initial structure for FPMD.</p>
-<div class="highlight"><pre><span></span>mol new water55.psf
-mol addfile traj_comp_whole.xtc waitfor all
-pbc wrap -all -compound residue
-set nframes [molinfo top get numframes]
-set nframes [expr $nframes - 1]
-animate write xyz eq.xyz beg $nframes
-exit
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="nv">mol</span> <span class="nv">new</span> <span class="nv">water55</span>.<span class="nv">psf</span>
+<span class="nv">mol</span> <span class="nv">addfile</span> <span class="nv">traj_comp_whole</span>.<span class="nv">xtc</span> <span class="nv">waitfor</span> <span class="nv">all</span>
+<span class="nv">pbc</span> <span class="nv">wrap</span> <span class="o">-</span><span class="nv">all</span> <span class="o">-</span><span class="nv">compound</span> <span class="nv">residue</span>
+<span class="nv">set</span> <span class="nv">nframes</span> [<span class="nv">molinfo</span> <span class="nv">top</span> <span class="nv">get</span> <span class="nv">numframes</span>]
+<span class="nv">set</span> <span class="nv">nframes</span> [<span class="nv">expr</span> $<span class="nv">nframes</span> <span class="o">-</span> <span class="mi">1</span>]
+<span class="nv">animate</span> <span class="nv">write</span> <span class="nv">xyz</span> <span class="nv">eq</span>.<span class="nv">xyz</span> <span class="nv">beg</span> $<span class="nv">nframes</span>
+<span class="k">exit</span>
+</code></pre></div>
 
 <hr>
 <h3>2.2 lammps code</h3>
 <p>Here we use the generated initial structure to run molecular dynamics with lammps. SPC/Fw force field is used.<br>
 Here is the ( in.spcf ) lammps input script</p>
-<div class="highlight"><pre><span></span>units      real
-dimension  3
-boundary   p p p
-atom_style full
-read_data water55.data
+<div class="highlight"><pre><span></span><code><span class="n">units</span>      <span class="n">real</span>
+<span class="n">dimension</span>  <span class="mi">3</span>
+<span class="n">boundary</span>   <span class="n">p</span> <span class="n">p</span> <span class="n">p</span>
+<span class="n">atom_style</span> <span class="n">full</span>
+<span class="n">read_data</span> <span class="n">water55</span><span class="o">.</span><span class="n">data</span>
 
-## alternate way to set charges - besides manually in data file ###
-group ox type 2
-group hy type 1
-set group ox charge -0.8200
-set group hy charge 0.4100
+<span class="c1">## alternate way to set charges - besides manually in data file ###</span>
+<span class="n">group</span> <span class="n">ox</span> <span class="n">type</span> <span class="mi">2</span>
+<span class="n">group</span> <span class="n">hy</span> <span class="n">type</span> <span class="mi">1</span>
+<span class="n">set</span> <span class="n">group</span> <span class="n">ox</span> <span class="n">charge</span> <span class="o">-</span><span class="mf">0.8200</span>
+<span class="n">set</span> <span class="n">group</span> <span class="n">hy</span> <span class="n">charge</span> <span class="mf">0.4100</span>
 
-pair_style lj/cut/coul/long 5.9086
-pair_coeff * * 0.0 0.0
-pair_coeff 2 2 0.1553537 3.166
-bond_style  harmonic
-bond_coeff  1 529.581 1.0120
-angle_style harmonic
-angle_coeff 1 37.95 113.24
-kspace_style ewald 1.0e-5
+<span class="n">pair_style</span> <span class="n">lj</span><span class="o">/</span><span class="n">cut</span><span class="o">/</span><span class="n">coul</span><span class="o">/</span><span class="n">long</span> <span class="mf">5.9086</span>
+<span class="n">pair_coeff</span> <span class="o">*</span> <span class="o">*</span> <span class="mf">0.0</span> <span class="mf">0.0</span>
+<span class="n">pair_coeff</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mf">0.1553537</span> <span class="mf">3.166</span>
+<span class="n">bond_style</span>  <span class="n">harmonic</span>
+<span class="n">bond_coeff</span>  <span class="mi">1</span> <span class="mf">529.581</span> <span class="mf">1.0120</span>
+<span class="n">angle_style</span> <span class="n">harmonic</span>
+<span class="n">angle_coeff</span> <span class="mi">1</span> <span class="mf">37.95</span> <span class="mf">113.24</span>
+<span class="n">kspace_style</span> <span class="n">ewald</span> <span class="mf">1.0e-5</span>
 
-velocity all create 298.0 12345689 dist uniform
-fix 2 all nvt temp 298.0 298.0 100.0
+<span class="n">velocity</span> <span class="n">all</span> <span class="n">create</span> <span class="mf">298.0</span> <span class="mi">12345689</span> <span class="n">dist</span> <span class="n">uniform</span>
+<span class="n">fix</span> <span class="mi">2</span> <span class="n">all</span> <span class="n">nvt</span> <span class="n">temp</span> <span class="mf">298.0</span> <span class="mf">298.0</span> <span class="mf">100.0</span>
 
 
-neighbor 2.0 bin
-neigh_modify delay 0 every 10 check yes
-thermo      200
-thermo_style custom step time temp
-thermo_modify norm no flush yes
+<span class="n">neighbor</span> <span class="mf">2.0</span> <span class="n">bin</span>
+<span class="n">neigh_modify</span> <span class="n">delay</span> <span class="mi">0</span> <span class="n">every</span> <span class="mi">10</span> <span class="n">check</span> <span class="n">yes</span>
+<span class="n">thermo</span>      <span class="mi">200</span>
+<span class="n">thermo_style</span> <span class="n">custom</span> <span class="n">step</span> <span class="n">time</span> <span class="n">temp</span>
+<span class="n">thermo_modify</span> <span class="n">norm</span> <span class="n">no</span> <span class="n">flush</span> <span class="n">yes</span>
 
-minimize 1.0e-8 1.0e-8 10000 10000
+<span class="n">minimize</span> <span class="mf">1.0e-8</span> <span class="mf">1.0e-8</span> <span class="mi">10000</span> <span class="mi">10000</span>
 
-dump 1 all dcd 2000 result.dcd
-dump_modify 1 unwrap yes
-#run variables
-timestep 0.5
-run 200000 # 100ps, longer needed ( 2000000 10ns )
-</pre></div>
-
+<span class="n">dump</span> <span class="mi">1</span> <span class="n">all</span> <span class="n">dcd</span> <span class="mi">2000</span> <span class="n">result</span><span class="o">.</span><span class="n">dcd</span>
+<span class="n">dump_modify</span> <span class="mi">1</span> <span class="n">unwrap</span> <span class="n">yes</span>
+<span class="c1">#run variables</span>
+<span class="n">timestep</span> <span class="mf">0.5</span>
+<span class="n">run</span> <span class="mi">200000</span> <span class="c1"># 100ps, longer needed ( 2000000 10ns )</span>
+</code></pre></div>
 
 <p>after the simulation, the ( result.dcd ) together with the ( water55.psf )</p>
-<div class="highlight"><pre><span></span>mol new water55.psf
-mol addfile result.dcd waitfor all
-pbc wrap -all -compound residue
-set nframes [molinfo top get numframes]
-set nframes [expr $nframes - 1]
-animate write xyz eq.xyz beg $nframes
-exit
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="nv">mol</span> <span class="nv">new</span> <span class="nv">water55</span>.<span class="nv">psf</span>
+<span class="nv">mol</span> <span class="nv">addfile</span> <span class="nb">result</span>.<span class="nv">dcd</span> <span class="nv">waitfor</span> <span class="nv">all</span>
+<span class="nv">pbc</span> <span class="nv">wrap</span> <span class="o">-</span><span class="nv">all</span> <span class="o">-</span><span class="nv">compound</span> <span class="nv">residue</span>
+<span class="nv">set</span> <span class="nv">nframes</span> [<span class="nv">molinfo</span> <span class="nv">top</span> <span class="nv">get</span> <span class="nv">numframes</span>]
+<span class="nv">set</span> <span class="nv">nframes</span> [<span class="nv">expr</span> $<span class="nv">nframes</span> <span class="o">-</span> <span class="mi">1</span>]
+<span class="nv">animate</span> <span class="nv">write</span> <span class="nv">xyz</span> <span class="nv">eq</span>.<span class="nv">xyz</span> <span class="nv">beg</span> $<span class="nv">nframes</span>
+<span class="k">exit</span>
+</code></pre></div>
 
 <hr>
 <p>After the equilibrium run. I got the equilibrium structure (eq.xyz) from gromacs or lammps run. Now, I will use this structure as starting point for FPMD simulations.</p>
@@ -330,9 +283,9 @@ exit
 <h3>3.1 cpmd code</h3>
 <p>I recommend a tutorial about cpmd code ( <a href="http://www.ipcms.unistra.fr/wp-content/uploads/2016/03/cpmd.pdf">cpmd.pdf</a> ).</p>
 <p>First, the equilibrium structure need to be transformed to CPMD format. Here is the script ( cpmd_initial_structures.py ).</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">argv</span>
 <span class="kn">from</span> <span class="nn">mdsystem</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">file</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">mdsystem</span><span class="p">([],[],[])</span>
 <span class="n">s</span><span class="o">.</span><span class="n">xyzinput</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
@@ -368,183 +321,179 @@ exit
 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s2">&quot;&amp;END</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>I am using cpmd simulation in cpmd code, so wavefucntion need to be optimized, first. Append the coord file at the end of the input file.</p>
-<div class="highlight"><pre><span></span>&amp;INFO
-wf opt for pure 55 water
-&amp;END
+<div class="highlight"><pre><span></span><code><span class="o">&amp;</span><span class="n">INFO</span>
+<span class="n">wf</span> <span class="n">opt</span> <span class="n">for</span> <span class="n">pure</span> <span class="mi">55</span> <span class="n">water</span>
+<span class="o">&amp;</span><span class="kr">END</span>
 
-&amp;CPMD
- OPTIMIZE WAVEFUNCTION
+<span class="o">&amp;</span><span class="n">CPMD</span>
+ <span class="n">OPTIMIZE</span> <span class="n">WAVEFUNCTION</span>
 
- CONVERGENCE ORBITALS
-   1.0d-7
- ODIIS NO_RESET=50
-   5
- MAXSTEP
-  1000
+ <span class="n">CONVERGENCE</span> <span class="n">ORBITALS</span>
+   <span class="mf">1.0</span><span class="n">d</span><span class="o">-</span><span class="mi">7</span>
+ <span class="n">ODIIS</span> <span class="n">NO_RESET</span><span class="o">=</span><span class="mi">50</span>
+   <span class="mi">5</span>
+ <span class="n">MAXSTEP</span>
+  <span class="mi">1000</span>
 
- MEMORY BIG
-&amp;END
+ <span class="n">MEMORY</span> <span class="n">BIG</span>
+<span class="o">&amp;</span><span class="kr">END</span>
 
-&amp;SYSTEM
- SYMMETRY
-  1
- ANGSTROM
- CELL
-  11.8172 1.0 1.0  0.0  0.0  0.0
- CUTOFF
-  80.0
- TESR
-  4
-&amp;END
+<span class="o">&amp;</span><span class="n">SYSTEM</span>
+ <span class="n">SYMMETRY</span>
+  <span class="mi">1</span>
+ <span class="n">ANGSTROM</span>
+ <span class="n">CELL</span>
+  <span class="mf">11.8172</span> <span class="mf">1.0</span> <span class="mf">1.0</span>  <span class="mf">0.0</span>  <span class="mf">0.0</span>  <span class="mf">0.0</span>
+ <span class="n">CUTOFF</span>
+  <span class="mf">80.0</span>
+ <span class="n">TESR</span>
+  <span class="mi">4</span>
+<span class="o">&amp;</span><span class="kr">END</span>
 
-&amp;DFT
- NEWCODE
- FUNCTIONAL PBE
-&amp;END
-</pre></div>
-
+<span class="o">&amp;</span><span class="n">DFT</span>
+ <span class="n">NEWCODE</span>
+ <span class="n">FUNCTIONAL</span> <span class="n">PBE</span>
+<span class="o">&amp;</span><span class="kr">END</span>
+</code></pre></div>
 
 <p>after the wavefunction optimization, a RESTART.1 file should be there. And we generate a LATEST file for the restart.</p>
-<div class="highlight"><pre><span></span>&amp;INFO
-equilibrium steps md at T=300K to get thermo info
-&amp;END
+<div class="highlight"><pre><span></span><code><span class="o">&amp;</span><span class="n">INFO</span>
+<span class="n">equilibrium</span> <span class="n">steps</span> <span class="n">md</span> <span class="n">at</span> <span class="n">T</span><span class="o">=</span><span class="mi">300</span><span class="n">K</span> <span class="n">to</span> <span class="n">get</span> <span class="n">thermo</span> <span class="n">info</span>
+<span class="o">&amp;</span><span class="kr">END</span>
 
-&amp;CPMD
- MOLECULAR DYNAMICS
- RESTART WAVEFUNCTIONS COORDINATES LATEST
+<span class="o">&amp;</span><span class="n">CPMD</span>
+ <span class="n">MOLECULAR</span> <span class="n">DYNAMICS</span>
+ <span class="n">RESTART</span> <span class="n">WAVEFUNCTIONS</span> <span class="n">COORDINATES</span> <span class="n">LATEST</span>
 
- RESTFILE
- 3
+ <span class="n">RESTFILE</span>
+ <span class="mi">3</span>
 
- TRAJECTORY SAMPLE XYZ
-  10
+ <span class="n">TRAJECTORY</span> <span class="n">SAMPLE</span> <span class="n">XYZ</span>
+  <span class="mi">10</span>
 
- TEMPERATURE
-   300
+ <span class="n">TEMPERATURE</span>
+   <span class="mi">300</span>
 
- NOSE IONS
-   300 3000.0
+ <span class="n">NOSE</span> <span class="n">IONS</span>
+   <span class="mi">300</span> <span class="mf">3000.0</span>
 
- NOSE ELECTRONS
-   0.03  9000.0
+ <span class="n">NOSE</span> <span class="n">ELECTRONS</span>
+   <span class="mf">0.03</span>  <span class="mf">9000.0</span>
 
- MAXSTEP
-   100
+ <span class="n">MAXSTEP</span>
+   <span class="mi">100</span>
 
- TIMESTEP
-  4.0
- EMASS
-  400.0
+ <span class="n">TIMESTEP</span>
+  <span class="mf">4.0</span>
+ <span class="n">EMASS</span>
+  <span class="mf">400.0</span>
 
- MEMORY BIG
+ <span class="n">MEMORY</span> <span class="n">BIG</span>
 
- RHOOUT SAMPLE=100
+ <span class="n">RHOOUT</span> <span class="n">SAMPLE</span><span class="o">=</span><span class="mi">100</span>
 
- SUBTRACT COMVEL ROTVEL
- 1
+ <span class="n">SUBTRACT</span> <span class="n">COMVEL</span> <span class="n">ROTVEL</span>
+ <span class="mi">1</span>
 
-&amp;END
+<span class="o">&amp;</span><span class="kr">END</span>
 
-&amp;SYSTEM
- SYMMETRY
-  1
- ANGSTROM
- CELL
-  11.8172 1.0 1.0  0.0  0.0  0.0
- CUTOFF
-  80.0
- TESR
-  4
-&amp;END
+<span class="o">&amp;</span><span class="n">SYSTEM</span>
+ <span class="n">SYMMETRY</span>
+  <span class="mi">1</span>
+ <span class="n">ANGSTROM</span>
+ <span class="n">CELL</span>
+  <span class="mf">11.8172</span> <span class="mf">1.0</span> <span class="mf">1.0</span>  <span class="mf">0.0</span>  <span class="mf">0.0</span>  <span class="mf">0.0</span>
+ <span class="n">CUTOFF</span>
+  <span class="mf">80.0</span>
+ <span class="n">TESR</span>
+  <span class="mi">4</span>
+<span class="o">&amp;</span><span class="kr">END</span>
 
-&amp;DFT
- NEWCODE
- FUNCTIONAL PBE
-&amp;END
-</pre></div>
-
+<span class="o">&amp;</span><span class="n">DFT</span>
+ <span class="n">NEWCODE</span>
+ <span class="n">FUNCTIONAL</span> <span class="n">PBE</span>
+<span class="o">&amp;</span><span class="kr">END</span>
+</code></pre></div>
 
 <hr>
 <h3>3.2 cp2k code</h3>
 <p>In cp2k, BOMD is running.  </p>
 <p>copy the eq.xyz file to the cp2k folder and write this input file for FPMD. (water55.inp)  </p>
-<div class="highlight"><pre><span></span>&amp;FORCE_EVAL
-  METHOD Quickstep
-  &amp;DFT
-    BASIS_SET_FILE_NAME    BASIS_MOLOPT
-    POTENTIAL_FILE_NAME    GTH_POTENTIALS
-    &amp;MGRID
-     CUTOFF      200
-     REL_CUTOFF   50
-    &amp;END MGRID
-    &amp;QS
-      EPS_DEFAULT 1.0E-12
-    &amp;END QS
-    &amp;SCF
-      SCF_GUESS  ATOMIC
-      EPS_SCF    1.0E-6
-      MAX_SCF    30
-      &amp;OT
-        MINIMIZER       DIIS
-        PRECONDITIONER  FULL_ALL
-      &amp;END
-      &amp;OUTER_SCF
-        EPS_SCF  1.0E-6
-        MAX_SCF  20
-      &amp;END
-      &amp;PRINT
-        &amp;RESTART
-          BACKUP_COPIES 0
-        &amp;END
-      &amp;END
-    &amp;END SCF
-    &amp;XC
-      &amp;XC_FUNCTIONAL PBE
-      &amp;END XC_FUNCTIONAL
-    &amp;END XC
-  &amp;END DFT
-  &amp;SUBSYS
-    &amp;CELL
-      ABC 11.8172 11.8172 11.8172
-    &amp;END CELL
-    &amp;TOPOLOGY
-       COORD_FILE_NAME   ./eq.xyz
-       COORD_FILE_FORMAT xyz
-    &amp;END TOPOLOGY
-    &amp;KIND H
-      BASIS_SET         DZVP-MOLOPT-SR-GTH
-      POTENTIAL         GTH-PBE-q1
-    &amp;END KIND
-    &amp;KIND O
-      BASIS_SET         DZVP-MOLOPT-SR-GTH
-      POTENTIAL         GTH-PBE-q6
-    &amp;END KIND
-  &amp;END SUBSYS
-&amp;END FORCE_EVAL
-&amp;MOTION
-  &amp;MD
-    ENSEMBLE NVE
-    STEPS 100
-    TIMESTEP 0.5
-    TEMPERATURE 300.0
-  &amp;END MD
-&amp;END MOTION
-&amp;GLOBAL
-  PROJECT     H2O-55-PBE
-  RUN_TYPE    MD
-  PRINT_LEVEL MEDIUM
-&amp;END GLOBAL
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="o">&amp;</span><span class="n">FORCE_EVAL</span>
+  <span class="n">METHOD</span> <span class="n">Quickstep</span>
+  <span class="o">&amp;</span><span class="n">DFT</span>
+    <span class="n">BASIS_SET_FILE_NAME</span>    <span class="n">BASIS_MOLOPT</span>
+    <span class="n">POTENTIAL_FILE_NAME</span>    <span class="n">GTH_POTENTIALS</span>
+    <span class="o">&amp;</span><span class="n">MGRID</span>
+     <span class="n">CUTOFF</span>      <span class="mi">200</span>
+     <span class="n">REL_CUTOFF</span>   <span class="mi">50</span>
+    <span class="o">&amp;</span><span class="kr">END</span> <span class="n">MGRID</span>
+    <span class="o">&amp;</span><span class="n">QS</span>
+      <span class="n">EPS_DEFAULT</span> <span class="mf">1.0E-12</span>
+    <span class="o">&amp;</span><span class="kr">END</span> <span class="n">QS</span>
+    <span class="o">&amp;</span><span class="n">SCF</span>
+      <span class="n">SCF_GUESS</span>  <span class="n">ATOMIC</span>
+      <span class="n">EPS_SCF</span>    <span class="mf">1.0E-6</span>
+      <span class="n">MAX_SCF</span>    <span class="mi">30</span>
+      <span class="o">&amp;</span><span class="n">OT</span>
+        <span class="n">MINIMIZER</span>       <span class="n">DIIS</span>
+        <span class="n">PRECONDITIONER</span>  <span class="n">FULL_ALL</span>
+      <span class="o">&amp;</span><span class="kr">END</span>
+      <span class="o">&amp;</span><span class="n">OUTER_SCF</span>
+        <span class="n">EPS_SCF</span>  <span class="mf">1.0E-6</span>
+        <span class="n">MAX_SCF</span>  <span class="mi">20</span>
+      <span class="o">&amp;</span><span class="kr">END</span>
+      <span class="o">&amp;</span><span class="n">PRINT</span>
+        <span class="o">&amp;</span><span class="n">RESTART</span>
+          <span class="n">BACKUP_COPIES</span> <span class="mi">0</span>
+        <span class="o">&amp;</span><span class="kr">END</span>
+      <span class="o">&amp;</span><span class="kr">END</span>
+    <span class="o">&amp;</span><span class="kr">END</span> <span class="n">SCF</span>
+    <span class="o">&amp;</span><span class="n">XC</span>
+      <span class="o">&amp;</span><span class="n">XC_FUNCTIONAL</span> <span class="n">PBE</span>
+      <span class="o">&amp;</span><span class="kr">END</span> <span class="n">XC_FUNCTIONAL</span>
+    <span class="o">&amp;</span><span class="kr">END</span> <span class="n">XC</span>
+  <span class="o">&amp;</span><span class="kr">END</span> <span class="n">DFT</span>
+  <span class="o">&amp;</span><span class="n">SUBSYS</span>
+    <span class="o">&amp;</span><span class="n">CELL</span>
+      <span class="n">ABC</span> <span class="mf">11.8172</span> <span class="mf">11.8172</span> <span class="mf">11.8172</span>
+    <span class="o">&amp;</span><span class="kr">END</span> <span class="n">CELL</span>
+    <span class="o">&amp;</span><span class="n">TOPOLOGY</span>
+       <span class="n">COORD_FILE_NAME</span>   <span class="p">.</span><span class="o">/</span><span class="n">eq</span><span class="p">.</span><span class="n">xyz</span>
+       <span class="n">COORD_FILE_FORMAT</span> <span class="n">xyz</span>
+    <span class="o">&amp;</span><span class="kr">END</span> <span class="n">TOPOLOGY</span>
+    <span class="o">&amp;</span><span class="n">KIND</span> <span class="n">H</span>
+      <span class="n">BASIS_SET</span>         <span class="n">DZVP</span><span class="o">-</span><span class="n">MOLOPT</span><span class="o">-</span><span class="n">SR</span><span class="o">-</span><span class="n">GTH</span>
+      <span class="n">POTENTIAL</span>         <span class="n">GTH</span><span class="o">-</span><span class="n">PBE</span><span class="o">-</span><span class="n">q1</span>
+    <span class="o">&amp;</span><span class="kr">END</span> <span class="n">KIND</span>
+    <span class="o">&amp;</span><span class="n">KIND</span> <span class="n">O</span>
+      <span class="n">BASIS_SET</span>         <span class="n">DZVP</span><span class="o">-</span><span class="n">MOLOPT</span><span class="o">-</span><span class="n">SR</span><span class="o">-</span><span class="n">GTH</span>
+      <span class="n">POTENTIAL</span>         <span class="n">GTH</span><span class="o">-</span><span class="n">PBE</span><span class="o">-</span><span class="n">q6</span>
+    <span class="o">&amp;</span><span class="kr">END</span> <span class="n">KIND</span>
+  <span class="o">&amp;</span><span class="kr">END</span> <span class="n">SUBSYS</span>
+<span class="o">&amp;</span><span class="kr">END</span> <span class="n">FORCE_EVAL</span>
+<span class="o">&amp;</span><span class="n">MOTION</span>
+  <span class="o">&amp;</span><span class="n">MD</span>
+    <span class="n">ENSEMBLE</span> <span class="n">NVE</span>
+    <span class="n">STEPS</span> <span class="mi">100</span>
+    <span class="n">TIMESTEP</span> <span class="mf">0.5</span>
+    <span class="n">TEMPERATURE</span> <span class="mf">300.0</span>
+  <span class="o">&amp;</span><span class="kr">END</span> <span class="n">MD</span>
+<span class="o">&amp;</span><span class="kr">END</span> <span class="n">MOTION</span>
+<span class="o">&amp;</span><span class="n">GLOBAL</span>
+  <span class="n">PROJECT</span>     <span class="n">H2O</span><span class="o">-</span><span class="mi">55</span><span class="o">-</span><span class="n">PBE</span>
+  <span class="n">RUN_TYPE</span>    <span class="n">MD</span>
+  <span class="n">PRINT_LEVEL</span> <span class="n">MEDIUM</span>
+<span class="o">&amp;</span><span class="kr">END</span> <span class="n">GLOBAL</span>
+</code></pre></div>
 
 <hr>
 <h3>3.3 cp.x code</h3>
 <p>The script here.</p>
-<div class="highlight"><pre><span></span>cd <span class="nv">$PWD</span>
+<div class="highlight"><pre><span></span><code>cd <span class="nv">$PWD</span>
 
 Name=cp-H2O
 
@@ -651,24 +600,22 @@ cat <span class="nt">&lt;&lt; EOF</span> <span class="nt">&gt; in.00</span>
 done
 
 echo &#39;ALL DONE&#39;
-</pre></div>
-
+</code></pre></div>
 
 <p>The coord generate script.</p>
-<div class="highlight"><pre><span></span>head -n 167 eq.xyz | tail -n 165 &gt; coord
+<div class="highlight"><pre><span></span><code>head -n 167 eq.xyz | tail -n 165 &gt; coord
 sed &#39;s/CELL_X_YY/22.331269952/&#39; water_template.j &gt; water_tmp.j
 sed &#39;s/NATOMS_YY/165/&#39; water_tmp.j &gt;  water_tmp2.j
 sed &quot;/COORD_YY/ r coord&quot; water_tmp2.j &gt; water_tmp3.j
 sed &quot;s/COORD_YY/ /&quot; water_tmp3.j &gt; water.j
 rm water_tmp.j water_tmp2.j water_tmp3.j
-</pre></div>
-
+</code></pre></div>
 
 <hr>
 <h3>3.4 qbox code</h3>
 <p>For qbox code, also a convertor script is needed. The units used in qbox is atomic units. I list the script here.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mdsystem</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="s2">&quot;eq.xyz&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mdsystem</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">file</span><span class="p">(</span><span class="s2">&quot;eq.xyz&quot;</span><span class="p">)</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">mdsystem</span><span class="p">(</span><span class="n">cell</span> <span class="o">=</span> <span class="p">[</span><span class="mf">11.8172</span><span class="p">,</span> <span class="mf">11.8172</span><span class="p">,</span> <span class="mf">11.8172</span><span class="p">])</span>
 <span class="n">s</span><span class="o">.</span><span class="n">xyzinput</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="n">s</span><span class="o">.</span><span class="n">generate_bonds</span><span class="p">(</span><span class="n">cutoff</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">)</span>
@@ -677,11 +624,11 @@ rm water_tmp.j water_tmp2.j water_tmp3.j
     <span class="n">s</span><span class="o">.</span><span class="n">molecular_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;SOL&quot;</span><span class="p">)</span>
 
 <span class="n">AtoBohr</span> <span class="o">=</span> <span class="mf">1.8897259886</span>
-<span class="k">print</span> <span class="s2">&quot;set cell &quot;</span> <span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">AtoBohr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> \
+<span class="nb">print</span> <span class="s2">&quot;set cell &quot;</span> <span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">AtoBohr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> \
                     <span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">AtoBohr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> \
                     <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">AtoBohr</span>
-<span class="k">print</span> <span class="s2">&quot;species oxygen O_HSCV_PBE-1.0.xml&quot;</span>
-<span class="k">print</span> <span class="s2">&quot;species hydrogen H_HSCV_PBE-1.0.xml&quot;</span>
+<span class="nb">print</span> <span class="s2">&quot;species oxygen O_HSCV_PBE-1.0.xml&quot;</span>
+<span class="nb">print</span> <span class="s2">&quot;species hydrogen H_HSCV_PBE-1.0.xml&quot;</span>
 
 <span class="n">nO</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">nH</span> <span class="o">=</span> <span class="mi">0</span>
@@ -689,17 +636,16 @@ rm water_tmp.j water_tmp2.j water_tmp3.j
     <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="s2">&quot;O&quot;</span><span class="p">:</span>
         <span class="n">nO</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">xyz</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">coordinates</span> <span class="o">*</span> <span class="n">AtoBohr</span>
-        <span class="k">print</span> <span class="s2">&quot;atom &quot;</span><span class="p">,</span> <span class="s2">&quot;O</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">nO</span><span class="p">,</span> <span class="s2">&quot;oxygen&quot;</span><span class="p">,</span>  <span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="nb">print</span> <span class="s2">&quot;atom &quot;</span><span class="p">,</span> <span class="s2">&quot;O</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">nO</span><span class="p">,</span> <span class="s2">&quot;oxygen&quot;</span><span class="p">,</span>  <span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="s2">&quot;H&quot;</span><span class="p">:</span>
         <span class="n">nH</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">xyz</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">coordinates</span> <span class="o">*</span> <span class="n">AtoBohr</span>
-        <span class="k">print</span> <span class="s2">&quot;atom &quot;</span><span class="p">,</span> <span class="s2">&quot;H</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">nH</span><span class="p">,</span> <span class="s2">&quot;hydrogen&quot;</span><span class="p">,</span>  <span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</pre></div>
-
+        <span class="nb">print</span> <span class="s2">&quot;atom &quot;</span><span class="p">,</span> <span class="s2">&quot;H</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span><span class="n">nH</span><span class="p">,</span> <span class="s2">&quot;hydrogen&quot;</span><span class="p">,</span>  <span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</code></pre></div>
 
 <p>with pseudopotentials files and sample.xsd, species.xsd (taken from xml folder in qbox package) in the same folder. <br>
 We then append these commands at the end of the structure information.</p>
-<div class="highlight"><pre><span></span>set ecut 70
+<div class="highlight"><pre><span></span><code>set ecut 70
 set wf_dyn PSDA
 set ecutprec 5
 randomize_wf
@@ -708,20 +654,16 @@ run 0 100
 set atoms_dyn MD
 set dt 40 
 run 100 10
-</pre></div>
-
+</code></pre></div>
 
 <p>Run the calculation like this.</p>
-<div class="highlight"><pre><span></span>mpirun /nas02/home/y/i/yiy/bin/qb &lt; test.i &gt; test.out
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>mpirun /nas02/home/y/i/yiy/bin/qb &lt; test.i &gt; test.out
+</code></pre></div>
 
 <hr>
 <p>After the simulation, I got trajs like this.  </p>
 <p><img alt="Alt Text" src="./images/water55_aimd.gif"></p>
 <hr>
-<!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) -->
             </div>
             <!-- /.entry-content -->
     <hr/>
@@ -733,13 +675,11 @@ run 100 10
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'yaoyi92'; // required: replace example with your forum shortname
 
-                /***                    var disqus_identifier = 'molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch';
-***/
-                /***var disqus_url = './molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html';***/
-                var disqus_title = 'molecular dynamics simulations by gromacs lammps cpmd cp2k cp.x qbox from scratch';
-
             var disqus_config = function () {
                 this.language = "en";
+
+                        this.page.identifier = '2017-01-09-molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch';
+                        this.page.url = './molecular-dynamics-simulations-by-gromacs-lammps-cpmd-cp2k-cpx-qbox-from-scratch.html';
             };
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -762,12 +702,14 @@ run 100 10
         </div>
     </div>
 </div>
+<!-- End Content Container -->
+
 <footer>
    <div class="container">
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2017 Yi Yao
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -781,6 +723,7 @@ run 100 10
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="./themestatic/js/respond.min.js"></script>
+
 
     <!-- Disqus -->
     <script type="text/javascript">
@@ -797,6 +740,7 @@ run 100 10
         }());
     </script>
     <!-- End Disqus Code -->
+
 
 </body>
 </html>

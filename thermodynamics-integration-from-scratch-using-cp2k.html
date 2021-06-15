@@ -2,17 +2,6 @@
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
     <title>thermodynamics integration from scratch using cp2k - Yi Yao's Homepage</title>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56932248-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-56932248-1');
-    </script>
-
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -38,14 +27,13 @@
             <meta property="article:author" content="Yi Yao" />
 
 
+
     <!-- Bootstrap -->
         <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
     <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="./themestatic/css/style_bootstrap.css" type="text/css"/>
-
-
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
 
 
 
@@ -53,7 +41,7 @@
 <body>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -66,36 +54,9 @@ Yi Yao's Homepage            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                         <li><a href="./index.html">
-                             About Me
-                          </a></li>
-                         <li><a href="./pages/research.html">
-                             Research
-                          </a></li>
-                         <li><a href="./pages/useful-links.html">
-                             Useful Links
-                          </a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Research Blogs <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                        <li >
-                            <a href="./category/dft.html">Dft</a>
-                        </li>
-                        <li >
-                            <a href="./category/misc.html">Misc</a>
-                        </li>
-                        <li class="active">
-                            <a href="./category/molecular-dynamics.html">Molecular dynamics</a>
-                        </li>
-                        <li >
-                            <a href="./category/python.html">Python</a>
-                        </li>
-                        <li >
-                            <a href="./category/quantum-monte-carlo.html">Quantum monte carlo</a>
-                        </li>
-              <li><a href="./archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
-                </ul>
-                </li>
-
+                    <li><a href="index.html">About Me</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="categories.html">Research Blogs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -103,8 +64,11 @@ Yi Yao's Homepage            </a>
         <!-- /.navbar-collapse -->
     </div>
 </div> <!-- /.navbar -->
+
 <!-- Banner -->
 <!-- End Banner -->
+
+<!-- Content Container -->
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -152,18 +116,16 @@ Yi Yao's Homepage            </a>
 <li>
 <p>Generate the initial structure for my simulation. I use gromacs and vmd to do that.
 First using genbox tool in gromacs to generate a box of water with 514 water in it. The size is a little bit larger to make sure enough water molecules can be included.</p>
-<div class="highlight"><pre><span></span>genbox_d -cs spc216.gro -box 2.52 2.52 2.52 -maxsol 514
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>genbox_d -cs spc216.gro -box 2.52 2.52 2.52 -maxsol 514
+</code></pre></div>
 
 <p>In this way, I got a out.gro file. I will rename it to h2o514.gro file. And edit it to change the last two water to a Na ion and a Cl ion. Also the size of the box will be changed as well as the index of the atoms and the total number of atoms in the top of the file. Then I rename it to h2o512NaCl.gro. I have the final version of it here.
 <a href="./codes/h2o512NaCl.gro">h2o512NaCl.gro</a></p>
 <p>I would like to use psf and xyz file for the input of topology information and coordinations in to cp2k. VMD is used here for this task. So I use the script I wrote for vmd.
 <a href="./codes/tr_psf512.vmd">tr_psf512.vmd</a>
 it used in this way.</p>
-<div class="highlight"><pre><span></span>vmd -e tr_psf512.vmd
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>vmd -e tr_psf512.vmd
+</code></pre></div>
 
 <p>The files I got here is H2O512NaCl.xyz, and H2O512NaCl_gro.psf . They also need to be edited (OW -&gt; O, HW1, HW2 -&gt; H, the atom mass, and change the form of psf to upsf which can be loaded by cp2k). The final version of these two files are given here.
 <a href="./codes/H2O512NaCl.xyz">H2O512NaCl.xyz</a>
@@ -177,8 +139,6 @@ it used in this way.</p>
 <p>The <a href="./codes/H2O_SPCE_HMN.inp">input file</a> for cp2k. It is the input file for constraint dynamics. The lagrange multiplier will print out for the constraint force for the thermodynamics integration calculation. </p>
 </li>
 </ol>
-<!-- [a link relative to content root]({filename}/article1.md)
-[a link relative to current file]({filename}../article1.md) -->
             </div>
             <!-- /.entry-content -->
     <hr/>
@@ -190,13 +150,11 @@ it used in this way.</p>
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'yaoyi92'; // required: replace example with your forum shortname
 
-                /***                    var disqus_identifier = 'thermodynamics-integration-from-scratch-using-cp2k';
-***/
-                /***var disqus_url = './thermodynamics-integration-from-scratch-using-cp2k.html';***/
-                var disqus_title = 'thermodynamics integration from scratch using cp2k';
-
             var disqus_config = function () {
                 this.language = "en";
+
+                        this.page.identifier = '2014-11-20-thermodynamics-integration-from-scratch-using-cp2k';
+                        this.page.url = './thermodynamics-integration-from-scratch-using-cp2k.html';
             };
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -219,12 +177,14 @@ it used in this way.</p>
         </div>
     </div>
 </div>
+<!-- End Content Container -->
+
 <footer>
    <div class="container">
       <hr>
       <div class="row">
          <div class="col-xs-10">&copy; 2017 Yi Yao
-            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
@@ -238,6 +198,7 @@ it used in this way.</p>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
 <script src="./themestatic/js/respond.min.js"></script>
+
 
     <!-- Disqus -->
     <script type="text/javascript">
@@ -254,6 +215,7 @@ it used in this way.</p>
         }());
     </script>
     <!-- End Disqus Code -->
+
 
 </body>
 </html>
