@@ -1,5 +1,516 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Yi Yao's Homepage - Yi Yao</title><link href="https://yaoyi92.github.io/" rel="alternate"></link><link href="https://yaoyi92.github.io/feeds/yi-yao.atom.xml" rel="self"></link><id>https://yaoyi92.github.io/</id><updated>2017-04-11T23:26:00+02:00</updated><entry><title>SCAN TM pseudopotentials</title><link href="https://yaoyi92.github.io/scan-tm-pseudopotentials.html" rel="alternate"></link><published>2017-04-11T23:26:00+02:00</published><updated>2017-04-11T23:26:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2017-04-11:/scan-tm-pseudopotentials.html</id><summary type="html">&lt;p&gt;SCAN pseudopotentials&lt;/p&gt;</summary><content type="html">&lt;p&gt;Use at your own risk.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yi Yao's Homepage - Yi Yao</title><link href="https://yaoyi92.github.io/" rel="alternate"></link><link href="https://yaoyi92.github.io/feeds/yi-yao.atom.xml" rel="self"></link><id>https://yaoyi92.github.io/</id><updated>2021-06-15T14:56:00+02:00</updated><entry><title>Performing Bader Analysis with FHI-aims code</title><link href="https://yaoyi92.github.io/performing-bader-analysis-with-fhi-aims-code.html" rel="alternate"></link><published>2021-06-15T14:56:00+02:00</published><updated>2021-06-15T14:56:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2021-06-15:/performing-bader-analysis-with-fhi-aims-code.html</id><summary type="html">&lt;p&gt;How to perform Bader analysis with FHI-aims code.&lt;/p&gt;</summary><content type="html">&lt;h4&gt;Introduction&lt;/h4&gt;
+&lt;p&gt;Bader analysis is a widely used technique to decompose the charge density into contributions from individual atoms &lt;a href="https://pubs.acs.org/doi/10.1021/ar00109a003"&gt;[Bader]&lt;/a&gt; &lt;a href="https://iopscience.iop.org/article/10.1088/0953-8984/21/8/084204"&gt;[Tang]&lt;/a&gt; &lt;a href="https://doi.org/10.1063/1.3553716"&gt;[Yu]&lt;/a&gt;. It belongs to the theory of atoms in molecules which helps explain the complex electronic interactions in molecules or materials. The electron density calculated by density functional theory is the most common object where Bader analysis working on. Especially, for the planewave pseudopotential codes such as VASP and Quantum Espresso, Bader analysis can be applied natually on the electron density information saved in the &lt;a href="http://paulbourke.net/dataformats/cube/"&gt;Cube files&lt;/a&gt;, which are density values saved on even distributed integration grids in periodic 3D space. &lt;/p&gt;
+&lt;h4&gt;Problem in FHI-aims with Cube file&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://aimsclub.fhi-berlin.mpg.de/"&gt;FHI-aims&lt;/a&gt; is an all electron full potential code based on the numerical atom-centered orbital basis functions &lt;a href="https://www.sciencedirect.com/science/article/pii/S0010465509002033"&gt;[Blum]&lt;/a&gt;. One advantage of FHI-aims implementation is the correct description of the cusp of the electron density in the the core region near the nuclei. However, such cusp also gives problem for the cube file output from the FHI-aims code. If we integrate the normal density information saved in the cube file output by FHI-aims, the result can be differ from the number of electrons in the system.&lt;/p&gt;
+&lt;p&gt;I plot a 1D example to explain the problem.
+&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/aims_bader_cusp_1d.png"&gt;&lt;/p&gt;
+&lt;p&gt;As plotted in the figure, we have a 1D electron density function f defined from 0.0 to 20.0. It's integral is 4.59931 as shown in blue color in the figure. To mimic the cube file information, we seperate the space into 20 small "voxel" with an even space of 1.0 as plotted in yellow vertical lines. The information saved in the cube files are then the values of the red vertical lines which are the values of the f function at the center of voxels. The integral of the f function calculated in
+this way is then the summation of these values which is 4.46412. It is close but different from the exact integral.
+This would be a good approximation when if f function is smooth as the electron density in the planewave pseudopotential code. For the electron density in FHI-aims code, due to the exists of cusp, the error could be large.&lt;/p&gt;
+&lt;h4&gt;Integral instead of value at the center of voxel in FHI-aims with Cube file&lt;/h4&gt;
+&lt;p&gt;To solve the problem, we could save the integral in each voxel instead of the value at the center of the voxel in the cube file. As plotted in black in the figure, the integrals in each voxel is slightly different from the value at the center of the voxel and the summation of these integrals results in the correct integral of the whole space.
+Note, to calculate the integrals in these small voxels, we can evaluate electron density adaptively in theory. However, electron density calculation from a density matrix is computationally relatively expensive. 
+A computatinally efficient quantity to evaluate is the free atom electron density, as they are saved as spline functions centered at each atom. We can evaluate the free atom electron density adaptively to high accuracy.
+Thus, the output value for total density is &lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\rho_{total\ density}(voxel) = \rho_{total\ density}(voxel_{center}) - \rho_{free\ atom}(voxel_{center}) + \int_{voxel} \rho_{free\ atom}\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Based on my test, the output cube files integrals to a value much closer to the total number of electrons in the system. I call the quantity integrable total density.&lt;/p&gt;
+&lt;h4&gt;Inputs in FHI-aims&lt;/h4&gt;
+&lt;p&gt;The keyword in FHI-aims to output the integrable total density is &lt;code&gt;output cube total_density_integrable&lt;/code&gt;. Let me give two complete examples. One is the crystalline NaCl with 8 atoms in the unit cell, the other is the crystalline silicon with 8 atoms in the unit cell.&lt;/p&gt;
+&lt;h5&gt;Example Crystalline NaCl&lt;/h5&gt;
+&lt;p&gt;FHI-aims needs two files as inputs &lt;code&gt;control.in&lt;/code&gt; and &lt;code&gt;geometry.in&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;control.in&lt;/code&gt; &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# &lt;span class="nv"&gt;YY&lt;/span&gt;:&lt;span class="nv"&gt;WARNING&lt;/span&gt; &lt;span class="nv"&gt;just&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;test&lt;/span&gt;
+#    &lt;span class="nv"&gt;NEVER&lt;/span&gt; &lt;span class="nv"&gt;use&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;numerical&lt;/span&gt; &lt;span class="nv"&gt;setting&lt;/span&gt; &lt;span class="nv"&gt;here&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;productive&lt;/span&gt; &lt;span class="nv"&gt;run&lt;/span&gt;
+#
+# &lt;span class="nv"&gt;Physical&lt;/span&gt; &lt;span class="nv"&gt;settings&lt;/span&gt;
+  &lt;span class="nv"&gt;xc&lt;/span&gt;                 &lt;span class="nv"&gt;pw91_gga&lt;/span&gt;
+  &lt;span class="nv"&gt;spin&lt;/span&gt;               &lt;span class="nv"&gt;none&lt;/span&gt;
+# &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;point&lt;/span&gt; &lt;span class="nv"&gt;grid&lt;/span&gt;
+  &lt;span class="nv"&gt;k_grid&lt;/span&gt;  &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+  &lt;span class="nv"&gt;KS_method&lt;/span&gt; &lt;span class="nv"&gt;serial&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="nv"&gt;ELSI&lt;/span&gt; &lt;span class="nv"&gt;lapack&lt;/span&gt;
+  &lt;span class="nv"&gt;preconditioner&lt;/span&gt; &lt;span class="nv"&gt;none&lt;/span&gt;
+  &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="nv"&gt;cube&lt;/span&gt; &lt;span class="nv"&gt;total_density_integrable&lt;/span&gt;
+  &lt;span class="nv"&gt;cube&lt;/span&gt; &lt;span class="nv"&gt;edge&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;04737105709166667&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; # &lt;span class="nv"&gt;these&lt;/span&gt; &lt;span class="nv"&gt;are&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;unit&lt;/span&gt; &lt;span class="nv"&gt;Angstrom&lt;/span&gt;
+  &lt;span class="nv"&gt;cube&lt;/span&gt; &lt;span class="nv"&gt;edge&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;04737105709166667&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; # &lt;span class="nv"&gt;these&lt;/span&gt; &lt;span class="nv"&gt;are&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;unit&lt;/span&gt; &lt;span class="nv"&gt;Angstrom&lt;/span&gt;
+  &lt;span class="nv"&gt;cube&lt;/span&gt; &lt;span class="nv"&gt;edge&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;04737105709166667&lt;/span&gt; # &lt;span class="nv"&gt;these&lt;/span&gt; &lt;span class="nv"&gt;are&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;unit&lt;/span&gt; &lt;span class="nv"&gt;Angstrom&lt;/span&gt;
+  &lt;span class="nv"&gt;cube&lt;/span&gt; &lt;span class="nv"&gt;divisor&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+  &lt;span class="nv"&gt;cube_content_unit&lt;/span&gt;  &lt;span class="nv"&gt;bohr&lt;/span&gt;
+################################################################################
+#
+#  &lt;span class="nv"&gt;FHI&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;aims&lt;/span&gt; &lt;span class="nv"&gt;code&lt;/span&gt; &lt;span class="nv"&gt;project&lt;/span&gt;
+# &lt;span class="nv"&gt;Volker&lt;/span&gt; &lt;span class="nv"&gt;Blum&lt;/span&gt;, &lt;span class="nv"&gt;Fritz&lt;/span&gt; &lt;span class="nv"&gt;Haber&lt;/span&gt; &lt;span class="nv"&gt;Institute&lt;/span&gt; &lt;span class="nv"&gt;Berlin&lt;/span&gt;, &lt;span class="mi"&gt;2009&lt;/span&gt;
+#
+#  &lt;span class="nv"&gt;Suggested&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;intermediate&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;defaults&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;Na&lt;/span&gt; &lt;span class="nv"&gt;atom&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;pasted&lt;/span&gt; &lt;span class="nv"&gt;into&lt;/span&gt; &lt;span class="nv"&gt;control&lt;/span&gt;.&lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+#
+#  &lt;span class="nv"&gt;See&lt;/span&gt; &lt;span class="nv"&gt;https&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;aaltodoc&lt;/span&gt;.&lt;span class="nv"&gt;aalto&lt;/span&gt;.&lt;span class="nv"&gt;fi&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;handle&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;123456789&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;33620&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;report&lt;/span&gt; &lt;span class="nv"&gt;these&lt;/span&gt;
+#  &lt;span class="nv"&gt;setting&lt;/span&gt; &lt;span class="nv"&gt;are&lt;/span&gt; &lt;span class="nv"&gt;based&lt;/span&gt; &lt;span class="nv"&gt;on&lt;/span&gt;
+################################################################################
+  &lt;span class="nv"&gt;species&lt;/span&gt;        &lt;span class="nv"&gt;Na&lt;/span&gt;
+#     &lt;span class="nv"&gt;global&lt;/span&gt; &lt;span class="nv"&gt;species&lt;/span&gt; &lt;span class="nv"&gt;definitions&lt;/span&gt;
+    &lt;span class="nv"&gt;nucleus&lt;/span&gt;             &lt;span class="mi"&gt;11&lt;/span&gt;
+    &lt;span class="nv"&gt;mass&lt;/span&gt;                &lt;span class="mi"&gt;22&lt;/span&gt;.&lt;span class="mi"&gt;98976928&lt;/span&gt;
+#
+    &lt;span class="nv"&gt;l_hartree&lt;/span&gt;           &lt;span class="mi"&gt;6&lt;/span&gt;
+#
+    &lt;span class="nv"&gt;cut_pot&lt;/span&gt;             &lt;span class="mi"&gt;4&lt;/span&gt;.&lt;span class="mi"&gt;5&lt;/span&gt;          &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="nv"&gt;basis_dep_cutoff&lt;/span&gt;    &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="nv"&gt;e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+#
+    &lt;span class="nv"&gt;radial_base&lt;/span&gt;         &lt;span class="mi"&gt;40&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="nv"&gt;radial_multiplier&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="nv"&gt;angular_grids&lt;/span&gt;       &lt;span class="nv"&gt;specified&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;5925&lt;/span&gt;  &lt;span class="mi"&gt;110&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;7843&lt;/span&gt;  &lt;span class="mi"&gt;194&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;0201&lt;/span&gt;  &lt;span class="mi"&gt;302&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;1879&lt;/span&gt;  &lt;span class="mi"&gt;434&lt;/span&gt;
+#      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;3799&lt;/span&gt;  &lt;span class="mi"&gt;590&lt;/span&gt;
+#      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;4503&lt;/span&gt;  &lt;span class="mi"&gt;770&lt;/span&gt;
+#      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;0005&lt;/span&gt;  &lt;span class="mi"&gt;974&lt;/span&gt;
+#      &lt;span class="nv"&gt;outer_grid&lt;/span&gt;  &lt;span class="mi"&gt;974&lt;/span&gt;
+      &lt;span class="nv"&gt;outer_grid&lt;/span&gt;  &lt;span class="mi"&gt;434&lt;/span&gt;
+################################################################################
+#
+#  &lt;span class="nv"&gt;Definition&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;minimal&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt;
+#
+################################################################################
+#     &lt;span class="nv"&gt;valence&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;states&lt;/span&gt;
+    &lt;span class="nv"&gt;valence&lt;/span&gt;      &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="nv"&gt;s&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.
+    &lt;span class="nv"&gt;valence&lt;/span&gt;      &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="nv"&gt;p&lt;/span&gt;   &lt;span class="mi"&gt;6&lt;/span&gt;.
+#     &lt;span class="nv"&gt;ion&lt;/span&gt; &lt;span class="nv"&gt;occupancy&lt;/span&gt;
+    &lt;span class="nv"&gt;ion_occ&lt;/span&gt;      &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="nv"&gt;s&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;.
+    &lt;span class="nv"&gt;ion_occ&lt;/span&gt;      &lt;span class="mi"&gt;2&lt;/span&gt;  &lt;span class="nv"&gt;p&lt;/span&gt;   &lt;span class="mi"&gt;6&lt;/span&gt;.
+################################################################################
+#
+#  &lt;span class="nv"&gt;Suggested&lt;/span&gt; &lt;span class="nv"&gt;additional&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;functions&lt;/span&gt;. &lt;span class="k"&gt;For&lt;/span&gt; &lt;span class="nv"&gt;production&lt;/span&gt; &lt;span class="nv"&gt;calculations&lt;/span&gt;,
+#  &lt;span class="nv"&gt;uncomment&lt;/span&gt; &lt;span class="nv"&gt;them&lt;/span&gt; &lt;span class="nv"&gt;one&lt;/span&gt; &lt;span class="nv"&gt;after&lt;/span&gt; &lt;span class="nv"&gt;another&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;most&lt;/span&gt; &lt;span class="nv"&gt;important&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;functions&lt;/span&gt; &lt;span class="nv"&gt;are&lt;/span&gt;
+#  &lt;span class="nv"&gt;listed&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;.
+#
+#  &lt;span class="nv"&gt;Constructed&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;dimers&lt;/span&gt;: &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;75&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;4&lt;/span&gt;.&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;
+#
+################################################################################
+#  &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;First tier&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;.&lt;span class="mi"&gt;09&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;02&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;2&lt;/span&gt;
+     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+#  &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Second tier&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;94&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;27&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;1&lt;/span&gt;
+     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+     &lt;span class="nv"&gt;for_aux&lt;/span&gt; &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;.&lt;span class="mi"&gt;2&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;3&lt;/span&gt;
+#  &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Third tier&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;83&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;07&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;3&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;.&lt;span class="mi"&gt;6&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;85&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;6&lt;/span&gt;
+#  &lt;span class="nv"&gt;Further&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;functions&lt;/span&gt; &lt;span class="nv"&gt;that&lt;/span&gt; &lt;span class="nv"&gt;fell&lt;/span&gt; &lt;span class="nv"&gt;out&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;optimization&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;noise&lt;/span&gt; &lt;span class="nv"&gt;level&lt;/span&gt;...
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;1&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;4&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;1&lt;/span&gt;
+################################################################################
+#
+#  &lt;span class="nv"&gt;FHI&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;aims&lt;/span&gt; &lt;span class="nv"&gt;code&lt;/span&gt; &lt;span class="nv"&gt;project&lt;/span&gt;
+#  &lt;span class="nv"&gt;Volker&lt;/span&gt; &lt;span class="nv"&gt;Blum&lt;/span&gt;, &lt;span class="mi"&gt;2017&lt;/span&gt;
+#
+#  &lt;span class="nv"&gt;Suggested&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;intermediate&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;defaults&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;Cl&lt;/span&gt; &lt;span class="nv"&gt;atom&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;pasted&lt;/span&gt; &lt;span class="nv"&gt;into&lt;/span&gt; &lt;span class="nv"&gt;control&lt;/span&gt;.&lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+#
+################################################################################
+  &lt;span class="nv"&gt;species&lt;/span&gt;        &lt;span class="nv"&gt;Cl&lt;/span&gt;
+#     &lt;span class="nv"&gt;global&lt;/span&gt; &lt;span class="nv"&gt;species&lt;/span&gt; &lt;span class="nv"&gt;definitions&lt;/span&gt;
+    &lt;span class="nv"&gt;nucleus&lt;/span&gt;             &lt;span class="mi"&gt;17&lt;/span&gt;
+    &lt;span class="nv"&gt;mass&lt;/span&gt;                &lt;span class="mi"&gt;35&lt;/span&gt;.&lt;span class="mi"&gt;453&lt;/span&gt;
+#
+    &lt;span class="nv"&gt;l_hartree&lt;/span&gt;           &lt;span class="mi"&gt;6&lt;/span&gt;
+#
+    &lt;span class="nv"&gt;cut_pot&lt;/span&gt;             &lt;span class="mi"&gt;4&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;          &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="nv"&gt;basis_dep_cutoff&lt;/span&gt;    &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="nv"&gt;e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+#
+    &lt;span class="nv"&gt;radial_base&lt;/span&gt;         &lt;span class="mi"&gt;45&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="nv"&gt;radial_multiplier&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="nv"&gt;angular_grids&lt;/span&gt;       &lt;span class="nv"&gt;specified&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;4412&lt;/span&gt;  &lt;span class="mi"&gt;110&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;5489&lt;/span&gt;  &lt;span class="mi"&gt;194&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;6734&lt;/span&gt;  &lt;span class="mi"&gt;302&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;7794&lt;/span&gt;  &lt;span class="mi"&gt;434&lt;/span&gt;
+#      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;9402&lt;/span&gt;  &lt;span class="mi"&gt;590&lt;/span&gt;
+#      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;0779&lt;/span&gt;  &lt;span class="mi"&gt;770&lt;/span&gt;
+#      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;1792&lt;/span&gt;  &lt;span class="mi"&gt;974&lt;/span&gt;
+#      &lt;span class="nv"&gt;outer_grid&lt;/span&gt;  &lt;span class="mi"&gt;974&lt;/span&gt;
+      &lt;span class="nv"&gt;outer_grid&lt;/span&gt;  &lt;span class="mi"&gt;434&lt;/span&gt;
+################################################################################
+#
+#  &lt;span class="nv"&gt;Definition&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;minimal&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt;
+#
+################################################################################
+#     &lt;span class="nv"&gt;valence&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;states&lt;/span&gt;
+    &lt;span class="nv"&gt;valence&lt;/span&gt;      &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="nv"&gt;s&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;.
+    &lt;span class="nv"&gt;valence&lt;/span&gt;      &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="nv"&gt;p&lt;/span&gt;   &lt;span class="mi"&gt;5&lt;/span&gt;.
+#     &lt;span class="nv"&gt;ion&lt;/span&gt; &lt;span class="nv"&gt;occupancy&lt;/span&gt;
+    &lt;span class="nv"&gt;ion_occ&lt;/span&gt;      &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="nv"&gt;s&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.
+    &lt;span class="nv"&gt;ion_occ&lt;/span&gt;      &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="nv"&gt;p&lt;/span&gt;   &lt;span class="mi"&gt;4&lt;/span&gt;.
+################################################################################
+#
+#  &lt;span class="nv"&gt;Suggested&lt;/span&gt; &lt;span class="nv"&gt;additional&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;functions&lt;/span&gt;. &lt;span class="k"&gt;For&lt;/span&gt; &lt;span class="nv"&gt;production&lt;/span&gt; &lt;span class="nv"&gt;calculations&lt;/span&gt;,
+#  &lt;span class="nv"&gt;uncomment&lt;/span&gt; &lt;span class="nv"&gt;them&lt;/span&gt; &lt;span class="nv"&gt;one&lt;/span&gt; &lt;span class="nv"&gt;after&lt;/span&gt; &lt;span class="nv"&gt;another&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;most&lt;/span&gt; &lt;span class="nv"&gt;important&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;functions&lt;/span&gt; &lt;span class="nv"&gt;are&lt;/span&gt;
+#  &lt;span class="nv"&gt;listed&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;.
+#
+#  &lt;span class="nv"&gt;Constructed&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;dimers&lt;/span&gt;: &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;65&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;25&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;4&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;
+#
+################################################################################
+#  &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;First tier&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;429&lt;/span&gt;.&lt;span class="mi"&gt;57&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;.&lt;span class="mi"&gt;03&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+     &lt;span class="nv"&gt;ionic&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;auto&lt;/span&gt;
+     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;9&lt;/span&gt;
+     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;4&lt;/span&gt;
+     &lt;span class="nv"&gt;ionic&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;auto&lt;/span&gt;
+     &lt;span class="nv"&gt;for_aux&lt;/span&gt;     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;4&lt;/span&gt;
+#  &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Second tier&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;84&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;48&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;3&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;75&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;.&lt;span class="mi"&gt;2&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;4&lt;/span&gt;
+#  &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Third tier&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;00&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;.&lt;span class="mi"&gt;6&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+#  &lt;span class="nv"&gt;Further&lt;/span&gt; &lt;span class="nv"&gt;functions&lt;/span&gt; &lt;span class="nv"&gt;that&lt;/span&gt; &lt;span class="nv"&gt;fell&lt;/span&gt; &lt;span class="nv"&gt;out&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;below&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt;.&lt;span class="mi"&gt;4&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;.&lt;span class="mi"&gt;6&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;.&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;geometry.in&lt;/code&gt; &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;lattice_vector 5.6845268510 0.0 0.0
+lattice_vector 0.0 5.6845268510 0.0
+lattice_vector 0.0 0.0 5.6845268510
+atom_frac 0.75   0.25   0.25  Na
+atom_frac 0.25   0.75   0.25  Na
+atom_frac 0.25   0.25   0.75  Na
+atom_frac 0.75   0.75   0.75  Na
+atom_frac 0.25   0.25   0.25  Cl
+atom_frac 0.75   0.75   0.25  Cl
+atom_frac 0.75   0.25   0.75  Cl
+atom_frac 0.25   0.75   0.75  Cl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;Example Crystalline Silicon&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;control.in&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;# &lt;span class="nv"&gt;YY&lt;/span&gt;:&lt;span class="nv"&gt;WARNING&lt;/span&gt; &lt;span class="nv"&gt;just&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;test&lt;/span&gt;
+#    &lt;span class="nv"&gt;NEVER&lt;/span&gt; &lt;span class="nv"&gt;use&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;numerical&lt;/span&gt; &lt;span class="nv"&gt;setting&lt;/span&gt; &lt;span class="nv"&gt;here&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;productive&lt;/span&gt; &lt;span class="nv"&gt;run&lt;/span&gt;
+#
+# &lt;span class="nv"&gt;Physical&lt;/span&gt; &lt;span class="nv"&gt;settings&lt;/span&gt;
+  &lt;span class="nv"&gt;xc&lt;/span&gt;                 &lt;span class="nv"&gt;pbe&lt;/span&gt;
+  &lt;span class="nv"&gt;spin&lt;/span&gt;               &lt;span class="nv"&gt;none&lt;/span&gt;
+
+# &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;point&lt;/span&gt; &lt;span class="nv"&gt;grid&lt;/span&gt;
+  &lt;span class="nv"&gt;k_grid&lt;/span&gt;  &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+
+  &lt;span class="nv"&gt;KS_method&lt;/span&gt; &lt;span class="nv"&gt;serial&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt; &lt;span class="nv"&gt;ELSI&lt;/span&gt; &lt;span class="nv"&gt;lapack&lt;/span&gt;
+
+  &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="nv"&gt;cube&lt;/span&gt; &lt;span class="nv"&gt;total_density_integrable&lt;/span&gt;
+  &lt;span class="nv"&gt;cube&lt;/span&gt; &lt;span class="nv"&gt;divisor&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+  &lt;span class="nv"&gt;cube_content_unit&lt;/span&gt;  &lt;span class="nv"&gt;bohr&lt;/span&gt;
+
+################################################################################
+#
+#  &lt;span class="nv"&gt;FHI&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;aims&lt;/span&gt; &lt;span class="nv"&gt;code&lt;/span&gt; &lt;span class="nv"&gt;project&lt;/span&gt;
+#  &lt;span class="nv"&gt;Volker&lt;/span&gt; &lt;span class="nv"&gt;Blum&lt;/span&gt;, &lt;span class="mi"&gt;2017&lt;/span&gt;
+#
+#  &lt;span class="nv"&gt;Suggested&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;intermediate&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;defaults&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;Si&lt;/span&gt; &lt;span class="nv"&gt;atom&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;pasted&lt;/span&gt; &lt;span class="nv"&gt;into&lt;/span&gt; &lt;span class="nv"&gt;control&lt;/span&gt;.&lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+#
+################################################################################
+  &lt;span class="nv"&gt;species&lt;/span&gt;        &lt;span class="nv"&gt;Si&lt;/span&gt;
+#     &lt;span class="nv"&gt;global&lt;/span&gt; &lt;span class="nv"&gt;species&lt;/span&gt; &lt;span class="nv"&gt;definitions&lt;/span&gt;
+    &lt;span class="nv"&gt;nucleus&lt;/span&gt;             &lt;span class="mi"&gt;14&lt;/span&gt;
+    &lt;span class="nv"&gt;mass&lt;/span&gt;                &lt;span class="mi"&gt;28&lt;/span&gt;.&lt;span class="mi"&gt;0855&lt;/span&gt;
+#
+    &lt;span class="nv"&gt;l_hartree&lt;/span&gt;           &lt;span class="mi"&gt;6&lt;/span&gt;
+#
+    &lt;span class="nv"&gt;cut_pot&lt;/span&gt;             &lt;span class="mi"&gt;4&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;          &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="nv"&gt;basis_dep_cutoff&lt;/span&gt;    &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="nv"&gt;e&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;
+#
+    &lt;span class="nv"&gt;radial_base&lt;/span&gt;         &lt;span class="mi"&gt;42&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="nv"&gt;radial_multiplier&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="nv"&gt;angular_grids&lt;/span&gt;       &lt;span class="nv"&gt;specified&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;4121&lt;/span&gt;   &lt;span class="mi"&gt;50&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;7665&lt;/span&gt;  &lt;span class="mi"&gt;110&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;0603&lt;/span&gt;  &lt;span class="mi"&gt;194&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;2846&lt;/span&gt;  &lt;span class="mi"&gt;302&lt;/span&gt;
+      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;4125&lt;/span&gt;  &lt;span class="mi"&gt;434&lt;/span&gt;
+#      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;4810&lt;/span&gt;  &lt;span class="mi"&gt;590&lt;/span&gt;
+#      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;5529&lt;/span&gt;  &lt;span class="mi"&gt;770&lt;/span&gt;
+#      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;6284&lt;/span&gt;  &lt;span class="mi"&gt;974&lt;/span&gt;
+#      &lt;span class="nv"&gt;division&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;6016&lt;/span&gt; &lt;span class="mi"&gt;1202&lt;/span&gt;
+#      &lt;span class="nv"&gt;outer_grid&lt;/span&gt;   &lt;span class="mi"&gt;974&lt;/span&gt;
+      &lt;span class="nv"&gt;outer_grid&lt;/span&gt;  &lt;span class="mi"&gt;434&lt;/span&gt;
+################################################################################
+#
+#  &lt;span class="nv"&gt;Definition&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;minimal&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt;
+#
+################################################################################
+#     &lt;span class="nv"&gt;valence&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;states&lt;/span&gt;
+    &lt;span class="nv"&gt;valence&lt;/span&gt;      &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="nv"&gt;s&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;.
+    &lt;span class="nv"&gt;valence&lt;/span&gt;      &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="nv"&gt;p&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;.
+#     &lt;span class="nv"&gt;ion&lt;/span&gt; &lt;span class="nv"&gt;occupancy&lt;/span&gt;
+    &lt;span class="nv"&gt;ion_occ&lt;/span&gt;      &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="nv"&gt;s&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.
+    &lt;span class="nv"&gt;ion_occ&lt;/span&gt;      &lt;span class="mi"&gt;3&lt;/span&gt;  &lt;span class="nv"&gt;p&lt;/span&gt;   &lt;span class="mi"&gt;1&lt;/span&gt;.
+################################################################################
+#
+#  &lt;span class="nv"&gt;Suggested&lt;/span&gt; &lt;span class="nv"&gt;additional&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;functions&lt;/span&gt;. &lt;span class="k"&gt;For&lt;/span&gt; &lt;span class="nv"&gt;production&lt;/span&gt; &lt;span class="nv"&gt;calculations&lt;/span&gt;,
+#  &lt;span class="nv"&gt;uncomment&lt;/span&gt; &lt;span class="nv"&gt;them&lt;/span&gt; &lt;span class="nv"&gt;one&lt;/span&gt; &lt;span class="nv"&gt;after&lt;/span&gt; &lt;span class="nv"&gt;another&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;most&lt;/span&gt; &lt;span class="nv"&gt;important&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;functions&lt;/span&gt; &lt;span class="nv"&gt;are&lt;/span&gt;
+#  &lt;span class="nv"&gt;listed&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;.
+#
+#  &lt;span class="nv"&gt;Constructed&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;dimers&lt;/span&gt;: &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;75&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;25&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;75&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;, &lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;75&lt;/span&gt; &lt;span class="nv"&gt;A&lt;/span&gt;
+#
+################################################################################
+#  &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;First tier&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;571&lt;/span&gt;.&lt;span class="mi"&gt;96&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;37&lt;/span&gt;.&lt;span class="mi"&gt;03&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;.&lt;span class="mi"&gt;2&lt;/span&gt;
+     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;4&lt;/span&gt;
+     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;.&lt;span class="mi"&gt;2&lt;/span&gt;
+     &lt;span class="nv"&gt;ionic&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;auto&lt;/span&gt;
+#  &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Second tier&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;.&lt;span class="mi"&gt;76&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;03&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;
+&lt;span class="nv"&gt;for_aux&lt;/span&gt;     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;.&lt;span class="mi"&gt;4&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;65&lt;/span&gt;
+#  &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Third tier&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;89&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;60&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+#     &lt;span class="nv"&gt;ionic&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;auto&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;6&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;.&lt;span class="mi"&gt;4&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;.&lt;span class="mi"&gt;4&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+#  &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Fourth tier&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;improvements&lt;/span&gt;: &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;33&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;11&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;6&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;.&lt;span class="mi"&gt;8&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;.&lt;span class="mi"&gt;2&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;.&lt;span class="mi"&gt;5&lt;/span&gt;
+#  &lt;span class="nv"&gt;Further&lt;/span&gt; &lt;span class="nv"&gt;basis&lt;/span&gt; &lt;span class="nv"&gt;functions&lt;/span&gt; &lt;span class="nv"&gt;that&lt;/span&gt; &lt;span class="nv"&gt;fell&lt;/span&gt; &lt;span class="nv"&gt;out&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;optimization&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;noise&lt;/span&gt;
+#  &lt;span class="nv"&gt;level&lt;/span&gt;... &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;.&lt;span class="mi"&gt;08&lt;/span&gt; &lt;span class="nv"&gt;meV&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;.&lt;span class="mi"&gt;6&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;.&lt;span class="mi"&gt;4&lt;/span&gt;
+#     &lt;span class="nv"&gt;hydro&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;geometry.in&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;lattice_vector 5.43 0.0000000000000000 0.0000000000000000
+lattice_vector 0.0000000000000000 5.43 0.0000000000000000
+lattice_vector 0.0000000000000000 0.0000000000000000 5.43
+atom 0.0000000000000000 0.0000000000000000 0.0000000000000000 Si
+atom 1.3575000000000000 1.3575000000000000 1.3575000000000000 Si
+atom 0.0000000000000000 2.7150000000000000 2.7150000000000000 Si
+atom 1.3575000000000000 4.0725000000000000 4.0725000000000000 Si
+atom 2.7150000000000000 0.0000000000000000 2.7150000000000000 Si
+atom 4.0725000000000000 1.3575000000000000 4.0725000000000000 Si
+atom 2.7150000000000000 2.7150000000000000 0.0000000000000000 Si
+atom 4.0725000000000000 4.0725000000000000 1.3575000000000000 Si
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;How to perform Bader analysis on the output cube files&lt;/h4&gt;
+&lt;p&gt;Codes exist to perform Bader analysis on cube files, here I have two recommendations. One is the &lt;a href="http://theory.cm.utexas.edu/henkelman/code/bader/"&gt;Bader code&lt;/a&gt; by Henkelman's Group. The other is the &lt;a href="https://aoterodelaroza.github.io/critic2/"&gt;Critic2 code&lt;/a&gt; by Alberto's Group.&lt;/p&gt;
+&lt;h5&gt;Bader code&lt;/h5&gt;
+&lt;p&gt;The way to run the Bader code is quite intuitive. Here is an example command line for the Bader analysis.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bader -vac 0 cube_001_total_density_integrable.cube&lt;/code&gt; 
+The output file &lt;code&gt;ACF.dat&lt;/code&gt; shows the number of electrons associate with each atom. Here is the example of crystalline NaCl.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    #         X           Y           Z       CHARGE      MIN DIST   ATOMIC VOL
+ --------------------------------------------------------------------------------
+    1    8.056649    2.685550    2.685550   10.134933     2.127317    66.679119
+    2    2.685550    8.056649    2.685550   10.134933     2.127317    66.679119
+    3    2.685550    2.685550    8.056649   10.134933     2.127317    66.679119
+    4    8.056649    8.056649    8.056649   10.134933     2.127313    66.679119
+    5    2.685550    2.685550    2.685550   17.863308     3.089009   242.798590
+    6    8.056649    8.056649    2.685550   17.865052     3.088990   243.331581
+    7    8.056649    2.685550    8.056649   17.866106     3.088990   243.652954
+    8    2.685550    8.056649    8.056649   17.864259     3.088990   243.081226
+ --------------------------------------------------------------------------------
+    VACUUM CHARGE:               0.0000
+    VACUUM VOLUME:               0.0000
+    NUMBER OF ELECTRONS:       111.9985
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;Critic2 code&lt;/h5&gt;
+&lt;p&gt;The critic2 code is more versatile. It is basically a general code to perform all kinds of operators on some fields. Here we present a simple input for the same Bader analysis of Yu-Trinkle type.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;critic2.in&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Read the structure from any of the cube files&lt;/span&gt;
+&lt;span class="n"&gt;crystal&lt;/span&gt; &lt;span class="n"&gt;cube_001_total_density_integrable&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cube&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Load the electron density&lt;/span&gt;
+&lt;span class="nb"&gt;load&lt;/span&gt; &lt;span class="n"&gt;cube_001_total_density_integrable&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cube&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="n"&gt;rho&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Use Bader.&lt;/span&gt;
+&lt;span class="n"&gt;bader&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then we run the code via commandline.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;critic2 critic2.in &amp;gt; critic2.out&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;We can take a look at the &lt;code&gt;critic2.out&lt;/code&gt; file. &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nv"&gt;Integrated&lt;/span&gt; &lt;span class="nv"&gt;atomic&lt;/span&gt; &lt;span class="nv"&gt;properties&lt;/span&gt;
+# &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;See&lt;/span&gt; &lt;span class="nv"&gt;key&lt;/span&gt; &lt;span class="nv"&gt;above&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;interpretation&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;column&lt;/span&gt; &lt;span class="nv"&gt;headings&lt;/span&gt;.&lt;span class="ss"&gt;)&lt;/span&gt;
+# &lt;span class="nv"&gt;Integrable&lt;/span&gt; &lt;span class="nv"&gt;properties&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+# &lt;span class="nv"&gt;Id&lt;/span&gt;   &lt;span class="nv"&gt;cp&lt;/span&gt;   &lt;span class="nv"&gt;ncp&lt;/span&gt;   &lt;span class="nv"&gt;Name&lt;/span&gt;  &lt;span class="nv"&gt;Z&lt;/span&gt;   &lt;span class="nv"&gt;mult&lt;/span&gt;     &lt;span class="nv"&gt;Volume&lt;/span&gt;            &lt;span class="nv"&gt;Pop&lt;/span&gt;             &lt;span class="nv"&gt;Lap&lt;/span&gt;
+  &lt;span class="mi"&gt;1&lt;/span&gt;    &lt;span class="mi"&gt;1&lt;/span&gt;    &lt;span class="mi"&gt;1&lt;/span&gt;      &lt;span class="nv"&gt;Na&lt;/span&gt;   &lt;span class="mi"&gt;11&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;   &lt;span class="mi"&gt;6&lt;/span&gt;.&lt;span class="mi"&gt;66791186&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;01349330&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;  &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;37946134&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;
+  &lt;span class="mi"&gt;2&lt;/span&gt;    &lt;span class="mi"&gt;2&lt;/span&gt;    &lt;span class="mi"&gt;1&lt;/span&gt;      &lt;span class="nv"&gt;Na&lt;/span&gt;   &lt;span class="mi"&gt;11&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;   &lt;span class="mi"&gt;6&lt;/span&gt;.&lt;span class="mi"&gt;66791186&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;01349330&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;  &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;37946061&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;
+  &lt;span class="mi"&gt;3&lt;/span&gt;    &lt;span class="mi"&gt;3&lt;/span&gt;    &lt;span class="mi"&gt;1&lt;/span&gt;      &lt;span class="nv"&gt;Na&lt;/span&gt;   &lt;span class="mi"&gt;11&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;   &lt;span class="mi"&gt;6&lt;/span&gt;.&lt;span class="mi"&gt;66791186&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;01349330&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;  &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;37946091&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;
+  &lt;span class="mi"&gt;4&lt;/span&gt;    &lt;span class="mi"&gt;4&lt;/span&gt;    &lt;span class="mi"&gt;1&lt;/span&gt;      &lt;span class="nv"&gt;Na&lt;/span&gt;   &lt;span class="mi"&gt;11&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;   &lt;span class="mi"&gt;6&lt;/span&gt;.&lt;span class="mi"&gt;66791186&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;01349330&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt;  &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;37946131&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;
+  &lt;span class="mi"&gt;5&lt;/span&gt;    &lt;span class="mi"&gt;5&lt;/span&gt;    &lt;span class="mi"&gt;2&lt;/span&gt;      &lt;span class="nv"&gt;Cl&lt;/span&gt;   &lt;span class="mi"&gt;17&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;42798590&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;78633076&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;72005475&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;
+  &lt;span class="mi"&gt;6&lt;/span&gt;    &lt;span class="mi"&gt;6&lt;/span&gt;    &lt;span class="mi"&gt;2&lt;/span&gt;      &lt;span class="nv"&gt;Cl&lt;/span&gt;   &lt;span class="mi"&gt;17&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;43331581&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;78650521&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;28806825&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;
+  &lt;span class="mi"&gt;7&lt;/span&gt;    &lt;span class="mi"&gt;7&lt;/span&gt;    &lt;span class="mi"&gt;2&lt;/span&gt;      &lt;span class="nv"&gt;Cl&lt;/span&gt;   &lt;span class="mi"&gt;17&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;43652954&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;78661064&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;02729109&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;
+  &lt;span class="mi"&gt;8&lt;/span&gt;    &lt;span class="mi"&gt;8&lt;/span&gt;    &lt;span class="mi"&gt;2&lt;/span&gt;      &lt;span class="nv"&gt;Cl&lt;/span&gt;   &lt;span class="mi"&gt;17&lt;/span&gt;  &lt;span class="o"&gt;--&lt;/span&gt;   &lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;43081226&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;78642592&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;01&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;.&lt;span class="mi"&gt;48243008&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt;
+&lt;span class="o"&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+  &lt;span class="nv"&gt;Sum&lt;/span&gt;                            &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;23958083&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;03&lt;/span&gt;  &lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;11998457&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;02&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;66990638&lt;/span&gt;&lt;span class="nv"&gt;E&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Clearly, the outputs from Bader and critic2 codes match with each other.&lt;/p&gt;
+&lt;p&gt;With critic2, we can calculate more quantities than the Bader integrals. For example, we can plot &lt;a href="https://doi.org/10.1021/ct100641a"&gt;NCIPLOT&lt;/a&gt; with critic2 with the input &lt;code&gt;critic2_nci.in&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Read the structure from any of the cube files&lt;/span&gt;
+&lt;span class="n"&gt;crystal&lt;/span&gt; &lt;span class="n"&gt;cube_001_total_density_integrable&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cube&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Load the electron density&lt;/span&gt;
+&lt;span class="nb"&gt;load&lt;/span&gt; &lt;span class="n"&gt;cube_001_total_density_integrable&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cube&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="n"&gt;rho&lt;/span&gt;
+
+&lt;span class="c1"&gt;#NCIplot&lt;/span&gt;
+&lt;span class="n"&gt;NCIPLOT&lt;/span&gt;
+&lt;span class="n"&gt;END&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The result can be visualized in VMD via command &lt;code&gt;vmd -e critic2_nci.vmd&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Alt Text" src="https://yaoyi92.github.io/images/aims_bader_nciplot.png"&gt;&lt;/p&gt;
+&lt;p&gt;For the crystalline NaCl here, this plot doesn't tell much. But, for systems with vdW interaction, hybrogen bond, or steric clashes, this plot can provide useful information.&lt;/p&gt;
+&lt;h4&gt;Convergence of the integral in the integrable total density cube file output by FHI-aims.&lt;/h4&gt;
+&lt;p&gt;An interesting observation I have for the cube file output is the integral of the integrable total density cube file has a convergence behavior. With the more accurate numerical settings the more accurate the total number of electrons is got.
+My suspicion is the normalization of the integration grid with different setting might play a role here. Without dense enough integration setting, the integration in the atom centered integration grid will introduce a normalization error which will pass to the total number of electrons calculated by the integration of the integrable total density cube file. Luckily, the error is relatively small and will reduce with a more strict numerical setting as I showed the results for both examples.&lt;/p&gt;
+&lt;p&gt;The convergence behavior for crystalline sillicon.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="center"&gt;Numerical Setting &lt;code&gt;&amp;nbsp;&lt;/code&gt;&lt;/th&gt;
+&lt;th align="center"&gt;Integral of integrable total density cube file&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;Minimal&lt;/td&gt;
+&lt;td align="center"&gt;111.9851&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;Light&lt;/td&gt;
+&lt;td align="center"&gt;111.9909&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;Intermediate&lt;/td&gt;
+&lt;td align="center"&gt;111.9966&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;Tight&lt;/td&gt;
+&lt;td align="center"&gt;111.9965&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;Really tight&lt;/td&gt;
+&lt;td align="center"&gt;111.9998&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;The convergence behavior for crystalline NaCl.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="center"&gt;Numerical Setting &lt;code&gt;&amp;nbsp;&lt;/code&gt;&lt;/th&gt;
+&lt;th align="center"&gt;Integral of integrable total density cube file&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;Minimal&lt;/td&gt;
+&lt;td align="center"&gt;111.9968&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;Light&lt;/td&gt;
+&lt;td align="center"&gt;111.9970&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;Intermediate&lt;/td&gt;
+&lt;td align="center"&gt;111.9985&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;Tight&lt;/td&gt;
+&lt;td align="center"&gt;111.9984&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;Really tight&lt;/td&gt;
+&lt;td align="center"&gt;111.9991&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="FHI-aims"></category><category term="dft"></category></entry><entry><title>SCAN TM pseudopotentials</title><link href="https://yaoyi92.github.io/scan-tm-pseudopotentials.html" rel="alternate"></link><published>2017-04-11T23:26:00+02:00</published><updated>2017-04-11T23:26:00+02:00</updated><author><name>Yi Yao</name></author><id>tag:yaoyi92.github.io,2017-04-11:/scan-tm-pseudopotentials.html</id><summary type="html">&lt;p&gt;SCAN pseudopotentials&lt;/p&gt;</summary><content type="html">&lt;p&gt;Use at your own risk.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;

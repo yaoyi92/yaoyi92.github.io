@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Performing Bader Analysis with FHI-aims code - Yi Yao's Homepage</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="./performing-bader-analysis-with-fhi-aims-code.html">
+
+        <meta name="author" content="Yi Yao" />
+        <meta name="keywords" content="dft" />
+        <meta name="description" content="How to perform Bader analysis with FHI-aims code." />
+
+        <meta property="og:site_name" content="Yi Yao's Homepage" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Performing Bader Analysis with FHI-aims code"/>
+        <meta property="og:url" content="./performing-bader-analysis-with-fhi-aims-code.html"/>
+        <meta property="og:description" content="How to perform Bader analysis with FHI-aims code."/>
+        <meta property="article:published_time" content="2021-06-15" />
+            <meta property="article:section" content="FHI-aims" />
+            <meta property="article:tag" content="dft" />
+            <meta property="article:author" content="Yi Yao" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./themestatic/css/bootstrap.min.css" type="text/css"/>
+    <link href="./themestatic/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./themestatic/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./themestatic/css/style.css" type="text/css"/>
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Yi Yao's Homepage            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="index.html">About Me</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="categories.html">Research Blogs</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<!-- Banner -->
+<!-- End Banner -->
+
+<!-- Content Container -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./performing-bader-analysis-with-fhi-aims-code.html"
+                       rel="bookmark"
+                       title="Permalink to Performing Bader Analysis with FHI-aims code">
+                        Performing Bader Analysis with FHI-aims code
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2021-06-15T14:56:00+02:00"> Tue 15 June 2021</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/dft.html">dft</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h4>Introduction</h4>
+<p>Bader analysis is a widely used technique to decompose the charge density into contributions from individual atoms <a href="https://pubs.acs.org/doi/10.1021/ar00109a003">[Bader]</a> <a href="https://iopscience.iop.org/article/10.1088/0953-8984/21/8/084204">[Tang]</a> <a href="https://doi.org/10.1063/1.3553716">[Yu]</a>. It belongs to the theory of atoms in molecules which helps explain the complex electronic interactions in molecules or materials. The electron density calculated by density functional theory is the most common object where Bader analysis working on. Especially, for the planewave pseudopotential codes such as VASP and Quantum Espresso, Bader analysis can be applied natually on the electron density information saved in the <a href="http://paulbourke.net/dataformats/cube/">Cube files</a>, which are density values saved on even distributed integration grids in periodic 3D space. </p>
+<h4>Problem in FHI-aims with Cube file</h4>
+<p><a href="https://aimsclub.fhi-berlin.mpg.de/">FHI-aims</a> is an all electron full potential code based on the numerical atom-centered orbital basis functions <a href="https://www.sciencedirect.com/science/article/pii/S0010465509002033">[Blum]</a>. One advantage of FHI-aims implementation is the correct description of the cusp of the electron density in the the core region near the nuclei. However, such cusp also gives problem for the cube file output from the FHI-aims code. If we integrate the normal density information saved in the cube file output by FHI-aims, the result can be differ from the number of electrons in the system.</p>
+<p>I plot a 1D example to explain the problem.
+<img alt="Alt Text" src="./images/aims_bader_cusp_1d.png"></p>
+<p>As plotted in the figure, we have a 1D electron density function f defined from 0.0 to 20.0. It's integral is 4.59931 as shown in blue color in the figure. To mimic the cube file information, we seperate the space into 20 small "voxel" with an even space of 1.0 as plotted in yellow vertical lines. The information saved in the cube files are then the values of the red vertical lines which are the values of the f function at the center of voxels. The integral of the f function calculated in
+this way is then the summation of these values which is 4.46412. It is close but different from the exact integral.
+This would be a good approximation when if f function is smooth as the electron density in the planewave pseudopotential code. For the electron density in FHI-aims code, due to the exists of cusp, the error could be large.</p>
+<h4>Integral instead of value at the center of voxel in FHI-aims with Cube file</h4>
+<p>To solve the problem, we could save the integral in each voxel instead of the value at the center of the voxel in the cube file. As plotted in black in the figure, the integrals in each voxel is slightly different from the value at the center of the voxel and the summation of these integrals results in the correct integral of the whole space.
+Note, to calculate the integrals in these small voxels, we can evaluate electron density adaptively in theory. However, electron density calculation from a density matrix is computationally relatively expensive. 
+A computatinally efficient quantity to evaluate is the free atom electron density, as they are saved as spline functions centered at each atom. We can evaluate the free atom electron density adaptively to high accuracy.
+Thus, the output value for total density is </p>
+<p><span class="math">\(\rho_{total\ density}(voxel) = \rho_{total\ density}(voxel_{center}) - \rho_{free\ atom}(voxel_{center}) + \int_{voxel} \rho_{free\ atom}\)</span></p>
+<p>Based on my test, the output cube files integrals to a value much closer to the total number of electrons in the system. I call the quantity integrable total density.</p>
+<h4>Inputs in FHI-aims</h4>
+<p>The keyword in FHI-aims to output the integrable total density is <code>output cube total_density_integrable</code>. Let me give two complete examples. One is the crystalline NaCl with 8 atoms in the unit cell, the other is the crystalline silicon with 8 atoms in the unit cell.</p>
+<h5>Example Crystalline NaCl</h5>
+<p>FHI-aims needs two files as inputs <code>control.in</code> and <code>geometry.in</code>.</p>
+<p><code>control.in</code> </p>
+<div class="highlight"><pre><span></span><code># <span class="nv">YY</span>:<span class="nv">WARNING</span> <span class="nv">just</span> <span class="k">for</span> <span class="nv">test</span>
+#    <span class="nv">NEVER</span> <span class="nv">use</span> <span class="nv">the</span> <span class="nv">numerical</span> <span class="nv">setting</span> <span class="nv">here</span> <span class="k">for</span> <span class="nv">productive</span> <span class="nv">run</span>
+#
+# <span class="nv">Physical</span> <span class="nv">settings</span>
+  <span class="nv">xc</span>                 <span class="nv">pw91_gga</span>
+  <span class="nv">spin</span>               <span class="nv">none</span>
+# <span class="nv">k</span><span class="o">-</span><span class="nv">point</span> <span class="nv">grid</span>
+  <span class="nv">k_grid</span>  <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span>
+  <span class="nv">KS_method</span> <span class="nv">serial</span> <span class="o">!</span> <span class="nv">ELSI</span> <span class="nv">lapack</span>
+  <span class="nv">preconditioner</span> <span class="nv">none</span>
+  <span class="nv">output</span> <span class="nv">cube</span> <span class="nv">total_density_integrable</span>
+  <span class="nv">cube</span> <span class="nv">edge</span> <span class="mi">120</span> <span class="mi">0</span>.<span class="mi">04737105709166667</span> <span class="mi">0</span>.<span class="mi">0</span> <span class="mi">0</span>.<span class="mi">0</span> # <span class="nv">these</span> <span class="nv">are</span> <span class="nv">in</span> <span class="nv">unit</span> <span class="nv">Angstrom</span>
+  <span class="nv">cube</span> <span class="nv">edge</span> <span class="mi">120</span> <span class="mi">0</span>.<span class="mi">0</span> <span class="mi">0</span>.<span class="mi">04737105709166667</span> <span class="mi">0</span>.<span class="mi">0</span> # <span class="nv">these</span> <span class="nv">are</span> <span class="nv">in</span> <span class="nv">unit</span> <span class="nv">Angstrom</span>
+  <span class="nv">cube</span> <span class="nv">edge</span> <span class="mi">120</span> <span class="mi">0</span>.<span class="mi">0</span> <span class="mi">0</span>.<span class="mi">0</span> <span class="mi">0</span>.<span class="mi">04737105709166667</span> # <span class="nv">these</span> <span class="nv">are</span> <span class="nv">in</span> <span class="nv">unit</span> <span class="nv">Angstrom</span>
+  <span class="nv">cube</span> <span class="nv">divisor</span> <span class="mi">10</span>
+  <span class="nv">cube_content_unit</span>  <span class="nv">bohr</span>
+################################################################################
+#
+#  <span class="nv">FHI</span><span class="o">-</span><span class="nv">aims</span> <span class="nv">code</span> <span class="nv">project</span>
+# <span class="nv">Volker</span> <span class="nv">Blum</span>, <span class="nv">Fritz</span> <span class="nv">Haber</span> <span class="nv">Institute</span> <span class="nv">Berlin</span>, <span class="mi">2009</span>
+#
+#  <span class="nv">Suggested</span> <span class="s2">&quot;</span><span class="s">intermediate</span><span class="s2">&quot;</span> <span class="nv">defaults</span> <span class="k">for</span> <span class="nv">Na</span> <span class="nv">atom</span> <span class="ss">(</span><span class="nv">to</span> <span class="nv">be</span> <span class="nv">pasted</span> <span class="nv">into</span> <span class="nv">control</span>.<span class="nv">in</span> <span class="nv">file</span><span class="ss">)</span>
+#
+#  <span class="nv">See</span> <span class="nv">https</span>:<span class="o">//</span><span class="nv">aaltodoc</span>.<span class="nv">aalto</span>.<span class="nv">fi</span><span class="o">/</span><span class="nv">handle</span><span class="o">/</span><span class="mi">123456789</span><span class="o">/</span><span class="mi">33620</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">report</span> <span class="nv">these</span>
+#  <span class="nv">setting</span> <span class="nv">are</span> <span class="nv">based</span> <span class="nv">on</span>
+################################################################################
+  <span class="nv">species</span>        <span class="nv">Na</span>
+#     <span class="nv">global</span> <span class="nv">species</span> <span class="nv">definitions</span>
+    <span class="nv">nucleus</span>             <span class="mi">11</span>
+    <span class="nv">mass</span>                <span class="mi">22</span>.<span class="mi">98976928</span>
+#
+    <span class="nv">l_hartree</span>           <span class="mi">6</span>
+#
+    <span class="nv">cut_pot</span>             <span class="mi">4</span>.<span class="mi">5</span>          <span class="mi">2</span>.<span class="mi">0</span>  <span class="mi">1</span>.<span class="mi">0</span>
+    <span class="nv">basis_dep_cutoff</span>    <span class="mi">1</span><span class="nv">e</span><span class="o">-</span><span class="mi">4</span>
+#
+    <span class="nv">radial_base</span>         <span class="mi">40</span> <span class="mi">7</span>.<span class="mi">0</span>
+    <span class="nv">radial_multiplier</span>   <span class="mi">2</span>
+    <span class="nv">angular_grids</span>       <span class="nv">specified</span>
+      <span class="nv">division</span>   <span class="mi">0</span>.<span class="mi">5925</span>  <span class="mi">110</span>
+      <span class="nv">division</span>   <span class="mi">0</span>.<span class="mi">7843</span>  <span class="mi">194</span>
+      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">0201</span>  <span class="mi">302</span>
+      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">1879</span>  <span class="mi">434</span>
+#      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">3799</span>  <span class="mi">590</span>
+#      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">4503</span>  <span class="mi">770</span>
+#      <span class="nv">division</span>   <span class="mi">7</span>.<span class="mi">0005</span>  <span class="mi">974</span>
+#      <span class="nv">outer_grid</span>  <span class="mi">974</span>
+      <span class="nv">outer_grid</span>  <span class="mi">434</span>
+################################################################################
+#
+#  <span class="nv">Definition</span> <span class="nv">of</span> <span class="s2">&quot;</span><span class="s">minimal</span><span class="s2">&quot;</span> <span class="nv">basis</span>
+#
+################################################################################
+#     <span class="nv">valence</span> <span class="nv">basis</span> <span class="nv">states</span>
+    <span class="nv">valence</span>      <span class="mi">3</span>  <span class="nv">s</span>   <span class="mi">1</span>.
+    <span class="nv">valence</span>      <span class="mi">2</span>  <span class="nv">p</span>   <span class="mi">6</span>.
+#     <span class="nv">ion</span> <span class="nv">occupancy</span>
+    <span class="nv">ion_occ</span>      <span class="mi">2</span>  <span class="nv">s</span>   <span class="mi">2</span>.
+    <span class="nv">ion_occ</span>      <span class="mi">2</span>  <span class="nv">p</span>   <span class="mi">6</span>.
+################################################################################
+#
+#  <span class="nv">Suggested</span> <span class="nv">additional</span> <span class="nv">basis</span> <span class="nv">functions</span>. <span class="k">For</span> <span class="nv">production</span> <span class="nv">calculations</span>,
+#  <span class="nv">uncomment</span> <span class="nv">them</span> <span class="nv">one</span> <span class="nv">after</span> <span class="nv">another</span> <span class="ss">(</span><span class="nv">the</span> <span class="nv">most</span> <span class="nv">important</span> <span class="nv">basis</span> <span class="nv">functions</span> <span class="nv">are</span>
+#  <span class="nv">listed</span> <span class="nv">first</span><span class="ss">)</span>.
+#
+#  <span class="nv">Constructed</span> <span class="k">for</span> <span class="nv">dimers</span>: <span class="mi">2</span>.<span class="mi">0</span> <span class="nv">A</span>, <span class="mi">2</span>.<span class="mi">5</span> <span class="nv">A</span>, <span class="mi">3</span>.<span class="mi">0</span> <span class="nv">A</span>, <span class="mi">3</span>.<span class="mi">75</span> <span class="nv">A</span>, <span class="mi">4</span>.<span class="mi">5</span> <span class="nv">A</span>
+#
+################################################################################
+#  <span class="s2">&quot;</span><span class="s">First tier</span><span class="s2">&quot;</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">60</span>.<span class="mi">09</span> <span class="nv">meV</span> <span class="nv">to</span> <span class="o">-</span><span class="mi">10</span>.<span class="mi">02</span> <span class="nv">meV</span>
+     <span class="nv">hydro</span> <span class="mi">2</span> <span class="nv">p</span> <span class="mi">1</span>.<span class="mi">2</span>
+     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">s</span> <span class="mi">1</span>.<span class="mi">8</span>
+     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">d</span> <span class="mi">3</span>.<span class="mi">8</span>
+#  <span class="s2">&quot;</span><span class="s">Second tier</span><span class="s2">&quot;</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">2</span>.<span class="mi">94</span> <span class="nv">meV</span> <span class="nv">to</span> <span class="o">-</span><span class="mi">1</span>.<span class="mi">27</span> <span class="nv">meV</span>
+     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">p</span> <span class="mi">3</span>.<span class="mi">1</span>
+     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">s</span> <span class="mi">10</span>
+     <span class="nv">for_aux</span> <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">f</span> <span class="mi">6</span>.<span class="mi">2</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">d</span> <span class="mi">1</span>.<span class="mi">3</span>
+#  <span class="s2">&quot;</span><span class="s">Third tier</span><span class="s2">&quot;</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">0</span>.<span class="mi">83</span> <span class="nv">meV</span> <span class="nv">to</span> <span class="o">-</span><span class="mi">0</span>.<span class="mi">07</span> <span class="nv">meV</span>
+#     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">d</span> <span class="mi">7</span>.<span class="mi">8</span>
+#     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">p</span> <span class="mi">2</span>.<span class="mi">3</span>
+#     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">g</span> <span class="mi">9</span>.<span class="mi">6</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">p</span> <span class="mi">0</span>.<span class="mi">85</span>
+#     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">f</span> <span class="mi">1</span>.<span class="mi">8</span>
+#     <span class="nv">hydro</span> <span class="mi">2</span> <span class="nv">s</span> <span class="mi">0</span>.<span class="mi">6</span>
+#  <span class="nv">Further</span> <span class="nv">basis</span> <span class="nv">functions</span> <span class="nv">that</span> <span class="nv">fell</span> <span class="nv">out</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">optimization</span> <span class="o">-</span> <span class="nv">noise</span> <span class="nv">level</span>...
+#     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">g</span> <span class="mi">0</span>.<span class="mi">1</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">d</span> <span class="mi">3</span>.<span class="mi">4</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">s</span> <span class="mi">0</span>.<span class="mi">1</span>
+################################################################################
+#
+#  <span class="nv">FHI</span><span class="o">-</span><span class="nv">aims</span> <span class="nv">code</span> <span class="nv">project</span>
+#  <span class="nv">Volker</span> <span class="nv">Blum</span>, <span class="mi">2017</span>
+#
+#  <span class="nv">Suggested</span> <span class="s2">&quot;</span><span class="s">intermediate</span><span class="s2">&quot;</span> <span class="nv">defaults</span> <span class="k">for</span> <span class="nv">Cl</span> <span class="nv">atom</span> <span class="ss">(</span><span class="nv">to</span> <span class="nv">be</span> <span class="nv">pasted</span> <span class="nv">into</span> <span class="nv">control</span>.<span class="nv">in</span> <span class="nv">file</span><span class="ss">)</span>
+#
+################################################################################
+  <span class="nv">species</span>        <span class="nv">Cl</span>
+#     <span class="nv">global</span> <span class="nv">species</span> <span class="nv">definitions</span>
+    <span class="nv">nucleus</span>             <span class="mi">17</span>
+    <span class="nv">mass</span>                <span class="mi">35</span>.<span class="mi">453</span>
+#
+    <span class="nv">l_hartree</span>           <span class="mi">6</span>
+#
+    <span class="nv">cut_pot</span>             <span class="mi">4</span>.<span class="mi">0</span>          <span class="mi">2</span>.<span class="mi">0</span>  <span class="mi">1</span>.<span class="mi">0</span>
+    <span class="nv">basis_dep_cutoff</span>    <span class="mi">1</span><span class="nv">e</span><span class="o">-</span><span class="mi">4</span>
+#
+    <span class="nv">radial_base</span>         <span class="mi">45</span> <span class="mi">7</span>.<span class="mi">0</span>
+    <span class="nv">radial_multiplier</span>   <span class="mi">2</span>
+    <span class="nv">angular_grids</span>       <span class="nv">specified</span>
+      <span class="nv">division</span>   <span class="mi">0</span>.<span class="mi">4412</span>  <span class="mi">110</span>
+      <span class="nv">division</span>   <span class="mi">0</span>.<span class="mi">5489</span>  <span class="mi">194</span>
+      <span class="nv">division</span>   <span class="mi">0</span>.<span class="mi">6734</span>  <span class="mi">302</span>
+      <span class="nv">division</span>   <span class="mi">0</span>.<span class="mi">7794</span>  <span class="mi">434</span>
+#      <span class="nv">division</span>   <span class="mi">0</span>.<span class="mi">9402</span>  <span class="mi">590</span>
+#      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">0779</span>  <span class="mi">770</span>
+#      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">1792</span>  <span class="mi">974</span>
+#      <span class="nv">outer_grid</span>  <span class="mi">974</span>
+      <span class="nv">outer_grid</span>  <span class="mi">434</span>
+################################################################################
+#
+#  <span class="nv">Definition</span> <span class="nv">of</span> <span class="s2">&quot;</span><span class="s">minimal</span><span class="s2">&quot;</span> <span class="nv">basis</span>
+#
+################################################################################
+#     <span class="nv">valence</span> <span class="nv">basis</span> <span class="nv">states</span>
+    <span class="nv">valence</span>      <span class="mi">3</span>  <span class="nv">s</span>   <span class="mi">2</span>.
+    <span class="nv">valence</span>      <span class="mi">3</span>  <span class="nv">p</span>   <span class="mi">5</span>.
+#     <span class="nv">ion</span> <span class="nv">occupancy</span>
+    <span class="nv">ion_occ</span>      <span class="mi">3</span>  <span class="nv">s</span>   <span class="mi">1</span>.
+    <span class="nv">ion_occ</span>      <span class="mi">3</span>  <span class="nv">p</span>   <span class="mi">4</span>.
+################################################################################
+#
+#  <span class="nv">Suggested</span> <span class="nv">additional</span> <span class="nv">basis</span> <span class="nv">functions</span>. <span class="k">For</span> <span class="nv">production</span> <span class="nv">calculations</span>,
+#  <span class="nv">uncomment</span> <span class="nv">them</span> <span class="nv">one</span> <span class="nv">after</span> <span class="nv">another</span> <span class="ss">(</span><span class="nv">the</span> <span class="nv">most</span> <span class="nv">important</span> <span class="nv">basis</span> <span class="nv">functions</span> <span class="nv">are</span>
+#  <span class="nv">listed</span> <span class="nv">first</span><span class="ss">)</span>.
+#
+#  <span class="nv">Constructed</span> <span class="k">for</span> <span class="nv">dimers</span>: <span class="mi">1</span>.<span class="mi">65</span> <span class="nv">A</span>, <span class="mi">2</span>.<span class="mi">0</span> <span class="nv">A</span>, <span class="mi">2</span>.<span class="mi">5</span> <span class="nv">A</span>, <span class="mi">3</span>.<span class="mi">25</span> <span class="nv">A</span>, <span class="mi">4</span>.<span class="mi">0</span> <span class="nv">A</span>
+#
+################################################################################
+#  <span class="s2">&quot;</span><span class="s">First tier</span><span class="s2">&quot;</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">429</span>.<span class="mi">57</span> <span class="nv">meV</span> <span class="nv">to</span> <span class="o">-</span><span class="mi">15</span>.<span class="mi">03</span> <span class="nv">meV</span>
+     <span class="nv">ionic</span> <span class="mi">3</span> <span class="nv">d</span> <span class="nv">auto</span>
+     <span class="nv">hydro</span> <span class="mi">2</span> <span class="nv">p</span> <span class="mi">1</span>.<span class="mi">9</span>
+     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">f</span> <span class="mi">7</span>.<span class="mi">4</span>
+     <span class="nv">ionic</span> <span class="mi">3</span> <span class="nv">s</span> <span class="nv">auto</span>
+     <span class="nv">for_aux</span>     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">g</span> <span class="mi">10</span>.<span class="mi">4</span>
+#  <span class="s2">&quot;</span><span class="s">Second tier</span><span class="s2">&quot;</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">7</span>.<span class="mi">84</span> <span class="nv">meV</span> <span class="nv">to</span> <span class="o">-</span><span class="mi">0</span>.<span class="mi">48</span> <span class="nv">meV</span>
+#     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">d</span> <span class="mi">3</span>.<span class="mi">3</span>
+#     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">f</span> <span class="mi">9</span>.<span class="mi">8</span>
+#     <span class="nv">hydro</span> <span class="mi">1</span> <span class="nv">s</span> <span class="mi">0</span>.<span class="mi">75</span>
+#     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">g</span> <span class="mi">11</span>.<span class="mi">2</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">p</span> <span class="mi">10</span>.<span class="mi">4</span>
+#  <span class="s2">&quot;</span><span class="s">Third tier</span><span class="s2">&quot;</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">1</span>.<span class="mi">00</span> <span class="nv">meV</span> <span class="nv">to</span> <span class="o">-</span><span class="mi">0</span>.<span class="mi">12</span> <span class="nv">meV</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">d</span> <span class="mi">12</span>.<span class="mi">8</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">f</span> <span class="mi">4</span>.<span class="mi">6</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">d</span> <span class="mi">10</span>.<span class="mi">8</span>
+#     <span class="nv">hydro</span> <span class="mi">2</span> <span class="nv">s</span> <span class="mi">1</span>.<span class="mi">8</span>
+#     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">p</span> <span class="mi">3</span>
+#  <span class="nv">Further</span> <span class="nv">functions</span> <span class="nv">that</span> <span class="nv">fell</span> <span class="nv">out</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">0</span>.<span class="mi">10</span> <span class="nv">meV</span> <span class="nv">and</span> <span class="nv">below</span>
+#     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">f</span> <span class="mi">14</span>.<span class="mi">4</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">s</span> <span class="mi">12</span>.<span class="mi">8</span>
+#     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">d</span> <span class="mi">11</span>.<span class="mi">6</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">s</span> <span class="mi">4</span>.<span class="mi">1</span>
+</code></pre></div>
+
+<p><code>geometry.in</code> </p>
+<div class="highlight"><pre><span></span><code>lattice_vector 5.6845268510 0.0 0.0
+lattice_vector 0.0 5.6845268510 0.0
+lattice_vector 0.0 0.0 5.6845268510
+atom_frac 0.75   0.25   0.25  Na
+atom_frac 0.25   0.75   0.25  Na
+atom_frac 0.25   0.25   0.75  Na
+atom_frac 0.75   0.75   0.75  Na
+atom_frac 0.25   0.25   0.25  Cl
+atom_frac 0.75   0.75   0.25  Cl
+atom_frac 0.75   0.25   0.75  Cl
+atom_frac 0.25   0.75   0.75  Cl
+</code></pre></div>
+
+<h5>Example Crystalline Silicon</h5>
+<p><code>control.in</code></p>
+<div class="highlight"><pre><span></span><code># <span class="nv">YY</span>:<span class="nv">WARNING</span> <span class="nv">just</span> <span class="k">for</span> <span class="nv">test</span>
+#    <span class="nv">NEVER</span> <span class="nv">use</span> <span class="nv">the</span> <span class="nv">numerical</span> <span class="nv">setting</span> <span class="nv">here</span> <span class="k">for</span> <span class="nv">productive</span> <span class="nv">run</span>
+#
+# <span class="nv">Physical</span> <span class="nv">settings</span>
+  <span class="nv">xc</span>                 <span class="nv">pbe</span>
+  <span class="nv">spin</span>               <span class="nv">none</span>
+
+# <span class="nv">k</span><span class="o">-</span><span class="nv">point</span> <span class="nv">grid</span>
+  <span class="nv">k_grid</span>  <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span>
+
+  <span class="nv">KS_method</span> <span class="nv">serial</span> <span class="o">!</span> <span class="nv">ELSI</span> <span class="nv">lapack</span>
+
+  <span class="nv">output</span> <span class="nv">cube</span> <span class="nv">total_density_integrable</span>
+  <span class="nv">cube</span> <span class="nv">divisor</span> <span class="mi">10</span>
+  <span class="nv">cube_content_unit</span>  <span class="nv">bohr</span>
+
+################################################################################
+#
+#  <span class="nv">FHI</span><span class="o">-</span><span class="nv">aims</span> <span class="nv">code</span> <span class="nv">project</span>
+#  <span class="nv">Volker</span> <span class="nv">Blum</span>, <span class="mi">2017</span>
+#
+#  <span class="nv">Suggested</span> <span class="s2">&quot;</span><span class="s">intermediate</span><span class="s2">&quot;</span> <span class="nv">defaults</span> <span class="k">for</span> <span class="nv">Si</span> <span class="nv">atom</span> <span class="ss">(</span><span class="nv">to</span> <span class="nv">be</span> <span class="nv">pasted</span> <span class="nv">into</span> <span class="nv">control</span>.<span class="nv">in</span> <span class="nv">file</span><span class="ss">)</span>
+#
+################################################################################
+  <span class="nv">species</span>        <span class="nv">Si</span>
+#     <span class="nv">global</span> <span class="nv">species</span> <span class="nv">definitions</span>
+    <span class="nv">nucleus</span>             <span class="mi">14</span>
+    <span class="nv">mass</span>                <span class="mi">28</span>.<span class="mi">0855</span>
+#
+    <span class="nv">l_hartree</span>           <span class="mi">6</span>
+#
+    <span class="nv">cut_pot</span>             <span class="mi">4</span>.<span class="mi">0</span>          <span class="mi">2</span>.<span class="mi">0</span>  <span class="mi">1</span>.<span class="mi">0</span>
+    <span class="nv">basis_dep_cutoff</span>    <span class="mi">1</span><span class="nv">e</span><span class="o">-</span><span class="mi">4</span>
+#
+    <span class="nv">radial_base</span>         <span class="mi">42</span> <span class="mi">7</span>.<span class="mi">0</span>
+    <span class="nv">radial_multiplier</span>   <span class="mi">2</span>
+    <span class="nv">angular_grids</span>       <span class="nv">specified</span>
+      <span class="nv">division</span>   <span class="mi">0</span>.<span class="mi">4121</span>   <span class="mi">50</span>
+      <span class="nv">division</span>   <span class="mi">0</span>.<span class="mi">7665</span>  <span class="mi">110</span>
+      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">0603</span>  <span class="mi">194</span>
+      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">2846</span>  <span class="mi">302</span>
+      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">4125</span>  <span class="mi">434</span>
+#      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">4810</span>  <span class="mi">590</span>
+#      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">5529</span>  <span class="mi">770</span>
+#      <span class="nv">division</span>   <span class="mi">1</span>.<span class="mi">6284</span>  <span class="mi">974</span>
+#      <span class="nv">division</span>   <span class="mi">2</span>.<span class="mi">6016</span> <span class="mi">1202</span>
+#      <span class="nv">outer_grid</span>   <span class="mi">974</span>
+      <span class="nv">outer_grid</span>  <span class="mi">434</span>
+################################################################################
+#
+#  <span class="nv">Definition</span> <span class="nv">of</span> <span class="s2">&quot;</span><span class="s">minimal</span><span class="s2">&quot;</span> <span class="nv">basis</span>
+#
+################################################################################
+#     <span class="nv">valence</span> <span class="nv">basis</span> <span class="nv">states</span>
+    <span class="nv">valence</span>      <span class="mi">3</span>  <span class="nv">s</span>   <span class="mi">2</span>.
+    <span class="nv">valence</span>      <span class="mi">3</span>  <span class="nv">p</span>   <span class="mi">2</span>.
+#     <span class="nv">ion</span> <span class="nv">occupancy</span>
+    <span class="nv">ion_occ</span>      <span class="mi">3</span>  <span class="nv">s</span>   <span class="mi">1</span>.
+    <span class="nv">ion_occ</span>      <span class="mi">3</span>  <span class="nv">p</span>   <span class="mi">1</span>.
+################################################################################
+#
+#  <span class="nv">Suggested</span> <span class="nv">additional</span> <span class="nv">basis</span> <span class="nv">functions</span>. <span class="k">For</span> <span class="nv">production</span> <span class="nv">calculations</span>,
+#  <span class="nv">uncomment</span> <span class="nv">them</span> <span class="nv">one</span> <span class="nv">after</span> <span class="nv">another</span> <span class="ss">(</span><span class="nv">the</span> <span class="nv">most</span> <span class="nv">important</span> <span class="nv">basis</span> <span class="nv">functions</span> <span class="nv">are</span>
+#  <span class="nv">listed</span> <span class="nv">first</span><span class="ss">)</span>.
+#
+#  <span class="nv">Constructed</span> <span class="k">for</span> <span class="nv">dimers</span>: <span class="mi">1</span>.<span class="mi">75</span> <span class="nv">A</span>, <span class="mi">2</span>.<span class="mi">0</span> <span class="nv">A</span>, <span class="mi">2</span>.<span class="mi">25</span> <span class="nv">A</span>, <span class="mi">2</span>.<span class="mi">75</span> <span class="nv">A</span>, <span class="mi">3</span>.<span class="mi">75</span> <span class="nv">A</span>
+#
+################################################################################
+#  <span class="s2">&quot;</span><span class="s">First tier</span><span class="s2">&quot;</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">571</span>.<span class="mi">96</span> <span class="nv">meV</span> <span class="nv">to</span> <span class="o">-</span><span class="mi">37</span>.<span class="mi">03</span> <span class="nv">meV</span>
+     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">d</span> <span class="mi">4</span>.<span class="mi">2</span>
+     <span class="nv">hydro</span> <span class="mi">2</span> <span class="nv">p</span> <span class="mi">1</span>.<span class="mi">4</span>
+     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">f</span> <span class="mi">6</span>.<span class="mi">2</span>
+     <span class="nv">ionic</span> <span class="mi">3</span> <span class="nv">s</span> <span class="nv">auto</span>
+#  <span class="s2">&quot;</span><span class="s">Second tier</span><span class="s2">&quot;</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">16</span>.<span class="mi">76</span> <span class="nv">meV</span> <span class="nv">to</span> <span class="o">-</span><span class="mi">3</span>.<span class="mi">03</span> <span class="nv">meV</span>
+#     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">d</span> <span class="mi">9</span>
+<span class="nv">for_aux</span>     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">g</span> <span class="mi">9</span>.<span class="mi">4</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">p</span> <span class="mi">4</span>
+#     <span class="nv">hydro</span> <span class="mi">1</span> <span class="nv">s</span> <span class="mi">0</span>.<span class="mi">65</span>
+#  <span class="s2">&quot;</span><span class="s">Third tier</span><span class="s2">&quot;</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">3</span>.<span class="mi">89</span> <span class="nv">meV</span> <span class="nv">to</span> <span class="o">-</span><span class="mi">0</span>.<span class="mi">60</span> <span class="nv">meV</span>
+#     <span class="nv">ionic</span> <span class="mi">3</span> <span class="nv">d</span> <span class="nv">auto</span>
+#     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">s</span> <span class="mi">2</span>.<span class="mi">6</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">f</span> <span class="mi">8</span>.<span class="mi">4</span>
+#     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">d</span> <span class="mi">3</span>.<span class="mi">4</span>
+#     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">p</span> <span class="mi">7</span>.<span class="mi">8</span>
+#  <span class="s2">&quot;</span><span class="s">Fourth tier</span><span class="s2">&quot;</span> <span class="o">-</span> <span class="nv">improvements</span>: <span class="o">-</span><span class="mi">0</span>.<span class="mi">33</span> <span class="nv">meV</span> <span class="nv">to</span> <span class="o">-</span><span class="mi">0</span>.<span class="mi">11</span> <span class="nv">meV</span>
+#     <span class="nv">hydro</span> <span class="mi">2</span> <span class="nv">p</span> <span class="mi">1</span>.<span class="mi">6</span>
+#     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">g</span> <span class="mi">10</span>.<span class="mi">8</span>
+#     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">f</span> <span class="mi">11</span>.<span class="mi">2</span>
+#     <span class="nv">hydro</span> <span class="mi">3</span> <span class="nv">d</span> <span class="mi">1</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">s</span> <span class="mi">4</span>.<span class="mi">5</span>
+#  <span class="nv">Further</span> <span class="nv">basis</span> <span class="nv">functions</span> <span class="nv">that</span> <span class="nv">fell</span> <span class="nv">out</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">optimization</span> <span class="o">-</span> <span class="nv">noise</span>
+#  <span class="nv">level</span>... <span class="o">&lt;</span> <span class="o">-</span><span class="mi">0</span>.<span class="mi">08</span> <span class="nv">meV</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">d</span> <span class="mi">6</span>.<span class="mi">6</span>
+#     <span class="nv">hydro</span> <span class="mi">5</span> <span class="nv">g</span> <span class="mi">16</span>.<span class="mi">4</span>
+#     <span class="nv">hydro</span> <span class="mi">4</span> <span class="nv">d</span> <span class="mi">9</span>
+</code></pre></div>
+
+<p><code>geometry.in</code></p>
+<div class="highlight"><pre><span></span><code>lattice_vector 5.43 0.0000000000000000 0.0000000000000000
+lattice_vector 0.0000000000000000 5.43 0.0000000000000000
+lattice_vector 0.0000000000000000 0.0000000000000000 5.43
+atom 0.0000000000000000 0.0000000000000000 0.0000000000000000 Si
+atom 1.3575000000000000 1.3575000000000000 1.3575000000000000 Si
+atom 0.0000000000000000 2.7150000000000000 2.7150000000000000 Si
+atom 1.3575000000000000 4.0725000000000000 4.0725000000000000 Si
+atom 2.7150000000000000 0.0000000000000000 2.7150000000000000 Si
+atom 4.0725000000000000 1.3575000000000000 4.0725000000000000 Si
+atom 2.7150000000000000 2.7150000000000000 0.0000000000000000 Si
+atom 4.0725000000000000 4.0725000000000000 1.3575000000000000 Si
+</code></pre></div>
+
+<h4>How to perform Bader analysis on the output cube files</h4>
+<p>Codes exist to perform Bader analysis on cube files, here I have two recommendations. One is the <a href="http://theory.cm.utexas.edu/henkelman/code/bader/">Bader code</a> by Henkelman's Group. The other is the <a href="https://aoterodelaroza.github.io/critic2/">Critic2 code</a> by Alberto's Group.</p>
+<h5>Bader code</h5>
+<p>The way to run the Bader code is quite intuitive. Here is an example command line for the Bader analysis.</p>
+<p><code>bader -vac 0 cube_001_total_density_integrable.cube</code> 
+The output file <code>ACF.dat</code> shows the number of electrons associate with each atom. Here is the example of crystalline NaCl.</p>
+<div class="highlight"><pre><span></span><code>    #         X           Y           Z       CHARGE      MIN DIST   ATOMIC VOL
+ --------------------------------------------------------------------------------
+    1    8.056649    2.685550    2.685550   10.134933     2.127317    66.679119
+    2    2.685550    8.056649    2.685550   10.134933     2.127317    66.679119
+    3    2.685550    2.685550    8.056649   10.134933     2.127317    66.679119
+    4    8.056649    8.056649    8.056649   10.134933     2.127313    66.679119
+    5    2.685550    2.685550    2.685550   17.863308     3.089009   242.798590
+    6    8.056649    8.056649    2.685550   17.865052     3.088990   243.331581
+    7    8.056649    2.685550    8.056649   17.866106     3.088990   243.652954
+    8    2.685550    8.056649    8.056649   17.864259     3.088990   243.081226
+ --------------------------------------------------------------------------------
+    VACUUM CHARGE:               0.0000
+    VACUUM VOLUME:               0.0000
+    NUMBER OF ELECTRONS:       111.9985
+</code></pre></div>
+
+<h5>Critic2 code</h5>
+<p>The critic2 code is more versatile. It is basically a general code to perform all kinds of operators on some fields. Here we present a simple input for the same Bader analysis of Yu-Trinkle type.</p>
+<p><code>critic2.in</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Read the structure from any of the cube files</span>
+<span class="n">crystal</span> <span class="n">cube_001_total_density_integrable</span><span class="o">.</span><span class="n">cube</span>
+
+<span class="c1"># Load the electron density</span>
+<span class="nb">load</span> <span class="n">cube_001_total_density_integrable</span><span class="o">.</span><span class="n">cube</span> <span class="n">id</span> <span class="n">rho</span>
+
+<span class="c1"># Use Bader.</span>
+<span class="n">bader</span>
+</code></pre></div>
+
+<p>Then we run the code via commandline.</p>
+<p><code>critic2 critic2.in &gt; critic2.out</code></p>
+<p>We can take a look at the <code>critic2.out</code> file. </p>
+<div class="highlight"><pre><span></span><code><span class="o">*</span> <span class="nv">Integrated</span> <span class="nv">atomic</span> <span class="nv">properties</span>
+# <span class="ss">(</span><span class="nv">See</span> <span class="nv">key</span> <span class="nv">above</span> <span class="k">for</span> <span class="nv">interpretation</span> <span class="nv">of</span> <span class="nv">column</span> <span class="nv">headings</span>.<span class="ss">)</span>
+# <span class="nv">Integrable</span> <span class="nv">properties</span> <span class="mi">1</span> <span class="nv">to</span> <span class="mi">3</span>
+# <span class="nv">Id</span>   <span class="nv">cp</span>   <span class="nv">ncp</span>   <span class="nv">Name</span>  <span class="nv">Z</span>   <span class="nv">mult</span>     <span class="nv">Volume</span>            <span class="nv">Pop</span>             <span class="nv">Lap</span>
+  <span class="mi">1</span>    <span class="mi">1</span>    <span class="mi">1</span>      <span class="nv">Na</span>   <span class="mi">11</span>  <span class="o">--</span>   <span class="mi">6</span>.<span class="mi">66791186</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span>  <span class="mi">1</span>.<span class="mi">01349330</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span>  <span class="mi">2</span>.<span class="mi">37946134</span><span class="nv">E</span><span class="o">-</span><span class="mi">02</span>
+  <span class="mi">2</span>    <span class="mi">2</span>    <span class="mi">1</span>      <span class="nv">Na</span>   <span class="mi">11</span>  <span class="o">--</span>   <span class="mi">6</span>.<span class="mi">66791186</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span>  <span class="mi">1</span>.<span class="mi">01349330</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span>  <span class="mi">2</span>.<span class="mi">37946061</span><span class="nv">E</span><span class="o">-</span><span class="mi">02</span>
+  <span class="mi">3</span>    <span class="mi">3</span>    <span class="mi">1</span>      <span class="nv">Na</span>   <span class="mi">11</span>  <span class="o">--</span>   <span class="mi">6</span>.<span class="mi">66791186</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span>  <span class="mi">1</span>.<span class="mi">01349330</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span>  <span class="mi">2</span>.<span class="mi">37946091</span><span class="nv">E</span><span class="o">-</span><span class="mi">02</span>
+  <span class="mi">4</span>    <span class="mi">4</span>    <span class="mi">1</span>      <span class="nv">Na</span>   <span class="mi">11</span>  <span class="o">--</span>   <span class="mi">6</span>.<span class="mi">66791186</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span>  <span class="mi">1</span>.<span class="mi">01349330</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span>  <span class="mi">2</span>.<span class="mi">37946131</span><span class="nv">E</span><span class="o">-</span><span class="mi">02</span>
+  <span class="mi">5</span>    <span class="mi">5</span>    <span class="mi">2</span>      <span class="nv">Cl</span>   <span class="mi">17</span>  <span class="o">--</span>   <span class="mi">2</span>.<span class="mi">42798590</span><span class="nv">E</span><span class="o">+</span><span class="mi">02</span>  <span class="mi">1</span>.<span class="mi">78633076</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span> <span class="o">-</span><span class="mi">2</span>.<span class="mi">72005475</span><span class="nv">E</span><span class="o">-</span><span class="mi">02</span>
+  <span class="mi">6</span>    <span class="mi">6</span>    <span class="mi">2</span>      <span class="nv">Cl</span>   <span class="mi">17</span>  <span class="o">--</span>   <span class="mi">2</span>.<span class="mi">43331581</span><span class="nv">E</span><span class="o">+</span><span class="mi">02</span>  <span class="mi">1</span>.<span class="mi">78650521</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span> <span class="o">-</span><span class="mi">2</span>.<span class="mi">28806825</span><span class="nv">E</span><span class="o">-</span><span class="mi">02</span>
+  <span class="mi">7</span>    <span class="mi">7</span>    <span class="mi">2</span>      <span class="nv">Cl</span>   <span class="mi">17</span>  <span class="o">--</span>   <span class="mi">2</span>.<span class="mi">43652954</span><span class="nv">E</span><span class="o">+</span><span class="mi">02</span>  <span class="mi">1</span>.<span class="mi">78661064</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span> <span class="o">-</span><span class="mi">2</span>.<span class="mi">02729109</span><span class="nv">E</span><span class="o">-</span><span class="mi">02</span>
+  <span class="mi">8</span>    <span class="mi">8</span>    <span class="mi">2</span>      <span class="nv">Cl</span>   <span class="mi">17</span>  <span class="o">--</span>   <span class="mi">2</span>.<span class="mi">43081226</span><span class="nv">E</span><span class="o">+</span><span class="mi">02</span>  <span class="mi">1</span>.<span class="mi">78642592</span><span class="nv">E</span><span class="o">+</span><span class="mi">01</span> <span class="o">-</span><span class="mi">2</span>.<span class="mi">48243008</span><span class="nv">E</span><span class="o">-</span><span class="mi">02</span>
+<span class="o">--------------------------------------------------------------------------------</span>
+  <span class="nv">Sum</span>                            <span class="mi">1</span>.<span class="mi">23958083</span><span class="nv">E</span><span class="o">+</span><span class="mi">03</span>  <span class="mi">1</span>.<span class="mi">11998457</span><span class="nv">E</span><span class="o">+</span><span class="mi">02</span> <span class="o">-</span><span class="mi">7</span>.<span class="mi">66990638</span><span class="nv">E</span><span class="o">-</span><span class="mi">13</span>
+</code></pre></div>
+
+<p>Clearly, the outputs from Bader and critic2 codes match with each other.</p>
+<p>With critic2, we can calculate more quantities than the Bader integrals. For example, we can plot <a href="https://doi.org/10.1021/ct100641a">NCIPLOT</a> with critic2 with the input <code>critic2_nci.in</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Read the structure from any of the cube files</span>
+<span class="n">crystal</span> <span class="n">cube_001_total_density_integrable</span><span class="o">.</span><span class="n">cube</span>
+
+<span class="c1"># Load the electron density</span>
+<span class="nb">load</span> <span class="n">cube_001_total_density_integrable</span><span class="o">.</span><span class="n">cube</span> <span class="n">id</span> <span class="n">rho</span>
+
+<span class="c1">#NCIplot</span>
+<span class="n">NCIPLOT</span>
+<span class="n">END</span>
+</code></pre></div>
+
+<p>The result can be visualized in VMD via command <code>vmd -e critic2_nci.vmd</code></p>
+<p><img alt="Alt Text" src="./images/aims_bader_nciplot.png"></p>
+<p>For the crystalline NaCl here, this plot doesn't tell much. But, for systems with vdW interaction, hybrogen bond, or steric clashes, this plot can provide useful information.</p>
+<h4>Convergence of the integral in the integrable total density cube file output by FHI-aims.</h4>
+<p>An interesting observation I have for the cube file output is the integral of the integrable total density cube file has a convergence behavior. With the more accurate numerical settings the more accurate the total number of electrons is got.
+My suspicion is the normalization of the integration grid with different setting might play a role here. Without dense enough integration setting, the integration in the atom centered integration grid will introduce a normalization error which will pass to the total number of electrons calculated by the integration of the integrable total density cube file. Luckily, the error is relatively small and will reduce with a more strict numerical setting as I showed the results for both examples.</p>
+<p>The convergence behavior for crystalline sillicon.</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th align="center">Numerical Setting <code>&nbsp;</code></th>
+<th align="center">Integral of integrable total density cube file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Minimal</td>
+<td align="center">111.9851</td>
+</tr>
+<tr>
+<td align="center">Light</td>
+<td align="center">111.9909</td>
+</tr>
+<tr>
+<td align="center">Intermediate</td>
+<td align="center">111.9966</td>
+</tr>
+<tr>
+<td align="center">Tight</td>
+<td align="center">111.9965</td>
+</tr>
+<tr>
+<td align="center">Really tight</td>
+<td align="center">111.9998</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>The convergence behavior for crystalline NaCl.</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th align="center">Numerical Setting <code>&nbsp;</code></th>
+<th align="center">Integral of integrable total density cube file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Minimal</td>
+<td align="center">111.9968</td>
+</tr>
+<tr>
+<td align="center">Light</td>
+<td align="center">111.9970</td>
+</tr>
+<tr>
+<td align="center">Intermediate</td>
+<td align="center">111.9985</td>
+</tr>
+<tr>
+<td align="center">Tight</td>
+<td align="center">111.9984</td>
+</tr>
+<tr>
+<td align="center">Really tight</td>
+<td align="center">111.9991</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<!-- End Content Container -->
+
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2021 Yi Yao
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./themestatic/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./themestatic/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./themestatic/js/respond.min.js"></script>
+
+
+
+
+</body>
+</html>
