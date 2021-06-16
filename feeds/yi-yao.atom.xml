@@ -8,11 +8,11 @@
 &lt;p&gt;As plotted in the figure, we have a 1D electron density function f defined from 0.0 to 20.0. Its integral is 4.59931, as shown in blue color in the figure. To mimic the cube file information, we evenly separate the space into 20 small "voxel" with a length of 1.0 as plotted in yellow vertical lines. The information saved in the cube files are then the values of the red vertical lines, which are the values of the f function at the center of voxels. The integral of the f function calculated in
 this way is then the summation of these values, which is 4.46412. It is close to but different from the exact integral.
 Such summation will be a good approximation if the f function is smooth as the electron density in the planewave pseudopotential code. For the electron density in FHI-aims code, the error can be significant due to the cusps.&lt;/p&gt;
-&lt;h4&gt;Integral instead of value at the center of voxel in FHI-aims with Cube file&lt;/h4&gt;
-&lt;p&gt;To solve the problem, we could save the integral in each voxel instead of the value at the voxel center in the cube file. As plotted in black, the integrals in each voxel are slightly different from the value at the voxel center, and the summation of these integrals results in the correct integration of the whole space.
-Note, to calculate the integrals in these small voxels; we can evaluate electron density adaptively in theory. However, electron density calculation from a density matrix is computationally relatively expensive. 
-A computationally efficient quantity to evaluate is the free atom electron density, as they are saved as spline functions centered at each atom. We can evaluate the free atom electron density adaptively to high accuracy.
-Thus, the output value for total density is &lt;/p&gt;
+&lt;h4&gt;Integral instead of value at the voxel center in FHI-aims with Cube file&lt;/h4&gt;
+&lt;p&gt;We could record the integral in each voxel instead of the value at the voxel center in the cube file to solve the problem. As plotted in black, the integrals in each voxel are slightly different from the value at the voxel center, and the summation of these integrals results in the correct integration of the whole space. Note, to calculate the integrals in these small voxels; we can evaluate electron density adaptively in theory. However, electron density calculation from a density matrix is computationally relatively expensive. 
+Note, the density difference between total density and free atom density at voxel center is a smooth quantity that can be captured in the normal cube file.
+We could evaluate a computationally efficient quantity, which is the free atom electron density. It is represented as the summation of spline functions centered at each atom. We can evaluate the free atom electron density adaptively to high accuracy. 
+Thus, the output value for total density is&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(\rho_{total\ density}(voxel) = \rho_{total\ density}(voxel_{center}) - \rho_{free\ atom}(voxel_{center}) + \int_{voxel} \rho_{free\ atom}\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Based on my test, the output cube files integrals to a value much closer to the total number of electrons in the system. I call the quantity integrable total density.&lt;/p&gt;
 &lt;h4&gt;Inputs in FHI-aims&lt;/h4&gt;
@@ -333,7 +333,7 @@ The output file &lt;code&gt;ACF.dat&lt;/code&gt; shows the number of electrons a
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h5&gt;Critic2 code&lt;/h5&gt;
-&lt;p&gt;The critic2 code is more versatile. It is basically a general code to perform all kinds of operators on some fields. Here we present a simple input for the same Bader analysis of Yu-Trinkle type.&lt;/p&gt;
+&lt;p&gt;The critic2 code is more versatile. It is basically a general code to perform all kinds of operators on some fields. Here we present a simple input for the same Bader analysis.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;critic2.in&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Read the structure from any of the cube files&lt;/span&gt;
 &lt;span class="n"&gt;crystal&lt;/span&gt; &lt;span class="n"&gt;cube_001_total_density_integrable&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cube&lt;/span&gt;
@@ -365,6 +365,7 @@ The output file &lt;code&gt;ACF.dat&lt;/code&gt; shows the number of electrons a
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Clearly, the outputs from Bader and critic2 codes match with each other.&lt;/p&gt;
+&lt;h4&gt;a side note about critic2 code&lt;/h4&gt;
 &lt;p&gt;With critic2, we can calculate more quantities than the Bader integrals. For example, we can plot &lt;a href="https://doi.org/10.1021/ct100641a"&gt;NCIPLOT&lt;/a&gt; with critic2 with the input &lt;code&gt;critic2_nci.in&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Read the structure from any of the cube files&lt;/span&gt;
 &lt;span class="n"&gt;crystal&lt;/span&gt; &lt;span class="n"&gt;cube_001_total_density_integrable&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cube&lt;/span&gt;
